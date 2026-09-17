@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Reserva la fecha · Captured Love</title>
+<meta name="description" content="Reserva la fecha — toca la polaroid para revelar la foto y la fecha de nuestra boda.">
+<meta property="og:title" content="Reserva la fecha · Captured Love">
+<meta property="og:type" content="website">
+<meta name="format-detection" content="telephone=no">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23141b2e'/%3E%3Crect x='7' y='5' width='18' height='22' rx='1' fill='%23f5ede0'/%3E%3Crect x='9' y='7' width='14' height='13' fill='%230e1422'/%3E%3C/svg%3E">
+<style>
+/* ── FUENTES (locales, en recursos/fuentes) ── */
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:300;font-display:swap;src:url('recursos/fuentes/cormorant-garamond-latin-300-italic.woff2') format('woff2');}
+@font-face{font-family:'Cinzel';font-style:normal;font-weight:400;font-display:swap;src:url('recursos/fuentes/cinzel-latin-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Cinzel';font-style:normal;font-weight:500;font-display:swap;src:url('recursos/fuentes/cinzel-latin-500-normal.woff2') format('woff2');}
+@font-face{font-family:'Great Vibes';font-style:normal;font-weight:400;font-display:swap;src:url('recursos/fuentes/great-vibes-latin-400-normal.woff2') format('woff2');}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%;width:100%}
+body{
+  background:linear-gradient(165deg,#1e2640 0%,#141b2e 55%,#0e1422 100%);
+  min-height:100vh;min-height:100svh;
+  font-family:'Cormorant Garamond',Georgia,serif;
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+  padding:108px 16px 52px;
+  position:relative;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  -webkit-tap-highlight-color:transparent;
+}
+/* grano sutil + halo azul arriba */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:0;opacity:.5;
+}
+body::after{
+  content:'';position:fixed;inset:0;
+  background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(100,140,220,.06) 0%,transparent 55%);
+  pointer-events:none;z-index:0;
+}
+
+/* ── ENCABEZADO ── */
+.pl-header{position:relative;z-index:2;text-align:center;margin-bottom:24px;opacity:0;animation:plUp .9s .1s ease forwards;}
+.pl-std{font-family:'Cinzel',serif;font-size:clamp(15px,4.8vw,22px);font-weight:500;letter-spacing:.38em;text-transform:uppercase;color:rgba(200,168,90,.92);}
+.pl-std-rule{width:55px;height:1px;background:linear-gradient(90deg,transparent,rgba(200,168,90,.4),transparent);margin:9px auto 0;}
+
+/* ── POLAROID ── */
+.pl-wrap{position:relative;z-index:2;width:min(295px,82vw);opacity:0;animation:plUp .9s .3s ease forwards;}
+.pl-out{
+  transform:rotate(-1.2deg);
+  filter:drop-shadow(0 2px 3px rgba(0,0,0,.35)) drop-shadow(0 16px 44px rgba(0,0,0,.85));
+  transition:transform .3s cubic-bezier(.16,1,.3,1);
+  cursor:pointer;user-select:none;-webkit-user-select:none;
+}
+.pl-out:hover{transform:rotate(-1.2deg) scale(1.02);}
+.pl-out.shk1{animation:shk1 .52s cubic-bezier(.36,.07,.19,.97) both}
+.pl-out.shk2{animation:shk2 .56s cubic-bezier(.36,.07,.19,.97) both}
+.pl-out.shk3{animation:shk3 .62s cubic-bezier(.36,.07,.19,.97) both}
+@keyframes shk1{
+  0%{transform:rotate(-1.2deg)}
+  15%{transform:rotate(-5deg) translate(-9px,-3px)}
+  30%{transform:rotate(4deg) translate(9px,3px)}
+  50%{transform:rotate(-3deg) translate(-5px,-1px)}
+  70%{transform:rotate(2deg) translate(4px,1px)}
+  100%{transform:rotate(-1.2deg)}
+}
+@keyframes shk2{
+  0%{transform:rotate(-1.2deg)}
+  10%{transform:rotate(-6.5deg) translate(-12px,-5px)}
+  22%{transform:rotate(5deg) translate(12px,5px)}
+  35%{transform:rotate(-4.5deg) translate(-8px,-2px)}
+  50%{transform:rotate(3.5deg) translate(8px,2px)}
+  65%{transform:rotate(-2deg) translate(-4px,0)}
+  80%{transform:rotate(1deg) translate(2px,0)}
+  100%{transform:rotate(-1.2deg)}
+}
+@keyframes shk3{
+  0%{transform:rotate(-1.2deg)}
+  8%{transform:rotate(-8deg) translate(-14px,-6px)}
+  18%{transform:rotate(6deg) translate(14px,6px)}
+  28%{transform:rotate(-5.5deg) translate(-10px,-3px)}
+  38%{transform:rotate(5deg) translate(10px,3px)}
+  50%{transform:rotate(-3deg) translate(-6px,-1px)}
+  62%{transform:rotate(2deg) translate(5px,1px)}
+  78%{transform:rotate(-.8deg) translate(-2px,0)}
+  100%{transform:rotate(-1.2deg)}
+}
+.pl-cd{width:100%;background:linear-gradient(170deg,#faf4ea 0%,#f5ede0 60%,#ede4d2 100%);padding:10px 10px 0;border-radius:2px;}
+.pl-ph{width:100%;aspect-ratio:1/.88;position:relative;overflow:hidden;background:#0e1422;}
+/* la opacidad de la foto la controla el JS (sin transición CSS) */
+.pl-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;display:block;opacity:0;}
+.pl-dc{position:absolute;inset:0;width:100%;height:100%;z-index:2;display:block;}
+
+/* franja inferior de la polaroid */
+.pl-cap{height:82px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:0 12px;position:relative;}
+.pl-cap::before{content:'';position:absolute;top:0;left:12px;right:12px;height:.5px;background:linear-gradient(to right,transparent,rgba(150,120,70,.3),transparent);}
+.pl-cap-names{font-family:'Great Vibes',cursive;font-size:clamp(25px,7.2vw,32px);color:#1a1208;letter-spacing:.02em;text-align:center;line-height:1.1;}
+.pl-cap-sub{font-family:'Great Vibes',cursive;font-size:clamp(16px,4.5vw,21px);color:#4a3820;letter-spacing:.01em;text-align:center;opacity:.85;}
+
+/* ── ZONA DE ACCIÓN ── */
+.pl-action{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:22px;opacity:0;animation:plUp .8s .55s ease forwards;transition:opacity .5s ease;}
+.pl-ring{width:52px;height:52px;border-radius:50%;border:1.5px solid rgba(200,168,90,.32);display:flex;align-items:center;justify-content:center;background:rgba(200,168,90,.06);animation:pulse 2.8s ease-in-out infinite;cursor:pointer;}
+@keyframes pulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(200,168,90,.2);border-color:rgba(200,168,90,.32)}
+  50%{box-shadow:0 0 0 10px rgba(200,168,90,0);border-color:rgba(200,168,90,.7)}
+}
+.pl-hint{font-family:'Cinzel',serif;font-size:10.5px;letter-spacing:.2em;color:rgba(200,164,90,.85);text-transform:uppercase;text-align:center;line-height:1.7;}
+.pl-prog{width:min(170px,52vw);height:2.5px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden;opacity:0;transition:opacity .4s;}
+.pl-prog-bar{height:100%;width:0%;border-radius:2px;background:linear-gradient(90deg,#c8a45a,#f0d090);box-shadow:0 0 8px rgba(200,168,90,.55);transition:width .5s cubic-bezier(.34,1.1,.64,1);}
+
+/* ── INFORMACIÓN REVELADA ── */
+.pl-reveal{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;opacity:0;pointer-events:none;transition:opacity .9s ease .3s;margin-top:18px;}
+.pl-reveal.show{opacity:1;pointer-events:auto;}
+.pl-rev-date{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;
+  font-size:clamp(44px,13vw,66px);color:#f0d090;text-align:center;line-height:1;letter-spacing:.03em;
+  text-shadow:0 0 28px rgba(240,200,100,.65),0 0 60px rgba(240,200,100,.3);
+  transform:translateY(14px);transition:transform .9s cubic-bezier(.16,1,.3,1) .4s;
+}
+.pl-reveal.show .pl-rev-date{transform:translateY(0);}
+.pl-rev-venue{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:clamp(15px,4.2vw,18px);color:rgba(200,164,90,.68);letter-spacing:.06em;text-align:center;margin-top:16px;transform:translateY(8px);transition:transform .8s ease .6s;}
+.pl-reveal.show .pl-rev-venue{transform:translateY(0);}
+.pl-rev-formal{font-family:'Cinzel',serif;font-size:9px;letter-spacing:.26em;color:rgba(200,164,90,.65);text-transform:uppercase;text-align:center;margin-top:14px;opacity:0;transition:opacity .7s ease .8s;}
+.pl-reveal.show .pl-rev-formal{opacity:1;}
+
+/* confeti */
+#plConf{position:fixed;inset:0;pointer-events:none;z-index:100;}
+
+@keyframes plUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body>
+<canvas id="plConf"></canvas>
+
+<div class="pl-header">
+  <span class="pl-std" id="plTitulo">Reserva la fecha</span>
+</div>
+
+<div class="pl-wrap">
+  <div class="pl-out" id="plOut">
+    <div class="pl-cd">
+      <div class="pl-ph" id="plPh">
+        <img class="pl-img" id="plImg" alt="">
+        <canvas class="pl-dc" id="plDc"></canvas>
+      </div>
+      <div class="pl-cap">
+        <div class="pl-cap-names" id="plNombres">Sophia &amp; Laurent</div>
+        <div class="pl-cap-sub" id="plSub">¡se casan!</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pl-action" id="plAction">
+  <div class="pl-ring" id="plRing">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M10 14V6M10 6l-3 3M10 6l3 3" stroke="rgba(200,164,90,.75)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+  <span class="pl-hint" id="plHint">Toca la polaroid para revelar la fecha</span>
+  <div class="pl-prog" id="plProg"><div class="pl-prog-bar" id="plProgBar"></div></div>
+</div>
+
+<div class="pl-reveal" id="plReveal">
+  <p class="pl-rev-date" id="plFecha">27 · 07 · 27</p>
+  <p class="pl-rev-venue" id="plLugar">Villa Borghese · Roma</p>
+  <p class="pl-rev-formal" id="plPie">Pronto recibirás la invitación formal</p>
+</div>
+
+<script>
+/* ============================================================
+   CONFIG — cambia aquí los textos, la foto y la fecha
+   ============================================================ */
+var CONFIG = {
+  titulo:   "Reserva la fecha",
+  novia:    "Sophia",
+  novio:    "Laurent",
+  subtitulo:"¡se casan!",                 // texto bajo los nombres, en la polaroid
+  foto:     "recursos/foto.jpg",           // foto que se revela (ideal ~620×545 px)
+  toques:   3,                             // toques necesarios para revelar
+  pista:    "Toca la polaroid para revelar la fecha",
+  pistaRestan: function (n) { return n === 1 ? "Falta 1 toque" : "Faltan " + n + " toques"; },
+  fecha:    "27 · 07 · 27",                // fecha grande que aparece al final
+  lugar:    "Villa Borghese · Roma",
+  pie:      "Pronto recibirás la invitación formal"
+};
+
+(function(){
+"use strict";
+
+/* aplicar CONFIG */
+document.getElementById('plTitulo').textContent  = CONFIG.titulo;
+document.getElementById('plNombres').textContent = CONFIG.novia + ' & ' + CONFIG.novio;
+document.getElementById('plSub').textContent     = CONFIG.subtitulo;
+document.getElementById('plHint').textContent    = CONFIG.pista;
+document.getElementById('plFecha').textContent   = CONFIG.fecha;
+document.getElementById('plLugar').textContent   = CONFIG.lugar;
+document.getElementById('plPie').textContent     = CONFIG.pie;
+document.title = CONFIG.titulo + ' · ' + CONFIG.novia + ' & ' + CONFIG.novio;
+
+var SH = CONFIG.toques;      // toques necesarios
+var taps = 0;
+var done = false;
+var currentOverlay = 1.0;    // oscuridad actual del velo (1 = tapado, 0 = revelado)
+
+var plOut     = document.getElementById('plOut');
+var plImg     = document.getElementById('plImg');
+var plDc      = document.getElementById('plDc');
+var plPh      = document.getElementById('plPh');
+var plAction  = document.getElementById('plAction');
+var plRing    = document.getElementById('plRing');
+var plHint    = document.getElementById('plHint');
+var plProg    = document.getElementById('plProg');
+var plProgBar = document.getElementById('plProgBar');
+var plReveal  = document.getElementById('plReveal');
+var confCanvas = document.getElementById('plConf');
+var confCtx    = confCanvas.getContext('2d');
+var dcCtx      = plDc.getContext('2d');
+
+plImg.alt = CONFIG.novia + ' & ' + CONFIG.novio;
+plImg.src = CONFIG.foto;
+
+/* ── TAMAÑO DEL CANVAS ── */
+function sizeCanvas() {
+  var r   = plPh.getBoundingClientRect();
+  var dpr = window.devicePixelRatio || 1;
+  var w   = Math.round(r.width);
+  var h   = Math.round(r.height);
+  if (!w || !h) return;
+  plDc.width        = w * dpr;
+  plDc.height       = h * dpr;
+  plDc.style.width  = w + 'px';
+  plDc.style.height = h + 'px';
+  dcCtx.setTransform(1, 0, 0, 1, 0, 0);
+  dcCtx.scale(dpr, dpr);
+  if (!done) paintOverlay(currentOverlay);
+}
+
+/* ── VELO OSCURO ── (alpha 1 = tapado, 0 = transparente) */
+function paintOverlay(alpha) {
+  currentOverlay = alpha;
+  var w = plDc.offsetWidth;
+  var h = plDc.offsetHeight;
+  if (!w || !h) return;
+  dcCtx.clearRect(0, 0, w, h);
+  if (alpha <= 0) return;
+  dcCtx.fillStyle = 'rgba(12,18,34,' + alpha + ')';
+  dcCtx.fillRect(0, 0, w, h);
+  var grd = dcCtx.createRadialGradient(w * .5, h * .45, 0, w * .5, h * .45, w * .6);
+  grd.addColorStop(0, 'rgba(50,75,160,' + (alpha * 0.14) + ')');
+  grd.addColorStop(1, 'rgba(12,18,34,0)');
+  dcCtx.fillStyle = grd;
+  dcCtx.fillRect(0, 0, w, h);
+}
+
+/* ── REVELADO FINAL ANIMADO ── */
+function animReveal(onDone) {
+  var startAlpha = currentOverlay;
+  var startImgOp = parseFloat(plImg.style.opacity) || 0;
+  var startTime  = null;
+  var dur        = 1000;
+  function step(ts) {
+    if (!startTime) startTime = ts;
+    var t = Math.min((ts - startTime) / dur, 1);
+    var ease = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    paintOverlay(startAlpha * (1 - ease));
+    plImg.style.opacity = startImgOp + (1 - startImgOp) * ease;
+    if (t < 1) {
+      requestAnimationFrame(step);
+    } else {
+      paintOverlay(0);
+      plImg.style.opacity = '1';
+      plDc.style.display  = 'none';
+      done = true;
+      if (onDone) onDone();
+    }
+  }
+  requestAnimationFrame(step);
+}
+
+/* ── TOQUE ── */
+function doTap() {
+  if (done) return;
+  taps++;
+  if (taps === 1) plProg.style.opacity = '1';
+
+  /* sacudida (más fuerte en cada toque) */
+  var cls = 'shk' + Math.min(taps, 3);
+  plOut.classList.remove('shk1', 'shk2', 'shk3');
+  void plOut.offsetWidth;
+  plOut.classList.add(cls);
+  setTimeout(function () { plOut.classList.remove(cls); }, 700);
+
+  plProgBar.style.width = ((taps / SH) * 100) + '%';
+
+  /* revelado parcial por toque (hasta 60 %); el último toque completa la animación */
+  var partialReveal = (taps / SH) * 0.6;
+  paintOverlay(1 - partialReveal);
+  plImg.style.opacity = partialReveal;
+
+  var rem = SH - taps;
+  if (rem > 0) plHint.textContent = CONFIG.pistaRestan(rem);
+
+  if (taps >= SH && !done) {
+    done = true;
+    setTimeout(function () {
+      plAction.style.opacity    = '0';
+      plAction.style.transition = 'opacity .5s';
+      animReveal(function () {
+        plAction.style.display = 'none';
+        plReveal.classList.add('show');
+        fireConfetti();
+      });
+    }, 350);
+  }
+}
+
+/* la polaroid y el botón redondo cuentan como toque */
+plOut.addEventListener('click', doTap);
+plOut.addEventListener('touchend', function (e) { e.preventDefault(); doTap(); }, { passive: false });
+plRing.addEventListener('click', doTap);
+plRing.addEventListener('touchend', function (e) { e.stopPropagation(); e.preventDefault(); doTap(); }, { passive: false });
+
+window.addEventListener('load',   sizeCanvas);
+window.addEventListener('resize', sizeCanvas);
+plImg.addEventListener('load',    sizeCanvas);
+setTimeout(sizeCanvas, 100);
+setTimeout(sizeCanvas, 500);
+
+/* ── CONFETI DORADO ── */
+function fireConfetti() {
+  confCanvas.width  = window.innerWidth;
+  confCanvas.height = window.innerHeight;
+  var PAL = ['#e8c870','#f0d890','#f5e8b0','#fffaec','#e0c4a0','rgba(220,190,120,.7)','#d4a840','rgba(255,245,220,.8)'];
+  var parts = [];
+  for (var i = 0; i < 80; i++) {
+    parts.push({
+      x: Math.random() * confCanvas.width, y: -20 - Math.random() * 80,
+      vx: (Math.random() - .5) * .9, vy: Math.random() * .55 + .25,
+      w: Math.random() * 9 + 2.5, h: Math.random() * 3.5 + 1.5,
+      rot: Math.random() * 360, rotV: (Math.random() - .5) * 1.2,
+      color: PAL[Math.floor(Math.random() * PAL.length)],
+      shape: Math.random() > .55 ? 'circle' : 'rect',
+      r: Math.random() * 3.5 + 1.2,
+      swing: Math.random() * Math.PI * 2, swingS: .012 + Math.random() * .01,
+      alpha: .6 + Math.random() * .35
+    });
+  }
+  var frame = 0, TOTAL = 500;
+  (function draw() {
+    frame++;
+    confCtx.clearRect(0, 0, confCanvas.width, confCanvas.height);
+    var fade = frame > TOTAL * .7 ? 1 - (frame - TOTAL * .7) / (TOTAL * .3) : 1;
+    parts.forEach(function (p) {
+      p.swing += p.swingS;
+      p.x += p.vx + Math.sin(p.swing) * .4;
+      p.y += p.vy;
+      p.rot += p.rotV;
+      if (p.y > confCanvas.height + 20) { p.y = -15; p.x = Math.random() * confCanvas.width; }
+      confCtx.save();
+      confCtx.globalAlpha = p.alpha * fade;
+      confCtx.translate(p.x, p.y);
+      confCtx.rotate(p.rot * Math.PI / 180);
+      confCtx.fillStyle = p.color;
+      if (p.shape === 'circle') { confCtx.beginPath(); confCtx.arc(0, 0, p.r, 0, Math.PI * 2); confCtx.fill(); }
+      else confCtx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+      confCtx.restore();
+    });
+    if (frame < TOTAL) requestAnimationFrame(draw);
+    else confCtx.clearRect(0, 0, confCanvas.width, confCanvas.height);
+  })();
+}
+window.addEventListener('resize', function () {
+  confCanvas.width  = window.innerWidth;
+  confCanvas.height = window.innerHeight;
+});
+})();
+</script>
+</body>
+</html>

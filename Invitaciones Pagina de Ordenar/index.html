@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Elegancia de Amor — Crea tu invitación digital</title>
+<meta name="description" content="Elige tu Reserva la fecha, una plantilla o un diseño 100 % personalizado. Precios claros, entrega en días, cambios ilimitados e invitados ilimitados.">
+<link rel="icon" href="recursos/favicon.png">
+<link rel="apple-touch-icon" href="recursos/icono-app.png">
+<style>
+/* ============================================================
+   ELEGANCIA DE AMOR — página "Ordenar / Crea tu invitación"
+   (reconstrucción limpia, sin Tilda; mismo sistema visual que
+   la página principal reconstruida)
+   Estructura: header → portada → cómo funciona → ¡Empecemos!
+   (3 tarjetas de precios → WhatsApp) → qué incluye → reseñas
+   → preguntas → contacto (botón de WhatsApp) → footer
+   ============================================================ */
+
+/* ---------- Tipografías (locales, en recursos/fuentes) ---------- */
+@font-face{font-family:'Source Sans 3';src:url('recursos/fuentes/source-sans-3-latin-300-normal.woff2') format('woff2');font-weight:300;font-display:swap}
+@font-face{font-family:'Source Sans 3';src:url('recursos/fuentes/source-sans-3-latin-400-normal.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Source Sans 3';src:url('recursos/fuentes/source-sans-3-latin-600-normal.woff2') format('woff2');font-weight:600;font-display:swap}
+@font-face{font-family:'Source Sans 3';src:url('recursos/fuentes/source-sans-3-latin-700-normal.woff2') format('woff2');font-weight:700;font-display:swap}
+@font-face{font-family:'Rufina';src:url('recursos/fuentes/rufina-latin-400-normal.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Rufina';src:url('recursos/fuentes/rufina-latin-700-normal.woff2') format('woff2');font-weight:700;font-display:swap}
+@font-face{font-family:'Beau Rivage';src:url('recursos/fuentes/beau-rivage-latin-400-normal.woff2') format('woff2');font-weight:400;font-display:swap}
+
+/* ---------- Variables ---------- */
+:root{
+  --fondo:#fbfbfb;
+  --fondo-gris:#ededed;
+  --texto:#4a4a4a;
+  --azul:#0a4560;
+  --teal:#006989;
+  --degradado:linear-gradient(0.25turn,#038ca7 0%,#0b425c 100%);
+  --serif:'Rufina',Georgia,serif;
+  --sans:'Source Sans 3','Source Sans Pro',Arial,sans-serif;
+  --ancho:1200px;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--fondo);color:var(--texto);font-family:var(--sans);font-size:17px;line-height:1.55;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit}
+
+.contenedor{width:100%;max-width:var(--ancho);margin:0 auto;padding:0 40px}
+@media(max-width:640px){.contenedor{padding:0 20px}}
+
+.degradado{background-image:var(--degradado);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+
+.encabezado{text-align:center;padding:0 20px}
+.etiqueta{display:block;color:#0b4f67;font-size:15px;letter-spacing:1.5px;text-transform:uppercase;font-weight:400;margin:0 0 6px}
+.titulo{font-family:var(--serif);font-weight:700;font-size:41px;line-height:1.15;margin:0}
+.titulo--sm{font-size:30px}
+.subtitulo{font-size:18px;line-height:1.35;max-width:620px;margin:16px auto 0;color:var(--texto)}
+@media(max-width:640px){.titulo{font-size:34px}.titulo--sm{font-size:26px}.etiqueta{font-size:14px}}
+
+/* ---------- Botones ---------- */
+.boton{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:54px;min-width:223px;padding:0 28px;border-radius:30px;font-size:19px;font-weight:600;font-family:var(--sans);line-height:1;cursor:pointer;border:0;text-align:center;transition:background .2s,color .2s,transform .2s,box-shadow .2s;white-space:nowrap}
+.boton--lleno{color:#fff;background-image:var(--degradado);position:relative;overflow:hidden}
+.boton--lleno::after{content:'';position:absolute;inset:0;background:#0f88a6;opacity:0;transition:opacity .2s}
+.boton--lleno:hover::after{opacity:1}
+.boton--lleno span{position:relative;z-index:1}
+.boton--borde{color:#094c66;background:var(--fondo);border:2px solid #094a65}
+.boton--borde:hover{background:#005a74;color:#fff}
+
+/* ---------- Animación de aparición ---------- */
+.aparece{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.aparece.visible{opacity:1;transform:none}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.header{background:var(--fondo-gris);position:relative;z-index:50}
+.header__int{height:80px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.header__logo{display:flex;align-items:center}
+.header__logo img{width:auto;height:46px;display:block}
+@media(max-width:640px){.header__logo img{height:38px}}
+.header__menu{display:flex;gap:30px;list-style:none;margin:0;padding:0}
+.header__menu a{font-family:var(--serif);font-weight:700;font-size:16px;color:#4a4a4a;transition:color .3s}
+.header__menu a:hover{color:var(--teal)}
+.header__redes{display:flex;gap:14px}
+.header__redes a{width:30px;height:30px;display:block;color:#000}
+.header__redes svg{width:30px;height:30px;fill:currentColor}
+.header__redes a:hover{color:var(--teal)}
+.hamburguesa{display:none;width:28px;height:20px;position:relative;background:none;border:0;padding:0;cursor:pointer}
+.hamburguesa span{position:absolute;left:0;width:100%;height:3px;background:#000;transition:.25s}
+.hamburguesa span:nth-child(1){top:0}.hamburguesa span:nth-child(2){top:8px}.hamburguesa span:nth-child(3){top:16px}
+.hamburguesa.abierta span:nth-child(1){top:8px;transform:rotate(45deg)}
+.hamburguesa.abierta span:nth-child(2){opacity:0}
+.hamburguesa.abierta span:nth-child(3){top:8px;transform:rotate(-45deg)}
+.menu-movil{display:none;background:#111;padding:10px 20px 26px}
+.menu-movil.abierto{display:block}
+.menu-movil a{display:block;color:#fff;font-family:var(--serif);font-weight:700;font-size:20px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+.menu-movil__redes{display:flex;gap:18px;padding-top:18px}
+.menu-movil__redes a{border:0;padding:0;width:32px;height:32px}
+.menu-movil__redes svg{width:32px;height:32px;fill:#fff}
+@media(max-width:980px){
+  .header__menu,.header__redes{display:none}
+  .hamburguesa{display:block}
+}
+
+/* ============================================================
+   PORTADA (título con texto que se escribe solo + teléfonos)
+   ============================================================ */
+.portada{position:relative;overflow:hidden}
+.portada__int{position:relative;display:grid;grid-template-columns:minmax(0,500px) minmax(0,671px);align-items:start;gap:0 20px;padding-top:60px;padding-bottom:40px;min-height:610px}
+.portada__titulo{grid-column:1/-1;text-align:center;font-family:var(--serif);font-weight:700;font-size:52px;line-height:1.2;margin:6px 0 0;padding-right:8%}
+.portada__titulo small{display:block;font-size:43px;font-weight:600;line-height:1.2;padding-left:12%}
+.cursor-escribe{display:inline-block;width:2px;height:.85em;background:#016d85;vertical-align:-0.1em;margin:0 3px;animation:parpadeo 1s steps(1) infinite}
+@keyframes parpadeo{50%{opacity:0}}
+.portada__col{padding-top:40px;position:relative;z-index:2}
+.portada__texto{font-size:18px;line-height:1.25;max-width:479px;margin:0 0 30px}
+.portada__botones{display:flex;flex-wrap:wrap;gap:18px}
+.portada__imagen{position:relative;margin-top:-40px;justify-self:end;width:100%;max-width:671px}
+.portada__imagen img{width:100%;height:auto;animation:flota 7s ease-in-out infinite}
+.portada__imagen::after{content:'';position:absolute;right:0;bottom:-2%;width:100px;height:100px;background:linear-gradient(0.765turn,#fbfbfb 0%,rgba(251,251,251,0) 100%)}
+@keyframes flota{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+@media(max-width:1000px){
+  .portada__int{grid-template-columns:1fr;justify-items:center;text-align:center;padding-top:50px;padding-bottom:30px;min-height:0;gap:20px}
+  .portada__titulo{padding-right:0}
+  .portada__titulo small{padding-left:0}
+  .portada__col{padding-top:0}
+  .portada__texto{margin-left:auto;margin-right:auto}
+  .portada__botones{justify-content:center}
+  .portada__imagen{margin-top:0;justify-self:center;max-width:600px}
+}
+@media(max-width:640px){
+  .portada__titulo{font-size:38px;line-height:1.1}.portada__titulo small{font-size:35px}
+  .portada__texto{font-size:17px}
+  .portada__botones{flex-direction:column;align-items:stretch;width:100%;gap:14px}
+  .portada__botones .boton{width:100%;height:60px}
+  .portada__imagen{max-width:100%}
+}
+
+/* ============================================================
+   SECCIONES GENERALES
+   ============================================================ */
+.seccion{padding:60px 0 0}
+
+/* Cómo funciona (3 pasos numerados) */
+.pasos{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;max-width:1160px;margin:60px auto 0;padding:0 40px;position:relative}
+.paso{position:relative}
+.paso__num{width:40px;height:40px;border-radius:50%;background:var(--azul);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:700;font-size:16px;position:relative;z-index:1}
+.paso::before{content:'';position:absolute;top:20px;left:40px;right:-40px;height:1px;background:#d0d0d0}
+.paso:last-child::before{display:none}
+.paso h3{font-family:var(--serif);font-weight:700;font-size:24px;color:var(--azul);margin:26px 0 12px;line-height:1.25}
+.paso p{font-size:16px;line-height:1.55;margin:0}
+@media(max-width:860px){
+  .pasos{grid-template-columns:1fr;gap:30px;padding:0 20px;margin-top:40px}
+  .paso{padding-left:60px}
+  .paso__num{position:absolute;left:0;top:0}
+  .paso::before{left:20px;top:40px;bottom:-30px;right:auto;width:1px;height:auto}
+  .paso h3{margin-top:6px;font-size:22px}
+}
+
+/* ¡Empecemos! — datos con estrellas */
+.datos{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:22px;font-size:18px;color:var(--texto)}
+.datos .estrellas{display:inline-flex;gap:2px;margin-right:4px}
+.datos .estrellas img{width:14px;height:14px}
+@media(max-width:640px){.datos{font-size:17px;flex-direction:column;gap:6px}}
+
+/* Preguntas frecuentes (acordeón) */
+.preguntas{max-width:760px;margin:40px auto 0;padding:0 20px}
+.pregunta{border-bottom:1px solid #e3e3e3}
+.pregunta__btn{width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;text-align:left;background:none;border:0;padding:20px 0;cursor:pointer;font-family:var(--serif);font-weight:700;font-size:20px;color:var(--azul);line-height:1.3}
+.pregunta__btn svg{flex-shrink:0;width:18px;height:18px;stroke:#8c8c8c;transition:transform .3s}
+.pregunta.abierta .pregunta__btn svg{transform:rotate(45deg)}
+.pregunta__resp{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.pregunta__resp > div{margin:0 0 22px;font-size:17px;line-height:1.55;color:var(--texto)}
+.pregunta__resp p{margin:0 0 10px}
+.pregunta__resp ul{margin:6px 0 10px;padding-left:22px}
+.pregunta__resp li{margin:4px 0}
+@media(max-width:640px){.pregunta__btn{font-size:18px;padding:16px 0}.pregunta__resp > div{font-size:16px}}
+
+/* ============================================================
+   CONTACTO (solo botón de WhatsApp)
+   ============================================================ */
+.contacto{padding:70px 0 70px}
+.contacto__accion{display:flex;justify-content:center;margin-top:32px;padding:0 20px}
+.boton--whatsapp{color:#fff;background:#25D366;height:58px;min-width:240px;padding:0 32px;font-size:19px;font-weight:700;box-shadow:0 8px 24px rgba(37,211,102,.28)}
+.boton--whatsapp svg{width:28px;height:28px;fill:currentColor;flex-shrink:0}
+.boton--whatsapp:hover{background:#1ebe5b;transform:translateY(-2px);box-shadow:0 12px 30px rgba(37,211,102,.35)}
+@media(max-width:640px){.boton--whatsapp{width:100%;max-width:340px}}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer{background:var(--fondo-gris);padding:30px 0}
+.footer__int{display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap}
+.footer__logo{display:block;line-height:0}
+.footer__logo img{height:58px;width:auto;display:block}
+.footer__aviso{margin:22px auto 0;padding-top:16px;border-top:1px solid #d9d9d9;font-size:11.5px;line-height:1.55;color:#8a8a8a;text-align:center;max-width:900px}
+.footer__der{text-align:right}
+.footer__links{display:flex;gap:16px;flex-wrap:wrap;justify-content:flex-end;list-style:none;margin:0 0 10px;padding:0}
+.footer__links a{font-family:var(--serif);font-weight:700;font-size:11px;letter-spacing:.5px;text-transform:uppercase;color:#4a4a4a}
+.footer__links a:hover{color:var(--teal)}
+.footer__copy{font-size:12px;color:#777}
+.footer__copy a{color:#777;text-decoration:underline}
+@media(max-width:700px){
+  .footer__int{flex-direction:column;align-items:center;text-align:center}
+  .footer__der{text-align:center}
+  .footer__links{justify-content:center}
+}
+
+/* ============================================================
+   TARJETAS DE PRECIOS (.wgf) — bloque propio de la agencia,
+   reutilizado y limpiado (sin @import de Google Fonts).
+   ============================================================ */
+.wgf-wrap *{box-sizing:border-box;margin:0;padding:0}
+.wgf-wrap{font-family:'Source Sans 3','Source Sans Pro',sans-serif;background:#fbfbfb;padding:48px 0 64px;width:100%;overflow:hidden}
+.wgf-inner{max-width:1140px;margin:0 auto;padding:0 28px}
+
+/* ══ GRID — template card taller via align-items:end on outer ══ */
+.wgf-plans{display:grid;grid-template-columns:1fr 1.08fr 1fr;gap:18px;align-items:center}
+@media(max-width:880px){.wgf-plans{grid-template-columns:1fr;max-width:430px;margin:0 auto;align-items:stretch}}
+
+/* ══ BASE CARD ══ */
+.wgf-card{position:relative;border-radius:22px;padding:28px 26px 24px;cursor:pointer;transition:border-color .22s,box-shadow .22s,transform .22s;overflow:hidden;display:flex;flex-direction:column;background:#fff;border:1.5px solid #dce8f0}
+.wgf-card:hover{transform:translateY(-4px)}
+.wgf-card:active{transform:translateY(-1px)}
+
+/* STD — light, minimal blue tint */
+.wgf-card-std{background:#ffffff;border-color:#d8eaf4}
+.wgf-card-std:hover{border-color:#006989;box-shadow:0 10px 36px rgba(0,105,137,.11)}
+.wgf-card-std .wgf-cbtn{background:#4aa8c8;color:#fff}
+.wgf-card-std .wgf-cbtn:hover{background:#3892b2;box-shadow:0 6px 20px rgba(0,105,137,.22)}
+
+/* TEMPLATE — featured, deeper teal, extra padding top so it's taller */
+.wgf-card-tpl{background:linear-gradient(170deg,#f2f9fd 0%,#f7fcfe 50%,#ffffff 100%);border-color:#006989;border-width:2px;padding-top:36px;box-shadow:0 6px 24px rgba(0,105,137,.07)}
+.wgf-card-tpl:hover{box-shadow:0 18px 52px rgba(0,105,137,.2);border-color:#005570}
+.wgf-card-tpl .wgf-cbtn{background:#006989;color:#fff}
+.wgf-card-tpl .wgf-cbtn:hover{background:#005570;box-shadow:0 6px 22px rgba(0,105,137,.3)}
+
+/* CUSTOM — lighter warm cream, softer gold */
+.wgf-card-custom{background:linear-gradient(160deg,#fefefe 0%,#fdfcf8 50%,#ffffff 100%);border-color:#ece4c4}
+.wgf-card-custom:hover{border-color:#c8be90;box-shadow:0 10px 36px rgba(180,155,80,.12)}
+.wgf-card-custom .wgf-price{color:#9a8848}
+.wgf-card-custom .wgf-price-note{color:#9aaab8}
+.wgf-card-custom .wgf-incl li::before{background:#c8b878;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 15 15' fill='none'%3E%3Cpath d='M3 7.5l3 3 6-6' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
+.wgf-card-custom .wgf-cbtn{background:linear-gradient(130deg,#cebb78 0%,#b09848 100%);color:#fff}
+.wgf-card-custom .wgf-cbtn:hover{background:linear-gradient(130deg,#dece88,#c0a858);box-shadow:0 6px 20px rgba(180,155,80,.32)}
+
+/* ══ BADGES ══ */
+.wgf-badge{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 11px;border-radius:20px;margin-bottom:14px;width:fit-content}
+.wgf-badge-std{background:#e6f3f7;color:#006989;border:1px solid #b8dde8}
+.wgf-badge-pop{background:#006989;color:#fff}
+.wgf-badge-gold{background:#faf8f0;color:#9a8848;border:1px solid #e0d8a8}
+
+/* ══ RIBBON ══ */
+.wgf-ribbon{position:absolute;top:18px;right:-28px;background:linear-gradient(90deg,#cebb78,#b09848);color:#fff;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:5px 38px;transform:rotate(35deg);pointer-events:none}
+
+/* ══ URGENCY ══ */
+.wgf-urgency-inline{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:600;color:#006989;background:#e6f3f7;border:1px solid #b8dde8;border-radius:7px;padding:5px 11px;margin-bottom:14px;line-height:1.4}
+.wgf-udot{width:5px;height:5px;border-radius:50%;background:#006989;flex-shrink:0;animation:wgfP 1.8s ease-in-out infinite}
+@keyframes wgfP{0%,100%{opacity:1}50%{opacity:.35}}
+
+/* ══ STRIKETHROUGH PRICE ══ */
+.wgf-price-row{display:flex;align-items:baseline;gap:8px;margin-bottom:4px;flex-wrap:wrap}
+.wgf-price{font-family:'Rufina',Georgia,serif;font-size:40px;font-weight:700;color:#006989;line-height:1}
+.wgf-card-tpl .wgf-price{font-size:44px}
+.wgf-price-was{font-family:'Rufina',Georgia,serif;font-size:22px;font-weight:400;color:#c0cdd8;text-decoration:line-through;line-height:1}
+.wgf-price-from{font-size:13px;color:#9aaab8;font-weight:400}
+.wgf-price-note{font-size:11px;color:#9aaab8;margin-bottom:8px;line-height:1.5}
+.wgf-price-note b{color:#006989;font-weight:700}
+.wgf-price-note-gold{font-size:11px;color:#9a7830;margin-bottom:8px;line-height:1.5}
+
+/* ══ CARD NAME & TAG ══ */
+.wgf-cname{font-family:'Rufina',Georgia,serif;font-size:22px;font-weight:700;color:#0f1a22;margin-bottom:7px;line-height:1.2}
+.wgf-card-tpl .wgf-cname{font-size:26px}
+.wgf-ctag{font-size:13px;color:#4a5a6a;line-height:1.6;margin-bottom:18px}
+
+/* ══ SECTION LABEL ══ */
+.wgf-incl-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9aaab8;margin-bottom:10px;display:block}
+
+/* ══ INCLUDES LIST ══ */
+.wgf-incl{list-style:none;margin-bottom:24px;display:flex;flex-direction:column;gap:7px}
+.wgf-incl li{display:flex;align-items:flex-start;gap:9px;font-size:13px;color:#3a4a5a;line-height:1.45}
+.wgf-incl li::before{content:'';width:16px;height:16px;min-width:16px;background:#006989;border-radius:50%;margin-top:1px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 15 15' fill='none'%3E%3Cpath d='M3 7.5l3 3 6-6' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
+
+.wgf-cdiv{width:100%;height:1px;background:#edf2f7;margin:10px 0 12px}
+
+/* ══ CTA BUTTON ══ */
+
+/* BUTTON SHINE */
+@keyframes wgfBtnShine{0%{left:-100%}45%{left:150%}100%{left:150%}}
+
+.wgf-cbtn{position:relative;overflow:hidden;display:flex;text-decoration:none;box-sizing:border-box;align-items:center;justify-content:center;gap:8px;font-size:14px;font-weight:700;letter-spacing:.03em;padding:14px 20px;border-radius:11px;border:none;cursor:pointer;transition:background .2s,box-shadow .2s,transform .15s;width:100%;font-family:inherit}
+.wgf-card-tpl .wgf-cbtn{padding:16px 20px;font-size:15px}
+.wgf-cbtn::after{content:'';position:absolute;inset:0;background:linear-gradient(115deg,transparent 20%,rgba(255,255,255,.26) 50%,transparent 80%);animation:wgfBtnShine 3.4s ease-in-out infinite;pointer-events:none;left:-100%;width:100%}
+
+
+/* ══ MINI DESIGN PREVIEWS (below button on card face) ══ */
+.wgf-mini-previews{margin-top:18px;padding-top:16px;border-top:1px solid #edf2f7}
+.wgf-mini-label{font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9aaab8;margin-bottom:10px;display:block}
+.wgf-mini-row{display:flex;gap:7px;align-items:flex-end}
+.wgf-mini-thumb{flex:1;border-radius:6px;overflow:hidden;border:1.5px solid #edf2f7;position:relative;aspect-ratio:3/4;background:#f0f8fc;pointer-events:none}
+.wgf-mini-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.wgf-mini-coming{flex:1;border-radius:6px;border:1px dashed #dce8f0;aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;background:#f9fcff}
+.wgf-mini-coming span{font-size:7.5px;font-weight:700;color:#b8cdd8;text-align:center;line-height:1.35;text-transform:uppercase;letter-spacing:.05em;padding:3px}
+/* template 6-col single row — same size as STD */
+.wgf-mini-row-6{display:flex;gap:5px}
+.wgf-mini-row-6 .wgf-mini-thumb{flex:1;aspect-ratio:3/4}
+.wgf-mini-grid-7{display:flex;gap:4px;flex-wrap:nowrap}
+.wgf-mini-grid-7 .wgf-mini-thumb{flex:1;min-width:0;aspect-ratio:3/4}
+
+
+/* CARD ENTRANCE ANIMATIONS */
+@keyframes wgfCardIn{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.wgf-card{opacity:0;animation:wgfCardIn .55s cubic-bezier(.34,1.1,.64,1) both}
+.wgf-card-std{animation-delay:.05s}
+.wgf-card-tpl{animation-delay:.22s}
+.wgf-card-custom{animation-delay:.39s}
+
+/* INCLUDE LIST STAGGERED ANIMATION */
+@keyframes wgfItemIn{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:translateX(0)}}
+.wgf-incl li{opacity:0;animation:wgfItemIn .38s cubic-bezier(.34,1.1,.64,1) both}
+.wgf-incl li:nth-child(1){animation-delay:.35s}
+.wgf-incl li:nth-child(2){animation-delay:.45s}
+.wgf-incl li:nth-child(3){animation-delay:.55s}
+.wgf-incl li:nth-child(4){animation-delay:.65s}
+.wgf-incl li:nth-child(5){animation-delay:.75s}
+.wgf-incl li:nth-child(6){animation-delay:.85s}
+
+/* ══════════════════════════════════════════
+   MOBILE — cards + popup (desktop untouched)
+══════════════════════════════════════════ */
+@media(max-width:640px){
+
+  /* ── CARDS: bigger, more impactful ── */
+  .wgf-plans{gap:16px}
+  .wgf-inner{padding:0 14px}
+  .wgf-card{padding:24px 20px 20px;border-radius:20px}
+
+  /* Bigger card headings for mobile impact */
+  .wgf-cname{font-size:26px;letter-spacing:-.01em}
+  .wgf-card-tpl .wgf-cname{font-size:28px}
+  .wgf-ctag{font-size:13.5px;line-height:1.6;margin-bottom:16px}
+
+  /* Bigger price display */
+  .wgf-price{font-size:42px}
+  .wgf-card-tpl .wgf-price{font-size:46px}
+  .wgf-price-was{font-size:24px}
+
+  /* Tighter include list on mobile — readable but compact */
+  .wgf-incl{gap:8px;margin-bottom:22px}
+  .wgf-incl li{font-size:13.5px}
+
+  /* Bigger CTA button — thumb-friendly */
+  .wgf-cbtn{padding:16px 20px;font-size:15px;border-radius:13px}
+  .wgf-card-tpl .wgf-cbtn{padding:18px 20px;font-size:16px}
+
+  /* Mini previews: slightly taller on mobile */
+  .wgf-mini-row,.wgf-mini-row-6{gap:5px}
+  .wgf-mini-previews{margin-top:20px;padding-top:14px}
+
+
+}
+
+@media(max-width:400px){
+  .wgf-vers-opts{gap:6px}
+  .wgf-vo{padding:7px 10px;font-size:12px}
+  .wgf-cname{font-size:23px}
+  .wgf-price{font-size:38px}
+}
+
+/* DELIVERY BADGE */
+.wgf-delivery{display:flex;align-items:center;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.wgf-del-standard{font-size:11px;color:#6a7a8a;background:#f4f8fa;border:1px solid #dce8f0;border-radius:6px;padding:3px 9px;font-weight:600}
+.wgf-del-express{font-size:11px;color:#006989;background:#e6f3f7;border:1px solid #b8dde8;border-radius:6px;padding:3px 9px;font-weight:700;display:inline-flex;align-items:center;gap:4px}
+.wgf-del-gold{background:#fdf8ec;border-color:#d8c888;color:#8a7030}
+.wgf-del-gold-exp{background:#fdf8ec;border-color:#d8c888;color:#8a7030}
+.wgf-del-gold-exp svg{stroke:#8a7030}
+
+/* ============================================================
+   Bloques propios reutilizados de la página principal:
+   .wif (qué incluye), .wgr (reseñas de Google), .wsr (Instagram/WhatsApp)
+   ============================================================ */
+.wif-wrap{
+  font-family:'Source Sans 3','Source Sans Pro',sans-serif;
+  background:#fbfbfb;
+  padding:40px 0 52px;
+  width:100%;box-sizing:border-box;overflow:hidden;
+}
+
+/* Grid: both columns same height, centered vertically */
+.wif-grid{
+  display:grid;
+  grid-template-columns:1fr 360px;
+  gap:24px;
+  max-width:1100px;
+  margin:0 auto;
+  padding:0 28px;
+  align-items:center;
+}
+@media(max-width:920px){
+  .wif-grid{grid-template-columns:1fr;padding:0 20px;align-items:start}
+}
+
+/* Items: 2 columns, uniform gap */
+.wif-items{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+}
+@media(max-width:560px){.wif-items{grid-template-columns:1fr}}
+
+.wif-item{
+  display:flex;align-items:center;gap:13px;
+  padding:14px 17px;border-radius:13px;
+  background:#fff;border:1px solid #efefef;
+  opacity:0;transform:translateY(12px);
+  transition:border-color .22s,background .22s,transform .2s,box-shadow .2s;
+  cursor:default;
+}
+.wif-item:hover{
+  border-color:#b8dde8;background:#f8fdff;
+  transform:translateY(-2px);
+  box-shadow:0 5px 18px rgba(0,105,137,.07);
+}
+.wif-item.wif-in{animation:wifIn .46s cubic-bezier(.34,1.1,.64,1) forwards}
+@keyframes wifIn{to{opacity:1;transform:translateY(0)}}
+
+.wif-icon{
+  width:32px;height:32px;border-radius:9px;
+  background:#e8f5f9;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .2s;
+}
+.wif-item:hover .wif-icon{background:#006989}
+.wif-item:hover .wif-icon svg *[stroke]{stroke:#fff}
+.wif-item:hover .wif-icon svg *[fill]:not([fill="none"]){fill:#fff}
+
+.wif-label{font-size:15px;font-weight:600;color:#1e1e1e;line-height:1.3}
+
+/* Callout card — light blue fill, stretches full height */
+.wif-card{
+  background:#f0f9fc;
+  border:1.5px solid #b8dde8;
+  border-radius:22px;
+  padding:34px 30px 32px;
+  opacity:0;transform:translateY(16px);
+  display:flex;flex-direction:column;
+  gap:0;
+}
+.wif-card.wif-in{animation:wifCardIn .55s .18s cubic-bezier(.34,1.1,.64,1) forwards}
+@keyframes wifCardIn{to{opacity:1;transform:translateY(0)}}
+@media(max-width:920px){.wif-card{gap:0}}
+
+.wif-card-top{}
+.wif-ey{
+  font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:#006989;margin-bottom:14px;display:block;
+}
+.wif-bignum{
+  font-family:'Rufina',Georgia,serif;
+  font-size:62px;font-weight:700;color:#005570;
+  line-height:1;margin-bottom:2px;
+  display:flex;align-items:baseline;gap:1px;
+}
+.wif-plus{font-size:42px}
+.wif-numsub{font-size:12px;color:#6aa8ba;margin-bottom:24px;font-weight:600;letter-spacing:.02em}
+.wif-ctitle{
+  font-family:'Rufina',Georgia,serif;
+  font-size:20px;font-weight:700;color:#1a1a1a;line-height:1.3;margin-bottom:10px;
+}
+.wif-cdesc{font-size:14px;color:#4e8090;line-height:1.7;margin-bottom:0}
+
+.wif-card-bot{}
+.wif-pills{display:flex;flex-wrap:nowrap;gap:6px;margin-top:22px;overflow:hidden}
+.wif-pill{
+  font-size:11px;font-weight:600;padding:4px 11px;border-radius:20px;
+  background:#fff;border:1.5px solid #b8dde8;color:#006989;white-space:nowrap;
+}
+
+.wgr-wrap *{box-sizing:border-box;margin:0;padding:0;font-family:'Source Sans 3','Source Sans Pro',sans-serif}
+.wgr-wrap{background:#fbfbfb;padding:48px 0 52px;overflow:hidden;width:100%}
+.wgr-header{text-align:center;margin-bottom:36px;padding:0 20px}
+.wgr-badge{display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid #e4e4e4;border-radius:50px;padding:10px 22px}
+.wgr-score{font-size:15px;font-weight:700;color:#1a1a1a;font-family:'Rufina','Georgia',serif}
+.wgr-stars{color:#FBBC04;font-size:16px;letter-spacing:1px}
+.wgr-label{font-size:12px;color:#888}
+.wgr-card{background:#fff;border:1px solid #ebebeb;border-radius:16px;padding:22px 22px 18px;display:flex;flex-direction:column;gap:12px;flex-shrink:0;width:320px}
+.wgr-top{display:flex;align-items:center;gap:12px}
+.wgr-av{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:#fff;flex-shrink:0;font-family:'Rufina','Georgia',serif}
+.wgr-name{font-size:14px;font-weight:700;color:#1a1a1a;margin-bottom:3px;font-family:'Rufina','Georgia',serif}
+.wgr-meta{display:flex;align-items:center;gap:8px}
+.wgr-st{color:#FBBC04;font-size:12px;letter-spacing:.5px}
+.wgr-date{font-size:11px;color:#aaa}
+.wgr-text{font-size:13.5px;color:#444;line-height:1.65;flex:1}
+.wgr-foot{display:flex;align-items:center;gap:6px;padding-top:10px;border-top:1px solid #f2f2f2}
+.wgr-flabel{font-size:11px;color:#bbb}
+.wgr-mwrap{position:relative;overflow:hidden}
+.wgr-mtrack{display:flex;gap:16px;padding:4px 0 8px;width:max-content;animation:wgrScroll 60s linear infinite}
+.wgr-mtrack:hover{animation-play-state:paused}
+@keyframes wgrScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.wgr-mwrap::before,.wgr-mwrap::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none}
+.wgr-mwrap::before{left:0;background:linear-gradient(to right,#fbfbfb,transparent)}
+.wgr-mwrap::after{right:0;background:linear-gradient(to left,#fbfbfb,transparent)}
+.wgr-swrap{display:none;flex-direction:column;align-items:center;gap:18px}
+.wgr-svp{width:100%;overflow:hidden;padding:4px 20px}
+.wgr-strack{display:flex;gap:16px;transition:transform .45s cubic-bezier(.25,.46,.45,.94);will-change:transform}
+.wgr-strack .wgr-card{width:calc(100vw - 56px);max-width:360px;flex-shrink:0}
+.wgr-dots{display:flex;gap:7px;justify-content:center}
+.wgr-dot{width:7px;height:7px;border-radius:50%;background:#d4d4d4;border:none;cursor:pointer;transition:background .25s,transform .25s;padding:0}
+.wgr-dot.wgr-active{background:#006989;transform:scale(1.3)}
+.wgr-cta{text-align:center;margin-top:32px;padding:0 20px}
+.wgr-btn{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1.5px solid #006989;color:#006989!important;border-radius:8px;padding:11px 26px;font-size:14px;font-weight:600;text-decoration:none!important;transition:background .15s,color .15s;font-family:'Source Sans 3','Source Sans Pro',sans-serif}
+.wgr-btn:hover{background:#006989;color:#fff!important}
+@media(max-width:700px){.wgr-mwrap{display:none}.wgr-swrap{display:flex}}
+
+.wsr-wrap *{box-sizing:border-box;margin:0;padding:0;font-family:'Source Sans 3','Source Sans Pro',sans-serif}
+.wsr-wrap{background:#fbfbfb;padding:48px 0 52px;overflow:hidden;width:100%}
+.wsr-header{text-align:center;margin-bottom:32px;padding:0 20px}
+.wsr-btns{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap}
+.wsr-pbtn{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1.5px solid #006989;color:#006989!important;border-radius:8px;padding:10px 20px;font-size:14px;font-weight:600;text-decoration:none!important;transition:background .15s,color .15s;font-family:'Source Sans 3','Source Sans Pro',sans-serif}
+.wsr-pbtn:hover{background:#006989;color:#fff!important}
+.wsr-card{background:#fff;border:1px solid #ebebeb;border-radius:16px;padding:22px 22px 18px;display:flex;flex-direction:column;gap:12px;flex-shrink:0;width:320px}
+.wsr-top{display:flex;align-items:center;gap:12px}
+.wsr-av{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:#fff;flex-shrink:0;font-family:'Rufina','Georgia',serif}
+.wsr-name{font-size:14px;font-weight:700;color:#1a1a1a;margin-bottom:2px;font-family:'Rufina','Georgia',serif}
+.wsr-country{font-size:11px;color:#aaa}
+.wsr-text{font-size:13.5px;color:#444;line-height:1.65;flex:1}
+.wsr-foot{display:flex;align-items:center;gap:7px;padding-top:10px;border-top:1px solid #f2f2f2}
+.wsr-plabel{font-size:11px;color:#bbb}
+.wsr-mwrap{position:relative;overflow:hidden;margin-top:32px}
+.wsr-mtrack{display:flex;gap:16px;padding:4px 0 8px;width:max-content;animation:wsrScroll 55s linear infinite}
+.wsr-mtrack:hover{animation-play-state:paused}
+@keyframes wsrScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.wsr-mwrap::before,.wsr-mwrap::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none}
+.wsr-mwrap::before{left:0;background:linear-gradient(to right,#fbfbfb,transparent)}
+.wsr-mwrap::after{right:0;background:linear-gradient(to left,#fbfbfb,transparent)}
+.wsr-swrap{display:none;flex-direction:column;align-items:center;gap:18px;margin-top:32px}
+.wsr-svp{width:100%;overflow:hidden;padding:4px 20px}
+.wsr-strack{display:flex;gap:16px;transition:transform .45s cubic-bezier(.25,.46,.45,.94);will-change:transform}
+.wsr-strack .wsr-card{width:calc(100vw - 56px);max-width:360px;flex-shrink:0}
+.wsr-dots{display:flex;gap:7px;justify-content:center}
+.wsr-dot{width:7px;height:7px;border-radius:50%;background:#d4d4d4;border:none;cursor:pointer;transition:background .25s,transform .25s;padding:0}
+.wsr-dot.wsr-active{background:#006989;transform:scale(1.3)}
+@media(max-width:700px){.wsr-mwrap{display:none}.wsr-swrap{display:flex}}
+</style>
+</head>
+<body>
+<!-- ================= HEADER ================= -->
+<header class="header" id="inicio">
+  <div class="contenedor header__int">
+    <a class="header__logo" href="#" data-enlace="inicio" aria-label="Elegancia de Amor"><img src="recursos/logo.svg" alt="Elegancia de Amor" width="240" height="46"></a>
+    <nav aria-label="Menú principal">
+      <ul class="header__menu">
+        <li><a href="#" data-enlace="inicio">Inicio</a></li>
+        <li><a href="#" data-enlace="catalogo">Elige tu diseño</a></li>
+        <li><a href="#empezar">Empieza ahora</a></li>
+        <li><a href="#preguntas">Preguntas</a></li>
+      </ul>
+    </nav>
+    <div class="header__redes">
+      <a href="#" data-enlace="instagram" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 100 100"> <path clip-rule="evenodd" d="M50 100C77.6142 100 100 77.6142 100 50C100 22.3858 77.6142 0 50 0C22.3858 0 0 22.3858 0 50C0 77.6142 22.3858 100 50 100ZM25 39.3918C25 31.4558 31.4566 25 39.3918 25H60.6082C68.5442 25 75 31.4566 75 39.3918V60.8028C75 68.738 68.5442 75.1946 60.6082 75.1946H39.3918C31.4558 75.1946 25 68.738 25 60.8028V39.3918ZM36.9883 50.0054C36.9883 42.8847 42.8438 37.0922 50.0397 37.0922C57.2356 37.0922 63.0911 42.8847 63.0911 50.0054C63.0911 57.1252 57.2356 62.9177 50.0397 62.9177C42.843 62.9177 36.9883 57.1252 36.9883 50.0054ZM41.7422 50.0054C41.7422 54.5033 45.4641 58.1638 50.0397 58.1638C54.6153 58.1638 58.3372 54.5041 58.3372 50.0054C58.3372 45.5066 54.6145 41.8469 50.0397 41.8469C45.4641 41.8469 41.7422 45.5066 41.7422 50.0054ZM63.3248 39.6355C65.0208 39.6355 66.3956 38.2606 66.3956 36.5646C66.3956 34.8687 65.0208 33.4938 63.3248 33.4938C61.6288 33.4938 60.2539 34.8687 60.2539 36.5646C60.2539 38.2606 61.6288 39.6355 63.3248 39.6355Z" fill="currentColor" fill-rule="evenodd"></path> </svg></a>
+      <a href="#" data-enlace="tiktok" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 100 100"> <path clip-rule="evenodd" d="M50 100c27.614 0 50-22.386 50-50S77.614 0 50 0 0 22.386 0 50s22.386 50 50 50Zm5.495-74.986c-1.555.002-3.113.004-4.676.028l.001.002c-.04 5.37-.038 10.742-.035 16.12.001 3.007.003 6.015-.004 9.026-.006 1.01-.005 2.019-.004 3.027.002 2.712.005 5.421-.144 8.138-.022.754-.4 1.417-.767 2.06l-.088.154c-1.212 1.977-3.442 3.327-5.769 3.352-3.51.31-6.797-2.563-7.292-5.982-.004-.167-.01-.336-.016-.505-.034-.964-.069-1.948.298-2.846.522-1.482 1.524-2.791 2.843-3.646 1.806-1.255 4.222-1.442 6.29-.773 0-1.318.022-2.636.044-3.953.03-1.767.06-3.534.036-5.303-4.525-.846-9.358.585-12.808 3.59-3.044 2.58-5.005 6.372-5.38 10.336a34.879 34.879 0 0 0 .025 3.1c.431 4.876 3.392 9.418 7.6 11.9 2.54 1.496 5.516 2.309 8.496 2.139 4.858-.082 9.588-2.686 12.313-6.682 1.694-2.4 2.655-5.299 2.818-8.211.042-4.001.04-8.01.036-12.023 0-2.068-.002-4.138.003-6.208 1.082.708 2.189 1.4 3.376 1.938 2.727 1.293 5.746 1.919 8.75 2.017v-8.39c-3.206-.357-6.501-1.415-8.83-3.726-2.335-2.255-3.482-5.504-3.646-8.693-1.156.01-2.312.012-3.47.014Z" fill="currentColor" fill-rule="evenodd"></path> </svg></a>
+      <a href="#" data-enlace="whatsapp" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 100 100"> <path clip-rule="evenodd" d="M50 100C77.6142 100 100 77.6142 100 50C100 22.3858 77.6142 0 50 0C22.3858 0 0 22.3858 0 50C0 77.6142 22.3858 100 50 100ZM69.7626 28.9928C64.6172 23.841 57.7739 21.0027 50.4832 21C35.4616 21 23.2346 33.2252 23.2292 48.2522C23.2274 53.0557 24.4823 57.7446 26.8668 61.8769L23 76L37.4477 72.2105C41.4282 74.3822 45.9107 75.5262 50.4714 75.528H50.4823C65.5029 75.528 77.7299 63.301 77.7363 48.2749C77.7408 40.9915 74.9089 34.1446 69.7626 28.9928ZM62.9086 53.9588C62.2274 53.6178 58.8799 51.9708 58.2551 51.7435C57.6313 51.5161 57.1766 51.4024 56.7228 52.0845C56.269 52.7666 54.964 54.2998 54.5666 54.7545C54.1692 55.2092 53.7718 55.2656 53.0915 54.9246C52.9802 54.8688 52.8283 54.803 52.6409 54.7217C51.6819 54.3057 49.7905 53.4855 47.6151 51.5443C45.5907 49.7382 44.2239 47.5084 43.8265 46.8272C43.4291 46.1452 43.7837 45.7769 44.1248 45.4376C44.3292 45.2338 44.564 44.9478 44.7987 44.662C44.9157 44.5194 45.0328 44.3768 45.146 44.2445C45.4345 43.9075 45.56 43.6516 45.7302 43.3049C45.7607 43.2427 45.7926 43.1776 45.8272 43.1087C46.0545 42.654 45.9409 42.2565 45.7708 41.9155C45.6572 41.6877 45.0118 40.1167 44.4265 38.6923C44.1355 37.984 43.8594 37.3119 43.671 36.8592C43.1828 35.687 42.6883 35.69 42.2913 35.6924C42.2386 35.6928 42.1876 35.6931 42.1386 35.6906C41.7421 35.6706 41.2874 35.667 40.8336 35.667C40.3798 35.667 39.6423 35.837 39.0175 36.5191C38.9773 36.5631 38.9323 36.6111 38.8834 36.6633C38.1738 37.4209 36.634 39.0648 36.634 42.2002C36.634 45.544 39.062 48.7748 39.4124 49.2411L39.415 49.2444C39.4371 49.274 39.4767 49.3309 39.5333 49.4121C40.3462 50.5782 44.6615 56.7691 51.0481 59.5271C52.6732 60.2291 53.9409 60.6475 54.9303 60.9612C56.5618 61.4796 58.046 61.4068 59.22 61.2313C60.5286 61.0358 63.2487 59.5844 63.8161 57.9938C64.3836 56.4033 64.3836 55.0392 64.2136 54.7554C64.0764 54.5258 63.7545 54.3701 63.2776 54.1395C63.1633 54.0843 63.0401 54.0247 62.9086 53.9588Z" fill="currentColor" fill-rule="evenodd"></path> </svg></a>
+    </div>
+    <button class="hamburguesa" id="hamburguesa" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+  <div class="menu-movil" id="menuMovil">
+    <a href="#" data-enlace="inicio">Inicio</a>
+    <a href="#" data-enlace="catalogo">Elige tu diseño</a>
+    <a href="#empezar">Empieza ahora</a>
+    <a href="#preguntas">Preguntas</a>
+    <div class="menu-movil__redes">
+      <a href="#" data-enlace="instagram" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 100 100"> <path clip-rule="evenodd" d="M50 100C77.6142 100 100 77.6142 100 50C100 22.3858 77.6142 0 50 0C22.3858 0 0 22.3858 0 50C0 77.6142 22.3858 100 50 100ZM25 39.3918C25 31.4558 31.4566 25 39.3918 25H60.6082C68.5442 25 75 31.4566 75 39.3918V60.8028C75 68.738 68.5442 75.1946 60.6082 75.1946H39.3918C31.4558 75.1946 25 68.738 25 60.8028V39.3918ZM36.9883 50.0054C36.9883 42.8847 42.8438 37.0922 50.0397 37.0922C57.2356 37.0922 63.0911 42.8847 63.0911 50.0054C63.0911 57.1252 57.2356 62.9177 50.0397 62.9177C42.843 62.9177 36.9883 57.1252 36.9883 50.0054ZM41.7422 50.0054C41.7422 54.5033 45.4641 58.1638 50.0397 58.1638C54.6153 58.1638 58.3372 54.5041 58.3372 50.0054C58.3372 45.5066 54.6145 41.8469 50.0397 41.8469C45.4641 41.8469 41.7422 45.5066 41.7422 50.0054ZM63.3248 39.6355C65.0208 39.6355 66.3956 38.2606 66.3956 36.5646C66.3956 34.8687 65.0208 33.4938 63.3248 33.4938C61.6288 33.4938 60.2539 34.8687 60.2539 36.5646C60.2539 38.2606 61.6288 39.6355 63.3248 39.6355Z" fill="currentColor" fill-rule="evenodd"></path> </svg></a>
+      <a href="#" data-enlace="tiktok" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 100 100"> <path clip-rule="evenodd" d="M50 100c27.614 0 50-22.386 50-50S77.614 0 50 0 0 22.386 0 50s22.386 50 50 50Zm5.495-74.986c-1.555.002-3.113.004-4.676.028l.001.002c-.04 5.37-.038 10.742-.035 16.12.001 3.007.003 6.015-.004 9.026-.006 1.01-.005 2.019-.004 3.027.002 2.712.005 5.421-.144 8.138-.022.754-.4 1.417-.767 2.06l-.088.154c-1.212 1.977-3.442 3.327-5.769 3.352-3.51.31-6.797-2.563-7.292-5.982-.004-.167-.01-.336-.016-.505-.034-.964-.069-1.948.298-2.846.522-1.482 1.524-2.791 2.843-3.646 1.806-1.255 4.222-1.442 6.29-.773 0-1.318.022-2.636.044-3.953.03-1.767.06-3.534.036-5.303-4.525-.846-9.358.585-12.808 3.59-3.044 2.58-5.005 6.372-5.38 10.336a34.879 34.879 0 0 0 .025 3.1c.431 4.876 3.392 9.418 7.6 11.9 2.54 1.496 5.516 2.309 8.496 2.139 4.858-.082 9.588-2.686 12.313-6.682 1.694-2.4 2.655-5.299 2.818-8.211.042-4.001.04-8.01.036-12.023 0-2.068-.002-4.138.003-6.208 1.082.708 2.189 1.4 3.376 1.938 2.727 1.293 5.746 1.919 8.75 2.017v-8.39c-3.206-.357-6.501-1.415-8.83-3.726-2.335-2.255-3.482-5.504-3.646-8.693-1.156.01-2.312.012-3.47.014Z" fill="currentColor" fill-rule="evenodd"></path> </svg></a>
+      <a href="#" data-enlace="whatsapp" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 100 100"> <path clip-rule="evenodd" d="M50 100C77.6142 100 100 77.6142 100 50C100 22.3858 77.6142 0 50 0C22.3858 0 0 22.3858 0 50C0 77.6142 22.3858 100 50 100ZM69.7626 28.9928C64.6172 23.841 57.7739 21.0027 50.4832 21C35.4616 21 23.2346 33.2252 23.2292 48.2522C23.2274 53.0557 24.4823 57.7446 26.8668 61.8769L23 76L37.4477 72.2105C41.4282 74.3822 45.9107 75.5262 50.4714 75.528H50.4823C65.5029 75.528 77.7299 63.301 77.7363 48.2749C77.7408 40.9915 74.9089 34.1446 69.7626 28.9928ZM62.9086 53.9588C62.2274 53.6178 58.8799 51.9708 58.2551 51.7435C57.6313 51.5161 57.1766 51.4024 56.7228 52.0845C56.269 52.7666 54.964 54.2998 54.5666 54.7545C54.1692 55.2092 53.7718 55.2656 53.0915 54.9246C52.9802 54.8688 52.8283 54.803 52.6409 54.7217C51.6819 54.3057 49.7905 53.4855 47.6151 51.5443C45.5907 49.7382 44.2239 47.5084 43.8265 46.8272C43.4291 46.1452 43.7837 45.7769 44.1248 45.4376C44.3292 45.2338 44.564 44.9478 44.7987 44.662C44.9157 44.5194 45.0328 44.3768 45.146 44.2445C45.4345 43.9075 45.56 43.6516 45.7302 43.3049C45.7607 43.2427 45.7926 43.1776 45.8272 43.1087C46.0545 42.654 45.9409 42.2565 45.7708 41.9155C45.6572 41.6877 45.0118 40.1167 44.4265 38.6923C44.1355 37.984 43.8594 37.3119 43.671 36.8592C43.1828 35.687 42.6883 35.69 42.2913 35.6924C42.2386 35.6928 42.1876 35.6931 42.1386 35.6906C41.7421 35.6706 41.2874 35.667 40.8336 35.667C40.3798 35.667 39.6423 35.837 39.0175 36.5191C38.9773 36.5631 38.9323 36.6111 38.8834 36.6633C38.1738 37.4209 36.634 39.0648 36.634 42.2002C36.634 45.544 39.062 48.7748 39.4124 49.2411L39.415 49.2444C39.4371 49.274 39.4767 49.3309 39.5333 49.4121C40.3462 50.5782 44.6615 56.7691 51.0481 59.5271C52.6732 60.2291 53.9409 60.6475 54.9303 60.9612C56.5618 61.4796 58.046 61.4068 59.22 61.2313C60.5286 61.0358 63.2487 59.5844 63.8161 57.9938C64.3836 56.4033 64.3836 55.0392 64.2136 54.7554C64.0764 54.5258 63.7545 54.3701 63.2776 54.1395C63.1633 54.0843 63.0401 54.0247 62.9086 53.9588Z" fill="currentColor" fill-rule="evenodd"></path> </svg></a>
+    </div>
+  </div>
+</header>
+
+<!-- ================= PORTADA ================= -->
+<section class="portada">
+  <div class="contenedor portada__int">
+    <h1 class="portada__titulo degradado">Crea una invitación<small>que <span id="escribe1"></span><span class="cursor-escribe" aria-hidden="true"></span></small></h1>
+    <div class="portada__col">
+      <p class="portada__texto" id="portadaTexto"></p>
+      <div class="portada__botones aparece visible">
+        <a class="boton boton--lleno" href="#empezar"><span>Empezar a crear</span></a>
+        <a class="boton boton--borde" href="#" data-enlace="catalogo">Ver ejemplos</a>
+      </div>
+    </div>
+    <div class="portada__imagen" aria-hidden="true">
+      <img src="recursos/portada-iphone.png" alt="" width="1500" height="1125">
+    </div>
+  </div>
+</section>
+
+<!-- ================= CÓMO FUNCIONA ================= -->
+<section class="seccion" id="como-funciona" style="padding-top:20px">
+  <div class="encabezado aparece">
+    <span class="etiqueta">Proceso simple</span>
+    <h2 class="titulo degradado">Cómo funciona</h2>
+    <p class="subtitulo">De la idea a una invitación espectacular en 3 pasos</p>
+  </div>
+  <div class="pasos" id="pasos"></div>
+</section>
+
+<!-- ================= ¡EMPECEMOS! (precios + configurador) ================= -->
+<section class="seccion" id="empezar" style="padding-top:90px">
+  <div class="encabezado aparece">
+    <span class="etiqueta">Elige tu estilo de diseño</span>
+    <h2 class="titulo degradado">¡Empecemos!</h2>
+    <p class="datos">
+      <span class="estrellas" aria-label="5 de 5 estrellas"><img src="recursos/estrella.png" alt=""><img src="recursos/estrella.png" alt=""><img src="recursos/estrella.png" alt=""><img src="recursos/estrella.png" alt=""><img src="recursos/estrella.png" alt=""></span>
+      <span id="datosTexto"></span>
+    </p>
+  </div>
+
+  <!-- Tarjetas de precios (.wgf) — se generan desde CONFIG.planes -->
+  <div class="wgf-wrap"><div class="wgf-inner"><div class="wgf-plans" id="wgfPlans"></div></div></div>
+
+</section>
+
+<!-- ================= QUÉ INCLUYE ================= -->
+<section class="seccion" id="incluido" style="padding-top:40px">
+  <div class="encabezado aparece">
+    <span class="etiqueta">Todo lo que necesitas</span>
+    <h2 class="titulo degradado">Qué incluye cada invitación</h2>
+  </div>
+  <div class="wif-wrap"> <div class="wif-grid"> <!-- LEFT: 8 items, 2-col grid --> <div class="wif-items" id="wifItems"> <div class="wif-item" style="animation-delay:.04s"> <div class="wif-icon"> <svg fill="none" height="16" viewbox="0 0 16 16" width="16"> <path d="M2 12c1-1 2.5-.5 4 .5s3 1.5 4 .5l3-3" stroke="#006989" stroke-linecap="round" stroke-width="1.4"></path> <path d="M10.5 2.5a2 2 0 0 1 3 3L8 11H5v-3z" stroke="#006989" stroke-linejoin="round" stroke-width="1.4"></path> </svg> </div> <span class="wif-label">Diseño personalizado con los datos de tu evento, tus colores y 3 fotos</span> </div> <div class="wif-item" style="animation-delay:.08s"> <div class="wif-icon"> <svg fill="none" height="16" viewbox="0 0 16 16" width="16"> <path d="M2 4l6 4 6-4" stroke="#006989" stroke-linecap="round" stroke-width="1.4"></path> <rect height="9" rx="2" stroke="#006989" stroke-width="1.4" width="12" x="2" y="3"></rect> </svg> </div> <span class="wif-label">Confirmación de asistencia inteligente</span> </div> <div class="wif-item" style="animation-delay:.12s"> <div class="wif-icon"> <svg fill="none" height="16" viewbox="0 0 16 16" width="16"> <path d="M3 4.5h10a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3" stroke="#006989" stroke-linecap="round" stroke-width="1.4"></path> <path d="M3 2h4M3 5h3" opacity=".5" stroke="#006989" stroke-linecap="round" stroke-width="1.4"></path> <path d="M6 9l2 2 4-4" stroke="#006989" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"></path> </svg> </div> <span class="wif-label">5 secciones a tu elección</span> </div> <div class="wif-item" style="animation-delay:.16s"> <div class="wif-icon"> <svg fill="none" height="16" viewbox="0 0 16 16" width="16"> <path d="M8 2l1.5 3.2 3.5.5-2.5 2.4.6 3.5L8 9.9l-3.1 1.7.6-3.5L3 5.7l3.5-.5z" fill="#006989" stroke="#006989" stroke-linejoin="round" stroke-width="1.1"></path> </svg> </div> <span class="wif-label">Animación de apertura</span> </div> <div class="wif-item" style="animation-delay:.2s"> <div class="wif-icon"> <svg fill="none" height="16" viewbox="0 0 16 16" width="16"> <path d="M13 8a5 5 0 1 1-1.5-3.5" stroke="#006989" stroke-linecap="round" stroke-width="1.5"></path> <path d="M11.5 2.5v3h-3" stroke="#006989" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path> </svg> </div> <span class="wif-label">Actualizaciones ilimitadas hasta el día del evento</span> </div> <div class="wif-item" style="animation-delay:.24s"> <div class="wif-icon"> <svg fill="none" height="16" viewbox="0 0 16 16" width="16"> <circle cx="8" cy="6" r="3" stroke="#006989" stroke-width="1.4"></circle> <path d="M2 14c0-3 2.7-5 6-5s6 2 6 5" stroke="#006989" stroke-linecap="round" stroke-width="1.4"></path> </svg> </div> <span class="wif-label">Tu diseñador personal, a tu lado</span> </div> <div class="wif-item" style="animation-delay:.28s"> <div class="wif-icon"> <svg fill="none" height="16" viewbox="0 0 16 16" width="16"> <circle cx="8" cy="8" r="6.5" stroke="#006989" stroke-width="1.4"></circle> <path d="M8 1.5c0 0-2.5 3-2.5 6.5S8 14.5 8 14.5" stroke="#006989" stroke-linecap="round" stroke-width="1.4"></path> <path d="M1.5 8h13" stroke="#006989" stroke-width="1.4"></path> <path d="M3 5.5h10M3 10.5h10" stroke="#006989" stroke-dasharray="2 2" stroke-width="1.2"></path> </svg> </div> <span class="wif-label">Disponible en cualquier idioma</span> </div> <div class="wif-item" style="animation-delay:.32s"> <div class="wif-icon"> <svg fill="none" height="16" viewbox="0 0 16 16" width="16"> <rect height="5" rx="1" stroke="#006989" stroke-width="1.4" width="5" x="2" y="2"></rect> <rect height="5" rx="1" stroke="#006989" stroke-width="1.4" width="5" x="9" y="2"></rect> <rect height="5" rx="1" stroke="#006989" stroke-width="1.4" width="5" x="2" y="9"></rect> <rect fill="#006989" height="2" rx=".3" width="2" x="10" y="10"></rect> <path d="M9 12h2M12 9v2M9 9h1" stroke="#006989" stroke-linecap="round" stroke-width="1.2"></path> </svg> </div> <span class="wif-label">Código QR incluido para imprimir o exhibir</span> </div> </div> <!-- RIGHT: callout card, stretches to match items height --> <div class="wif-card" id="wifCard"> <div class="wif-card-top"> <span class="wif-ey">Sin límites. Nunca.</span> <div class="wif-bignum"><span id="wifNum">1000</span><span class="wif-plus">+</span></div> <p class="wif-numsub">invitaciones creadas y sumando</p> <p class="wif-ctitle">Envíala a 10 invitados o a 10.000. El mismo precio.</p> <p class="wif-cdesc">Un solo enlace, los invitados que quieras. Sin precio por invitado, sin cargos extra. Un solo pago.</p> </div> <div class="wif-card-bot"> <div class="wif-pills"> <span class="wif-pill">Invitados ilimitados</span> <span class="wif-pill">Un solo enlace</span> <span class="wif-pill">Pago único</span> </div> </div> </div> </div> </div>
+</section>
+
+<!-- ================= RESEÑAS ================= -->
+<section class="seccion" id="resenas" style="padding-top:20px">
+  <div class="encabezado aparece">
+    <span class="etiqueta">Queridos en todo el mundo</span>
+    <h2 class="titulo degradado">Lo que dicen nuestros clientes</h2>
+  </div>
+  <svg style="display:none" xmlns="http://www.w3.org/2000/svg"> <symbol id="wgr-g" viewbox="0 0 24 24"> <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path> <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path> <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"></path> <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path> </symbol> </svg>
+<div class="wgr-wrap"> <div class="wgr-header"> <div class="wgr-badge"> <svg height="20" width="20"><use href="#wgr-g"></use></svg> <span class="wgr-score">5.0</span> <span class="wgr-stars">★★★★★</span> <span class="wgr-label">Reseñas de Google</span> </div> </div> <div class="wgr-mwrap"><div class="wgr-mtrack" id="wgrMtrack"></div></div> <div class="wgr-swrap" id="wgrSwrap"> <div class="wgr-svp"><div class="wgr-strack" id="wgrStrack"></div></div> <div class="wgr-dots" id="wgrDots"></div> </div> <div class="wgr-cta"> <a class="wgr-btn" href="https://maps.app.goo.gl/uVZiQydGjefU5cMa6" rel="noopener" target="_blank"> <svg height="15" width="15"><use href="#wgr-g"></use></svg>
+      Ver todas las reseñas en Google
+    </a> </div> </div>
+  <div class="encabezado aparece" style="margin-top:20px">
+    <h3 class="titulo titulo--sm degradado">Más cariño de nuestros clientes</h3>
+    <p class="subtitulo">Recopiladas de Instagram y WhatsApp</p>
+  </div>
+  <svg style="display:none" xmlns="http://www.w3.org/2000/svg"> <symbol id="wsr-ig" viewbox="0 0 24 24"> <rect fill="#C13584" height="24" rx="6" width="24"></rect> <rect fill="none" height="18" rx="5" stroke="#fff" stroke-width="1.8" width="18" x="3" y="3"></rect> <circle cx="12" cy="12" fill="none" r="4.5" stroke="#fff" stroke-width="1.8"></circle> <circle cx="17.5" cy="6.5" fill="#fff" r="1.3"></circle> </symbol> <symbol id="wsr-wa" viewbox="0 0 24 24"> <rect fill="#25D366" height="24" rx="6" width="24"></rect> <path d="M12 4.5a7.5 7.5 0 0 0-6.53 11.17L4.5 19.5l3.97-1.04A7.5 7.5 0 1 0 12 4.5zm3.76 10.26c-.16.44-.93.85-1.3.9-.33.05-.75.07-1.21-.08-.28-.09-.64-.21-1.1-.41-1.93-.84-3.19-2.79-3.29-2.92-.1-.13-.8-1.06-.8-2.02s.5-1.43.68-1.63c.18-.2.39-.25.52-.25h.37c.12 0 .28-.05.44.33.16.39.55 1.34.6 1.44.05.1.08.22.02.35-.06.13-.1.21-.19.32-.1.11-.2.25-.29.33-.1.1-.2.2-.08.4.12.2.52.86 1.12 1.39.77.69 1.42.9 1.62.99.2.1.32.08.43-.05.12-.13.5-.59.63-.79.13-.2.27-.17.45-.1.18.07 1.12.53 1.31.63.19.1.32.14.37.22.05.08.05.47-.11.91z" fill="#fff"></path> </symbol> </svg>
+<div class="wsr-wrap"> <div class="wsr-header"> <div class="wsr-btns"> <a class="wsr-pbtn" data-red="ig" href="#" rel="noopener" target="_blank"> <svg height="18" width="18"><use href="#wsr-ig"></use></svg>
+        Instagram
+      </a> <a class="wsr-pbtn" data-red="wa" href="#" rel="noopener" target="_blank"> <svg height="18" width="18"><use href="#wsr-wa"></use></svg>
+        WhatsApp
+      </a> </div> </div> <div class="wsr-mwrap"><div class="wsr-mtrack" id="wsrMtrack"></div></div> <div class="wsr-swrap" id="wsrSwrap"> <div class="wsr-svp"><div class="wsr-strack" id="wsrStrack"></div></div> <div class="wsr-dots" id="wsrDots"></div> </div> </div>
+</section>
+
+<!-- ================= PREGUNTAS ================= -->
+<section class="seccion" id="preguntas" style="padding-top:40px">
+  <div class="encabezado aparece">
+    <span class="etiqueta">Todo explicado</span>
+    <h2 class="titulo degradado" style="font-size:39px">Preguntas frecuentes</h2>
+  </div>
+  <div class="preguntas" id="preguntas-lista"></div>
+</section>
+
+<!-- ================= CONTACTO ================= -->
+<section class="contacto" id="contacto">
+  <div class="encabezado aparece">
+    <h2 class="titulo degradado" style="font-size:40px">¿Aún tienes preguntas?</h2>
+    <p class="subtitulo">¿O te gustaría una invitación única en su tipo?<br>Escríbenos por WhatsApp y te respondemos enseguida.</p>
+  </div>
+  <div class="contacto__accion aparece">
+    <a class="boton boton--whatsapp" href="#" data-enlace="whatsappPregunta" target="_blank" rel="noopener"><svg viewBox="0 0 100 100"> <path clip-rule="evenodd" d="M50 100C77.6142 100 100 77.6142 100 50C100 22.3858 77.6142 0 50 0C22.3858 0 0 22.3858 0 50C0 77.6142 22.3858 100 50 100ZM69.7626 28.9928C64.6172 23.841 57.7739 21.0027 50.4832 21C35.4616 21 23.2346 33.2252 23.2292 48.2522C23.2274 53.0557 24.4823 57.7446 26.8668 61.8769L23 76L37.4477 72.2105C41.4282 74.3822 45.9107 75.5262 50.4714 75.528H50.4823C65.5029 75.528 77.7299 63.301 77.7363 48.2749C77.7408 40.9915 74.9089 34.1446 69.7626 28.9928ZM62.9086 53.9588C62.2274 53.6178 58.8799 51.9708 58.2551 51.7435C57.6313 51.5161 57.1766 51.4024 56.7228 52.0845C56.269 52.7666 54.964 54.2998 54.5666 54.7545C54.1692 55.2092 53.7718 55.2656 53.0915 54.9246C52.9802 54.8688 52.8283 54.803 52.6409 54.7217C51.6819 54.3057 49.7905 53.4855 47.6151 51.5443C45.5907 49.7382 44.2239 47.5084 43.8265 46.8272C43.4291 46.1452 43.7837 45.7769 44.1248 45.4376C44.3292 45.2338 44.564 44.9478 44.7987 44.662C44.9157 44.5194 45.0328 44.3768 45.146 44.2445C45.4345 43.9075 45.56 43.6516 45.7302 43.3049C45.7607 43.2427 45.7926 43.1776 45.8272 43.1087C46.0545 42.654 45.9409 42.2565 45.7708 41.9155C45.6572 41.6877 45.0118 40.1167 44.4265 38.6923C44.1355 37.984 43.8594 37.3119 43.671 36.8592C43.1828 35.687 42.6883 35.69 42.2913 35.6924C42.2386 35.6928 42.1876 35.6931 42.1386 35.6906C41.7421 35.6706 41.2874 35.667 40.8336 35.667C40.3798 35.667 39.6423 35.837 39.0175 36.5191C38.9773 36.5631 38.9323 36.6111 38.8834 36.6633C38.1738 37.4209 36.634 39.0648 36.634 42.2002C36.634 45.544 39.062 48.7748 39.4124 49.2411L39.415 49.2444C39.4371 49.274 39.4767 49.3309 39.5333 49.4121C40.3462 50.5782 44.6615 56.7691 51.0481 59.5271C52.6732 60.2291 53.9409 60.6475 54.9303 60.9612C56.5618 61.4796 58.046 61.4068 59.22 61.2313C60.5286 61.0358 63.2487 59.5844 63.8161 57.9938C64.3836 56.4033 64.3836 55.0392 64.2136 54.7554C64.0764 54.5258 63.7545 54.3701 63.2776 54.1395C63.1633 54.0843 63.0401 54.0247 62.9086 53.9588Z" fill="currentColor" fill-rule="evenodd"></path> </svg><span>Escríbenos</span></a>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="contenedor footer__int">
+    <a class="footer__logo" href="#" data-enlace="inicio" aria-label="Elegancia de Amor"><img src="recursos/logo.svg" alt="Elegancia de Amor" width="300" height="58"></a>
+    <div class="footer__der">
+      <ul class="footer__links">
+        <li><a href="#" data-enlace="inicio">Inicio</a></li>
+        <li><a href="#" data-enlace="catalogo">Elige tu diseño</a></li>
+        <li><a href="#empezar">Empieza ahora</a></li>
+        <li><a href="#preguntas">Preguntas</a></li>
+      </ul>
+      <div class="footer__copy">© <span id="anio"></span> Elegancia de Amor | <a href="#" data-enlace="privacidad">Política de privacidad</a> | <a href="#" data-enlace="terminos">Términos y condiciones</a></div>
+    </div>
+  </div>
+  <div class="contenedor"><p class="footer__aviso">Este sitio no forma parte del sitio web de Facebook ni de Meta Platforms, Inc. Además, este sitio NO está respaldado por Facebook de ninguna manera. FACEBOOK es una marca registrada de META PLATFORMS, INC.</p></div>
+</footer>
+
+<script>
+/* ============================================================
+   CONFIG — todo lo editable de la página está aquí
+   (textos, precios, diseños, enlaces y WhatsApp)
+
+   NOTA: los enlaces que están en "#" son provisionales; se
+   actualizan cuando la página esté en la nube.
+   ============================================================ */
+const CONFIG = {
+  enlaces: {
+    // La página principal está en la carpeta hermana "Invitaciones pagina principal" (ruta relativa: sube un nivel).
+    // Si cambias el nombre de esa carpeta, cambia estas dos rutas. Cuando la web esté en la nube, pon la URL real (p. ej. "/" y "/#plantillas").
+    inicio: "../index.html",              // página principal
+    catalogo: "../index.html#plantillas", // catálogo de plantillas de la página principal
+    privacidad: "../Politica%20de%20privacidad/index.html",   // página de política de privacidad (carpeta hermana)
+    terminos: "../Terminos%20y%20condiciones/index.html",      // página de términos y condiciones (carpeta hermana)
+    instagram: "#",
+    tiktok: "#",
+    whatsapp: "https://wa.me/593939097369",          // botón de WhatsApp del header, del menú y del bloque de reseñas (sin mensaje)
+    whatsappPregunta: "https://wa.me/593939097369",  // botón "Escríbenos" de la sección de contacto (sin mensaje)
+    resenasGoogle: "#"
+  },
+
+  // WhatsApp al que llegan los pedidos de las tarjetas de precios.
+  // Número con código de país y sin símbolos (p. ej. "593991234567").
+  // Si se deja vacío, los botones de las tarjetas quedan en "#".
+  whatsappPedidos: "593939097369",
+
+  // Portada: "Crea una invitación que ..." (se escribe solo)
+  escribe1: ["destaque", "te refleje", "te ahorre tiempo", "se vea espectacular", "impresione a tus invitados"],
+  portadaTexto: "Elige entre 8 plantillas hermosas o crea un diseño a tu medida. Luego agrega funciones para hacerla aún más especial e interactiva.<br><br>Nosotros nos encargamos del diseño; tú recibes el «wow» de tus invitados.<br>Del cronograma a la confirmación de asistencia: todo en un solo enlace.",
+  datosTexto: "5.0 en Google · Más de 1000 invitaciones creadas · Más de 35 países",
+
+  pasos: [
+    { t: "Escríbenos y elige", d: "Toca el botón del diseño que te gusta y cuéntanos por WhatsApp cómo quieres tu invitación. Te asesoramos y te enviamos el enlace de pago seguro." },
+    { t: "Comparte los datos de tu evento", d: "Una vez confirmado el pago, te pedimos los datos de tu evento, tus fotos y tus preferencias de estilo. A tu ritmo: normalmente toma menos de 10 minutos." },
+    { t: "Recibe tu invitación", d: "Recibes la primera versión para revisarla. ¿Necesitas cambios? Los afinamos rápido hasta que quede perfecta. Luego solo te queda compartirla y recibir confirmaciones sin esfuerzo 🥳" }
+  ],
+
+  // ---------- Precios (en dólares) ----------
+  moneda: "$",
+  precios: {
+    reservaFecha: 35, reservaFechaAntes: 50,
+    plantilla: 75,    plantillaAntes: 120,
+    personalizada: 155, personalizadaAntes: 300
+  },
+
+  // Tarjetas de precios. "mensaje" es el texto con el que se abre WhatsApp.
+  planes: {
+    std: {
+      insignia: "✨ Nuevo · Precio de lanzamiento", nombre: "Reserva la fecha",
+      texto: "Anuncia tu fecha con una experiencia interactiva espectacular.",
+      nota: "<b>Por tiempo limitado · precio de lanzamiento</b>",
+      entrega: "Listo en 2–4 días", expres: "⚡ Exprés: 24 h",
+      incluyeTitulo: "Siempre incluido",
+      incluye: ["Página interactiva totalmente personalizada", "Sus nombres, la fecha y el lugar", "Compártelo con invitados ilimitados", "Disponible en cualquier idioma"],
+      boton: "Quiero mi Reserva la fecha", miniTitulo: "3 diseños para elegir",
+      mensaje: "¡Hola! Vengo de la página de pedidos. Quiero una invitación *Reserva la fecha* ($35). ¿Me ayudan a elegir el diseño?"
+    },
+    template: {
+      insignia: "⭐ El más popular", nombre: "Invitación con plantilla",
+      texto: "Elige entre 9 diseños hermosos. Ajustamos los colores, los textos y las fotos a los tuyos.",
+      nota: "<b>Oferta por tiempo limitado</b>",
+      entrega: "Lista en 4–7 días", expres: "⚡ Exprés: 24–48 h",
+      incluyeTitulo: "Siempre incluido",
+      incluye: ["Diseñador personal a tu lado", "5 secciones a tu elección", "Confirmación de asistencia inteligente", "Animación de apertura", "3 fotos a tu elección", "Cambios ilimitados e invitados ilimitados"],
+      boton: "Quiero la invitación con plantilla", miniTitulo: "9 plantillas para elegir",
+      mensaje: "¡Hola! Vengo de la página de pedidos. Quiero una *invitación con plantilla* ($75). ¿Me ayudan a elegir la plantilla y las secciones?"
+    },
+    custom: {
+      cinta: "Única", insignia: "✦ 100 % a tu medida", nombre: "Invitación personalizada",
+      texto: "Una invitación completamente única, creada desde cero: sin plantillas, pura imaginación.",
+      nota: "Precio base · funciones extra disponibles",
+      entrega: "Lista en 1–2 semanas", expres: "⚡ Exprés: 2–4 días",
+      incluyeTitulo: "Todo lo de la plantilla, más",
+      incluye: ["Diseño 100 % original desde cero", "Concepto único acorde a tu temática", "Animaciones e interacciones personalizadas", "Atención prioritaria del diseñador"],
+      boton: "Quiero una invitación única",
+      mensaje: "¡Hola! Vengo de la página de pedidos. Quiero una *invitación personalizada* desde cero ($155). Les cuento mi idea:"
+    }
+  },
+
+  // Miniaturas decorativas de las tarjetas (sin enlace)
+  disenosReservaFecha: [
+    { nombre: "Golden Secret", img: "recursos/disenos/golden-secret.webp" },
+    { nombre: "Petal Promise", img: "recursos/disenos/petal-promise.webp" },
+    { nombre: "Captured Love", img: "recursos/disenos/captured-love.webp" }
+  ],
+  disenosPlantilla: [
+    { nombre: "Timeless Grace", img: "recursos/disenos/timeless-grace.webp" },
+    { nombre: "Vibrant Vows", img: "recursos/disenos/vibrant-vows.webp" },
+    { nombre: "The Sacred Garden", img: "recursos/disenos/sacred-garden.webp" },
+    { nombre: "Blossom & Oud", img: "recursos/disenos/blossom-oud.webp" },
+    { nombre: "Dolce Vita", img: "recursos/disenos/dolce-vita.webp" },
+    { nombre: "Destination Love", img: "recursos/disenos/destination-love.jpg" },
+    { nombre: "Eternal Romance", img: "recursos/disenos/eternal-romance.webp" },
+    { nombre: "Royal Gold", img: "recursos/disenos/royal-gold.webp" },
+    { nombre: "Minimalist", img: "recursos/disenos/minimalist.jpg" }
+  ],
+  // Cuántas miniaturas se ven en la cara de la tarjeta de plantillas
+  miniaturasPlantilla: 7,
+
+  preguntas: [
+    { p: "¿Plantilla o diseño único?", r: "<p><strong>Diseño con plantilla ($75):</strong> elige entre 9 estilos prediseñados hermosos. Lo personalizamos con tus colores, tus fotos y tus textos.</p><p><strong>Diseño personalizado único ($155):</strong> creamos un diseño completamente nuevo desde cero, exclusivo para ustedes. Totalmente único y a la medida de su visión.</p>" },
+    { p: "¿Qué se puede cambiar en la plantilla sin costo?", r: "<p>Podemos actualizar textos, fotos e imágenes y colores, y personalizar el formulario de confirmación agregando o quitando preguntas según lo que necesites. Los cambios pequeños de diseño, como agregar o quitar un elemento, también son gratis.</p>" },
+    { p: "¿Y si no me gusta el diseño?", r: "<p>Ofrecemos cambios ilimitados hasta que estés 100 % feliz con tu invitación. Recibes el primer borrador para revisarlo y lo afinamos tantas veces como haga falta. Tu satisfacción es nuestra prioridad.</p>" },
+    { p: "¿Cuánto tarda mi invitación?", r: "<p>El tiempo de entrega depende del tipo de diseño:</p><ul><li><strong>Invitación con plantilla:</strong> 4–7 días hábiles (o 1–2 días con entrega urgente por +$30)</li><li><strong>Invitación personalizada única:</strong> 1–2 semanas según la complejidad (exprés en 2–4 días, bajo pedido)</li></ul><p>Cuando confirmas el pago, te pedimos los datos de tu evento. Con todo en mano, nuestro diseñador empieza a crear tu invitación.</p>" },
+    { p: "¿Cómo se paga?", r: "<p>Coordinamos todo por WhatsApp y te enviamos un enlace de pago seguro. Puedes pagar con tarjeta de crédito o débito; el pago se confirma al instante y ahí mismo empezamos.</p>" },
+    { p: "¿Hacen devoluciones?", r: "<p>Una vez que empezamos a diseñar tu invitación, no hay devoluciones. Sin embargo, ofrecemos cambios ilimitados para asegurarnos de que ames el resultado final. Si tienes dudas antes de pedir, escríbenos con confianza.</p>" },
+    { p: "¿Puedo actualizar la información después de publicar la invitación?", r: "<p>¡Sí! Una de las mejores cosas de las invitaciones digitales es que puedes actualizarlas en cualquier momento. Si cambia tu cronograma o necesitas agregar información, avísanos y lo actualizamos gratis.</p>" }
+  ]
+};
+</script>
+<script>
+/* ============================================================
+   Lógica general de la página
+   ============================================================ */
+(function(){
+  // Enlaces desde CONFIG
+  document.querySelectorAll('[data-enlace]').forEach(a=>{ const k=a.dataset.enlace; const v=CONFIG.enlaces[k]; if(v){ a.href=v; if(v==='#'){ a.removeAttribute('target'); a.addEventListener('click',e=>e.preventDefault()); } } });
+  document.getElementById('anio').textContent=new Date().getFullYear();
+  document.getElementById('portadaTexto').innerHTML=CONFIG.portadaTexto;
+  document.getElementById('datosTexto').textContent=CONFIG.datosTexto;
+
+  // Menú móvil
+  const ham=document.getElementById('hamburguesa'), mm=document.getElementById('menuMovil');
+  ham.addEventListener('click',()=>{ const ab=mm.classList.toggle('abierto'); ham.classList.toggle('abierta',ab); ham.setAttribute('aria-expanded',ab); });
+  mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{ mm.classList.remove('abierto'); ham.classList.remove('abierta'); }));
+
+  // Texto que se escribe solo (portada)
+  function escribe(el,palabras){
+    let i=0,pos=0,borrando=false;
+    function paso(){
+      const p=palabras[i];
+      if(!borrando){ pos++; el.textContent=p.slice(0,pos); if(pos===p.length){ borrando=true; return setTimeout(paso,1800); } return setTimeout(paso,90+Math.random()*60); }
+      pos--; el.textContent=p.slice(0,pos);
+      if(pos===0){ borrando=false; i=(i+1)%palabras.length; return setTimeout(paso,400); }
+      setTimeout(paso,45);
+    }
+    setTimeout(paso,600);
+  }
+  escribe(document.getElementById('escribe1'),CONFIG.escribe1);
+
+  // Pasos
+  document.getElementById('pasos').innerHTML=CONFIG.pasos.map((p,i)=>'<div class="paso aparece"><div class="paso__num">'+(i+1)+'</div><h3>'+p.t+'</h3><p>'+p.d+'</p></div>').join('');
+
+  // Preguntas frecuentes
+  const faq=document.getElementById('preguntas-lista');
+  faq.innerHTML=CONFIG.preguntas.map((q,i)=>
+    '<div class="pregunta aparece"><button class="pregunta__btn" type="button" aria-expanded="false" aria-controls="resp'+i+'">'+
+    '<span>'+q.p+'</span><svg viewBox="0 0 18 18" fill="none" stroke-width="1.5"><path d="M9 1v16M1 9h16"/></svg></button>'+
+    '<div class="pregunta__resp" id="resp'+i+'"><div>'+q.r+'</div></div></div>').join('');
+  faq.querySelectorAll('.pregunta__btn').forEach(b=>b.addEventListener('click',()=>{
+    const item=b.parentElement, resp=item.querySelector('.pregunta__resp'), abierta=item.classList.contains('abierta');
+    faq.querySelectorAll('.pregunta.abierta').forEach(o=>{ o.classList.remove('abierta'); o.querySelector('.pregunta__resp').style.maxHeight=0; o.querySelector('.pregunta__btn').setAttribute('aria-expanded','false'); });
+    if(!abierta){ item.classList.add('abierta'); resp.style.maxHeight=resp.scrollHeight+'px'; b.setAttribute('aria-expanded','true'); }
+  }));
+
+  // Aparición al hacer scroll
+  const obs=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } }),{threshold:.08,rootMargin:'0px 0px -30px 0px'});
+  document.querySelectorAll('.aparece').forEach(el=>obs.observe(el));
+  // Respaldo: cualquier elemento que ya quedó por encima del borde inferior de la pantalla se muestra
+  function revisa(){ const lim=window.scrollY+window.innerHeight-30; document.querySelectorAll('.aparece:not(.visible)').forEach(el=>{ if(el.getBoundingClientRect().top+window.scrollY<lim) el.classList.add('visible'); }); }
+  window.addEventListener('scroll',revisa,{passive:true}); window.addEventListener('resize',revisa); setTimeout(revisa,300);
+
+  // Enlaces de los bloques de reseñas
+  [['.wgr-btn','resenasGoogle'],['.wsr-pbtn[data-red="ig"]','instagram'],['.wsr-pbtn[data-red="wa"]','whatsapp']].forEach(([sel,k])=>{
+    const a=document.querySelector(sel); if(!a) return; a.href=CONFIG.enlaces[k]||'#';
+    if(a.getAttribute('href')==='#'){ a.removeAttribute('target'); a.addEventListener('click',e=>e.preventDefault()); }
+  });
+
+})();
+</script>
+<script>
+/* ============================================================
+   TARJETAS DE PRECIOS (.wgf) — cada botón abre WhatsApp con el
+   plan elegido ya escrito en el mensaje. Todo sale de CONFIG.
+   ============================================================ */
+(function(){
+'use strict';
+var M=CONFIG.moneda, P=CONFIG.precios, PL=CONFIG.planes;
+function precio(n){return M+n;}
+function es(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+// Enlace de WhatsApp para un plan (o "#" mientras no haya número configurado)
+function enlaceWhatsApp(mensaje){
+  var num=String(CONFIG.whatsappPedidos||'').replace(/\D/g,'');
+  return num?'https://wa.me/'+num+'?text='+encodeURIComponent(mensaje):'#';
+}
+
+var FLECHA='<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 7h8M8 4l3 3-3 3"/></svg>';
+function mini(d){return '<div class="wgf-mini-thumb" title="'+es(d.nombre)+'"><img src="'+d.img+'" alt="'+es(d.nombre)+'" loading="lazy"></div>';}
+
+function tarjeta(tipo,cls,p,extra){
+  var oro=tipo==='custom', href=enlaceWhatsApp(p.mensaje);
+  return '<div class="wgf-card '+cls+'" data-wgf="'+tipo+'">'
+    +(p.cinta?'<div class="wgf-ribbon">'+p.cinta+'</div>':'')
+    +'<span class="wgf-badge '+(tipo==='std'?'wgf-badge-std':tipo==='template'?'wgf-badge-pop':'wgf-badge-gold')+'">'+p.insignia+'</span>'
+    +'<div class="wgf-cname">'+p.nombre+'</div><p class="wgf-ctag">'+p.texto+'</p>'
+    +'<div class="wgf-price-row"><span class="wgf-price"'+(oro?' style="color:#8a7030"':'')+'>'+precio(extra.precio)+'</span><span class="wgf-price-was"'+(oro?' style="color:#c8b888"':'')+'>'+precio(extra.antes)+'</span></div>'
+    +'<p class="wgf-price-note"'+(oro?' style="color:#a09070"':'')+'>'+p.nota+'</p>'
+    +'<div class="wgf-delivery"><span class="wgf-del-standard'+(oro?' wgf-del-gold':'')+'">'+p.entrega+'</span><span class="wgf-del-express'+(oro?' wgf-del-gold-exp':'')+'">'+p.expres+'</span></div>'
+    +'<div class="wgf-cdiv"></div><span class="wgf-incl-label">'+p.incluyeTitulo+'</span>'
+    +'<ul class="wgf-incl">'+p.incluye.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul>'
+    +'<a class="wgf-cbtn" href="'+href+'"'+(href==='#'?'':' target="_blank" rel="noopener"')+' data-plan="'+tipo+'">'+FLECHA+' '+p.boton+'</a>'
+    +(extra.minis||'')
+    +'</div>';
+}
+
+document.getElementById('wgfPlans').innerHTML=
+  tarjeta('std','wgf-card-std',PL.std,{precio:P.reservaFecha,antes:P.reservaFechaAntes,
+    minis:'<div class="wgf-mini-previews"><span class="wgf-mini-label">'+PL.std.miniTitulo+'</span><div class="wgf-mini-row">'+CONFIG.disenosReservaFecha.map(mini).join('')+'<div class="wgf-mini-coming"><span>Más muy pronto</span></div></div></div>'})
+ +tarjeta('template','wgf-card-tpl',PL.template,{precio:P.plantilla,antes:P.plantillaAntes,
+    minis:'<div class="wgf-mini-previews"><span class="wgf-mini-label">'+PL.template.miniTitulo+'</span><div class="wgf-mini-grid-7">'+CONFIG.disenosPlantilla.slice(0,CONFIG.miniaturasPlantilla).map(mini).join('')+'</div></div>'})
+ +tarjeta('custom','wgf-card-custom',PL.custom,{precio:P.personalizada,antes:P.personalizadaAntes});
+
+// Un clic en cualquier parte de la tarjeta equivale a tocar su botón.
+// Mientras el enlace sea "#" (sin número configurado) no hace nada.
+document.getElementById('wgfPlans').addEventListener('click',function(e){
+  var card=e.target.closest('.wgf-card'); if(!card) return;
+  var a=card.querySelector('.wgf-cbtn'); if(!a) return;
+  if(a.getAttribute('href')==='#'){ e.preventDefault(); return; }
+  if(!e.target.closest('a')) a.click();
+});
+})();
+</script>
+<script>
+(function(){
+  var items=document.querySelectorAll('#wifItems .wif-item');
+  var card=document.getElementById('wifCard');
+  var counted=false;
+
+  var obs=new IntersectionObserver(function(e){
+    e.forEach(function(en){
+      if(en.isIntersecting){en.target.classList.add('wif-in');obs.unobserve(en.target);}
+    });
+  },{threshold:0.07,rootMargin:'0px 0px -20px 0px'});
+
+  items.forEach(function(el){obs.observe(el);});
+  obs.observe(card);
+
+  var cObs=new IntersectionObserver(function(e){
+    if(e[0].isIntersecting&&!counted){counted=true;animCount();}
+  },{threshold:0.15});
+  cObs.observe(card);
+
+  function liveCount(){
+    /* Base: 1032 on April 8 2026. Each day adds a seeded-random 2-5. */
+    var base=new Date('2026-04-08T00:00:00Z').getTime();
+    var days=Math.floor((Date.now()-base)/86400000);
+    if(days<=0)return 1032;
+    var count=1032;
+    for(var d=1;d<=days;d++){
+      /* simple seeded hash so same day always gives same number */
+      var seed=(d*2654435761)>>>0;
+      count+=2+(seed%4); /* 2, 3, 4 or 5 */
+    }
+    return count;
+  }
+
+  function animCount(){
+    var target=liveCount(),dur=1800,start=performance.now();
+    var el=document.getElementById('wifNum');
+    function step(now){
+      var p=Math.min((now-start)/dur,1),ease=1-Math.pow(1-p,3);
+      el.textContent=Math.floor(ease*target).toLocaleString();
+      if(p<1)requestAnimationFrame(step);
+      else el.textContent=target.toLocaleString();
+    }
+    requestAnimationFrame(step);
+  }
+})();
+
+(function(){
+var WGR=[
+  {name:"Eleonore Cappellaro",in:"EC",c:"#006989",d:"Abril 2026",t:"Webgency nos creó la página web de nuestra boda en alemán e italiano ¡y estamos encantados! Sus precios fueron totalmente transparentes. Elegimos la plantilla 4 y pedimos además una página adicional personalizada; todo quedó implementado a la perfección y exactamente como lo imaginamos. La página final se ve hermosa y funciona impecable. Muy recomendados para quien busque un equipo profesional, confiable y creativo."},
+  {name:"Dea Saffan",in:"DS",c:"#C27A6B",d:"Diciembre 2025",t:"SERVICIO EXCELENTE 😍 Encontré Webgency por casualidad y enseguida vi que ofrecen todo lo que puedes necesitar para una invitación de boda perfecta. Anna fue increíblemente atenta, paciente y dispuesta con todas mis solicitudes. Siempre cumplió a tiempo. De todo lo que hay que planificar en una boda, esta fue por mucho la parte más fácil, y todo gracias a ellos. 🤍"},
+  {name:"Deborah Osong",in:"DO",c:"#B07CC6",d:"Febrero 2026",t:"¡Queremos darles las gracias, gracias y más gracias! Fueron muy serviciales y más que disponibles. Necesitamos varios ajustes y una y otra vez demostraron ser confiables, eficientes y pacientes. A nuestros invitados les encantó cómo quedó la invitación y recibimos muchísimos elogios. ¡Hicieron que esta parte de la planificación fuera muy fácil! 🙏🏾"},
+  {name:"Vette Smith",in:"VS",c:"#D4636A",d:"Noviembre 2025",t:"Servicio impecable y resultados hermosos. Webgency superó nuestras expectativas en cada paso. La comunicación fue clara y profesional, las pruebas llegaron rápido y cualquier cambio, grande o pequeño, se hizo casi de inmediato y con gran atención al detalle. Las invitaciones digitales finales quedaron espectaculares. Si van por lo digital, no lo duden: ¡elijan Webgency!"},
+  {name:"Aluso Ingati",in:"AI",c:"#4A9E7F",d:"Febrero 2026",t:"100 % recomendados. Todo funcionó sin problemas. El tiempo de entrega fue más rápido de lo esperado. Nunca tuve que hacer seguimiento de nada. La invitación quedó mucho mejor de lo que imaginaba y tengo el corazón lleno. Dios bendiga el trabajo de este maravilloso equipo. ❤️"},
+  {name:"Yafa Gh.",in:"YG",c:"#7B68C8",d:"Febrero 2026",t:"¡Una experiencia increíble de principio a fin! La invitación digital de boda fue elegante, con un diseño hermoso y muy fácil de personalizar. Capturó perfectamente el ambiente de nuestra celebración. Recibimos muchos elogios por lo elegante y moderna que se veía. Todo el proceso fue fluido, profesional y sin estrés: justo lo que toda pareja necesita. ¡El equipo me ayudó con cada cambio que quise!"},
+  {name:"TwoPeas OneInbox",in:"TP",c:"#4A8FA8",d:"Marzo 2026",t:"Acabamos de pedir nuestras invitaciones digitales de boda con Webgency ¡y toda la experiencia fue increíble! El equipo fue muy servicial, respondió rápido y nada fue un problema: cada cambio o actualización que necesitamos se resolvió sin complicaciones. Nuestras invitaciones quedaron hermosas. Muy recomendados para quien busque un servicio de invitaciones moderno, fluido y con buen acompañamiento. ⭐️⭐️⭐️⭐️⭐️"},
+  {name:"Jennifer Tseng",in:"JT",c:"#C2763A",d:"Abril 2026",t:"Estamos muy felices con la invitación. Quedó exactamente como esperaba. Todos mis invitados la encontraron muy bonita y única. Y qué gran servicio. Muchas gracias por todo y en especial por su paciencia. 🥰"},
+  {name:"Sharon Campbell",in:"SC",c:"#5A9E8F",d:"Octubre 2025",t:"Webgency acaba de terminar 2 invitaciones para la boda de mi hija. El resultado fue mejor de lo que jamás imaginamos. La comunicación fue rápida, fácil de entender y ninguna solicitud fue un problema. La invitación quedó visualmente hermosa y el formulario de confirmación recogió los datos que necesitábamos para planificar 3 días de actividades. Hasta nuestra canción empezó en el segundo 38, tal como lo pedimos. No podría recomendar más a este equipo."},
+  {name:"Warren Vutivi Khosa",in:"WK",c:"#8E6BAF",d:"Enero 2026",t:"¡Servicio al 100 %! Estoy en Sudáfrica pero fue muy fácil contactarlos por WhatsApp. Recibí mi invitación web completa en 5 días y todos los cambios que pedí se atendieron sin costo adicional. ¡Muy recomendados!"},
+  {name:"Saskia Ladha",in:"SL",c:"#6B8FC2",d:"Noviembre 2025",t:"Fue súper fácil trabajar con Webgency Invitations. Tienen plantillas, pero fueron muy flexibles para personalizar y combinar elementos de distintas plantillas. Las respuestas siempre fueron rapidísimas y eficientes."},
+  {name:"Claudia Frantzen",in:"CF",c:"#C2763A",d:"Enero 2026",t:"Recibimos una invitación muy bonita. Puedes pedir ajustes tantas veces como quieras. Colaboran muchísimo para que tu invitación quede lo más bonita posible. Responden muy rápido y ayudan mucho. Estamos muy felices con nuestra invitación de boda."}
+];
+
+function mkCard(r){
+  return '<div class="wgr-card"><div class="wgr-top"><div class="wgr-av" style="background:'+r.c+'">'+r.in+'</div><div><p class="wgr-name">'+r.name+'</p><div class="wgr-meta"><span class="wgr-st">★★★★★</span><span class="wgr-date">'+r.d+'</span></div></div></div><p class="wgr-text">\u201c'+r.t+'\u201d</p><div class="wgr-foot"><svg width="13" height="13" opacity=".4"><use href="#wgr-g"/></svg><span class="wgr-flabel">Publicado en Google</span></div></div>';
+}
+
+var html=WGR.map(mkCard).join('');
+document.getElementById('wgrMtrack').innerHTML=html+html;
+
+var st=document.getElementById('wgrStrack');
+var dt=document.getElementById('wgrDots');
+st.innerHTML=html;
+var cur=0,tot=WGR.length;
+
+function mkDots(){
+  dt.innerHTML='';
+  WGR.forEach(function(_,i){
+    var d=document.createElement('button');
+    d.className='wgr-dot'+(i===0?' wgr-active':'');
+    d.setAttribute('aria-label','Reseña '+(i+1));
+    d.addEventListener('click',function(){goTo(i);});
+    dt.appendChild(d);
+  });
+}
+function goTo(i){
+  cur=((i%tot)+tot)%tot;
+  var w=st.children[0]?st.children[0].getBoundingClientRect().width+16:336;
+  st.style.transform='translateX(-'+(cur*w)+'px)';
+  var dots=dt.querySelectorAll('.wgr-dot');
+  dots.forEach(function(d,j){d.classList.toggle('wgr-active',j===cur);});
+}
+mkDots();
+var tx=0;
+st.addEventListener('touchstart',function(e){tx=e.touches[0].clientX;},{passive:true});
+st.addEventListener('touchend',function(e){var df=tx-e.changedTouches[0].clientX;if(Math.abs(df)>40)goTo(df>0?cur+1:cur-1);},{passive:true});
+setInterval(function(){if(window.innerWidth<=700)goTo(cur+1);},5000);
+})();
+
+(function(){
+var WSR=[
+  {name:"Daniella",in:"D",c:"#C2763A",platform:"wa",handle:null,country:"🇦🇪 Emiratos Árabes",
+   t:"Dios mío, Anna, me encanta 😍 Un trabajo increíble, de verdad. Hicieron que nuestra invitación sea aún más especial. Ahora estoy emocionada jajaja 😅🥲🥲 Quiero contarte que he recibido muchísimos comentarios lindos sobre la invitación y todos están asombrados de lo especial que es. Gracias otra vez 🤍"},
+  {name:"Dariia",in:"Da",c:"#4A9E7F",platform:"ig",handle:"daria.zn",country:"🇺🇦 Ucrania",
+   t:"Wow, es hermosa 🤩 ¡¡Muchísimas gracias!! Hicieron un trabajo extraordinario, de verdad ❤️❤️"},
+  {name:"Amy",in:"A",c:"#7B68C8",platform:"ig",handle:"amy.canada01",country:"🇩🇪 Alemania",
+   t:"Es tan perfecta que estoy muy, muy feliz con el resultado. Lo hicieron absolutamente perfecto e increíble, ya quiero enviarlas. Hicieron un trabajo genial con la primera invitación, ¡a todos les encantó y preguntaron de dónde la saqué! ❤️❤️"},
+  {name:"Tanya",in:"T",c:"#4A8FA8",platform:"ig",handle:"tanysha2101",country:"🇦🇹 Austria",
+   t:"Estamos muy contentos, es una alternativa moderna a las invitaciones de papel, muy bonita, con la información importante ¡y acompañamiento musical! No hay que perder tiempo averiguando la dirección de todos los invitados, basta con tener un celular. Siempre estuvieron en contacto y nos dieron apoyo. Estamos realmente muy felices, ¡hacen un gran trabajo! 👏 ¡Fue la decisión correcta pedirles las invitaciones!"},
+  {name:"Valerie & Franz",in:"VF",c:"#5A9E8F",platform:"wa",handle:null,country:"🇮🇹 Italia",
+   t:"Una vez más, un agradecimiento de corazón por su increíble trabajo. Fue un placer colaborar con ustedes y estamos absolutamente encantados con la invitación digital. Valoramos todo muchísimo, ¡gracias, gracias, gracias! 💖"},
+  {name:"Jathusha Sris",in:"JS",c:"#B07CC6",platform:"ig",handle:"jathusris",country:"🇬🇧 Reino Unido",
+   t:"Todo fue perfecto, hicieron los ajustes con mucha eficiencia, me explicaron todo con detalle y me dieron tranquilidad en cada paso. Muchas gracias por su servicio y por hacerlo tan fácil. La invitación es muy bonita y sin duda recomendaré sus servicios a todos mis amigos y familia xx"},
+  {name:"Elmas Libohova",in:"EL",c:"#D4636A",platform:"ig",handle:"elmas_libohova",country:"🇦🇱 Albania",
+   t:"¡Geniaaaaal! 😍😊 Hacen un trabajo excelente. ¡Soy fan de verdad! La versión en alemán, perfecta. Nada que cambiar 🙂 ¡Muchas gracias! Aprecio muchísimo su gran trabajo. Se lo contaré a las próximas parejas 👌🏻😊"},
+  {name:"Yamit Pavoncello",in:"YP",c:"#6B8FC2",platform:"ig",handle:"yamitpavoncello",country:"🇮🇹 Italia",
+   t:"Holaaa, sí, ya lo probé y todo está perfecto. Muchísimas gracias, es hermosa 😍 ¡Les haré mucha publicidad aquí en Roma! ¡¡Muchas gracias!! 🥰🥰🥰♥️♥️"},
+  {name:"Kavita Amarsingh",in:"KA",c:"#8E6BAF",platform:"ig",handle:"kavita786",country:"🇹🇹 Trinidad y Tobago",
+   t:"Holaa, gracias 🤗🤗 ¡Nos encanta! Es perfecta. Han sido los mejores, muchas gracias por todo ❤️"},
+  {name:"Charith Pathirana",in:"CP",c:"#C27A6B",platform:"wa",handle:null,country:"🇱🇰 Sri Lanka",
+   t:"Desde el principio la comunicación fue perfecta y clara. Y lo mejor es la entrega rápida y de calidad. Me sorprendió el acabado en tan poco tiempo; superó mis expectativas. Gracias otra vez y sin duda recomiendo Webgency_invitations a cualquiera."},
+  {name:"Lauriane",in:"L",c:"#C2763A",platform:"ig",handle:"laurianeabed",country:"🇪🇬 Egipto",
+   t:"Estamos muy felices con la invitación, gracias por su rapidez, su comprensión y los cambios de último minuto. Nos ayudaron muchísimo durante todo el proceso ¡y el producto final es perfecto! Gracias ✨"},
+  {name:"Nika",in:"N",c:"#4A9E7F",platform:"ig",handle:"nika_j1999",country:"🇮🇹 Italia",
+   t:"Se ve muy bien, muchísimas gracias ❤️ ¡A todos les encantó el avioncito! La invitación es fabulosa y muy práctica ❤️"},
+  {name:"Delaney Acton",in:"DA",c:"#7B68C8",platform:"ig",handle:"delaneyacton10",country:"🇨🇦 Canadá",
+   t:"¡Holaaa! ¡WOW! Son hermosas, ¡¡muchísimas gracias!! ¡¡¡Se ve perfecta!!! Muchas gracias 😍"},
+  {name:"Bela",in:"B",c:"#D4636A",platform:"ig",handle:"morecowbela",country:"🇺🇸 Estados Unidos",
+   t:"¡Se ve INCREÍBLE! ¡Excelente! Muchas gracias por su ayuda y su paciencia 😊"}
+];
+
+function mkCard(r){
+  var icon=r.platform==='ig'
+    ?'<svg width="14" height="14"><use href="#wsr-ig"/></svg>'
+    :'<svg width="14" height="14"><use href="#wsr-wa"/></svg>';
+  var lbl=r.platform==='ig'?(r.handle?'@'+r.handle:'Instagram'):'WhatsApp';
+  return '<div class="wsr-card"><div class="wsr-top"><div class="wsr-av" style="background:'+r.c+'">'+r.in+'</div><div><p class="wsr-name">'+r.name+'</p><p class="wsr-country">'+r.country+'</p></div></div><p class="wsr-text">\u201c'+r.t+'\u201d</p><div class="wsr-foot">'+icon+'<span class="wsr-plabel">'+lbl+'</span></div></div>';
+}
+
+var html=WSR.map(mkCard).join('');
+document.getElementById('wsrMtrack').innerHTML=html+html;
+
+var st=document.getElementById('wsrStrack');
+var dt=document.getElementById('wsrDots');
+st.innerHTML=html;
+var cur=0,tot=WSR.length;
+
+function mkDots(){
+  dt.innerHTML='';
+  WSR.forEach(function(_,i){
+    var d=document.createElement('button');
+    d.className='wsr-dot'+(i===0?' wsr-active':'');
+    d.setAttribute('aria-label','Reseña '+(i+1));
+    d.addEventListener('click',function(){goTo(i);});
+    dt.appendChild(d);
+  });
+}
+function goTo(i){
+  cur=((i%tot)+tot)%tot;
+  var w=st.children[0]?st.children[0].getBoundingClientRect().width+16:336;
+  st.style.transform='translateX(-'+(cur*w)+'px)';
+  var dots=dt.querySelectorAll('.wsr-dot');
+  dots.forEach(function(d,j){d.classList.toggle('wsr-active',j===cur);});
+}
+mkDots();
+var tx=0;
+st.addEventListener('touchstart',function(e){tx=e.touches[0].clientX;},{passive:true});
+st.addEventListener('touchend',function(e){var df=tx-e.changedTouches[0].clientX;if(Math.abs(df)>40)goTo(df>0?cur+1:cur-1);},{passive:true});
+setInterval(function(){if(window.innerWidth<=700)goTo(cur+1);},5500);
+})();
+</script>
+
+</body>
+</html>
