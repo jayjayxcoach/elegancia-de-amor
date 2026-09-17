@@ -7,6 +7,29 @@
 <meta name="description" content="Elige tu Reserva la fecha, una plantilla o un diseño 100 % personalizado. Precios claros, entrega en días, cambios ilimitados e invitados ilimitados.">
 <link rel="icon" href="recursos/favicon.png">
 <link rel="apple-touch-icon" href="recursos/icono-app.png">
+
+<!-- ================= PIXEL DE FACEBOOK (META) =================
+     Código base. Dispara PageView en cuanto carga la página.
+     Los demás eventos (VioPrecios, ConsideraOrdenar, Lead, Contact)
+     se disparan desde el script "EVENTOS DEL PIXEL" al final del <body>.
+     ============================================================ -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window,document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','171955847900975');   /* ← ID del pixel */
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=171955847900975&ev=PageView&noscript=1"
+alt=""></noscript>
+<!-- =============== FIN PIXEL DE FACEBOOK =============== -->
+
 <style>
 /* ============================================================
    ELEGANCIA DE AMOR — página "Ordenar / Crea tu invitación"
@@ -1082,6 +1105,124 @@ var tx=0;
 st.addEventListener('touchstart',function(e){tx=e.touches[0].clientX;},{passive:true});
 st.addEventListener('touchend',function(e){var df=tx-e.changedTouches[0].clientX;if(Math.abs(df)>40)goTo(df>0?cur+1:cur-1);},{passive:true});
 setInterval(function(){if(window.innerWidth<=700)goTo(cur+1);},5500);
+})();
+</script>
+
+<script>
+/* ============================================================
+   EVENTOS DEL PIXEL — página de pedidos
+   El código base del pixel está en el <head> y ya envía PageView.
+   Aquí se envían:
+
+     VioPrecios        → el bloque de las 3 tarjetas estuvo visible
+                         al menos 1 segundo. Ojo: el bloque está muy
+                         arriba en la página, así que este evento lo
+                         alcanza casi todo el mundo que entra. Sirve
+                         para públicos y para comparar, no como señal
+                         de intención de compra.
+     ConsideraOrdenar  → señal de interés real: bajó MÁS ALLÁ de los
+                         precios (a "qué incluye" o reseñas) o abrió
+                         una pregunta frecuente. Este sí separa a
+                         quien lee de quien rebota.
+     Lead              → clic en la tarjeta de un plan, que abre
+                         WhatsApp con el mensaje del plan ya escrito.
+                         Es el evento de dinero: lleva value y
+                         currency para poder optimizar por valor.
+     Contact           → clic en un WhatsApp general, sin plan
+                         elegido (header, menú, sección de contacto,
+                         bloque de reseñas).
+
+   InitiateCheckout queda libre a propósito, para el día que haya
+   página de pago o de "gracias".
+   ============================================================ */
+(function(){
+'use strict';
+if(typeof fbq!=='function') return;
+
+// ---------- Precio y nombre de cada plan, para el value del Lead ----------
+var PRECIO_DE={std:'reservaFecha',template:'plantilla',custom:'personalizada'};
+function datosPlan(tipo){
+  var p=(CONFIG.planes||{})[tipo]||{}, clave=PRECIO_DE[tipo];
+  return {
+    content_name:p.nombre||tipo,
+    content_ids:[tipo],
+    content_type:'product',
+    value:(CONFIG.precios||{})[clave]||0,
+    currency:'USD'
+  };
+}
+
+// ---------- VioPrecios: el bloque de precios visible 1 segundo ----------
+var planes=document.getElementById('wgfPlans');
+if(planes && 'IntersectionObserver' in window){
+  var reloj=null, yaVio=false;
+  var obsPrecios=new IntersectionObserver(function(entradas){
+    entradas.forEach(function(en){
+      if(en.isIntersecting && !yaVio){
+        reloj=setTimeout(function(){
+          yaVio=true;
+          fbq('trackCustom','VioPrecios',{content_category:'precios'});
+          obsPrecios.disconnect();
+        },1000);
+      }else if(reloj){ clearTimeout(reloj); reloj=null; }   // se fue antes del segundo
+    });
+  },{threshold:0.5});
+  obsPrecios.observe(planes);
+}
+
+// ---------- ConsideraOrdenar: pasó de los precios o abrió una pregunta ----------
+var yaConsidera=false;
+function considera(motivo){
+  if(yaConsidera) return;
+  yaConsidera=true;
+  fbq('trackCustom','ConsideraOrdenar',{motivo:motivo});
+}
+if('IntersectionObserver' in window){
+  var obsFondo=new IntersectionObserver(function(entradas){
+    entradas.forEach(function(en){
+      if(en.isIntersecting){ considera('bajo-de-precios'); obsFondo.disconnect(); }
+    });
+  },{threshold:0.25});
+  ['incluido','resenas'].forEach(function(id){
+    var s=document.getElementById(id); if(s) obsFondo.observe(s);
+  });
+}
+var faq=document.getElementById('preguntas-lista');
+if(faq) faq.addEventListener('click',function(e){
+  if(e.target.closest('.pregunta__btn')) considera('abrio-pregunta');
+});
+
+// ---------- Lead y Contact ----------
+// Nombre del bloque donde está el elemento que se tocó
+function ubicacion(el){
+  if(el.closest('.menu-movil')) return 'menu-movil';
+  if(el.closest('.header')) return 'header';
+  if(el.closest('.footer')) return 'footer';
+  if(el.closest('.contacto')) return 'contacto';
+  if(el.closest('#resenas')) return 'resenas';
+  var s=el.closest('section[id]');
+  return s?s.id:'otro';
+}
+
+// Un solo Lead por clic: cuando se toca el fondo de la tarjeta, el script
+// de las tarjetas hace a.click() y ese clic sintético es el que llega aquí;
+// cuando se toca el botón directamente, llega el clic real. Nunca los dos.
+if(planes) planes.addEventListener('click',function(e){
+  var btn=e.target.closest('.wgf-cbtn'); if(!btn) return;
+  if(btn.getAttribute('href')==='#') return;          // sin número configurado
+  fbq('track','Lead',datosPlan(btn.dataset.plan||''));
+});
+
+document.addEventListener('click',function(e){
+  var a=e.target.closest('a'); if(!a) return;
+  if(a.classList.contains('wgf-cbtn')) return;        // eso ya es un Lead
+  var esWa = a.dataset.enlace==='whatsapp'
+          || a.dataset.enlace==='whatsappPregunta'
+          || (a.classList.contains('wsr-pbtn') && a.dataset.red==='wa');
+  if(esWa && a.getAttribute('href')!=='#'){
+    fbq('track','Contact',{content_category:ubicacion(a),canal:'whatsapp'});
+  }
+},true);
 })();
 </script>
 

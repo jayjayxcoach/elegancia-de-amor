@@ -7,6 +7,25 @@
 <meta name="description" content="Política de privacidad de Elegancia de Amor, invitaciones digitales para bodas y eventos.">
 <link rel="icon" href="recursos/favicon.png">
 <link rel="apple-touch-icon" href="recursos/icono-app.png">
+
+<!-- ============ PIXEL DE FACEBOOK (META) — solo PageView ============ -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window,document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','171955847900975');   /* ← ID del pixel */
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=171955847900975&ev=PageView&noscript=1"
+alt=""></noscript>
+<!-- ============ FIN PIXEL DE FACEBOOK ============ -->
+
 <style>
 /* ============================================================
    ELEGANCIA DE AMOR — Política de privacidad
@@ -193,6 +212,14 @@ const CONFIG = {
 };
 document.querySelectorAll('[data-enlace]').forEach(a=>{ const v=CONFIG.enlaces[a.dataset.enlace]; if(v){ a.href=v; } });
 document.getElementById('anio').textContent=new Date().getFullYear();
+
+/* Pixel de Facebook: Contact al tocar el botón de WhatsApp de esta página */
+document.addEventListener('click',function(e){
+  const a=e.target.closest('a[data-enlace="whatsapp"]');
+  if(a && typeof fbq==='function' && a.getAttribute('href')!=='#'){
+    fbq('track','Contact',{content_category:'privacidad',canal:'whatsapp'});
+  }
+},true);
 </script>
 </body>
 </html>

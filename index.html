@@ -7,6 +7,31 @@
 <meta name="description" content="Invitaciones digitales para bodas y eventos con confirmación de asistencia inteligente, mapas interactivos, música y más. Cambios ilimitados. En cualquier idioma, en cualquier parte del mundo.">
 <link rel="icon" href="recursos/favicon.png">
 <link rel="apple-touch-icon" href="recursos/icono-app.png">
+
+<!-- ================= PIXEL DE FACEBOOK (META) =================
+     Código base. Dispara PageView en cuanto carga la página.
+     Los demás eventos (ViewContent, VioPrecios, Lead, Contact...)
+     se disparan desde el script "EVENTOS DEL PIXEL" al final del <body>.
+     Si cambias de cuenta publicitaria, cambia el ID en las dos líneas
+     marcadas más abajo y en las otras páginas del sitio.
+     ============================================================ -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window,document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','171955847900975');   /* ← ID del pixel */
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=171955847900975&ev=PageView&noscript=1"
+alt=""></noscript>
+<!-- =============== FIN PIXEL DE FACEBOOK =============== -->
+
 <style>
 /* ============================================================
    ELEGANCIA DE AMOR — página principal (reconstrucción limpia, sin Tilda)
@@ -755,12 +780,12 @@ const CONFIG = {
   const grid=document.getElementById('plantillasGrid');
   grid.innerHTML=CONFIG.plantillas.map((p,i)=>
     '<article class="plantilla aparece"'+(i>=CONFIG.plantillasVisibles?' hidden':'')+'>'+
-      '<a href="'+p.ver+'" target="_blank" rel="noopener"><img src="'+p.img+'" alt="'+p.nombre+'" loading="lazy"></a>'+
+      '<a href="'+p.ver+'" target="_blank" rel="noopener" data-pixel="ver"><img src="'+p.img+'" alt="'+p.nombre+'" loading="lazy"></a>'+
       '<span class="plantilla__marca">'+(p.marca||'&nbsp;')+'</span>'+
       '<h3 class="plantilla__nombre">'+p.nombre+'</h3>'+
       '<div class="plantilla__botones">'+
-        '<a class="boton boton--lleno boton--sm" href="'+p.ver+'" target="_blank" rel="noopener"><span>Ver</span></a>'+
-        '<a class="boton boton--borde boton--sm" href="'+CONFIG.enlaces.pedido+'">Pedir</a>'+
+        '<a class="boton boton--lleno boton--sm" href="'+p.ver+'" target="_blank" rel="noopener" data-pixel="ver"><span>Ver</span></a>'+
+        '<a class="boton boton--borde boton--sm" href="'+CONFIG.enlaces.pedido+'" data-pixel="pedir">Pedir</a>'+
       '</div>'+
     '</article>').join('');
   const verMas=document.getElementById('verMas');
@@ -1001,6 +1026,82 @@ var tx=0;
 st.addEventListener('touchstart',function(e){tx=e.touches[0].clientX;},{passive:true});
 st.addEventListener('touchend',function(e){var df=tx-e.changedTouches[0].clientX;if(Math.abs(df)>40)goTo(df>0?cur+1:cur-1);},{passive:true});
 setInterval(function(){if(window.innerWidth<=700)goTo(cur+1);},5500);
+})();
+</script>
+
+<script>
+/* ============================================================
+   EVENTOS DEL PIXEL — página principal
+   El código base del pixel está en el <head> y ya envía PageView.
+   Aquí se envían los eventos de interacción:
+
+     ViewContent   → abre una invitación de ejemplo (clic en "Ver"
+                     o en la foto de la tarjeta del catálogo)
+     Contact       → clic en cualquier botón de WhatsApp general
+                     (header, menú móvil, bloque de reseñas, contacto)
+     ClicOrdenar   → clic en cualquier CTA que lleva a la página de
+                     pedidos, con "ubicacion" para saber qué CTA
+                     funciona. Es un evento de diagnóstico, no de
+                     optimización.
+
+   Nada de esto se instala en las invitaciones de ejemplo: esos
+   archivos se copian para cada cliente que paga, y el pixel
+   terminaría registrando a los invitados de su boda.
+   ============================================================ */
+(function(){
+'use strict';
+if(typeof fbq!=='function') return;
+
+// Nombre del bloque donde está el elemento que se tocó, para el
+// parámetro "ubicacion" (header, portada, incluido, cierre, footer...)
+function ubicacion(el){
+  if(el.closest('.menu-movil')) return 'menu-movil';
+  if(el.closest('.header')) return 'header';
+  if(el.closest('.footer')) return 'footer';
+  if(el.closest('.portada')) return 'portada';
+  if(el.closest('.plantillas')) return 'catalogo';
+  if(el.closest('.final')) return 'cierre';
+  if(el.closest('.contacto')) return 'contacto';
+  var s=el.closest('section[id]');
+  return s?s.id:'otro';
+}
+
+document.addEventListener('click',function(e){
+  var a=e.target.closest('a'); if(!a) return;
+
+  // --- ViewContent: abrió una invitación de ejemplo ---
+  if(a.dataset.pixel==='ver'){
+    var art=a.closest('.plantilla');
+    var nom=art?(art.querySelector('.plantilla__nombre')||{}).textContent:'';
+    fbq('track','ViewContent',{
+      content_name:(nom||'').trim()||'diseño sin nombre',
+      content_type:'product',
+      content_category:'invitacion-ejemplo'
+    });
+    return;
+  }
+
+  // --- ClicOrdenar: va a la página de pedidos ---
+  // Los CTA del HTML llevan data-enlace="pedido"; los botones "Pedir"
+  // del catálogo se generan por JS y llevan data-pixel="pedir".
+  if(a.dataset.enlace==='pedido' || a.dataset.pixel==='pedir'){
+    var art2=a.closest('.plantilla');
+    var nom2=art2?(art2.querySelector('.plantilla__nombre')||{}).textContent:'';
+    var datos={ubicacion:ubicacion(a),texto:(a.textContent||'').trim()};
+    if(nom2) datos.content_name=nom2.trim();
+    fbq('trackCustom','ClicOrdenar',datos);
+    return;
+  }
+
+  // --- Contact: WhatsApp general, sin plan elegido ---
+  // (los enlaces que siguen en "#" no cuentan como contacto)
+  var esWa = a.dataset.enlace==='whatsapp'
+          || a.dataset.enlace==='whatsappPregunta'
+          || (a.classList.contains('wsr-pbtn') && a.dataset.red==='wa');
+  if(esWa && a.getAttribute('href')!=='#'){
+    fbq('track','Contact',{content_category:ubicacion(a),canal:'whatsapp'});
+  }
+},true);
 })();
 </script>
 </body>
