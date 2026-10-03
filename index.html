@@ -24,11 +24,11 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window,document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init','171955847900975');   /* ← ID del pixel */
+fbq('init','1828921578117744');   /* ← ID del pixel */
 fbq('track','PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=171955847900975&ev=PageView&noscript=1"
+src="https://www.facebook.com/tr?id=1828921578117744&ev=PageView&noscript=1"
 alt=""></noscript>
 <!-- =============== FIN PIXEL DE FACEBOOK =============== -->
 
@@ -210,8 +210,6 @@ button{font-family:inherit}
 .plantilla__nombre{font-family:var(--serif);font-weight:700;font-size:20px;color:#4a4a4a;margin:2px 0 18px}
 .plantilla__botones{display:flex;justify-content:center;gap:10px;padding:0 20px}
 .plantilla__botones .boton{font-family:var(--serif);font-weight:600}
-.plantilla[hidden]{display:none}
-.plantillas__mas{text-align:center;margin-top:40px}
 @media(max-width:960px){.plantillas__grid{grid-template-columns:repeat(2,1fr);gap:24px}}
 @media(max-width:560px){
   .plantillas__grid{grid-template-columns:1fr;gap:20px}
@@ -567,7 +565,6 @@ button{font-family:inherit}
       <p class="subtitulo">Cada plantilla se personaliza: ajustamos los textos, las fotos y los colores al estilo de tu evento, ya sea un cumpleaños, una boda o una celebración corporativa.</p>
     </div>
     <div class="plantillas__grid" id="plantillasGrid"></div>
-    <div class="plantillas__mas"><button class="boton boton--lleno boton--sm" id="verMas" type="button"><span>Ver más</span></button></div>
   </div>
 </section>
 
@@ -699,8 +696,7 @@ const CONFIG = {
     { t: "✓ Invitados ilimitados, un solo enlace", d: "Envíala a 50 invitados o a 50.000. Sin costo por invitado, sin cargos extra, sin límites. Compártela por redes sociales, correo, WhatsApp, mensaje de texto o código QR: al instante y gratis." },
     { t: "✓ Haz realidad tus ideas", d: "Ilustraciones personalizadas, animaciones, el video de tu propuesta, tu canción favorita ¡y hasta una foto de tu gato! Ninguna idea es demasiado loca. Si lo puedes imaginar, lo podemos crear." }
   ],
-  // Catálogo: las 3 primeras se ven de entrada; "Load more" muestra el resto
-  plantillasVisibles: 3,
+  // Catálogo: las plantillas se muestran todas de entrada
   // Cada "ver" abre la invitación de ejemplo, que está en su propia carpeta hermana
   // (ruta relativa: "../<carpeta>/index.html"; los espacios van como %20 y "&" como %26).
   // Si cambias el nombre de una carpeta, cambia aquí su "ver". En la nube, pon la URL real de cada ejemplo.
@@ -778,8 +774,8 @@ const CONFIG = {
 
   // Catálogo
   const grid=document.getElementById('plantillasGrid');
-  grid.innerHTML=CONFIG.plantillas.map((p,i)=>
-    '<article class="plantilla aparece"'+(i>=CONFIG.plantillasVisibles?' hidden':'')+'>'+
+  grid.innerHTML=CONFIG.plantillas.map(p=>
+    '<article class="plantilla aparece">'+
       '<a href="'+p.ver+'" target="_blank" rel="noopener" data-pixel="ver"><img src="'+p.img+'" alt="'+p.nombre+'" loading="lazy"></a>'+
       '<span class="plantilla__marca">'+(p.marca||'&nbsp;')+'</span>'+
       '<h3 class="plantilla__nombre">'+p.nombre+'</h3>'+
@@ -788,13 +784,6 @@ const CONFIG = {
         '<a class="boton boton--borde boton--sm" href="'+CONFIG.enlaces.pedido+'" data-pixel="pedir">Pedir</a>'+
       '</div>'+
     '</article>').join('');
-  const verMas=document.getElementById('verMas');
-  if(CONFIG.plantillas.length<=CONFIG.plantillasVisibles) verMas.parentElement.hidden=true;
-  verMas.addEventListener('click',()=>{
-    grid.querySelectorAll('.plantilla[hidden]').forEach((el,i)=>{ el.hidden=false; setTimeout(()=>el.classList.add('visible'),80*i); });
-    verMas.parentElement.hidden=true;
-  });
-
   // Pasos
   document.getElementById('pasos').innerHTML=CONFIG.pasos.map((p,i)=>'<div class="paso aparece"><div class="paso__num">'+(i+1)+'</div><h3>'+p.t+'</h3><p>'+p.d+'</p></div>').join('');
 
