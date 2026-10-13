@@ -6,6 +6,7 @@
 <title>La Princesa Olivia · Mis XV Años</title>
 <meta name="theme-color" content="#fbe9ee">
 <link rel="preload" href="recursos/sobre-cerrado.webp" as="image">
+<link rel="preload" href="recursos/nombre-oro.webp" as="image">
 <link rel="preload" href="recursos/fuente-cookie.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="recursos/fuente-cormorant-600.woff2" as="font" type="font/woff2" crossorigin>
 
@@ -20,6 +21,24 @@ const CONFIG = {
   // ---------- Quinceañera ----------
   tituloArriba: "La Princesa",          // texto pequeño encima del nombre
   nombre: "Olivia",                     // nombre grande en dorado (se achica solo si es largo)
+  // Opcional: el nombre y el número como imagen dorada hecha con IA (fondo quitado).
+  // Si se dejan vacíos (""), se escriben solos en dorado con el texto de "nombre" y "edad.numero".
+  imagenNombre: "recursos/nombre-oro.webp",
+  imagenNumero: "recursos/numero-oro.webp",
+  // Corona, marco del espejo y títulos en dorado hechos con IA. Vacío ("") = se dibujan solos con código.
+  // Ojo: si cambias un título en el CONFIG de abajo, borra aquí su imagen para que se escriba el texto nuevo.
+  imagenesOro: {
+    corona: "recursos/corona.webp",
+    marcoEspejo: "recursos/marco-espejo.webp",
+    titulos: {
+      cuenta: "recursos/titulo-falta-poco.webp",
+      lugar: "recursos/titulo-ubicacion.webp",
+      vestimenta: "recursos/titulo-vestimenta.webp",
+      regalos: "recursos/titulo-lluvia.webp",
+      confirmacion: "recursos/titulo-confirma.webp",
+      despedida: "recursos/titulo-te-esperamos.webp"
+    }
+  },
 
   // ---------- Edad (portada) ----------
   edad: {
@@ -205,16 +224,21 @@ section { position: relative; }
 
 /* Nombre dorado en 3D (se dibuja con SVG) y efecto de barrido de izquierda a derecha */
 .nombre-caja { position: absolute; left: 0; right: 0; height: 34cqw; z-index: 5; display: flex; justify-content: center; align-items: center; }
-.oro svg { display: block; height: auto; overflow: visible; }
+.oro svg, .oro img { display: block; height: auto; overflow: visible; }
 .barrido { overflow: hidden; transform: translateX(-102%); will-change: transform; }
-.barrido > svg { transform: translateX(102%); will-change: transform; }
-.visible .barrido, .visible .barrido > svg { animation: barre 1.3s var(--inicio, .7s) cubic-bezier(.55, .05, .3, 1) forwards; }
+.barrido > * { transform: translateX(102%); will-change: transform; }
+.visible .barrido, .visible .barrido > * { animation: barre 1.3s var(--inicio, .7s) cubic-bezier(.55, .05, .3, 1) forwards; }
 @keyframes barre { to { transform: none; } }
 .estrella { z-index: 6; }
 
 /* Mariposa */
-.mariposa { position: absolute; z-index: 7; opacity: 0; filter: drop-shadow(0 2px 3px rgba(200, 110, 140, .3)); }
-.mariposa .ala { transform-box: view-box; transform-origin: 50px 50px; animation: aletea .45s ease-in-out infinite alternate; }
+.mariposa { position: absolute; z-index: 7; opacity: 0; aspect-ratio: 320 / 235; perspective: 60cqw; }
+.mariposa img { position: absolute; top: 0; height: 100%; max-width: none; }
+.mariposa .ala-izq { left: 0; width: 50%; transform-origin: 100% 50%; animation: aleteo-izq .42s ease-in-out infinite alternate; }
+.mariposa .ala-der { left: 50%; width: 50%; transform-origin: 0 50%; animation: aleteo-der .42s ease-in-out infinite alternate; }
+.mariposa .cuerpo { left: 46.56%; width: 6.88%; }
+@keyframes aleteo-izq { from { transform: rotateY(0deg); } to { transform: rotateY(64deg); } }
+@keyframes aleteo-der { from { transform: rotateY(0deg); } to { transform: rotateY(-64deg); } }
 @keyframes aletea { from { transform: scaleX(1); } to { transform: scaleX(.35); } }
 @keyframes vuela { 0%, 100% { transform: translate(0, 0) rotate(12deg); } 25% { transform: translate(-2cqw, -2.5cqw) rotate(6deg); } 50% { transform: translate(1cqw, -4cqw) rotate(16deg); } 75% { transform: translate(2cqw, -1cqw) rotate(10deg); } }
 
@@ -278,11 +302,11 @@ section { position: relative; }
 /* ------------------------------------------------------------
    2. PORTADA: La Princesa · Nombre · Cumple 15 Años
    ------------------------------------------------------------ */
-#portada .castillo { top: 24cqw; width: 33cqw; }
-#portada .titulo-arriba { top: 58.5cqw; }
-#portada .nombre-caja { top: 65cqw; }
-#portada .mariposa { left: 73cqw; top: 59cqw; width: 23cqw; }
-#portada .edad { position: absolute; left: 0; right: 0; top: 96.5cqw; z-index: 5; display: flex; justify-content: center; align-items: flex-start; gap: 2.5cqw; }
+#portada .castillo { top: 21.5cqw; width: 33cqw; }
+#portada .titulo-arriba { top: 56cqw; }
+#portada .nombre-caja { top: 64cqw; height: 38cqw; }
+#portada .mariposa { left: 76cqw; top: 58cqw; width: 19cqw; }
+#portada .edad { position: absolute; left: 0; right: 0; top: 99cqw; z-index: 5; display: flex; justify-content: center; align-items: flex-start; gap: 2.5cqw; }
 #portada .edad-texto { position: relative; width: 26cqw; padding: 1.4cqw 0; text-align: center; font: 600 6.2cqw/1 var(--serif); color: #b8862f; opacity: 0; }
 #portada .edad-texto::before, #portada .edad-texto::after { content: ""; position: absolute; left: 0; right: 0; height: 2px; transform: scaleX(0); background: linear-gradient(90deg, transparent, var(--oro-claro) 18%, #c9963a 50%, var(--oro-claro) 82%, transparent); }
 #portada .edad-texto::before { top: 0; }
@@ -291,7 +315,7 @@ section { position: relative; }
 #portada .edad-texto.despues::before, #portada .edad-texto.despues::after { transform-origin: left; }
 #portada .edad-texto.antes { margin-top: 3cqw; }
 #portada .edad-texto.despues { margin-top: 7cqw; }
-#portada .edad-numero { margin-top: -3.5cqw; opacity: 0; transform: scale(.4); will-change: transform, opacity; }
+#portada .edad-numero { margin-top: -1.5cqw; opacity: 0; transform: scale(.4); will-change: transform, opacity; }
 #portada.visible .edad-texto { animation: aparece .7s 1.6s ease-out forwards; }
 #portada.visible .edad-texto::before, #portada.visible .edad-texto::after { animation: linea .8s 1.5s ease-out forwards; }
 #portada.visible .edad-numero { animation: numero .8s 1.4s cubic-bezier(.3, 1.6, .5, 1) forwards; }
@@ -307,18 +331,18 @@ section { position: relative; }
    ------------------------------------------------------------ */
 #reino .arco { top: 15cqw; height: calc(150cqw + var(--extra) * .75); }
 #reino .castillo { top: 20cqw; width: 36cqw; }
-#reino .corona { top: 63cqw; width: 22cqw; --inicio: .5s; }
+#reino .corona { top: 60cqw; width: 22cqw; --inicio: .5s; }
 #reino .parrafo { top: 79cqw; --inicio: .9s; }
 
 /* ------------------------------------------------------------
    4. TE INVITA
    ------------------------------------------------------------ */
 #invita .castillo { top: 13cqw; width: 30cqw; }
-#invita .titulo-arriba { top: 52cqw; }
-#invita .nombre-caja { top: 58cqw; }
+#invita .titulo-arriba { top: 50cqw; }
+#invita .nombre-caja { top: 58.5cqw; height: 38cqw; }
 #invita .barrido { --inicio: .7s; }
-#invita .te-invita { top: 92cqw; font-size: 6cqw; }
-#invita .parrafo { top: 101cqw; left: 8cqw; right: 8cqw; font-size: 5.6cqw; --inicio: 1.9s; }
+#invita .te-invita { top: 97cqw; font-size: 6cqw; }
+#invita .parrafo { top: 105cqw; left: 8cqw; right: 8cqw; font-size: 5.6cqw; --inicio: 1.9s; }
 
 /* ------------------------------------------------------------
    5. ESPEJO DORADO (fecha, hora y salón) sobre capitoné rosado
@@ -327,23 +351,26 @@ section { position: relative; }
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cdefs%3E%3CradialGradient id='p' r='.62'%3E%3Cstop offset='0' stop-color='%23fde6ee'/%3E%3Cstop offset='.55' stop-color='%23f7c9d6'/%3E%3Cstop offset='1' stop-color='%23e9a6bb'/%3E%3C/radialGradient%3E%3CradialGradient id='b' r='.5'%3E%3Cstop offset='0' stop-color='%23fff'/%3E%3Cstop offset='.45' stop-color='%23f6dbe3'/%3E%3Cstop offset='1' stop-color='%23cf8da3'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='64' height='64' fill='%23eeb2c4'/%3E%3Cpolygon points='32.0,-32.0 64.0,0 32.0,32.0 0.0,0' fill='url(%23p)'/%3E%3Cpolygon points='0,0.0 32.0,32.0 0,64.0 -32.0,32.0' fill='url(%23p)'/%3E%3Cpolygon points='64,0.0 96.0,32.0 64,64.0 32.0,32.0' fill='url(%23p)'/%3E%3Cpolygon points='32.0,32.0 64.0,64 32.0,96.0 0.0,64' fill='url(%23p)'/%3E%3Cpath d='M0 0 L64 64 M64 0 L0 64' stroke='%23d58ea6' stroke-width='1.2' opacity='.7'/%3E%3Ccircle cx='0' cy='0' r='3.2' fill='url(%23b)'/%3E%3Ccircle cx='64' cy='0' r='3.2' fill='url(%23b)'/%3E%3Ccircle cx='0' cy='64' r='3.2' fill='url(%23b)'/%3E%3Ccircle cx='64' cy='64' r='3.2' fill='url(%23b)'/%3E%3Ccircle cx='32.0' cy='32.0' r='3.2' fill='url(%23b)'/%3E%3C/svg%3E") 50% 0 / 17cqw 17cqw, #f2bccb;
 }
 #espejo .guirnalda { opacity: .9; }
+#espejo { --ix: 16.2cqw; --iy: 20cqw; --iw: 67.7cqw; --ih: 99cqw; }   /* centro blanco del marco dibujado */
+#espejo.marco-imagen { --ix: 22.2cqw; --iy: 36.4cqw; --iw: 55.6cqw; --ih: 84.9cqw; }   /* centro blanco del marco de IA */
 #espejo .marco { position: absolute; left: 3cqw; top: 3cqw; width: 94cqw; z-index: 3; opacity: 0; filter: drop-shadow(0 3px 5px rgba(150, 90, 40, .25)); }
 #espejo.visible .marco { animation: marco-entra .9s 0s cubic-bezier(.2, .8, .3, 1) forwards; }
 @keyframes marco-entra { from { opacity: 0; transform: scale(.85); } to { opacity: 1; transform: none; } }
-#espejo .contenido { position: absolute; left: 0; right: 0; top: 0; height: 130cqw; z-index: 5; }
-#espejo .corona { top: 31cqw; width: 22cqw; --inicio: .5s; }
-#espejo .datos { position: absolute; left: 22cqw; right: 22cqw; top: 51cqw; display: grid; grid-template-columns: 1fr 1fr; text-align: center; opacity: 0; }
+#espejo img.marco { left: 2cqw; top: 2cqw; width: 96cqw; height: auto; max-width: none; filter: none; will-change: transform, opacity; }
+#espejo .contenido { position: absolute; left: var(--ix); top: var(--iy); width: var(--iw); height: var(--ih); z-index: 5; }
+#espejo .corona { top: 7%; width: 36%; --inicio: .5s; }
+#espejo .datos { position: absolute; left: 2%; right: 2%; top: 30%; display: grid; grid-template-columns: 1fr 1fr; text-align: center; opacity: 0; }
 #espejo .datos > div:first-child { border-right: 1.5px solid var(--oro-claro); }
-#espejo .etiqueta { font: 600 4.6cqw/1 var(--serif); letter-spacing: .1em; text-transform: uppercase; color: #b8893d; }
+#espejo .etiqueta { font: 600 4.3cqw/1 var(--serif); letter-spacing: .06em; text-transform: uppercase; color: #b8893d; }
 #espejo .grande { font: 600 11.5cqw/1.05 var(--serif); font-variant-numeric: lining-nums; font-feature-settings: 'lnum' 1; color: var(--rosa-numero); margin: 1cqw 0; }
-#espejo .chica { font: 600 4.2cqw/1 var(--serif); letter-spacing: .08em; text-transform: uppercase; color: #b8893d; }
+#espejo .chica { font: 600 3.8cqw/1 var(--serif); letter-spacing: .04em; text-transform: uppercase; color: #b8893d; }
 #espejo .chica.rosa { color: var(--rosa-numero); font-size: 5cqw; }
-#espejo .linea { position: absolute; left: 20cqw; right: 20cqw; top: 80cqw; height: 1.5px; background: linear-gradient(90deg, transparent, var(--oro-claro) 15%, var(--oro-claro) 85%, transparent); transform: scaleX(0); }
+#espejo .linea { position: absolute; left: 0; right: 0; top: 60%; height: 1.5px; background: linear-gradient(90deg, transparent, var(--oro-claro) 15%, var(--oro-claro) 85%, transparent); transform: scaleX(0); }
 #espejo .linea::after { content: ""; position: absolute; left: 50%; top: 50%; width: 2.4cqw; height: 2.4cqw; translate: -50% -50%; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #fbd0e0, #d96d97); box-shadow: 0 0 6px rgba(230, 120, 160, .6); }
-#espejo .salon { position: absolute; left: 20cqw; right: 20cqw; top: 86cqw; text-align: center; opacity: 0; }
+#espejo .salon { position: absolute; left: 0; right: 0; top: 66%; text-align: center; opacity: 0; }
 #espejo .salon .tipo { font: 600 4.6cqw/1.2 var(--serif); color: #b8893d; }
 #espejo .salon .nombre-salon { font: 700 5cqw/1.3 var(--serif); letter-spacing: .08em; text-transform: uppercase; color: #b8893d; }
-#espejo .floritura { position: absolute; left: 50%; top: 99cqw; width: 26cqw; translate: -50% 0; opacity: 0; }
+#espejo .floritura { position: absolute; left: 50%; top: 84%; width: 42%; translate: -50% 0; opacity: 0; }
 #espejo.visible .datos { animation: aparece .8s .8s ease-out forwards; }
 #espejo.visible .linea { animation: linea .8s 1.1s ease-out forwards; }
 #espejo.visible .salon { animation: aparece .8s 1.4s ease-out forwards; }
@@ -356,6 +383,8 @@ section { position: relative; }
 .bloque { position: relative; text-align: center; margin-bottom: 14cqw; }
 .bloque:last-child { margin-bottom: 0; }
 .bloque .titulo-script { display: inline-block; --tam: 13cqw; }
+.titulo-img { display: block; height: auto; max-width: 100%; margin: 0 auto; }
+img.corona { height: auto; }
 .bloque .subtitulo { font: 600 5.4cqw/1.3 var(--serif); color: var(--oro-texto); margin-top: 1cqw; }
 .bloque .texto { font: 600 5.3cqw/1.38 var(--serif); color: var(--oro-texto); margin-top: 3cqw; }
 .bloque .texto strong { display: block; font-size: 5.6cqw; line-height: 1.3; letter-spacing: .08em; text-transform: uppercase; color: #b8893d; margin-bottom: 1.5cqw; }
@@ -387,9 +416,10 @@ section { position: relative; }
    ------------------------------------------------------------ */
 #despedida .arco { top: 15cqw; height: calc(150cqw + var(--extra) * .75); }
 #despedida .castillo { top: 22cqw; width: 44cqw; }
-#despedida .nombre-caja { top: 74cqw; height: 26cqw; }
+#despedida .castillo { top: 21cqw; width: 40cqw; }
+#despedida .nombre-caja { top: 66cqw; height: 46cqw; }
 #despedida .barrido { --inicio: .7s; }
-#despedida .mariposa { left: 76cqw; top: 70cqw; width: 14cqw; --inicio: 1.6s; }
+#despedida .mariposa { left: 74cqw; top: 64cqw; width: 13cqw; --inicio: 1.6s; }
 
 /* ------------------------------------------------------------
    BOTÓN DE MÚSICA (flotante)
@@ -443,24 +473,11 @@ section { position: relative; }
 </svg>
 
 <template id="tpl-mariposa">
-  <svg class="mariposa" viewBox="0 0 100 100" aria-hidden="true">
-    <defs>
-      <linearGradient id="ala-a" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fde3ec"/><stop offset=".55" stop-color="#f3a9c0"/><stop offset="1" stop-color="#e88aa8"/></linearGradient>
-      <linearGradient id="ala-b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f9c9d8"/><stop offset="1" stop-color="#ef9db6"/></linearGradient>
-    </defs>
-    <g class="ala" opacity=".88">
-      <path d="M49 46 C38 18 14 8 7 18 C1 28 14 44 47 50 Z" fill="url(#ala-a)" stroke="#fff" stroke-width="1.2"/>
-      <path d="M48 53 C30 54 16 66 22 78 C28 88 42 78 49 58 Z" fill="url(#ala-b)" stroke="#fff" stroke-width="1.2"/>
-      <path d="M46 47 C34 34 22 24 12 20 M46 49 C32 42 20 38 10 30 M47 56 C38 62 30 70 25 76" stroke="#fff" stroke-width=".8" fill="none" opacity=".75"/>
-    </g>
-    <g class="ala" opacity=".88">
-      <path d="M51 46 C62 18 86 8 93 18 C99 28 86 44 53 50 Z" fill="url(#ala-a)" stroke="#fff" stroke-width="1.2"/>
-      <path d="M52 53 C70 54 84 66 78 78 C72 88 58 78 51 58 Z" fill="url(#ala-b)" stroke="#fff" stroke-width="1.2"/>
-      <path d="M54 47 C66 34 78 24 88 20 M54 49 C68 42 80 38 90 30 M53 56 C62 62 70 70 75 76" stroke="#fff" stroke-width=".8" fill="none" opacity=".75"/>
-    </g>
-    <ellipse cx="50" cy="52" rx="2" ry="11" fill="#c9849b"/>
-    <path d="M49 42 C46 34 43 30 40 28 M51 42 C54 34 57 30 60 28" stroke="#c9849b" stroke-width="1" fill="none"/>
-  </svg>
+  <div class="mariposa" aria-hidden="true">
+    <img class="ala ala-izq" src="recursos/mariposa-izq.webp" alt="" decoding="async">
+    <img class="ala ala-der" src="recursos/mariposa-der.webp" alt="" decoding="async">
+    <img class="cuerpo" src="recursos/mariposa-cuerpo.webp" alt="" decoding="async">
+  </div>
 </template>
 
 <!-- ============================================================
@@ -702,6 +719,26 @@ section { position: relative; }
   $('confirmacion-boton').querySelector('span').textContent = co.boton;
   $$('.titulo-script').forEach(el => el.dataset.texto = el.textContent);
 
+  // Imágenes doradas hechas con IA (corona, marco del espejo y títulos)
+  const IO = CONFIG.imagenesOro || {};
+  if (IO.corona) $$('svg.corona').forEach(svg => {
+    const img = new Image(); img.src = IO.corona; img.alt = ''; img.className = 'corona'; img.decoding = 'async';
+    const estilo = svg.getAttribute('style'); if (estilo) img.setAttribute('style', estilo);
+    svg.replaceWith(img);
+  });
+  if (IO.marcoEspejo) {
+    const img = new Image(); img.src = IO.marcoEspejo; img.alt = ''; img.className = 'marco'; img.decoding = 'async';
+    $('marco').replaceWith(img); $('espejo').classList.add('marco-imagen');
+  }
+  const TITULOS = { cuenta: ['cuenta-titulo', 60], lugar: ['lugar-titulo', 58], vestimenta: ['vestimenta-titulo', 84], regalos: ['regalos-titulo', 72], confirmacion: ['confirmacion-titulo', 84] };
+  Object.entries(TITULOS).forEach(([clave, [id, ancho]]) => {
+    const ruta = (IO.titulos || {})[clave], el = $(id); if (!ruta || !el) return;
+    const img = new Image(); img.src = ruta; img.alt = el.textContent; img.className = 'titulo-img'; img.decoding = 'async'; img.loading = 'lazy';
+    img.style.width = ancho + 'cqw';
+    img.onerror = () => img.replaceWith(el);      // si falta la imagen, vuelve el texto
+    el.replaceWith(img);
+  });
+
   // Imágenes
   $$('img[data-img="castillo"]').forEach(img => { img.src = CONFIG.imagenes.castillo; img.onerror = () => img.remove(); });
   $$('.grupo').forEach(grupo => {
@@ -724,8 +761,15 @@ section { position: relative; }
     numero:    { texto: CONFIG.edad.numero,       fuente: 'Cormorant', peso: 700, tam: 26, max: 36 },
     despedida: { texto: CONFIG.despedida.titulo,  fuente: 'Cookie',    peso: 400, tam: 19, max: 90 }
   };
+  const IMAGEN_ORO = { nombre: [CONFIG.imagenNombre, 76], numero: [CONFIG.imagenNumero, 25], despedida: [CONFIG.imagenesOro.titulos.despedida, 66] };   // [imagen, ancho en cqw]
   function letrasDoradas(caja) {
     const o = ORO[caja.dataset.oro]; if (!o) return;
+    const imagen = IMAGEN_ORO[caja.dataset.oro];
+    if (imagen && imagen[0]) {      // usar la imagen dorada hecha con IA
+      caja.innerHTML = '<img src="' + imagen[0] + '" alt="' + o.texto + '" decoding="async" style="width:' + imagen[1] + 'cqw">';
+      caja.querySelector('img').onerror = () => { imagen[0] = ''; letrasDoradas(caja); medirOro(); };   // si falta la imagen, se dibuja sola
+      return;
+    }
     const t = o.texto.replace(/&/g, '&amp;').replace(/</g, '&lt;');
     let capas = '';
     for (let k = 6; k >= 1; k--) capas += '<text x="' + (k * .5) + '" y="' + k + '">' + t + '</text>';
@@ -781,6 +825,7 @@ section { position: relative; }
   /* ---------- Marco dorado del espejo (se dibuja solo) ---------- */
   (function dibujarMarco() {
     const svg = $('marco'), cx = 150, cy = 212, rx = 118, ry = 168;
+    if (!svg) return;                                   // se usa el marco hecho con IA
     let h = '<ellipse cx="' + cx + '" cy="' + cy + '" rx="' + (rx - 10) + '" ry="' + (ry - 10) + '" fill="#fffdfb"/>' +
       '<ellipse cx="' + cx + '" cy="' + cy + '" rx="' + (rx - 10) + '" ry="' + (ry - 10) + '" fill="none" stroke="#f3dfb0" stroke-width="2"/>' +
       '<ellipse cx="' + cx + '" cy="' + cy + '" rx="' + rx + '" ry="' + ry + '" fill="none" stroke="url(#oro-marco)" stroke-width="13"/>' +
