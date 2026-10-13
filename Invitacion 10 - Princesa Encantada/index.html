@@ -30,6 +30,7 @@ const CONFIG = {
   imagenesOro: {
     corona: "recursos/corona.webp",
     marcoEspejo: "recursos/marco-espejo.webp",
+    marcoContador: "recursos/marco-contador.webp",   // marquito de cada número de la cuenta regresiva
     titulos: {
       cuenta: "recursos/titulo-falta-poco.webp",
       lugar: "recursos/titulo-ubicacion.webp",
@@ -138,9 +139,10 @@ const CONFIG = {
   },
 
   // ---------- Música ----------
-  // Suena cuando termina el video del sobre. Debe ser un archivo mp3 (ej. "recursos/musica.mp3").
+  // Empieza a sonar en el mismo toque que abre el sobre (los celulares solo dejan sonar audio tras un toque).
+  // Debe ser un archivo mp3 dentro de "recursos". Vacío ("") = sin música y sin botón.
   // Vacío = sin música (y no aparece el botón).
-  musica: ""
+  musica: "recursos/musica.mp3"     // "Veo en ti la luz" (recortada, con fundido de entrada y salida)
 };
 </script>
 
@@ -397,6 +399,10 @@ img.corona { height: auto; }
 /* Cuenta regresiva */
 .contador { display: flex; justify-content: center; gap: 3cqw; margin-top: 5cqw; }
 .contador > div { width: 18cqw; aspect-ratio: .78; border-radius: 50% / 45%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #fff; border: 2px solid transparent; background-clip: padding-box; box-shadow: 0 0 0 1.6px #e2bd62, 0 0 0 3.2px #fff6dc, 0 0 0 4.4px #c9963a, 0 5px 12px rgba(180, 110, 60, .2); }
+.contador.con-marco { gap: 1.5cqw; }
+.contador.con-marco > div { width: 20cqw; aspect-ratio: 240 / 349; justify-content: flex-start; padding-top: 11.4cqw; border: 0; border-radius: 0; box-shadow: none; background: var(--marco-contador) center / 100% 100% no-repeat; }
+.contador.con-marco b { font-size: 7.4cqw; }
+.contador.con-marco span { font-size: 2.9cqw; margin-top: .8cqw; }
 .contador b { font: 600 8.4cqw/1 var(--serif); font-variant-numeric: lining-nums tabular-nums; font-feature-settings: 'lnum' 1, 'tnum' 1; color: var(--rosa-numero); }
 .contador span { font: 600 3.3cqw/1 var(--serif); letter-spacing: .1em; text-transform: uppercase; color: #b8893d; margin-top: 1.2cqw; }
 .contador .terminado { width: auto; aspect-ratio: auto; padding: 4cqw 7cqw; border-radius: 99px; font: 400 10cqw/1 var(--script); color: #c9963a; }
@@ -425,7 +431,12 @@ img.corona { height: auto; }
    BOTÓN DE MÚSICA (flotante)
    ------------------------------------------------------------ */
 #musica-boton { position: fixed; right: 18px; bottom: 18px; width: 54px; height: 54px; border-radius: 50%; background: linear-gradient(145deg, #e9c46d, #c4922f); box-shadow: 0 4px 12px rgba(150, 90, 40, .3); cursor: pointer; z-index: 102; display: none; justify-content: center; align-items: center; }
-#musica-boton.visible { display: flex; }
+#musica-boton.visible { display: flex; animation: aparece .6s ease-out both; }
+#musica-boton:active { transform: scale(.92); }
+/* ondas suaves mientras suena la música */
+#musica-boton::before { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 2px solid rgba(214, 166, 70, .6); animation: onda-musica 2s ease-out infinite; }
+#musica-boton.pausado::before { animation: none; opacity: 0; }
+@keyframes onda-musica { from { transform: scale(1); opacity: .9; } to { transform: scale(1.5); opacity: 0; } }
 #musica-boton svg { width: 24px; height: 24px; fill: #fff; }
 #musica-boton .icono-play { display: none; }
 #musica-boton.pausado .icono-play { display: block; }
@@ -629,8 +640,8 @@ img.corona { height: auto; }
 
 </div>
 
-<audio id="musica" loop preload="none"></audio>
-<div id="musica-boton" class="pausado" title="Música">
+<audio id="musica" loop preload="metadata"></audio>
+<div id="musica-boton" class="pausado" title="Música" aria-label="Música" role="button">
   <svg class="icono-pausa" viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
   <svg class="icono-play" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
 </div>
@@ -726,6 +737,7 @@ img.corona { height: auto; }
     const estilo = svg.getAttribute('style'); if (estilo) img.setAttribute('style', estilo);
     svg.replaceWith(img);
   });
+  if (IO.marcoContador) { const c = $('contador'); c.classList.add('con-marco'); c.style.setProperty('--marco-contador', 'url("' + IO.marcoContador + '")'); }
   if (IO.marcoEspejo) {
     const img = new Image(); img.src = IO.marcoEspejo; img.alt = ''; img.className = 'marco'; img.decoding = 'async';
     $('marco').replaceWith(img); $('espejo').classList.add('marco-imagen');
@@ -932,8 +944,23 @@ img.corona { height: auto; }
   }
   const reloj = setInterval(actualizarCuenta, 1000); actualizarCuenta();
 
-  /* ---------- Sobre: tocar → video → portada ---------- */
+  /* ---------- Música ---------- */
   const sobre = $('sobre'), musica = $('musica'), musicaBoton = $('musica-boton');
+  if (CONFIG.musica) musica.src = CONFIG.musica;
+  function reproducirMusica() {
+    if (!CONFIG.musica) return;
+    const intento = musica.play();
+    if (intento && intento.then) intento.then(() => musicaBoton.classList.remove('pausado')).catch(() => musicaBoton.classList.add('pausado'));
+  }
+  // Si el navegador bloqueó el audio, se reintenta con el siguiente toque en cualquier parte
+  document.addEventListener('touchend', () => { if (termino && musica.paused && !musica.dataset.pausadoPorUsuario) reproducirMusica(); }, { passive: true });
+  musicaBoton.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (musica.paused) { delete musica.dataset.pausadoPorUsuario; reproducirMusica(); }
+    else { musica.pause(); musica.dataset.pausadoPorUsuario = '1'; musicaBoton.classList.add('pausado'); }
+  });
+
+  /* ---------- Sobre: tocar → video → portada ---------- */
   let empezo = false, termino = false;
   function terminarSobre() {
     if (termino) return; termino = true;
@@ -943,15 +970,15 @@ img.corona { height: auto; }
     setTimeout(() => sobre.remove(), 950);
     observar();
     if (CONFIG.musica) {
-      musica.src = CONFIG.musica;
       musicaBoton.classList.add('visible');
-      musica.play().then(() => musicaBoton.classList.remove('pausado')).catch(() => {});
+      if (musica.paused && !musica.dataset.pausadoPorUsuario) reproducirMusica();
     }
   }
   function abrirSobre() {
     if (empezo) return; empezo = true;
     sobre.classList.add('reproduciendo');
-    video.muted = false;
+    // Con canción: la música arranca en este mismo toque y el video va sin sonido. Sin canción: el video suena.
+    if (CONFIG.musica) { reproducirMusica(); video.muted = true; } else video.muted = false;
     video.play().catch(() => { video.muted = true; video.play().catch(terminarSobre); });
     setTimeout(() => { if (video.currentTime < .1) terminarSobre(); }, 6000);   // por si el video no carga
   }
@@ -962,12 +989,6 @@ img.corona { height: auto; }
 
   // Para revisar sin ver el sobre: abre la página con ?directo al final de la dirección
   if (location.search.includes('directo')) { empezo = true; terminarSobre(); }
-
-  /* ---------- Música: pausar / reanudar ---------- */
-  musicaBoton.addEventListener('click', () => {
-    if (musica.paused) { musica.play(); musicaBoton.classList.remove('pausado'); }
-    else { musica.pause(); musicaBoton.classList.add('pausado'); }
-  });
 })();
 </script>
 </body>
