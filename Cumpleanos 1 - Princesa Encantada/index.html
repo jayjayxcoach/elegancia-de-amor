@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<title>La Princesa Olivia · Invitación de cumpleaños</title>
+<meta name="theme-color" content="#fbe9ee">
+
+<script>
+/* ============================================================
+   CONFIGURACIÓN DE LA INVITACIÓN
+   Cambia aquí los textos, las imágenes y la música.
+   Todo lo que aparece en la invitación sale de este bloque.
+   ============================================================ */
+const CONFIG = {
+
+  // ---------- Festejada ----------
+  tituloArriba: "La Princesa",          // texto pequeño encima del nombre
+  nombre: "Olivia",                     // nombre grande en dorado (se ajusta solo si es largo)
+
+  // ---------- Edad ----------
+  edad: {
+    antes: "Cumple",                    // texto a la izquierda del número
+    numero: "1",                        // el número grande
+    despues: "Añito"                    // texto a la derecha ("Añito", "Años"…)
+  },
+
+  // ---------- Sobre (pantalla inicial) ----------
+  sobre: {
+    textoAbrir: "Toca el sello para abrir",
+    imagen: "recursos/sobre-cerrado.jpg",     // primer cuadro del video (sobre cerrado)
+    video: "recursos/sobre-video.mp4"         // animación del sobre abriéndose (8.6 s)
+  },
+
+  // ---------- Imágenes de la portada ----------
+  imagenes: {
+    castillo: "recursos/castillo.webp",       // castillo en acuarela (arriba del nombre)
+    // Princesas de abajo, en este orden: 5 adelante (de izquierda a derecha) y 2 atrás (izquierda, derecha)
+    princesas: [
+      "recursos/princesa-5.webp",   // adelante 1 (verde)
+      "recursos/princesa-2.webp",   // adelante 2 (durazno)
+      "recursos/princesa-1.webp",   // adelante 3, al centro (lila)
+      "recursos/princesa-4.webp",   // adelante 4 (celeste)
+      "recursos/princesa-3.webp",   // adelante 5 (amarillo)
+      "recursos/princesa-7.webp",   // atrás izquierda (lila)
+      "recursos/princesa-6.webp"    // atrás derecha (rosada)
+    ],
+    fondo: ""                                 // opcional: imagen de fondo en acuarela. Vacío = fondo rosado dibujado con código
+  },
+
+  // ---------- Música ----------
+  // Suena cuando termina el video del sobre. Debe ser un archivo mp3 (ej. "recursos/musica.mp3").
+  // Vacío = sin música (y no aparece el botón).
+  musica: ""
+};
+</script>
+
+<style>
+/* ------------------------------------------------------------
+   FUENTES (están en la carpeta recursos)
+   ------------------------------------------------------------ */
+@font-face { font-family: 'Cookie'; font-weight: 400; font-display: swap; src: url('recursos/fuente-cookie.woff2') format('woff2'); }
+@font-face { font-family: 'Cormorant'; font-weight: 500; font-display: swap; src: url('recursos/fuente-cormorant-500.woff2') format('woff2'); }
+@font-face { font-family: 'Cormorant'; font-weight: 600; font-display: swap; src: url('recursos/fuente-cormorant-600.woff2') format('woff2'); }
+@font-face { font-family: 'Cormorant'; font-weight: 700; font-display: swap; src: url('recursos/fuente-cormorant-700.woff2') format('woff2'); }
+
+:root {
+  --rosa-fondo: #fdf1f3;      /* fondo general */
+  --rosa: #f2b8c8;            /* rosado de flores y detalles */
+  --lila: #d9b8ec;            /* lila de flores */
+  --oro: #b98a2e;             /* dorado del texto */
+  --oro-claro: #e2bd62;       /* dorado claro (líneas) */
+  --dorado: linear-gradient(178deg, #fffbe0 0%, #ffe48a 18%, #f2c443 38%, #fff3b8 54%, #e4ad2e 72%, #f7d064 88%, #d39a26 100%);
+  --script: 'Cookie', cursive;                 /* nombre manuscrito */
+  --serif: 'Cormorant', Georgia, serif;        /* textos */
+  --ancho: 440px;             /* ancho de la invitación (formato celular) */
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { overflow-x: hidden; }
+body {
+  background: #f7e3e8;
+  color: var(--oro);
+  font-family: var(--serif);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+body.bloqueado { overflow: hidden; height: 100vh; }
+img { display: block; max-width: 100%; }
+
+/* Columna central (formato celular). "cqw" = 1 % del ancho de esta columna */
+.invitacion {
+  position: relative; width: 100%; max-width: var(--ancho); margin: 0 auto;
+  container-type: inline-size; overflow: hidden;
+  box-shadow: 0 0 60px rgba(180, 110, 130, .18);
+}
+section { position: relative; }
+
+/* Fondo de acuarela rosada dibujado con código (manchas + textura de papel) */
+.acuarela {
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='5' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.8 0 0 0 0 0.55 0 0 0 0 0.62 0.35 0 0 0 -0.05'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='520'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.0055' numOctaves='5' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.94 0 0 0 0 0.66 0 0 0 0 0.76 2.4 0 0 0 -1.02'/%3E%3C/filter%3E%3Crect width='520' height='520' filter='url(%23n)'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='380' height='380'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.008' numOctaves='5' seed='23' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.86 0 0 0 0 0.74 0 0 0 0 0.94 2.2 0 0 0 -1.05'/%3E%3C/filter%3E%3Crect width='380' height='380' filter='url(%23n)'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse 75% 22% at 50% 44%, rgba(248, 205, 218, .55), transparent 72%),
+    radial-gradient(ellipse 60% 18% at 50% 8%, rgba(246, 200, 214, .45), transparent 75%),
+    #fffafa;
+  background-size: 160px 160px, 520px 520px, 380px 380px, auto, auto, auto;
+}
+
+/* Imagen que todavía no existe: se muestra un recuadro con el nombre del archivo */
+.imagen { position: absolute; }
+.imagen img { width: 100%; height: auto; mix-blend-mode: multiply; }
+.imagen.falta { border: 2px dashed rgba(201, 120, 150, .55); border-radius: 14px; background: rgba(255, 255, 255, .35); }
+.imagen.falta img { display: none; }
+.imagen.falta::after {
+  content: "Aquí va:\A" attr(data-archivo); white-space: pre; position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  font: 600 3.4cqw/1.3 var(--serif); color: #c27a95;
+}
+
+/* ------------------------------------------------------------
+   1. SOBRE (pantalla inicial con el video)
+   ------------------------------------------------------------ */
+#sobre {
+  position: fixed; inset: 0; z-index: 100; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  background: #f3dce6; cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent;
+  transition: opacity 1.2s ease;
+}
+#sobre.sale { opacity: 0; pointer-events: none; }
+/* relleno borroso detrás del video, para pantallas que no son 9:16 */
+#sobre .sobre-fondo { position: absolute; inset: -40px; background: center / cover no-repeat; filter: blur(22px) saturate(1.1); opacity: .9; }
+#sobre .sobre-caja { position: relative; width: min(100vw, 100svh * 9 / 16); aspect-ratio: 9 / 16; box-shadow: 0 0 50px rgba(150, 80, 110, .25); }
+#sobre video { width: 100%; height: 100%; display: block; object-fit: cover; background: center / cover no-repeat; }
+
+/* Brillo que late sobre el sello */
+#sobre .sello {
+  position: absolute; left: 50%; top: 64.8%; width: 19%; aspect-ratio: 1; transform: translate(-50%, -50%);
+  border-radius: 50%; pointer-events: none;
+}
+#sobre .sello::before, #sobre .sello::after {
+  content: ""; position: absolute; inset: 0; border-radius: 50%;
+  border: 2px solid rgba(255, 236, 190, .9); box-shadow: 0 0 18px rgba(255, 220, 160, .9), inset 0 0 12px rgba(255, 230, 190, .6);
+  animation: sello-onda 2.2s ease-out infinite;
+}
+#sobre .sello::after { animation-delay: 1.1s; }
+@keyframes sello-onda { 0% { transform: scale(.75); opacity: 0; } 20% { opacity: 1; } 100% { transform: scale(1.45); opacity: 0; } }
+
+#sobre .toca {
+  position: absolute; left: 50%; bottom: 7%; transform: translateX(-50%);
+  padding: .55em 1.4em; border-radius: 99px; white-space: nowrap;
+  background: rgba(255, 250, 246, .78); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  box-shadow: 0 4px 16px rgba(150, 80, 100, .18);
+  font: 600 clamp(13px, 3.6vw, 16px) var(--serif); letter-spacing: .14em; text-transform: uppercase; color: #a8772a;
+  animation: toca-entra 1s .6s both, toca-pulso 2.2s 1.6s ease-in-out infinite;
+}
+@keyframes toca-entra { from { opacity: 0; transform: translate(-50%, 12px); } to { opacity: 1; transform: translate(-50%, 0); } }
+@keyframes toca-pulso { 0%, 100% { opacity: 1; } 50% { opacity: .55; } }
+#sobre.reproduciendo .sello, #sobre.reproduciendo .toca { animation: ocultar .4s ease forwards !important; }
+#sobre.reproduciendo .sello::before, #sobre.reproduciendo .sello::after { animation: none; opacity: 0; }
+@keyframes ocultar { to { opacity: 0; visibility: hidden; } }
+
+/* ------------------------------------------------------------
+   2. PORTADA: La Princesa · Nombre · Cumple 1 Añito
+   ------------------------------------------------------------ */
+#portada { min-height: max(100svh, 178cqw); overflow: hidden; --extra: max(0px, 100svh - 178cqw); }  /* --extra = alto sobrante en celulares largos */
+#portada .fondo-imagen { position: absolute; inset: 0; background: center top / cover no-repeat; }
+
+/* Guirnalda de flores colgantes (dibujada con código) */
+#guirnalda { position: absolute; top: 0; left: -3cqw; width: 106cqw; height: auto; z-index: 3; pointer-events: none; overflow: visible; }
+#guirnalda .tira { transform-box: fill-box; transform-origin: 50% 0; animation: mecer 6s ease-in-out infinite; }
+@keyframes mecer { 0%, 100% { transform: rotate(-1.6deg); } 50% { transform: rotate(1.6deg); } }
+
+/* Destellos que flotan */
+#destellos { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+#destellos i {
+  position: absolute; width: var(--t); height: var(--t); opacity: 0;
+  background: radial-gradient(circle, #fff 0 18%, rgba(255, 235, 190, .9) 30%, transparent 68%);
+  clip-path: polygon(50% 0, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0 50%, 40% 40%);
+  animation: titila var(--d) var(--r) ease-in-out infinite;
+}
+@keyframes titila { 0%, 100% { opacity: 0; transform: scale(.4) rotate(0deg); } 50% { opacity: 1; transform: scale(1) rotate(45deg); } }
+
+#portada .castillo { left: 33.5cqw; top: 24cqw; width: 33cqw; z-index: 4; }
+#portada .castillo.falta { aspect-ratio: 1; }
+#portada .castillo img { mix-blend-mode: normal; }
+
+#portada .titulo-arriba {
+  position: absolute; left: 0; right: 0; top: 58.5cqw; z-index: 5; text-align: center;
+  font: 600 6.3cqw/1 var(--serif); letter-spacing: .08em; text-transform: uppercase;
+  color: #b9893a; text-shadow: 0 1px 0 rgba(255, 245, 220, .8);
+}
+#portada .titulo-arriba span { display: inline-block; opacity: 0; transform: translateY(.3em); }
+
+/* Nombre dorado */
+#portada .nombre-caja { position: absolute; left: 0; right: 0; top: 65cqw; height: 34cqw; isolation: isolate; z-index: 5; display: flex; justify-content: center; align-items: center; }
+#portada .nombre {
+  position: relative; font: 400 var(--tam, 36cqw)/1 var(--script); white-space: nowrap;
+  padding: 0 .12em .08em .06em;
+  background: radial-gradient(circle, rgba(255, 255, 255, .85) 0 .6px, transparent 1.3px) 0 0 / 5px 5px, radial-gradient(circle, rgba(255, 250, 220, .6) 0 .5px, transparent 1.1px) 2px 3px / 7px 7px, var(--dorado);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 .04em .035em rgba(120, 70, 20, .35));
+  clip-path: inset(-30% 101% -30% -10%);
+}
+/* volumen dorado detrás de las letras */
+#portada .nombre::before {
+  content: attr(data-texto); position: absolute; inset: 0; padding: inherit; z-index: -1;
+  color: #d29f32;
+  text-shadow: 0 .006em 0 #c89428, 0 .012em 0 #bb8723, 0 .018em 0 #ad7a1f, 0 .024em 0 #9f6d1b, 0 .03em 0 #926218;
+  -webkit-text-stroke: .01em #b07f22;
+}
+/* reflejo de luz que recorre el nombre */
+#portada .nombre::after {
+  content: attr(data-texto); position: absolute; inset: 0; padding: inherit; z-index: 1;
+  background: linear-gradient(105deg, transparent 38%, rgba(255, 255, 255, .95) 48%, transparent 58%) no-repeat;
+  background-size: 260% 100%; background-position: 130% 0;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+#portada .estrella { position: absolute; width: 5cqw; aspect-ratio: 1; opacity: 0; z-index: 6; pointer-events: none;
+  background: radial-gradient(circle, #fff 0 15%, rgba(255, 240, 200, .95) 28%, transparent 66%);
+  clip-path: polygon(50% 0, 58% 42%, 100% 50%, 58% 58%, 50% 100%, 42% 58%, 0 50%, 42% 42%);
+}
+
+/* Mariposa */
+#portada .mariposa { position: absolute; left: 73cqw; top: 59cqw; width: 23cqw; z-index: 6; opacity: 0; filter: drop-shadow(0 2px 3px rgba(200, 110, 140, .3)); }
+#portada .mariposa .ala-izq, #portada .mariposa .ala-der { transform-box: view-box; transform-origin: 50px 50px; animation: aletea .45s ease-in-out infinite alternate; }
+#portada .mariposa .ala-der { animation-name: aletea-der; }
+@keyframes aletea { from { transform: scaleX(1); } to { transform: scaleX(.35); } }
+@keyframes aletea-der { from { transform: scaleX(1); } to { transform: scaleX(.35); } }
+@keyframes vuela { 0%, 100% { transform: translate(0, 0) rotate(12deg); } 25% { transform: translate(-2cqw, -2.5cqw) rotate(6deg); } 50% { transform: translate(1cqw, -4cqw) rotate(16deg); } 75% { transform: translate(2cqw, -1cqw) rotate(10deg); } }
+
+/* Cumple 1 Añito */
+#portada .edad { position: absolute; left: 0; right: 0; top: 96.5cqw; z-index: 5; display: flex; justify-content: center; align-items: flex-start; gap: 2.5cqw; }
+#portada .edad-texto {
+  position: relative; width: 27cqw; padding: 1.4cqw 0; text-align: center;
+  font: 600 6.2cqw/1 var(--serif); color: #b8862f; opacity: 0;
+}
+#portada .edad-texto::before, #portada .edad-texto::after {
+  content: ""; position: absolute; left: 0; right: 0; height: 2px; transform: scaleX(0);
+  background: linear-gradient(90deg, transparent, var(--oro-claro) 18%, #c9963a 50%, var(--oro-claro) 82%, transparent);
+}
+#portada .edad-texto::before { top: 0; }
+#portada .edad-texto::after { bottom: 0; }
+#portada .edad-texto.antes::before, #portada .edad-texto.antes::after { transform-origin: right; }
+#portada .edad-texto.despues::before, #portada .edad-texto.despues::after { transform-origin: left; }
+#portada .edad-texto.antes { margin-top: 3cqw; }
+#portada .edad-texto.despues { margin-top: 7cqw; }
+#portada .edad-numero {
+  position: relative; isolation: isolate;
+  font: 700 27cqw/.8 var(--serif); font-variant-numeric: lining-nums; font-feature-settings: 'lnum' 1; padding: 0 .02em .06em;
+  background: var(--dorado); -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 .04em .03em rgba(120, 70, 20, .3));
+  opacity: 0; transform: scale(.4);
+}
+#portada .edad-numero::before {
+  content: attr(data-texto); position: absolute; inset: 0; padding: inherit; z-index: -1; color: #cf9c30;
+  text-shadow: 0 .008em 0 #bb8723, 0 .016em 0 #a87720, 0 .024em 0 #94651a;
+}
+
+/* Princesas: cada una con su lugar (izquierda, abajo, alto). "cqw" = % del ancho */
+#princesas { position: absolute; left: 0; right: 0; bottom: 0; height: 100%; z-index: 4; pointer-events: none; }
+#princesas img { position: absolute; left: var(--x); bottom: calc(var(--y) + var(--extra) * .2); height: calc(var(--h) + var(--extra) * .5);
+  width: auto; max-width: none; translate: -50% 0; z-index: var(--z);
+  opacity: 0; transform: translateY(12cqw); filter: drop-shadow(0 2px 4px rgba(170, 100, 130, .18)); }
+/* --x = centro de cada princesa */
+#princesas img:nth-child(1) { --x: 6cqw;  --y: -9cqw;  --h: 69cqw; --z: 3; --r: .55s; }
+#princesas img:nth-child(2) { --x: 27cqw; --y: -9cqw;  --h: 69cqw; --z: 4; --r: .35s; }
+#princesas img:nth-child(3) { --x: 50cqw; --y: -10cqw; --h: 70cqw; --z: 5; --r: .15s; }
+#princesas img:nth-child(4) { --x: 73cqw; --y: -9cqw;  --h: 69cqw; --z: 4; --r: .35s; }
+#princesas img:nth-child(5) { --x: 94cqw; --y: -9cqw;  --h: 69cqw; --z: 3; --r: .55s; }
+#princesas img:nth-child(6) { --x: 9cqw;  --y: 9cqw;   --h: 66cqw; --z: 1; --r: .8s; }
+#princesas img:nth-child(7) { --x: 90cqw; --y: 10cqw;  --h: 66cqw; --z: 1; --r: .8s; }
+
+/* ---------- Animaciones de entrada (empiezan al terminar el sobre) ---------- */
+body.abierta #portada .castillo { animation: baja-aparece 1.6s .1s ease-out both; }
+body.abierta #portada .titulo-arriba span { animation: letra 0.6s ease-out forwards; animation-delay: calc(.6s + var(--i) * .07s); }
+body.abierta #portada .nombre { animation: escribe 2s 1.3s cubic-bezier(.45, .05, .35, 1) forwards; }
+body.abierta #portada .nombre::after { animation: reflejo 4.5s 3.4s ease-in-out infinite; }
+body.abierta #portada .estrella { animation: estrella 2.6s ease-in-out infinite; }
+body.abierta #portada .mariposa { animation: aparece 1.2s 2.4s ease-out forwards, vuela 7s 2.4s ease-in-out infinite; }
+body.abierta #portada .edad-texto { animation: aparece 1s 3.1s ease-out forwards; }
+body.abierta #portada .edad-texto::before, body.abierta #portada .edad-texto::after { animation: linea 1.1s 3s ease-out forwards; }
+body.abierta #portada .edad-numero { animation: numero 1s 2.9s cubic-bezier(.3, 1.6, .5, 1) forwards; }
+body.abierta #princesas img { animation: suben 1.6s var(--r) cubic-bezier(.2, .7, .3, 1) forwards; }
+
+@keyframes baja-aparece { from { opacity: 0; transform: translateY(-4cqw) scale(.94); } to { opacity: 1; transform: none; } }
+@keyframes aparece { from { opacity: 0; } to { opacity: 1; } }
+@keyframes letra { to { opacity: 1; transform: none; } }
+@keyframes escribe { to { clip-path: inset(-30% -10% -30% -10%); } }
+@keyframes reflejo { 0% { background-position: 130% 0; } 45%, 100% { background-position: -30% 0; } }
+@keyframes estrella { 0%, 100% { opacity: 0; transform: scale(.3) rotate(0); } 50% { opacity: 1; transform: scale(1) rotate(90deg); } }
+@keyframes linea { to { transform: scaleX(1); } }
+@keyframes numero { to { opacity: 1; transform: scale(1); } }
+@keyframes suben { to { opacity: 1; transform: none; } }
+
+/* ------------------------------------------------------------
+   BOTÓN DE MÚSICA (flotante)
+   ------------------------------------------------------------ */
+#musica-boton {
+  position: fixed; right: 18px; bottom: 18px; width: 54px; height: 54px; border-radius: 50%;
+  background: linear-gradient(145deg, #e9c46d, #c4922f); box-shadow: 0 4px 12px rgba(150, 90, 40, .3);
+  cursor: pointer; z-index: 102; display: none; justify-content: center; align-items: center;
+}
+#musica-boton.visible { display: flex; }
+#musica-boton svg { width: 24px; height: 24px; fill: #fff; }
+#musica-boton .icono-play { display: none; }
+#musica-boton.pausado .icono-play { display: block; }
+#musica-boton.pausado .icono-pausa { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01s !important; animation-iteration-count: 1 !important; }
+}
+</style>
+</head>
+
+<body class="bloqueado">
+
+<!-- ============================================================
+     1. SOBRE (se toca el sello y se reproduce el video)
+     ============================================================ -->
+<div id="sobre">
+  <div class="sobre-fondo"></div>
+  <div class="sobre-caja">
+    <video id="sobre-video" playsinline webkit-playsinline preload="auto"></video>
+    <div class="sello"></div>
+    <div class="toca" id="sobre-texto"></div>
+  </div>
+</div>
+
+<div class="invitacion">
+
+  <!-- ============================================================
+       2. PORTADA
+       ============================================================ -->
+  <section id="portada" class="acuarela">
+    <div class="fondo-imagen" id="fondo-imagen"></div>
+    <svg id="guirnalda" viewBox="0 0 466 200" aria-hidden="true"></svg>
+    <div id="destellos"></div>
+
+    <div class="imagen castillo" data-archivo="castillo.webp"><img id="img-castillo" alt=""></div>
+
+    <p class="titulo-arriba" id="titulo-arriba"></p>
+
+    <div class="nombre-caja" id="nombre-caja">
+      <h1 class="nombre" id="nombre"></h1>
+    </div>
+
+    <svg class="mariposa" viewBox="0 0 100 100" aria-hidden="true">
+      <defs>
+        <linearGradient id="ala-a" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fde3ec"/><stop offset=".55" stop-color="#f3a9c0"/><stop offset="1" stop-color="#e88aa8"/></linearGradient>
+        <linearGradient id="ala-b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f9c9d8"/><stop offset="1" stop-color="#ef9db6"/></linearGradient>
+      </defs>
+      <g class="ala-izq" opacity=".88">
+        <path d="M49 46 C38 18 14 8 7 18 C1 28 14 44 47 50 Z" fill="url(#ala-a)" stroke="#fff" stroke-width="1.2"/>
+        <path d="M48 53 C30 54 16 66 22 78 C28 88 42 78 49 58 Z" fill="url(#ala-b)" stroke="#fff" stroke-width="1.2"/>
+        <path d="M46 47 C34 34 22 24 12 20 M46 49 C32 42 20 38 10 30 M47 56 C38 62 30 70 25 76" stroke="#fff" stroke-width=".8" fill="none" opacity=".75"/>
+      </g>
+      <g class="ala-der" opacity=".88">
+        <path d="M51 46 C62 18 86 8 93 18 C99 28 86 44 53 50 Z" fill="url(#ala-a)" stroke="#fff" stroke-width="1.2"/>
+        <path d="M52 53 C70 54 84 66 78 78 C72 88 58 78 51 58 Z" fill="url(#ala-b)" stroke="#fff" stroke-width="1.2"/>
+        <path d="M54 47 C66 34 78 24 88 20 M54 49 C68 42 80 38 90 30 M53 56 C62 62 70 70 75 76" stroke="#fff" stroke-width=".8" fill="none" opacity=".75"/>
+      </g>
+      <ellipse cx="50" cy="52" rx="2" ry="11" fill="#c9849b"/>
+      <path d="M49 42 C46 34 43 30 40 28 M51 42 C54 34 57 30 60 28" stroke="#c9849b" stroke-width="1" fill="none"/>
+    </svg>
+
+    <div class="edad">
+      <div class="edad-texto antes" id="edad-antes"></div>
+      <div class="edad-numero" id="edad-numero"></div>
+      <div class="edad-texto despues" id="edad-despues"></div>
+    </div>
+
+    <div id="princesas"></div>
+  </section>
+
+  <!-- Aquí irán las siguientes secciones (el reino encantado, te invita, fecha y lugar, te esperamos) -->
+
+</div>
+
+<audio id="musica" loop preload="none"></audio>
+<div id="musica-boton" class="pausado" title="Música">
+  <svg class="icono-pausa" viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+  <svg class="icono-play" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+</div>
+
+<script>
+/* ============================================================
+   FUNCIONAMIENTO (no hace falta tocar nada de aquí abajo)
+   ============================================================ */
+(function () {
+  const $ = (id) => document.getElementById(id);
+
+  /* ---------- Rellenar textos e imágenes desde CONFIG ---------- */
+  document.title = CONFIG.tituloArriba + ' ' + CONFIG.nombre + ' · Invitación de cumpleaños';
+  $('sobre-texto').textContent = CONFIG.sobre.textoAbrir;
+  const video = $('sobre-video');
+  video.poster = CONFIG.sobre.imagen;
+  video.style.backgroundImage = 'url("' + CONFIG.sobre.imagen + '")';
+  video.src = CONFIG.sobre.video;
+  document.querySelector('#sobre .sobre-fondo').style.backgroundImage = 'url("' + CONFIG.sobre.imagen + '")';
+
+  // "LA PRINCESA" letra por letra
+  $('titulo-arriba').innerHTML = [...CONFIG.tituloArriba].map((c, i) =>
+    '<span style="--i:' + i + '">' + (c === ' ' ? '&nbsp;' : c) + '</span>').join('');
+
+  const nombre = $('nombre');
+  nombre.textContent = CONFIG.nombre;
+  nombre.dataset.texto = CONFIG.nombre;
+  $('edad-antes').textContent = CONFIG.edad.antes;
+  $('edad-numero').textContent = CONFIG.edad.numero;
+  $('edad-numero').dataset.texto = CONFIG.edad.numero;
+  $('edad-despues').textContent = CONFIG.edad.despues;
+
+  // Imágenes: si el archivo no existe se ve un recuadro con su nombre
+  function cargar(img, ruta) {
+    const caja = img.parentElement;
+    if (!ruta) { caja.classList.add('falta'); return; }
+    img.onerror = () => caja.classList.add('falta');
+    img.src = ruta;
+  }
+  cargar($('img-castillo'), CONFIG.imagenes.castillo);
+  CONFIG.imagenes.princesas.forEach((ruta) => {
+    const img = document.createElement('img'); img.alt = ''; img.src = ruta;
+    img.onerror = () => img.remove();
+    $('princesas').appendChild(img);
+  });
+  if (CONFIG.imagenes.fondo) $('fondo-imagen').style.backgroundImage = 'url("' + CONFIG.imagenes.fondo + '")';
+
+  /* ---------- El nombre se achica solo si es muy largo ---------- */
+  function ajustarNombre() {
+    const ancho = $('nombre-caja').clientWidth * 0.9;
+    let tam = 38;                                     // tamaño máximo (en % del ancho)
+    nombre.style.setProperty('--tam', tam + 'cqw');
+    while (nombre.scrollWidth > ancho && tam > 14) { tam -= 1; nombre.style.setProperty('--tam', tam + 'cqw'); }
+  }
+  document.fonts.ready.then(ajustarNombre);
+  window.addEventListener('resize', ajustarNombre);
+
+  /* ---------- Estrellitas que brillan sobre el nombre ---------- */
+  const cajaNombre = $('nombre-caja');
+  [[22, 18, 0], [64, 8, .9], [78, 55, 1.7], [40, 70, 2.3], [55, 30, 1.2]].forEach(([x, y, r]) => {
+    const e = document.createElement('i'); e.className = 'estrella';
+    e.style.left = x + '%'; e.style.top = y + '%'; e.style.animationDelay = (3.4 + r) + 's';
+    cajaNombre.appendChild(e);
+  });
+
+  /* ---------- Destellos flotando por la portada ---------- */
+  const destellos = $('destellos');
+  for (let i = 0; i < 22; i++) {
+    const d = document.createElement('i');
+    d.style.left = (Math.random() * 96) + '%';
+    d.style.top = (8 + Math.random() * 86) + '%';
+    d.style.setProperty('--t', (6 + Math.random() * 12).toFixed(1) + 'px');
+    d.style.setProperty('--d', (2.5 + Math.random() * 3).toFixed(2) + 's');
+    d.style.setProperty('--r', (Math.random() * 4).toFixed(2) + 's');
+    destellos.appendChild(d);
+  }
+
+  /* ---------- Guirnalda de flores colgantes (se dibuja sola) ---------- */
+  (function dibujarGuirnalda() {
+    const svg = $('guirnalda'), NS = 'http://www.w3.org/2000/svg';
+    let semilla = 11;
+    const azar = () => { semilla = (semilla * 9301 + 49297) % 233280; return semilla / 233280; };
+    const el = (tipo, attrs, padre) => { const n = document.createElementNS(NS, tipo); for (const k in attrs) n.setAttribute(k, attrs[k]); padre.appendChild(n); return n; };
+    // colores de pétalos: [centro claro, borde]
+    const tonos = [['#fff3f6', '#f2a7bf'], ['#fde7ef', '#e98fb0'], ['#f8efff', '#c9a2e6'], ['#f3e8ff', '#b48fd8'], ['#fff7f2', '#f5c2b0'], ['#ffffff', '#f4d7e2'], ['#fff0f5', '#f7b9cc']];
+    const defs = el('defs', {}, svg);
+    tonos.forEach((t, i) => {
+      const g = el('radialGradient', { id: 'petalo' + i, cx: '30%', cy: '50%', r: '75%' }, defs);
+      el('stop', { offset: '0', 'stop-color': t[0] }, g); el('stop', { offset: '1', 'stop-color': t[1] }, g);
+    });
+    const suave = el('filter', { id: 'suave', x: '-20%', y: '-20%', width: '140%', height: '140%' }, defs);
+    el('feGaussianBlur', { stdDeviation: '1.1' }, suave);
+    const hojas = ['#a6b98f', '#8fa77a', '#bccaa6', '#9cb38c'];
+
+    function flor(padre, x, y, r, opacidad) {
+      const t = Math.floor(azar() * tonos.length), giro = azar() * 72;
+      const g = el('g', { opacity: opacidad, transform: `rotate(${giro.toFixed(0)} ${x.toFixed(1)} ${y.toFixed(1)})` }, padre);
+      for (let p = 0; p < 5; p++) {
+        el('ellipse', { cx: (x + r * .5).toFixed(1), cy: y.toFixed(1), rx: (r * .55).toFixed(1), ry: (r * .36).toFixed(1), fill: `url(#petalo${t})`,
+          transform: `rotate(${p * 72} ${x.toFixed(1)} ${y.toFixed(1)})` }, g);
+      }
+      el('circle', { cx: x.toFixed(1), cy: y.toFixed(1), r: (r * .18).toFixed(1), fill: '#e2b85a' }, g);
+    }
+    function hoja(padre, x, y, lado, tam) {
+      const c = hojas[Math.floor(azar() * hojas.length)];
+      el('path', { d: `M${x} ${y} q${lado * tam * .6} ${-tam * .25} ${lado * tam} ${tam * .35} q${-lado * tam * .5} ${tam * .1} ${-lado * tam} ${-tam * .35}z`, fill: c, opacity: .85 }, padre);
+    }
+
+    // capa de atrás (difuminada) y capa de adelante
+    [{ opac: .6, n: 15, larga: 110, desfase: 14, filtro: 'url(#suave)' }, { opac: 1, n: 14, larga: 175, desfase: 0, filtro: '' }].forEach((capa, c) => {
+      const grupo = el('g', { opacity: capa.opac, filter: capa.filtro }, svg);
+      for (let i = 0; i < capa.n; i++) {
+        const x0 = capa.desfase + i * (466 / capa.n) + azar() * 14;
+        const lado = (i < 2 || i > capa.n - 3) ? 1.25 : 1;      // las de los lados más largas
+        const largo = (40 + azar() * capa.larga * (i % 3 === 1 ? 1 : .65)) * lado;
+        const curva = (azar() - .5) * 20;
+        const tira = el('g', { class: 'tira', style: 'animation-delay:-' + (azar() * 6).toFixed(2) + 's;animation-duration:' + (5 + azar() * 3).toFixed(2) + 's' }, grupo);
+        el('path', { d: `M${x0} -4 Q${x0 + curva} ${largo / 2} ${x0 + curva / 2} ${largo}`, stroke: '#9cae86', 'stroke-width': .8, fill: 'none', opacity: .75 }, tira);
+        for (let y = 10; y < largo; y += 6 + azar() * 7) {
+          const t = y / largo, x = x0 + curva * 2 * t * (1 - t) + curva / 2 * t * t;
+          const l = azar() > .5 ? 1 : -1;
+          if (azar() < .5) hoja(tira, x, y, l, 6 + azar() * 4);
+          else flor(tira, x + l * 2.5, y, (4 + azar() * 4) * (1 - t * .45), .95);
+        }
+        // racimo al final de la tira
+        for (let k = 0; k < 4; k++) flor(tira, x0 + curva / 2 + (azar() - .5) * 8, largo - k * 5, 3 + azar() * 2, .95);
+      }
+      // copa de flores grandes arriba
+      for (let k = 0; k < 46; k++) {
+        const x = azar() * 466, y = azar() * 30 - 8;
+        if (azar() < .35) hoja(grupo, x, y + 4, azar() > .5 ? 1 : -1, 9 + azar() * 5);
+        flor(grupo, x, y, 7 + azar() * 8, .95);
+      }
+    });
+  })();
+
+  /* ---------- Sobre: tocar → video → portada ---------- */
+  const sobre = $('sobre'), musica = $('musica'), musicaBoton = $('musica-boton');
+  let empezo = false, termino = false;
+
+  function terminarSobre() {
+    if (termino) return; termino = true;
+    document.body.classList.remove('bloqueado');
+    document.body.classList.add('abierta');                 // arrancan las animaciones de la portada
+    sobre.classList.add('sale');
+    setTimeout(() => { sobre.remove(); }, 1300);
+    if (CONFIG.musica) {
+      musica.src = CONFIG.musica;
+      musicaBoton.classList.add('visible');
+      musica.play().then(() => musicaBoton.classList.remove('pausado')).catch(() => {});
+    }
+  }
+  function abrirSobre() {
+    if (empezo) return; empezo = true;
+    sobre.classList.add('reproduciendo');
+    video.muted = false;
+    video.play().catch(() => { video.muted = true; video.play().catch(terminarSobre); });
+    setTimeout(() => { if (video.currentTime < .1) terminarSobre(); }, 6000);   // por si el video no carga
+  }
+  video.addEventListener('timeupdate', () => { if (video.duration && video.currentTime >= video.duration - .45) terminarSobre(); });
+  video.addEventListener('ended', terminarSobre);
+  video.addEventListener('error', () => { if (empezo) terminarSobre(); });
+  sobre.addEventListener('click', abrirSobre);
+
+  // Para revisar sin ver el sobre: abre la página con ?directo al final de la dirección
+  if (location.search.includes('directo')) { empezo = true; terminarSobre(); }
+
+  /* ---------- Música: pausar / reanudar ---------- */
+  musicaBoton.addEventListener('click', () => {
+    if (musica.paused) { musica.play(); musicaBoton.classList.remove('pausado'); }
+    else { musica.pause(); musicaBoton.classList.add('pausado'); }
+  });
+})();
+</script>
+</body>
+</html>
