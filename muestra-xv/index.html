@@ -132,7 +132,7 @@ const CONFIG = {
   // y los botones de mapa y WhatsApp avisan que se activan en la versión final.
   // Al entregar la invitación pagada: activa: false
   muestra: {
-    activa: true,
+    activa: false,
     texto: "MUESTRA · ELEGANCIA DE AMOR",
     color: "blanco",         // color de la marca de agua: "negro", "blanco" o "dorado"
     aviso: "Se activa en la versión final ✨"
@@ -876,10 +876,14 @@ body.muestra img, body.muestra video { pointer-events: none; -webkit-user-drag: 
       const k = (e.key || '').toLowerCase(), mod = e.ctrlKey || e.metaKey;
       if (e.key === 'F12' || (mod && ['s', 'u', 'p', 'c', 'a'].includes(k)) || (mod && e.shiftKey && ['i', 'j', 'c'].includes(k))) e.preventDefault();
     });
-    // mapa y WhatsApp: avisan que se activan en la versión final
-    const aviso = document.createElement('div'); aviso.id = 'aviso'; aviso.textContent = MU.aviso || ''; document.body.appendChild(aviso);
+  }
+  // mapa y WhatsApp: en modo muestra, o mientras no tengan enlace, avisan que se activan en la versión final
+  const sinEnlace = { 'lugar-boton': !CONFIG.lugar.enlace, 'confirmacion-boton': !CONFIG.confirmacion.whatsapp };
+  const conAviso = Object.keys(sinEnlace).filter(id => MU.activa || sinEnlace[id]);
+  if (conAviso.length) {
+    const aviso = document.createElement('div'); aviso.id = 'aviso'; aviso.textContent = MU.aviso || 'Se activa en la versión final ✨'; document.body.appendChild(aviso);
     let tAviso;
-    ['lugar-boton', 'confirmacion-boton'].forEach(id => $(id).addEventListener('click', e => {
+    conAviso.forEach(id => $(id).addEventListener('click', e => {
       e.preventDefault(); aviso.classList.add('ver'); clearTimeout(tAviso); tAviso = setTimeout(() => aviso.classList.remove('ver'), 2200);
     }));
   }
