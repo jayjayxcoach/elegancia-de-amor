@@ -133,6 +133,7 @@ const CONFIG = {
   muestra: {
     activa: true,
     texto: "MUESTRA · ELEGANCIA DE AMOR",
+    color: "negro",          // color de la marca de agua: "negro", "blanco" o "dorado"
     aviso: "Se activa en la versión final ✨"
   },
   pausada: false,           // true = la invitación no se muestra (ej. si no se completa el pago)
@@ -862,7 +863,8 @@ body.muestra img, body.muestra video { pointer-events: none; -webkit-user-drag: 
   if (MU.activa) {
     document.body.classList.add('muestra');
     const t = (MU.texto || 'MUESTRA').replace(/&/g, '&amp;').replace(/</g, '&lt;');
-    const fila = (x, y) => "<text x='" + x + "' y='" + y + "' text-anchor='middle' font-family='Georgia,serif' font-size='14' font-weight='700' letter-spacing='2.5' fill='rgba(184,135,58,.42)' stroke='rgba(255,255,255,.25)' stroke-width='.5'>" + t + "</text>";
+    const tinta = { negro: ["rgba(15,8,8,.45)", "rgba(255,255,255,.3)"], blanco: ["rgba(255,255,255,.5)", "rgba(0,0,0,.2)"] }[MU.color] || ["rgba(184,135,58,.42)", "rgba(255,255,255,.25)"];
+    const fila = (x, y) => "<text x='" + x + "' y='" + y + "' text-anchor='middle' font-family='Georgia,serif' font-size='14' font-weight='700' letter-spacing='2.5' fill='" + tinta[0] + "' stroke='" + tinta[1] + "' stroke-width='.5'>" + t + "</text>";
     const svg = "<svg xmlns='http://www.w3.org/2000/svg' width='260' height='200'><g transform='rotate(-28 130 100)'>" + fila(130, 70) + fila(0, 160) + fila(260, 160) + "</g></svg>";
     const capa = document.createElement('div'); capa.id = 'marca-agua'; capa.setAttribute('aria-hidden', 'true');
     capa.style.setProperty('--marca', 'url("data:image/svg+xml,' + encodeURIComponent(svg) + '")');
