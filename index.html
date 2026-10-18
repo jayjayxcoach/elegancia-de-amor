@@ -112,8 +112,8 @@ button{font-family:inherit}
 .header__logo{display:flex;align-items:center}
 .header__logo img{width:auto;height:46px;display:block}
 @media(max-width:640px){.header__logo img{height:38px}}
-.header__menu{display:flex;gap:30px;list-style:none;margin:0;padding:0}
-.header__menu a{font-family:var(--serif);font-weight:700;font-size:16px;color:#4a4a4a;transition:color .3s}
+.header__menu{display:flex;gap:24px;list-style:none;margin:0;padding:0}
+.header__menu a{font-family:var(--serif);font-weight:700;font-size:16px;color:#4a4a4a;white-space:nowrap;transition:color .3s}
 .header__menu a:hover{color:var(--teal)}
 .header__redes{display:flex;gap:14px}
 .header__redes a{width:30px;height:30px;display:block;color:#000}
@@ -131,7 +131,8 @@ button{font-family:inherit}
 .menu-movil__redes{display:flex;gap:18px;padding-top:18px}
 .menu-movil__redes a{border:0;padding:0;width:32px;height:32px}
 .menu-movil__redes svg{width:32px;height:32px;fill:#fff}
-@media(max-width:980px){
+@media(max-width:1260px){.header__menu{gap:18px}.header__menu a{font-size:15px}}
+@media(max-width:1180px){
   .header__menu,.header__redes{display:none}
   .hamburguesa{display:block}
 }
@@ -208,6 +209,8 @@ button{font-family:inherit}
    PLANTILLAS (catálogo)
    ============================================================ */
 .plantillas{padding:60px 0 60px}
+.trabajos{padding-top:20px}
+.trabajos .plantillas__grid{justify-content:center;grid-template-columns:repeat(auto-fit,minmax(260px,347px))}
 .plantillas__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:45px}
 .plantilla{background:var(--tarjeta);border-radius:30px;overflow:hidden;text-align:center;padding-bottom:26px;transition:transform .25s,box-shadow .25s}
 .plantilla:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(10,69,96,.10)}
@@ -483,6 +486,7 @@ button{font-family:inherit}
     <nav aria-label="Menú principal">
       <ul class="header__menu">
         <li><a href="#plantillas">Elige tu diseño</a></li>
+        <li><a href="#nuestros-trabajos">Nuestros trabajos</a></li>
         <li><a href="#" data-enlace="pedido">Empieza ahora</a></li>
         <li><a href="#resenas">Reseñas</a></li>
         <li><a href="#como-funciona">Cómo funciona</a></li>
@@ -498,6 +502,7 @@ button{font-family:inherit}
   </div>
   <div class="menu-movil" id="menuMovil">
     <a href="#plantillas">Elige tu diseño</a>
+    <a href="#nuestros-trabajos">Nuestros trabajos</a>
     <a href="#" data-enlace="pedido">Empieza ahora</a>
     <a href="#resenas">Reseñas</a>
     <a href="#como-funciona">Cómo funciona</a>
@@ -571,6 +576,18 @@ button{font-family:inherit}
       <p class="subtitulo">Cada plantilla se personaliza: ajustamos los textos, las fotos y los colores al estilo de tu evento, ya sea un cumpleaños, una boda o una celebración corporativa.</p>
     </div>
     <div class="plantillas__grid" id="plantillasGrid"></div>
+  </div>
+</section>
+
+<!-- ================= NUESTROS TRABAJOS (invitaciones personalizadas) ================= -->
+<section class="plantillas trabajos" id="nuestros-trabajos">
+  <div class="contenedor">
+    <div class="encabezado aparece">
+      <span class="etiqueta">Hechas a la medida</span>
+      <h2 class="titulo degradado">Nuestros trabajos</h2>
+      <p class="subtitulo">Invitaciones personalizadas que creamos para nuestros clientes, con la temática, los colores, las fotos y la canción de cada celebración.</p>
+    </div>
+    <div class="plantillas__grid" id="trabajosGrid"></div>
   </div>
 </section>
 
@@ -658,6 +675,7 @@ button{font-family:inherit}
     <div class="footer__der">
       <ul class="footer__links">
         <li><a href="#plantillas">Elige tu diseño</a></li>
+        <li><a href="#nuestros-trabajos">Nuestros trabajos</a></li>
         <li><a href="#" data-enlace="pedido">Empieza ahora</a></li>
         <li><a href="#resenas">Reseñas</a></li>
         <li><a href="#como-funciona">Cómo funciona</a></li>
@@ -717,6 +735,13 @@ const CONFIG = {
     { marca: "", nombre: "Oro Real", img: "recursos/plantillas/royal-gold.jpg", ver: "./Invitacion%207%20-%20Royal%20Gold/index.html" },
     { marca: "", nombre: "Minimalista", img: "recursos/plantillas/minimalist.jpg", ver: "./Invitacion%208%20-%20Minimalist/index.html" },
     { marca: "NUEVA✨", nombre: "Elegancia Atemporal", img: "recursos/plantillas/timeless-grace.jpg", ver: "./Invitacion%209%20-%20Timeless%20Grace/index.html" }
+  ],
+  // Nuestros trabajos: invitaciones personalizadas hechas para clientes (la más nueva primero).
+  // img: molde de teléfono 1000×1000 con la portada (recursos/trabajos/). ver: carpeta de la invitación.
+  // publico: true muestra el botón "Ver" con la invitación real. Déjalo en false hasta que el cliente
+  // dé permiso: la invitación lleva sus fotos, nombres, fecha y lugar.
+  trabajos: [
+    { tipo: "XV años", nombre: "Rojo y dorado", img: "recursos/trabajos/xv-gianella.jpg", ver: "./xv-gianella/", publico: false }
   ],
   pasos: [
     { t: "Escríbenos y elige", d: "Cuéntanos por WhatsApp qué invitación quieres. Te asesoramos, elegimos juntos el diseño y te enviamos el enlace de pago." },
@@ -791,6 +816,20 @@ const CONFIG = {
         '<a class="boton boton--borde boton--sm" href="'+CONFIG.enlaces.pedido+'" data-pixel="pedir">Pedir</a>'+
       '</div>'+
     '</article>').join('');
+  // Nuestros trabajos
+  const trabajos=document.getElementById('trabajosGrid');
+  trabajos.innerHTML=CONFIG.trabajos.map(t=>{
+    const img='<img src="'+t.img+'" alt="Invitación personalizada: '+t.tipo+' '+t.nombre+'" loading="lazy">';
+    return '<article class="plantilla aparece">'+
+      (t.publico?'<a href="'+t.ver+'" target="_blank" rel="noopener" data-pixel="ver">'+img+'</a>':img)+
+      '<span class="plantilla__marca">'+t.tipo+'</span>'+
+      '<h3 class="plantilla__nombre">'+t.nombre+'</h3>'+
+      '<div class="plantilla__botones">'+
+        (t.publico?'<a class="boton boton--lleno boton--sm" href="'+t.ver+'" target="_blank" rel="noopener" data-pixel="ver"><span>Ver</span></a>':'')+
+        '<a class="boton '+(t.publico?'boton--borde':'boton--lleno')+' boton--sm" href="'+CONFIG.enlaces.pedido+'" data-pixel="pedir">'+(t.publico?'Pedir':'<span>Quiero una así</span>')+'</a>'+
+      '</div>'+
+    '</article>';}).join('');
+  if(!CONFIG.trabajos.length) document.getElementById('nuestros-trabajos').remove();
   // Pasos
   document.getElementById('pasos').innerHTML=CONFIG.pasos.map((p,i)=>'<div class="paso aparece"><div class="paso__num">'+(i+1)+'</div><h3>'+p.t+'</h3><p>'+p.d+'</p></div>').join('');
 
