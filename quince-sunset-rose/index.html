@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<title>My Quinceañera · Luciana</title>
+<meta name="theme-color" content="#e8c3bd">
+
+<!-- ============================================================
+     VISTA PREVIA AL COMPARTIR EL ENLACE (WhatsApp, Facebook, Instagram…)
+     WhatsApp no lee el CONFIG: si cambias el nombre, cámbialo también aquí.
+     ============================================================ -->
+<meta name="description" content="You're invited to my Quinceañera. Tap the seal to open your invitation.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Elegancia de Amor">
+<meta property="og:title" content="My Quinceañera · Luciana">
+<meta property="og:description" content="You're invited to my Quinceañera. Tap the seal to open your invitation ✨">
+<meta property="og:url" content="https://eleganciadeamor.com/quince-sunset-rose/">
+<meta property="og:image" content="https://eleganciadeamor.com/quince-sunset-rose/recursos/vista-previa.jpg?v=1">
+<meta property="og:image:secure_url" content="https://eleganciadeamor.com/quince-sunset-rose/recursos/vista-previa.jpg?v=1">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1000">
+<meta property="og:image:height" content="1000">
+<meta property="og:image:alt" content="Pink envelope with a bow and a crown seal on a pedestal, in front of a lakeside castle at sunset">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://eleganciadeamor.com/quince-sunset-rose/recursos/vista-previa.jpg?v=1">
+<link rel="icon" href="recursos/vista-previa.jpg">
+<link rel="preload" href="recursos/fuente-cormorant-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="recursos/sobre-cerrado.webp" as="image" fetchpriority="high">
+
+<script>
+/* ============================================================
+   CONFIGURACIÓN DE LA INVITACIÓN
+   Todo lo que aparece en la invitación sale de este bloque.
+   ============================================================ */
+const CONFIG = {
+
+  // ---------- Quinceañera ----------
+  nombre: "Luciana",
+  arriba: "My Quinceañera",              // texto debajo del nombre en la portada
+
+  // ---------- Fecha y hora ----------
+  // La fecha escrita, la hora y la cuenta regresiva salen solas de aquí.
+  fecha: { anio: 2027, mes: 6, dia: 12, hora: 19, minuto: 30 },   // mes: 1 = enero … 12 = diciembre · hora en formato 24 h
+
+  // ---------- Sobre (pantalla inicial) ----------
+  sobre: {
+    textoAbrir: "Tap the seal to open",
+    imagen: "recursos/sobre-cerrado.webp",  // portada del sobre (primer cuadro del video de Gemini)
+    video: "recursos/sobre-video.mp4",      // video de Gemini del sobre abriéndose (cortado en el pico de luz, 7.1 s, sin audio)
+    selloX: 50, selloY: 52.5                // dónde está el sello en la imagen (%), para el brillo que late
+  },
+
+  // ---------- Mensaje dentro del espejo ovalado ----------
+  mensaje: {
+    texto: "Today my story begins to be written in a new way. Turning fifteen is a rite of passage, a moment when I leave my childhood behind and open the door to new dreams, lessons and adventures, together with my parents:",
+    padres: "Jorge & Milena"
+  },
+
+  // ---------- ¿Cuándo y dónde? ----------
+  cuando: {
+    titulo: "When & Where",
+    texto: "Below you'll find the time and place of my party, with a button that takes you straight to Google Maps so it's easy to get there."
+  },
+
+  // ---------- Cuenta regresiva ----------
+  cuentaRegresiva: {
+    titulo: "Counting Down",
+    etiquetas: ["Days", "Hours", "Minutes", "Seconds"],
+    terminado: "The big day is here!"
+  },
+
+  // ---------- Recepción ----------
+  recepcion: {
+    titulo: "Reception",
+    lugar: "Rose Garden Ballroom",
+    direccion: "123 Palm Avenue",
+    boton: "View map",
+    enlace: "https://www.google.com/maps/search/?api=1&query=Event+hall"
+  },
+
+  // ---------- Código de vestimenta ----------
+  vestimenta: {
+    titulo: "Dress Code",
+    estilo: "Formal",
+    nota: "Dress color: black"
+  },
+
+  // ---------- Confirmación (por WhatsApp) ----------
+  confirmacion: {
+    texto: "I can't wait to share this long-awaited moment with you! Please help us by confirming your attendance.",
+    boton: "WhatsApp",
+    whatsapp: "",                           // número con código de país, sin + ni espacios (ej. 593991234567)
+    mensaje: "Hi! I'm confirming my attendance at Luciana's Quinceañera ✨"
+  },
+
+  // ---------- Lluvia de sobres ----------
+  regalos: {
+    titulo: "Envelope Shower",
+    texto: "Your presence is my greatest gift. If you wish to honor me with a gift, there will be an envelope shower that night."
+  },
+
+  // ---------- Despedida ----------
+  despedida: {
+    frase: "Life's best moments are meant to be shared",
+    cierre: "See You There!"                // se usa si no hay imagen dorada
+  },
+
+  // Pie de página: enlace a nuestros trabajos en la web (vacío marca = no aparece)
+  credito: {
+    texto: "Made with love by",
+    marca: "Elegancia de Amor",
+    boton: "See our work",
+    enlace: "https://eleganciadeamor.com/#nuestros-trabajos"
+  },
+
+  // ---------- Vista previa para el cliente (antes del pago final) ----------
+  // activa: true = marca de agua en toda la página, sin copiar/guardar imágenes,
+  // y los botones de mapa y WhatsApp avisan que se activan en la versión final.
+  // Al entregar la invitación pagada: activa: false
+  muestra: {
+    activa: false,
+    texto: "SAMPLE · ELEGANCIA DE AMOR",
+    color: "negro",          // color de la marca de agua: "negro", "blanco" o "dorado"
+    aviso: "Available in the final version ✨"
+  },
+  pausada: false,           // true = la invitación no se muestra (ej. si no se completa el pago)
+
+  // ---------- Imágenes hechas con Gemini ----------
+  // Vacío ("") = no se muestra (o se usa la versión con código).
+  imagenes: {
+    portada: "recursos/portada.webp",            // la quinceañera de espaldas frente al lago
+    nombreOro: "recursos/nombre-oro.webp",       // "Luciana" en dorado 3D
+    fondoJardin: "recursos/fondo-jardin.webp",   // detrás del espejo ovalado
+    marcoOvalado: "recursos/marco-ovalado.webp", // espejo ovalado rose gold
+    ventanaMarco: { x: 20.3, y: 20.1, w: 59.4, h: 58.8 },   // hueco del espejo (%): izquierda, arriba, ancho, alto
+    fondoLago: "recursos/fondo-lago.webp",       // fondo fijo de todas las tarjetas
+    esquina: "recursos/esquina.webp",            // filigrana dorada de las esquinas de las tarjetas
+    ramaFlores: "recursos/rama-flores.webp",     // rama de cerezo sobre las tarjetas
+    mariposa: "recursos/mariposa.webp",          // mariposas que vuelan
+    iconoCalendario: "recursos/icono-calendario.webp",
+    iconoRecepcion: "recursos/icono-recepcion.webp",
+    iconoVestimenta: "recursos/icono-vestimenta.webp",
+    iconoSobre: "recursos/icono-sobre.webp",
+    teEsperamos: "recursos/see-you-there-oro.webp" // "See You There!" en dorado 3D (dos líneas, con el tono de "Luciana")
+  },
+
+  petalos: true,            // pétalos rosados cayendo
+
+  // ---------- Música ----------
+  // Archivo mp3 dentro de "recursos". Vacío ("") = sin música y sin botón.
+  musica: "recursos/musica.mp3"     // "A Thousand Years" (Christina Perri), 4:45, con fundidos
+};
+</script>
+
+<style>
+/* ============================================================
+   ESTILOS
+   ============================================================ */
+@font-face { font-family: 'Great Vibes'; font-weight: 400; font-display: swap; src: url('recursos/fuente-great-vibes.woff2') format('woff2'); }
+@font-face { font-family: 'Cormorant'; font-weight: 500; font-display: swap; src: url('recursos/fuente-cormorant-500.woff2') format('woff2'); }
+@font-face { font-family: 'Cormorant'; font-weight: 600; font-display: swap; src: url('recursos/fuente-cormorant-600.woff2') format('woff2'); }
+
+:root {
+  --rosa-texto: #8b2d52;      /* títulos en cursiva */
+  --texto: #5c4249;           /* textos */
+  --oro: #b8873a;
+  --oro-claro: #e2c172;
+  --tarjeta: rgba(252, 247, 243, .96);
+  --script: 'Great Vibes', cursive;
+  --serif: 'Cormorant', Georgia, serif;
+  --ancho: 440px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { overflow-x: hidden; }
+body { background: #e7cbc4; color: var(--texto); font-family: var(--serif); font-weight: 600; font-variant-numeric: lining-nums; font-feature-settings: 'lnum' 1; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+body.bloqueado { overflow: hidden; height: 100vh; }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+/* Columna central (formato celular). "cqw" = 1 % del ancho de la columna */
+.invitacion { position: relative; z-index: 1; width: 100%; max-width: var(--ancho); margin: 0 auto; container-type: inline-size; overflow: hidden; box-shadow: 0 0 70px rgba(90, 30, 40, .25); }
+section { position: relative; overflow: hidden; text-align: center; }
+section > * { position: relative; z-index: 2; }
+
+/* Fondo fijo del lago (queda quieto mientras las tarjetas suben) */
+#fondo-fijo { position: fixed; top: 0; left: 50%; z-index: 0; width: min(100%, var(--ancho)); height: 100lvh; translate: -50% 0; pointer-events: none;
+  background: linear-gradient(180deg, #f4d6cf 0%, #f2c9b8 55%, #e9b9b0 100%); }
+#fondo-fijo.con-imagen { background: var(--img) 50% 50% / cover no-repeat, #f0cdc3; }
+#fondo-fijo::after { content: ""; position: absolute; inset: 0; background: rgba(255, 244, 240, .16); }
+body.esperando #fondo-fijo, body.esperando .invitacion { display: none; }   /* primero carga el sobre; el resto, después */
+
+/* Destellos que titilan */
+.destellos { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+.destellos i, .estrella {
+  position: absolute; width: var(--t, 10px); aspect-ratio: 1; opacity: 0;
+  background: radial-gradient(circle, #fff 0 16%, rgba(255, 232, 190, .95) 30%, transparent 68%);
+  clip-path: polygon(50% 0, 59% 41%, 100% 50%, 59% 59%, 50% 100%, 41% 59%, 0 50%, 41% 41%);
+  animation: titila var(--d, 3s) var(--r, 0s) ease-in-out infinite;
+}
+@keyframes titila { 0%, 100% { opacity: 0; transform: scale(.4) rotate(0deg); } 50% { opacity: 1; transform: scale(1) rotate(45deg); } }
+
+/* Mariposas (una sola imagen partida en dos alas que aletean) */
+.mariposa { position: absolute; z-index: 4; width: var(--w, 11cqw); aspect-ratio: 1; pointer-events: none; perspective: 40cqw; animation: vuela var(--d, 16s) var(--r, 0s) ease-in-out infinite; }
+.mariposa .cuerpo { position: absolute; inset: 0; transform: rotateX(48deg) rotateZ(var(--giro, -18deg)); transform-style: preserve-3d; }
+.mariposa i { position: absolute; inset: 0; background: var(--img-mariposa) center / contain no-repeat; filter: drop-shadow(0 0 4px rgba(255, 255, 255, .7)); }
+.mariposa i:first-child { clip-path: inset(0 50% 0 0); animation: ala-izq .32s ease-in-out infinite alternate; }
+.mariposa i:last-child { clip-path: inset(0 0 0 50%); animation: ala-der .32s ease-in-out infinite alternate; }
+@keyframes ala-izq { from { transform: rotateY(-8deg); } to { transform: rotateY(68deg); } }
+@keyframes ala-der { from { transform: rotateY(8deg); } to { transform: rotateY(-68deg); } }
+@keyframes vuela {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(var(--x1, 12cqw), var(--y1, -10cqw)) rotate(8deg); }
+  50% { transform: translate(var(--x2, 26cqw), var(--y2, 4cqw)) rotate(-6deg); }
+  75% { transform: translate(var(--x3, 10cqw), var(--y3, 12cqw)) rotate(5deg); }
+}
+
+/* Textos */
+.titulo-script { font: 400 var(--tam, 12.5cqw)/1.15 var(--script); color: var(--rosa-texto); padding: 0 .1em; }
+.parrafo { font: 600 4.7cqw/1.5 var(--serif); font-variant-numeric: lining-nums; font-feature-settings: 'lnum' 1; color: var(--texto); }
+
+/* Aparecer al bajar */
+.revela { opacity: 0; transform: translateY(8cqw); transition: opacity .9s ease, transform .9s ease; }
+.revela.visible { opacity: 1; transform: none; }
+
+/* ------------------------------------------------------------
+   1. SOBRE (pantalla inicial)
+   ------------------------------------------------------------ */
+#sobre { position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; overflow: hidden; cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent;
+  background: #f3d3c8; transition: opacity 1s ease; }
+#sobre.sale { opacity: 0; pointer-events: none; }
+#sobre .sobre-fondo { position: absolute; inset: -40px; background: center / cover no-repeat; filter: blur(22px); opacity: .85; }
+#sobre .sobre-caja { position: relative; width: min(100vw, 100svh * 9 / 16); aspect-ratio: 9 / 16; overflow: hidden; }
+#sobre .sobre-caja video { width: 100%; height: 100%; display: block; object-fit: cover; background: center / cover no-repeat; }
+#sobre .sello { position: absolute; z-index: 2; width: 13%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; pointer-events: none; transition: opacity .5s ease; }
+#sobre .sello::before, #sobre .sello::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid rgba(255, 236, 200, .95); box-shadow: 0 0 16px rgba(255, 220, 170, .9); animation: sello-onda 2.2s ease-out infinite; }
+#sobre .sello::after { animation-delay: 1.1s; }
+@keyframes sello-onda { 0% { transform: scale(.85); opacity: 0; } 20% { opacity: 1; } 100% { transform: scale(1.6); opacity: 0; } }
+#sobre .toca { position: absolute; left: 50%; bottom: 7%; transform: translateX(-50%); z-index: 3; padding: .6em 1.5em; border-radius: 99px; white-space: nowrap; background: rgba(255, 248, 243, .93); box-shadow: 0 4px 16px rgba(110, 40, 50, .25);
+  font: 600 clamp(12px, 3.5vw, 15px) var(--serif); letter-spacing: .16em; text-transform: uppercase; color: var(--rosa-texto); animation: toca-pulso 2.2s 1s ease-in-out infinite; transition: opacity .4s ease; }
+@keyframes toca-pulso { 0%, 100% { opacity: 1; } 50% { opacity: .55; } }
+#sobre.abierto .sello { opacity: 0; }
+#sobre.abierto .toca { animation: none; opacity: 0; }
+/* Sin video: al tocar, la imagen se acerca al sello y se llena de luz dorada */
+#sobre .destello-oro { position: absolute; inset: 0; pointer-events: none; opacity: 0; background: radial-gradient(circle at var(--sx) var(--sy), rgba(255, 246, 225, .98) 0, rgba(255, 226, 170, .75) 16%, rgba(255, 210, 160, .25) 40%, transparent 62%); transition: opacity 1.1s ease .35s; }
+#sobre.sin-video .sobre-caja video { transform-origin: var(--sx) var(--sy); transition: transform 1.7s cubic-bezier(.5, 0, .3, 1); }
+#sobre.sin-video.abierto .sobre-caja video { transform: scale(1.25); }
+#sobre.sin-video.abierto .destello-oro { opacity: 1; }
+
+/* ------------------------------------------------------------
+   2. PORTADA
+   ------------------------------------------------------------ */
+#portada { min-height: 100svh; aspect-ratio: 720 / 1290; background: linear-gradient(#f3cfc6, #e3aab0); }
+#portada .portada-img { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; transform: scale(1.08); }
+#portada.visible .portada-img { animation: acerca 9s ease-out forwards; }
+@keyframes acerca { to { transform: scale(1); } }
+#portada .velo { position: absolute; inset: 0 0 auto; z-index: 1; height: 50cqw; background: linear-gradient(rgba(255, 244, 238, .45), transparent); }
+#portada .encabezado { position: absolute; left: 0; right: 0; top: 9cqw; z-index: 3; }
+#portada .nombre { width: 84cqw; min-height: 20cqw; margin: 0 auto; display: flex; justify-content: center; align-items: center; opacity: 0; transform: scale(.9); }
+.nombre img { width: 100%; height: auto; filter: drop-shadow(0 2px 3px rgba(120, 60, 30, .35)); }
+.nombre .script-oro { font: 400 21cqw/1.2 var(--script); background: linear-gradient(180deg, #fff1c4 0%, #ecc86e 30%, #bd8b32 55%, #f4d98f 78%, #b7852e 100%); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 1px 0 rgba(110, 60, 10, .45)); padding: 0 .12em; }
+#portada .arriba { margin-top: 1.5cqw; font: 600 5.6cqw/1 var(--serif); letter-spacing: .2em; padding-left: .2em; text-transform: uppercase; color: var(--rosa-texto); text-shadow: 0 0 10px rgba(255, 245, 240, .9), 0 0 2px rgba(255, 245, 240, .9); opacity: 0; transform: translateY(3cqw); }
+#portada.visible .nombre { animation: nombre 1.3s .3s cubic-bezier(.2, .8, .3, 1) forwards; }
+#portada.visible .arriba { animation: sube .9s 1.1s ease-out forwards; }
+@keyframes nombre { to { opacity: 1; transform: none; } }
+@keyframes sube { to { opacity: 1; transform: none; } }
+.nombre { position: relative; }
+.estrella { z-index: 3; }
+
+/* ------------------------------------------------------------
+   3. MENSAJE EN EL ESPEJO OVALADO
+   ------------------------------------------------------------ */
+#mensaje { z-index: 3; margin-top: -34cqw; padding-bottom: 26cqw; overflow: visible; }
+#mensaje .fondo-jardin { position: absolute; inset: 0; z-index: 0; background: var(--img, linear-gradient(#f4d6cf, #e8bdb3)) 50% 0 / cover no-repeat;
+  -webkit-mask-image: linear-gradient(transparent 0, #000 38cqw, #000 calc(100% - 34cqw), transparent);
+          mask-image: linear-gradient(transparent 0, #000 38cqw, #000 calc(100% - 34cqw), transparent); }
+.oval { position: relative; z-index: 2; width: 106cqw; margin-left: -3cqw; }
+.oval .relleno { position: absolute; z-index: 1; border-radius: 50%; background: radial-gradient(ellipse at 50% 45%, rgba(255, 252, 249, .97) 55%, rgba(250, 236, 230, .96) 100%); box-shadow: inset 0 0 5cqw rgba(214, 150, 140, .35); }
+.oval .marco-img { position: relative; z-index: 2; width: 100%; height: auto; filter: drop-shadow(0 10px 16px rgba(90, 30, 40, .3)); }
+.oval .texto { position: absolute; z-index: 3; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 3cqw 5.6cqw; }
+.oval .texto p { font: 600 4.1cqw/1.4 var(--serif); font-variant-numeric: lining-nums; font-feature-settings: 'lnum' 1; color: var(--texto); }
+.oval .texto .padres { margin-top: 2.6cqw; font: 400 9cqw/1.1 var(--script); color: var(--rosa-texto); }
+/* Sin imagen del marco: borde ovalado dorado con código */
+.oval.sin-marco { width: 86cqw; margin: 0 auto; aspect-ratio: 3 / 4.2; }
+.oval.sin-marco .relleno { inset: 0; border: 2.4cqw solid #d9a596; box-shadow: 0 0 0 1cqw #f3d2c4, 0 10px 24px rgba(90, 30, 40, .25); }
+.oval.sin-marco .texto { inset: 8% 10%; }
+
+/* ------------------------------------------------------------
+   TARJETAS
+   ------------------------------------------------------------ */
+.bloque { padding: 14cqw 0 0; }
+.tarjeta { position: relative; width: 86cqw; margin: 0 auto; padding: 13cqw 7cqw 14cqw; border-radius: 5cqw; background: var(--tarjeta); box-shadow: 0 12px 34px rgba(110, 40, 50, .18); }
+.tarjeta::before, .tarjeta::after { content: ""; position: absolute; z-index: 0; width: 34cqw; aspect-ratio: 420 / 324; background: var(--img-esquina) center / contain no-repeat; pointer-events: none; }
+.tarjeta::after { right: 3cqw; bottom: 3cqw; }
+.tarjeta::before { left: 3cqw; top: 3cqw; transform: rotate(180deg); }
+.tarjeta > * { position: relative; z-index: 1; }
+.tarjeta .rama { position: absolute; z-index: 3; width: 44cqw; height: auto; left: -9cqw; top: -11cqw; pointer-events: none; }
+.tarjeta .rama.der { left: auto; right: -9cqw; transform: scaleX(-1); }
+.tarjeta .icono { height: auto; margin: 0 auto; filter: drop-shadow(0 4px 6px rgba(120, 70, 20, .2)); }
+.tarjeta .titulo-script { --tam: 10.6cqw; white-space: nowrap; }
+.tarjeta .titulo-script + .parrafo { margin-top: 3cqw; }
+
+/* ¿Cuándo y dónde? */
+#cuando .icono { width: 30cqw; margin-top: 6cqw; }
+#cuando .fecha { margin-top: 4cqw; font: 400 10.5cqw/1.12 var(--script); color: var(--rosa-texto); }
+
+/* Cuenta regresiva */
+#cuenta { padding-top: 16cqw; }
+#cuenta .titulo-script { text-shadow: 0 0 14px rgba(255, 248, 244, .95), 0 0 4px rgba(255, 248, 244, .9); }
+.contador { display: flex; justify-content: center; align-items: flex-start; gap: 1cqw; width: 88cqw; margin: 3cqw auto 0; padding: 4.4cqw 3cqw 3.6cqw; border-radius: 3.5cqw; background: rgba(255, 250, 247, .78); box-shadow: 0 10px 26px rgba(110, 40, 50, .16), inset 0 0 0 1px rgba(255, 255, 255, .8); }
+.contador > div { flex: 1; }
+.contador b { display: block; font: 600 11cqw/1 var(--serif); font-variant-numeric: lining-nums tabular-nums; font-feature-settings: 'lnum' 1, 'tnum' 1; color: #6f4655; }
+.contador span { display: block; margin-top: 1.6cqw; font: 600 2.5cqw/1 var(--serif); letter-spacing: .12em; text-transform: uppercase; color: var(--oro); }
+.contador i { font: 600 9cqw/1.05 var(--serif); font-style: normal; color: #c49aa6; }
+.contador .terminado { padding: 2cqw 4cqw; font: 400 10cqw/1 var(--script); color: var(--rosa-texto); }
+
+/* Recepción */
+#recepcion .icono { width: 58cqw; margin-bottom: 3cqw; }
+#recepcion .lugar { margin-top: 3cqw; font: 600 5.4cqw/1.35 var(--serif); color: var(--texto); }
+#recepcion .lugar small { display: block; font: 500 4.6cqw/1.35 var(--serif); }
+#recepcion .hora { margin-top: 2cqw; font: 600 5.4cqw/1 var(--serif); font-variant-numeric: lining-nums; font-feature-settings: 'lnum' 1; color: var(--texto); }
+.boton-linea { display: inline-block; margin-top: 6cqw; padding: 2.8cqw 9cqw; border: 1.5px solid #5c4249; border-radius: 2cqw; font: 600 4cqw/1 var(--serif); letter-spacing: .1em; text-transform: uppercase; text-decoration: underline; text-underline-offset: 3px; color: #4b343a; transition: transform .2s ease, background .2s; }
+.boton-linea:active { transform: scale(.96); background: rgba(184, 135, 58, .1); }
+
+/* Código de vestimenta */
+#vestimenta .estilo { margin-top: 3cqw; font: 600 5.4cqw/1.35 var(--serif); color: var(--texto); }
+#vestimenta .icono { width: 50cqw; margin-top: 6cqw; }
+
+/* Confirmación */
+#confirmacion { padding: 18cqw 0 4cqw; }
+.bruma { width: 92cqw; margin: 0 auto; padding: 12cqw 9cqw; background: radial-gradient(ellipse 60% 55% at 50% 50%, rgba(255, 250, 246, .88) 0%, rgba(255, 250, 246, .62) 55%, rgba(255, 250, 246, 0) 100%); }
+#confirmacion .parrafo { font-size: 5.6cqw; color: #61404b; }
+.boton-oro { display: inline-flex; align-items: center; gap: 2.4cqw; margin-top: 7cqw; padding: 4.2cqw 12cqw; border-radius: 99px; background: linear-gradient(180deg, #fbe7a6 0%, #e8c068 38%, #c9952f 70%, #e9c46c 100%); color: #6b2c3e; font: 600 4.4cqw/1 var(--serif); letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; box-shadow: 0 6px 18px rgba(120, 70, 20, .35), inset 0 2px 0 rgba(255, 255, 255, .65), inset 0 -2px 3px rgba(130, 80, 10, .35); transition: transform .2s ease; }
+.boton-oro:active { transform: scale(.96); }
+.boton-oro svg { width: 5.4cqw; height: 5.4cqw; fill: currentColor; }
+
+/* Lluvia de sobres */
+#regalos .icono { width: 30cqw; margin-bottom: 4cqw; }
+
+/* Despedida */
+#despedida { padding: 18cqw 0 12cqw; }
+#despedida .frase { width: 80cqw; margin: 0 auto; font: 600 5.6cqw/1.45 var(--serif); color: var(--rosa-texto); text-shadow: 0 0 12px rgba(255, 248, 244, .95), 0 0 3px rgba(255, 248, 244, .9); }
+#despedida .te-esperamos { width: 74cqw; height: auto; margin: 8cqw auto 0; filter: drop-shadow(0 0 4px rgba(255, 246, 238, .9)) drop-shadow(0 3px 4px rgba(110, 50, 20, .35)); }
+#despedida .te-esperamos-texto { margin-top: 6cqw; font: 400 18cqw/1.05 var(--script); color: var(--oro); text-shadow: 0 2px 0 rgba(120, 70, 20, .3); }
+.credito { display: block; width: fit-content; margin: 20cqw auto 0; padding: 3.4cqw 7cqw 3.6cqw; border-radius: 4cqw; background: rgba(255, 249, 245, .82); box-shadow: 0 6px 18px rgba(110, 40, 50, .14); font: 600 3cqw/1.6 var(--serif); letter-spacing: .24em; text-transform: uppercase; color: rgba(139, 45, 82, .7); transition: background .3s; }
+.credito:active { background: rgba(255, 249, 245, .95); }
+.credito b { display: block; font: 400 8cqw/1.15 var(--script); letter-spacing: 0; text-transform: none; color: var(--oro); }
+.credito em { display: inline-block; margin-top: 1.6cqw; padding: 1.2cqw 3.6cqw; border: 1px solid rgba(184, 135, 58, .55); border-radius: 99px; font: 600 2.9cqw/1 var(--serif); font-style: normal; letter-spacing: .16em; color: var(--rosa-texto); }
+
+/* ------------------------------------------------------------
+   VISTA PREVIA (modo muestra): marca de agua y protección
+   ------------------------------------------------------------ */
+#marca-agua { position: fixed; inset: 0; z-index: 101; pointer-events: none; background: var(--marca) 0 0 / 260px 200px repeat; }
+body.muestra { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+body.muestra img, body.muestra video { pointer-events: none; -webkit-user-drag: none; }
+#aviso { position: fixed; left: 50%; bottom: 88px; z-index: 103; translate: -50% 0; padding: 10px 18px; border-radius: 99px; background: rgba(110, 36, 64, .92); color: #fff4ec; font: 600 15px/1.2 var(--serif); letter-spacing: .04em; white-space: nowrap; box-shadow: 0 6px 18px rgba(0, 0, 0, .3); opacity: 0; transform: translateY(10px); transition: opacity .3s, transform .3s; pointer-events: none; }
+#aviso.ver { opacity: 1; transform: none; }
+@media print { body.muestra > * { display: none !important; } }
+.pausa { min-height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 30px; text-align: center; background: radial-gradient(ellipse at 50% 40%, #fbe9e3, #e6bfb6); color: var(--texto); font: 600 20px/1.5 var(--serif); }
+.pausa b { font: 400 54px/1 var(--script); color: var(--rosa-texto); }
+
+/* ------------------------------------------------------------
+   PÉTALOS
+   ------------------------------------------------------------ */
+#petalos { position: fixed; inset: 0; z-index: 90; pointer-events: none; overflow: hidden; }
+#petalos i { position: absolute; top: -8vh; left: var(--x); width: var(--t); height: calc(var(--t) * 1.2); border-radius: 70% 0 70% 0; opacity: .8;
+  background: radial-gradient(circle at 30% 30%, #ffe3ea, #f4a9bd 55%, #e284a0); animation: cae var(--d) linear var(--r) infinite; will-change: transform; }
+@keyframes cae { 0% { transform: translate3d(0, 0, 0) rotate(0deg); } 50% { transform: translate3d(var(--dx), 58vh, 0) rotate(260deg); } 100% { transform: translate3d(0, 118vh, 0) rotate(520deg); } }
+body.esperando #petalos { display: none; }
+
+/* ------------------------------------------------------------
+   BOTÓN DE MÚSICA (flotante)
+   ------------------------------------------------------------ */
+#musica-boton { position: fixed; right: 18px; bottom: 18px; width: 54px; height: 54px; border-radius: 50%; background: linear-gradient(145deg, #f3d58c, #c4923a); box-shadow: 0 4px 12px rgba(90, 30, 40, .35); cursor: pointer; z-index: 102; display: none; justify-content: center; align-items: center; }
+#musica-boton.visible { display: flex; animation: aparece .6s ease-out both; }
+@keyframes aparece { from { opacity: 0; } to { opacity: 1; } }
+#musica-boton:active { transform: scale(.92); }
+#musica-boton::before { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 2px solid rgba(226, 193, 114, .8); animation: onda-musica 2s ease-out infinite; }
+#musica-boton.pausado::before { animation: none; opacity: 0; }
+@keyframes onda-musica { from { transform: scale(1); opacity: .9; } to { transform: scale(1.5); opacity: 0; } }
+#musica-boton svg { width: 24px; height: 24px; fill: #7a2a47; }
+#musica-boton .icono-play { display: none; }
+#musica-boton.pausado .icono-play { display: block; }
+#musica-boton.pausado .icono-pausa { display: none; }
+
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01s !important; animation-iteration-count: 1 !important; transition-duration: .01s !important; } #petalos { display: none; } }
+</style>
+</head>
+
+<body class="bloqueado esperando">
+
+<!-- ============================================================
+     1. SOBRE (se llena desde el CONFIG)
+     ============================================================ -->
+<div id="sobre"></div>
+
+<!-- Fondo fijo del lago -->
+<div id="fondo-fijo" aria-hidden="true"></div>
+
+<div class="invitacion">
+
+  <!-- ============================================================
+       2. PORTADA
+       ============================================================ -->
+  <section id="portada">
+    <img class="portada-img" data-img="portada" alt="" loading="lazy" decoding="async" width="720" height="1290">
+    <div class="velo"></div>
+    <div class="destellos"></div>
+    <div class="encabezado">
+      <div class="nombre" data-nombre></div>
+      <p class="arriba" id="arriba"></p>
+    </div>
+    <div class="mariposa" style="--w:11cqw;left:8cqw;top:62cqw;--d:15s;--x1:14cqw;--y1:-12cqw;--x2:30cqw;--y2:-2cqw;--x3:12cqw;--y3:10cqw"><div class="cuerpo"><i></i><i></i></div></div>
+    <div class="mariposa" style="--w:8cqw;right:10cqw;top:96cqw;--d:18s;--r:-6s;--giro:20deg;--x1:-12cqw;--y1:-8cqw;--x2:-22cqw;--y2:6cqw;--x3:-8cqw;--y3:12cqw"><div class="cuerpo"><i></i><i></i></div></div>
+  </section>
+
+  <!-- ============================================================
+       3. MENSAJE EN EL ESPEJO OVALADO
+       ============================================================ -->
+  <section id="mensaje">
+    <div class="fondo-jardin" id="fondo-jardin"></div>
+    <div class="destellos"></div>
+    <figure class="oval" id="oval">
+      <div class="relleno"></div>
+      <img class="marco-img" data-img="marcoOvalado" alt="" loading="lazy" decoding="async" width="820" height="1222">
+      <div class="texto revela">
+        <p id="mensaje-texto"></p>
+        <p class="padres" id="mensaje-padres"></p>
+      </div>
+    </figure>
+  </section>
+
+  <!-- ============================================================
+       4. ¿CUÁNDO Y DÓNDE?
+       ============================================================ -->
+  <section class="bloque" id="cuando">
+    <div class="tarjeta revela">
+      <img class="rama" data-img="ramaFlores" alt="" loading="lazy">
+      <h2 class="titulo-script" id="cuando-titulo"></h2>
+      <p class="parrafo" id="cuando-texto"></p>
+      <img class="icono" data-img="iconoCalendario" alt="" loading="lazy" width="400" height="400">
+      <p class="fecha" id="fecha-texto"></p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       5. CUENTA REGRESIVA
+       ============================================================ -->
+  <section class="bloque" id="cuenta">
+    <div class="destellos"></div>
+    <div class="mariposa" style="--w:9cqw;left:6cqw;top:6cqw;--d:17s;--x1:16cqw;--y1:4cqw;--x2:30cqw;--y2:-4cqw;--x3:14cqw;--y3:-8cqw"><div class="cuerpo"><i></i><i></i></div></div>
+    <h2 class="titulo-script revela" id="cuenta-titulo"></h2>
+    <div class="contador revela" id="contador">
+      <div><b id="dias">0</b><span></span></div><i>:</i>
+      <div><b id="horas">00</b><span></span></div><i>:</i>
+      <div><b id="minutos">00</b><span></span></div><i>:</i>
+      <div><b id="segundos">00</b><span></span></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       6. RECEPCIÓN
+       ============================================================ -->
+  <section class="bloque" id="recepcion">
+    <div class="tarjeta revela">
+      <img class="icono" data-img="iconoRecepcion" alt="" loading="lazy" width="560" height="304">
+      <h2 class="titulo-script" id="recepcion-titulo"></h2>
+      <p class="lugar"><span id="recepcion-lugar"></span><small id="recepcion-direccion"></small></p>
+      <p class="hora" id="hora-texto"></p>
+      <a class="boton-linea" id="mapa-boton" target="_blank" rel="noopener"></a>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       7. CÓDIGO DE VESTIMENTA
+       ============================================================ -->
+  <section class="bloque" id="vestimenta">
+    <div class="tarjeta revela">
+      <h2 class="titulo-script" id="vestimenta-titulo" style="--tam:9.4cqw"></h2>
+      <p class="estilo"><span id="vestimenta-estilo"></span><br><span id="vestimenta-nota"></span></p>
+      <img class="icono" data-img="iconoVestimenta" alt="" loading="lazy" width="440" height="440">
+    </div>
+  </section>
+
+  <!-- ============================================================
+       8. CONFIRMACIÓN
+       ============================================================ -->
+  <section id="confirmacion">
+    <div class="destellos"></div>
+    <div class="bruma revela">
+      <p class="parrafo" id="confirmacion-texto"></p>
+      <a class="boton-oro" id="confirmacion-boton" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-3.4-.9-2.8-1.2-4.6-4.1-4.7-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.3.1.2.1.7-.1 1.3z"/></svg><span></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       9. LLUVIA DE SOBRES
+       ============================================================ -->
+  <section class="bloque" id="regalos">
+    <div class="tarjeta revela">
+      <img class="rama der" data-img="ramaFlores" alt="" loading="lazy">
+      <img class="icono" data-img="iconoSobre" alt="" loading="lazy" width="380" height="380">
+      <h2 class="titulo-script" id="regalos-titulo"></h2>
+      <p class="parrafo" id="regalos-texto"></p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       10. DESPEDIDA
+       ============================================================ -->
+  <section id="despedida">
+    <div class="destellos"></div>
+    <div class="mariposa" style="--w:10cqw;right:8cqw;top:10cqw;--d:16s;--r:-4s;--giro:16deg;--x1:-14cqw;--y1:8cqw;--x2:-26cqw;--y2:-2cqw;--x3:-10cqw;--y3:-10cqw"><div class="cuerpo"><i></i><i></i></div></div>
+    <p class="frase revela" id="despedida-frase"></p>
+    <div class="revela" id="te-esperamos"></div>
+    <a class="credito" id="credito" target="_blank" rel="noopener"></a>
+  </section>
+
+</div>
+
+<div id="petalos" aria-hidden="true"></div>
+
+<audio id="musica" loop preload="metadata"></audio>
+<div id="musica-boton" class="pausado" title="Music" aria-label="Music" role="button">
+  <svg class="icono-pausa" viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+  <svg class="icono-play" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+</div>
+
+<script>
+/* ============================================================
+   FUNCIONAMIENTO (no hace falta tocar nada de aquí abajo)
+   ============================================================ */
+(function () {
+  const $ = (id) => document.getElementById(id);
+  // Invitación en pausa: solo se ve un aviso
+  if (CONFIG.pausada) {
+    document.body.className = '';
+    document.body.innerHTML = '<div class="pausa"><b></b><p>This invitation is not available at the moment.</p></div>';
+    document.querySelector('.pausa b').textContent = CONFIG.nombre;
+    return;
+  }
+  const $$ = (sel, raiz) => [...(raiz || document).querySelectorAll(sel)];
+  const IM = CONFIG.imagenes || {};
+  const texto = (id, t) => { const el = $(id); if (el) el.textContent = t || ''; };
+  const url = (ruta) => 'url("' + ruta + '")';
+
+  /* ---------- Fecha escrita ---------- */
+  const fe = CONFIG.fecha;
+  const fechaEvento = new Date(fe.anio, fe.mes - 1, fe.dia, fe.hora, fe.minuto, 0);
+  const DIAS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const MESES = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  const dos = (n) => String(n).padStart(2, '0');
+  const horaTexto = ((fe.hora % 12) || 12) + ':' + dos(fe.minuto) + (fe.hora < 12 ? ' AM' : ' PM');
+
+  /* ---------- Textos ---------- */
+  document.title = CONFIG.arriba + ' · ' + CONFIG.nombre;
+  texto('arriba', CONFIG.arriba);
+  texto('mensaje-texto', CONFIG.mensaje.texto);
+  texto('mensaje-padres', CONFIG.mensaje.padres);
+  texto('cuando-titulo', CONFIG.cuando.titulo);
+  texto('cuando-texto', CONFIG.cuando.texto);
+  const fechaEl = $('fecha-texto');
+  [DIAS[fechaEvento.getDay()], MESES[fe.mes - 1] + ' ' + fe.dia, String(fe.anio)].forEach((t, i) => {
+    if (i) fechaEl.appendChild(document.createElement('br'));
+    fechaEl.appendChild(document.createTextNode(t));
+  });
+  const cr = CONFIG.cuentaRegresiva;
+  texto('cuenta-titulo', cr.titulo);
+  $$('#contador span').forEach((s, i) => s.textContent = cr.etiquetas[i]);
+  const re = CONFIG.recepcion;
+  texto('recepcion-titulo', re.titulo);
+  texto('recepcion-lugar', re.lugar);
+  texto('recepcion-direccion', re.direccion);
+  texto('hora-texto', horaTexto);
+  $('mapa-boton').href = re.enlace;
+  texto('mapa-boton', re.boton);
+  const ve = CONFIG.vestimenta;
+  texto('vestimenta-titulo', ve.titulo);
+  texto('vestimenta-estilo', ve.estilo);
+  texto('vestimenta-nota', ve.nota);
+  const co = CONFIG.confirmacion;
+  texto('confirmacion-texto', co.texto);
+  $('confirmacion-boton').href = co.whatsapp ? 'https://wa.me/' + co.whatsapp + '?text=' + encodeURIComponent(co.mensaje) : '#';
+  $('confirmacion-boton').querySelector('span').textContent = co.boton;
+  texto('regalos-titulo', CONFIG.regalos.titulo);
+  texto('regalos-texto', CONFIG.regalos.texto);
+  texto('despedida-frase', CONFIG.despedida.frase);
+  const cd = CONFIG.credito || {};
+  if (cd.marca) {
+    $('credito').href = cd.enlace || '#';
+    $('credito').innerHTML = '<span></span><b></b><em></em>';
+    $('credito').children[0].textContent = cd.texto; $('credito').children[1].textContent = cd.marca; $('credito').children[2].textContent = cd.boton + ' ›';
+  } else $('credito').remove();
+
+  /* ---------- Nombre (imagen dorada de IA o letras doradas) ---------- */
+  $$('[data-nombre]').forEach(caja => {
+    const conTexto = () => { caja.innerHTML = '<span class="script-oro"></span>'; caja.firstChild.textContent = CONFIG.nombre; };
+    if (IM.nombreOro) {
+      const img = new Image(); img.loading = 'lazy'; img.decoding = 'async'; img.src = IM.nombreOro; img.alt = CONFIG.nombre;
+      img.onerror = conTexto; caja.appendChild(img);
+    } else conTexto();
+    [[10, 22, 0], [62, 4, .9], [90, 60, 1.7], [34, 80, 2.3]].forEach(([x, y, r]) => {
+      const e = document.createElement('i'); e.className = 'estrella';
+      e.style.cssText = 'left:' + x + '%;top:' + y + '%;--t:14px;--d:2.6s;--r:' + (2 + r) + 's';
+      caja.appendChild(e);
+    });
+  });
+
+  /* ---------- "Te Esperamos" (imagen dorada o letras) ---------- */
+  const teCaja = $('te-esperamos');
+  const teTexto = () => { teCaja.innerHTML = '<p class="te-esperamos-texto"></p>'; teCaja.firstChild.textContent = CONFIG.despedida.cierre; };
+  if (IM.teEsperamos) {
+    const img = new Image(); img.loading = 'lazy'; img.decoding = 'async'; img.src = IM.teEsperamos; img.alt = CONFIG.despedida.cierre; img.className = 'te-esperamos';
+    img.onerror = teTexto; teCaja.appendChild(img);
+  } else teTexto();
+
+  /* ---------- Imágenes de IA: si no están, se quitan ---------- */
+  $$('img[data-img]').forEach(img => {
+    const ruta = IM[img.dataset.img];
+    if (ruta) { img.src = ruta; img.onerror = () => img.remove(); } else img.remove();
+  });
+  const raiz = document.querySelector('.invitacion');
+  if (IM.esquina) raiz.style.setProperty('--img-esquina', url(IM.esquina));
+  if (IM.mariposa) raiz.style.setProperty('--img-mariposa', url(IM.mariposa)); else $$('.mariposa').forEach(m => m.remove());
+  if (IM.fondoLago) { $('fondo-fijo').classList.add('con-imagen'); $('fondo-fijo').style.setProperty('--img', url(IM.fondoLago)); }
+  if (IM.fondoJardin) $('fondo-jardin').style.setProperty('--img', url(IM.fondoJardin));
+  // Espejo ovalado: el relleno y el texto van justo en el hueco del marco
+  const oval = $('oval'), vm = IM.ventanaMarco || {};
+  const ubicar = (el, extra) => { el.style.left = (vm.x - extra) + '%'; el.style.top = (vm.y - extra) + '%'; el.style.width = (vm.w + 2 * extra) + '%'; el.style.height = (vm.h + 2 * extra) + '%'; };
+  if (IM.marcoOvalado && vm.w) { ubicar(oval.querySelector('.relleno'), .6); ubicar(oval.querySelector('.texto'), 0); }
+  else oval.classList.add('sin-marco');
+  const marcoImg = oval.querySelector('.marco-img');
+  if (marcoImg) marcoImg.addEventListener('error', () => { oval.classList.add('sin-marco'); $$('.relleno, .texto', oval).forEach(el => el.removeAttribute('style')); });
+
+  /* ---------- Destellos ---------- */
+  $$('.destellos').forEach(capa => {
+    for (let i = 0; i < 8; i++) {
+      const d = document.createElement('i');
+      d.style.cssText = 'left:' + (Math.random() * 94) + '%;top:' + (4 + Math.random() * 90) + '%;--t:' + (7 + Math.random() * 11).toFixed(0) + 'px;--d:' + (2.4 + Math.random() * 3).toFixed(1) + 's;--r:' + (Math.random() * 4).toFixed(1) + 's';
+      capa.appendChild(d);
+    }
+  });
+
+  /* ---------- Pétalos ---------- */
+  if (CONFIG.petalos) {
+    const capa = $('petalos');
+    for (let i = 0; i < 8; i++) {
+      const p = document.createElement('i');
+      p.style.cssText = '--x:' + (Math.random() * 100).toFixed(1) + '%;--t:' + (9 + Math.random() * 8).toFixed(0) + 'px;--d:' + (10 + Math.random() * 8).toFixed(1) + 's;--r:' + (-Math.random() * 16).toFixed(1) + 's;--dx:' + ((Math.random() - .5) * 120).toFixed(0) + 'px';
+      capa.appendChild(p);
+    }
+  }
+
+  /* ---------- Animaciones al aparecer en pantalla ---------- */
+  const observador = new IntersectionObserver((entradas) => {
+    entradas.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observador.unobserve(e.target); } });
+  }, { threshold: .15 });
+  function observar() { $$('.revela').forEach(el => observador.observe(el)); }
+
+  /* ---------- Cuenta regresiva ---------- */
+  function actualizarCuenta() {
+    const resta = fechaEvento - new Date();
+    if (resta <= 0) { $('contador').innerHTML = '<div class="terminado"></div>'; $('contador').firstChild.textContent = cr.terminado; clearInterval(reloj); return; }
+    $('dias').textContent = String(Math.floor(resta / 86400000));
+    $('horas').textContent = dos(Math.floor(resta % 86400000 / 3600000));
+    $('minutos').textContent = dos(Math.floor(resta % 3600000 / 60000));
+    $('segundos').textContent = dos(Math.floor(resta % 60000 / 1000));
+  }
+  const reloj = setInterval(actualizarCuenta, 1000); actualizarCuenta();
+
+  /* ---------- Aviso flotante (modo muestra o WhatsApp sin número) ---------- */
+  const MU = CONFIG.muestra || {};
+  const aviso = document.createElement('div'); aviso.id = 'aviso'; aviso.textContent = MU.aviso || ''; document.body.appendChild(aviso);
+  let tAviso;
+  const mostrarAviso = (e) => { e.preventDefault(); aviso.classList.add('ver'); clearTimeout(tAviso); tAviso = setTimeout(() => aviso.classList.remove('ver'), 2200); };
+  if (!co.whatsapp) $('confirmacion-boton').addEventListener('click', mostrarAviso);
+
+  /* ---------- Vista previa para el cliente: marca de agua y protección ---------- */
+  if (MU.activa) {
+    document.body.classList.add('muestra');
+    const t = (MU.texto || 'MUESTRA').replace(/&/g, '&amp;').replace(/</g, '&lt;');
+    const tinta = { negro: ["rgba(15,8,8,.45)", "rgba(255,255,255,.3)"], blanco: ["rgba(255,255,255,.5)", "rgba(0,0,0,.2)"] }[MU.color] || ["rgba(184,135,58,.42)", "rgba(255,255,255,.25)"];
+    const fila = (x, y) => "<text x='" + x + "' y='" + y + "' text-anchor='middle' font-family='Georgia,serif' font-size='14' font-weight='700' letter-spacing='2.5' fill='" + tinta[0] + "' stroke='" + tinta[1] + "' stroke-width='.5'>" + t + "</text>";
+    const svg = "<svg xmlns='http://www.w3.org/2000/svg' width='260' height='200'><g transform='rotate(-28 130 100)'>" + fila(130, 70) + fila(0, 160) + fila(260, 160) + "</g></svg>";
+    const capa = document.createElement('div'); capa.id = 'marca-agua'; capa.setAttribute('aria-hidden', 'true');
+    capa.style.setProperty('--marca', 'url("data:image/svg+xml,' + encodeURIComponent(svg) + '")');
+    document.body.appendChild(capa);
+    // sin menú de clic derecho, sin arrastrar ni seleccionar, sin atajos de guardar/copiar/imprimir/ver código
+    ['contextmenu', 'dragstart', 'selectstart', 'copy', 'cut'].forEach(ev => document.addEventListener(ev, e => e.preventDefault()));
+    document.addEventListener('keydown', e => {
+      const k = (e.key || '').toLowerCase(), mod = e.ctrlKey || e.metaKey;
+      if (e.key === 'F12' || (mod && ['s', 'u', 'p', 'c', 'a'].includes(k)) || (mod && e.shiftKey && ['i', 'j', 'c'].includes(k))) e.preventDefault();
+    });
+    // mapa y WhatsApp: avisan que se activan en la versión final
+    ['mapa-boton', 'confirmacion-boton'].forEach(id => $(id).addEventListener('click', mostrarAviso));
+  }
+
+  /* ---------- Música ---------- */
+  const sobre = $('sobre'), musica = $('musica'), musicaBoton = $('musica-boton');
+  if (CONFIG.musica) musica.src = CONFIG.musica;
+  function reproducirMusica() {
+    if (!CONFIG.musica) return;
+    const intento = musica.play();
+    if (intento && intento.then) intento.then(() => musicaBoton.classList.remove('pausado')).catch(() => musicaBoton.classList.add('pausado'));
+  }
+  document.addEventListener('touchend', () => { if (termino && musica.paused && !musica.dataset.pausadoPorUsuario) reproducirMusica(); }, { passive: true });
+  musicaBoton.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (musica.paused) { delete musica.dataset.pausadoPorUsuario; reproducirMusica(); }
+    else { musica.pause(); musica.dataset.pausadoPorUsuario = '1'; musicaBoton.classList.add('pausado'); }
+  });
+
+  /* ---------- Sobre: tocar → se abre → portada ---------- */
+  let empezo = false, termino = false, video = null;
+  function terminarSobre() {
+    if (termino) return; termino = true;
+    soltar();
+    document.body.classList.remove('bloqueado');
+    $('portada').classList.add('visible');
+    sobre.classList.add('sale');
+    setTimeout(() => sobre.remove(), 1000);
+    observar();
+    if (CONFIG.musica) {
+      musicaBoton.classList.add('visible');
+      if (musica.paused && !musica.dataset.pausadoPorUsuario) reproducirMusica();
+    }
+  }
+  const SB = CONFIG.sobre;
+  sobre.innerHTML = '<div class="sobre-fondo"></div><div class="sobre-caja"><video playsinline webkit-playsinline preload="auto" muted></video><div class="sello"></div><div class="destello-oro"></div></div><div class="toca"></div>';
+  sobre.style.setProperty('--sx', SB.selloX + '%'); sobre.style.setProperty('--sy', SB.selloY + '%');
+  if (!SB.video) sobre.classList.add('sin-video');
+  sobre.querySelector('.toca').textContent = SB.textoAbrir;
+  sobre.querySelector('.sobre-fondo').style.backgroundImage = url(SB.imagen);
+  const sello = sobre.querySelector('.sello'); sello.style.left = SB.selloX + '%'; sello.style.top = SB.selloY + '%';
+  video = sobre.querySelector('video');
+  video.poster = SB.imagen; video.style.backgroundImage = url(SB.imagen);
+  // El video empieza a bajar cuando ya se ve la portada del sobre (así la portada sale primero)
+  const cargarVideo = () => { if (SB.video && !video.getAttribute('src')) video.src = SB.video; };
+  video.addEventListener('timeupdate', () => { if (video.duration && video.currentTime >= video.duration - .45) terminarSobre(); });
+  video.addEventListener('ended', terminarSobre);
+  video.addEventListener('error', () => { if (empezo) terminarSobre(); });
+
+  function abrirSobre() {
+    if (empezo) return; empezo = true;
+    soltar();
+    sobre.classList.add('abierto');
+    if (SB.video) {
+      cargarVideo();
+      if (CONFIG.musica) { reproducirMusica(); video.muted = true; } else video.muted = false;
+      video.play().catch(() => { video.muted = true; video.play().catch(terminarSobre); });
+      setTimeout(() => { if (video.currentTime < .1) terminarSobre(); }, 6000);
+    } else {
+      reproducirMusica();
+      setTimeout(terminarSobre, 1700);      // la imagen se acerca al sello con luz dorada y se pasa a la portada
+    }
+  }
+  sobre.addEventListener('click', abrirSobre);
+
+  /* ---------- Velocidad: primero la portada del sobre y su video; el resto empieza a bajar después ---------- */
+  function soltar() { document.body.classList.remove('esperando'); }
+  const pre = new Image(); pre.onload = pre.onerror = () => { cargarVideo(); setTimeout(soltar, 1200); }; pre.src = SB.imagen;
+  setTimeout(() => { cargarVideo(); soltar(); }, 5000);   // por si acaso
+
+  // Para revisar sin ver el sobre: abre la página con ?directo al final de la dirección
+  if (location.search.includes('directo')) { empezo = true; soltar(); terminarSobre(); }
+})();
+</script>
+</body>
+</html>
