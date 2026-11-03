@@ -13,7 +13,7 @@
      ============================================================ -->
 <meta name="description" content="Estás invitado a mis XV años. Toca el sello para abrir tu invitación.">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Elegancia de Amor">
+<meta property="og:site_name" content="Invitaciones de Amor">
 <meta property="og:title" content="La Princesa Olivia · Mis XV Años">
 <meta property="og:description" content="Estás invitado a mis XV años. Toca el sello para abrir tu invitación ✨">
 <meta property="og:url" content="https://eleganciadeamor.com/xv-princesa-encantada/">
@@ -1000,6 +1000,9 @@ img.corona { height: auto; }
     sobre.classList.add('reproduciendo');
     // Con canción: la música arranca en este mismo toque y el video va sin sonido. Sin canción: el video suena.
     if (CONFIG.musica) { reproducirMusica(); video.muted = true; } else video.muted = false;
+    // El sobre se abre rápido (x2). Para comparar otra velocidad: agrega ?vel=1.5 a la dirección
+    const velocidadSobre = parseFloat(new URLSearchParams(location.search).get("vel")) || 2;
+    video.playbackRate = video.defaultPlaybackRate = velocidadSobre;
     video.play().catch(() => { video.muted = true; video.play().catch(terminarSobre); });
     setTimeout(() => { if (video.currentTime < .1) terminarSobre(); }, 6000);   // por si el video no carga
   }

@@ -13,7 +13,7 @@
      ============================================================ -->
 <meta name="description" content="You're invited to my Quinceañera. Tap the seal to open your invitation.">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Elegancia de Amor">
+<meta property="og:site_name" content="Invitaciones de Amor">
 <meta property="og:title" content="My Quinceañera · Gianella">
 <meta property="og:description" content="You're invited to my Quinceañera. Tap the seal to open your invitation ✨">
 <meta property="og:url" content="https://eleganciadeamor.com/quince-red-gold/">
@@ -122,7 +122,7 @@ const CONFIG = {
   // Pie de página: enlace a nuestros trabajos en la web (vacío marca = no aparece)
   credito: {
     texto: "Made with love by",
-    marca: "Elegancia de Amor",
+    marca: "Invitaciones de Amor",
     boton: "See our work",
     enlace: "https://eleganciadeamor.com/#nuestros-trabajos"
   },
@@ -133,7 +133,7 @@ const CONFIG = {
   // Al entregar la invitación pagada: activa: false
   muestra: {
     activa: false,
-    texto: "SAMPLE · ELEGANCIA DE AMOR",
+    texto: "SAMPLE · INVITACIONES DE AMOR",
     color: "blanco",         // color de la marca de agua: "negro", "blanco" o "dorado"
     aviso: "Available in the final version ✨"
   },
@@ -939,6 +939,9 @@ body.muestra img, body.muestra video { pointer-events: none; -webkit-user-drag: 
     sobre.classList.add('abierto');
     if (video && CONFIG.sobre.video) {
       if (CONFIG.musica) { reproducirMusica(); video.muted = true; } else video.muted = false;
+      // El sobre se abre rápido (x2). Para comparar otra velocidad: agrega ?vel=1.5 a la dirección
+      const velocidadSobre = parseFloat(new URLSearchParams(location.search).get("vel")) || 2;
+      video.playbackRate = video.defaultPlaybackRate = velocidadSobre;
       video.play().catch(() => { video.muted = true; video.play().catch(terminarSobre); });
       setTimeout(() => { if (video.currentTime < .1) terminarSobre(); }, 6000);
     } else {
