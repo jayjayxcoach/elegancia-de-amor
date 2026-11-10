@@ -195,8 +195,8 @@ const CONFIG = {
     guirnalda: "recursos/guirnalda.webp",           // glicinias y rosas colgando
     rosal: "recursos/rosal.webp",                   // rosal de la esquina (el otro lado es el mismo, volteado)
     marcoFiligrana: "recursos/marco-filigrana.webp", // marco dorado en arco del mensaje ("" = arco con doble moldura hecho con código)
-    ventanaMarco: { x: 21.4, y: 24.3, w: 57.1, h: 55.7 },   // hueco del marco (%): izquierda, arriba, ancho, alto (se rellena de rosa claro)
-    textoMarco: { x: 27, y: 30, w: 46, h: 42 },            // dónde va el texto dentro del marco (%), sin pisar los adornos
+    ventanaMarco: { x: 13.3, y: 15.4, w: 73.6, h: 76.1 },   // hueco del marco (%): izquierda, arriba, ancho, alto (se rellena de rosa claro)
+    textoMarco: { x: 21, y: 23, w: 58, h: 50 },            // dónde va el texto dentro del marco (%), sin pisar los adornos
     corona: "recursos/corona.webp",                 // tiara dorada sobre las tarjetas
     esquina: "recursos/esquina.webp",               // filigrana dorada de las esquinas de abajo
     mariposa: "recursos/mariposa.webp",             // mariposas doradas que vuelan
@@ -218,7 +218,8 @@ const CONFIG = {
     "regalos-titulo": "recursos/titulo-sobres.webp",
     "confirmacion-titulo": "recursos/titulo-confirma.webp"
   },
-  marcoFlores: "recursos/marco-flores.webp",   // marco de rosas reales sobre la foto de la portada
+  marcoFlores: "recursos/marco-flores.webp",
+  misXvOro: "recursos/titulo-misxv.webp",      // "Mis XV Años" en dorado (Gemini)   // marco de rosas reales sobre la foto de la portada
 
   petalos: true,            // pétalos rosados cayendo
 
@@ -596,13 +597,17 @@ body.esperando #petalos { display: none; }
 }
 .rol { display: block; margin: .2em 0 .9em; font: 600 3.2cqw/1 var(--caps); letter-spacing: .22em; text-transform: uppercase; color: var(--oro-osc); }
 /* ===== Niralys v2 ===== */
-.titulo-oro { display: block; width: auto; max-width: 82cqw; height: 15cqw; object-fit: contain; margin: 0 auto; filter: drop-shadow(0 1px 1px rgba(80, 30, 10, .25)); }
-#vestimenta-titulo .titulo-oro, #confirmacion-titulo .titulo-oro { height: 11cqw; }
-#galeria-titulo .titulo-oro { height: 12cqw; }
-.marco-arco .texto p { font-size: 4.3cqw; line-height: 1.4; }
+.titulo-oro { display: block; width: 60cqw; height: auto; margin: 0 auto; filter: drop-shadow(0 2px 3px rgba(60, 20, 10, .3)); }
+#fecha-titulo .titulo-oro { width: 72cqw; }
+#recepcion-titulo .titulo-oro { width: 56cqw; }
+#vestimenta-titulo .titulo-oro, #confirmacion-titulo .titulo-oro { width: 58cqw; }
+#galeria-titulo .titulo-oro { width: 54cqw; }
+#portada .arriba img { display: block; width: 56cqw; margin: 0 auto; }
+.marco-arco .texto p { font-size: 4.6cqw; line-height: 1.45; }
 .firma-oro { display: block; width: 40cqw; margin: 1cqw auto 0; }
-#portada .portada-img { top: 14%; height: 86%; object-position: 66% 8%; -webkit-mask-image: linear-gradient(transparent 0, #000 7%, #000 58%, transparent 86%); mask-image: linear-gradient(transparent 0, #000 7%, #000 58%, transparent 86%); }
-#padres { padding-top: 34cqw; }
+#portada .portada-img { top: 17%; height: 83%; object-position: 66% 8%; -webkit-mask-image: linear-gradient(transparent 0, #000 7%, #000 58%, transparent 86%); mask-image: linear-gradient(transparent 0, #000 7%, #000 58%, transparent 86%); }
+#padres { padding-top: 26cqw; }
+#padres .invito { font-size: 3.5cqw; letter-spacing: .12em; padding-left: .12em; }
 #padres > .revela:first-of-type, #padres .invito { position: relative; max-width: 74cqw; margin-left: auto; margin-right: auto; }
 #padres > .revela:first-of-type { padding: 6cqw 4cqw 4cqw; border-radius: 6cqw; background: radial-gradient(ellipse at center, rgba(255, 250, 244, .92) 55%, rgba(255, 250, 244, 0) 100%); }
 #padres-nombres { font-size: 8.4cqw; }
@@ -1033,6 +1038,10 @@ body.esperando #petalos { display: none; }
   if (IM.nombreOro && $('mensaje-firma')) {
     const f = $('mensaje-firma'); f.textContent = '';
     const im = document.createElement('img'); im.className = 'firma-oro'; im.src = IM.nombreOro; im.alt = CONFIG.nombre; f.appendChild(im);
+  }
+  if (CONFIG.misXvOro && $('arriba')) {
+    const a = $('arriba'); a.textContent = '';
+    const im = document.createElement('img'); im.src = CONFIG.misXvOro; im.alt = CONFIG.arriba; a.appendChild(im);
   }
   if (CONFIG.marcoFlores) {
     const m = document.createElement('img'); m.className = 'marco-flores'; m.src = CONFIG.marcoFlores; m.alt = ''; m.decoding = 'async';
