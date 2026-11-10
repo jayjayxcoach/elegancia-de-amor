@@ -18,15 +18,15 @@
 <meta property="og:title" content="Mis XV Años · Niralys">
 <meta property="og:description" content="Estás invitado a mis XV años. Toca el sello para abrir tu invitación ✨">
 <meta property="og:url" content="https://eleganciadeamor.com/mis-xv-niralys/">
-<meta property="og:image" content="https://eleganciadeamor.com/mis-xv-niralys/recursos/vista-previa.jpg">
-<meta property="og:image:secure_url" content="https://eleganciadeamor.com/mis-xv-niralys/recursos/vista-previa.jpg">
+<meta property="og:image" content="https://eleganciadeamor.com/mis-xv-niralys/recursos/vista-previa.jpg?v=2">
+<meta property="og:image:secure_url" content="https://eleganciadeamor.com/mis-xv-niralys/recursos/vista-previa.jpg?v=2">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="600">
 <meta property="og:image:height" content="600">
 <meta property="og:image:alt" content="Sobre rojo vino con sello dorado, mariposas doradas y rosas vino">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://eleganciadeamor.com/mis-xv-niralys/recursos/vista-previa.jpg">
-<link rel="icon" href="recursos/vista-previa.jpg">
+<meta name="twitter:image" content="https://eleganciadeamor.com/mis-xv-niralys/recursos/vista-previa.jpg?v=2">
+<link rel="icon" href="recursos/vista-previa.jpg?v=2">
 <!-- Lo primero que baja: las puertas (si cambias estas imágenes en el CONFIG, cambia también estas 3 líneas) -->
 <link rel="preload" href="recursos/apertura-marco.webp" as="image" fetchpriority="high">
 <link rel="preload" href="recursos/sello-corona.webp" as="image" fetchpriority="high">
@@ -75,7 +75,8 @@ const CONFIG = {
     marco: "recursos/apertura-marco.webp",
     puertaIzquierda: "",                    // sobre 1: no hay puertas, el sobre entero se abre
     puertaDerecha: "",
-    sello: "recursos/sello-corona.webp"
+    sello: "recursos/sello-corona.webp",
+    video: "recursos/sobre-video.mp4"        // animación del sobre hecha con Gemini (al tocar el sello)
   },
 
   // ---------- Mensaje dentro del marco dorado ----------
@@ -85,14 +86,14 @@ const CONFIG = {
 
   // ---------- Padres y padrinos ----------
   padres: {
-    titulo: "Con la bendición de Dios y el amor de mi familia",
+    titulo: "Con todo nuestro amor",
     nombres: ["Keylin Díaz|mamá", "Yamileth Vega|abuela", "Sugelis Barrante|tía", "Bélgica Robles|bisabuela"]   // "Nombre|parentesco"
   },
   padrinos: {
     titulo: "y de mis padrinos",
     nombres: []       // [] = no aparece
   },
-  invitacion: "Tengo el honor de invitarte a celebrar esta noche tan especial",
+  invitacion: "te invitan a celebrar los XV años de Niralys",
 
   // ---------- Cuenta regresiva ----------
   cuentaRegresiva: {
@@ -130,15 +131,15 @@ const CONFIG = {
   // ---------- Código de vestimenta ----------
   vestimenta: {
     titulo: "Código de vestimenta",
-    estilo: "Elegante",
-    nota: "Los tonos rojo vino y dorado están reservados para la quinceañera y su mamá"
+    estilo: "Color libre",
+    nota: "Elige el color que más te guste; solo te pedimos evitar el rojo vino y el dorado, reservados para la quinceañera y su mamá"
   },
 
   // ---------- Mis recuerdos (fotos) ----------
   // Fotos de la quinceañera en "recursos", por ejemplo "recursos/foto-1.webp".
   // Lista vacía [] = la sección no aparece.
   galeria: {
-    titulo: "Mis recuerdos",
+    titulo: "Mi sesión de XV",
     fotos: FOTOS_NIRALYS
   },
 
@@ -189,13 +190,13 @@ const CONFIG = {
   // Cuando llegue cada imagen, se pone su ruta, por ejemplo "recursos/portada.webp".
   imagenes: {
     portada: "recursos/portada.webp",               // Niralys a pantalla completa (portada 7) ("" = el arco de las puertas con el nombre en la luz)
-    nombreOro: "",          // "Valentina" en dorado 3D (si cambias el nombre, vacíalo o haz otra imagen)
+    nombreOro: "recursos/nombre-oro.webp",          // "Valentina" en dorado 3D (si cambias el nombre, vacíalo o haz otra imagen)
     fondo: "recursos/fondo.webp",                   // fondo fijo: muro del castillo con rosas a los lados
     guirnalda: "recursos/guirnalda.webp",           // glicinias y rosas colgando
     rosal: "recursos/rosal.webp",                   // rosal de la esquina (el otro lado es el mismo, volteado)
     marcoFiligrana: "recursos/marco-filigrana.webp", // marco dorado en arco del mensaje ("" = arco con doble moldura hecho con código)
-    ventanaMarco: { x: 13.7, y: 10.5, w: 73.1, h: 81.2 },   // hueco del marco (%): izquierda, arriba, ancho, alto (se rellena de rosa claro)
-    textoMarco: { x: 22, y: 17, w: 56, h: 62 },            // dónde va el texto dentro del marco (%), sin pisar los adornos
+    ventanaMarco: { x: 21.4, y: 24.3, w: 57.1, h: 55.7 },   // hueco del marco (%): izquierda, arriba, ancho, alto (se rellena de rosa claro)
+    textoMarco: { x: 27, y: 30, w: 46, h: 42 },            // dónde va el texto dentro del marco (%), sin pisar los adornos
     corona: "recursos/corona.webp",                 // tiara dorada sobre las tarjetas
     esquina: "recursos/esquina.webp",               // filigrana dorada de las esquinas de abajo
     mariposa: "recursos/mariposa.webp",             // mariposas doradas que vuelan
@@ -206,6 +207,18 @@ const CONFIG = {
     iconoSobre: "recursos/icono-sobre.webp",
     teEspero: "recursos/te-espero-oro.webp"          // "Te Espero" en dorado 3D
   },
+
+  // Títulos en dorado hechos con Gemini (id del título → imagen). Vacío = texto normal.
+  titulos: {
+    "cuenta-titulo": "recursos/titulo-falta.webp",
+    "fecha-titulo": "recursos/titulo-reserva.webp",
+    "recepcion-titulo": "recursos/titulo-recepcion.webp",
+    "vestimenta-titulo": "recursos/titulo-vestimenta.webp",
+    "galeria-titulo": "recursos/titulo-sesion.webp",
+    "regalos-titulo": "recursos/titulo-sobres.webp",
+    "confirmacion-titulo": "recursos/titulo-confirma.webp"
+  },
+  marcoFlores: "recursos/marco-flores.webp",   // marco de rosas reales sobre la foto de la portada
 
   petalos: true,            // pétalos rosados cayendo
 
@@ -533,7 +546,7 @@ body.esperando #fondo-fijo, body.esperando .invitacion { display: none; }   /* p
 #despedida .cierre:not(:has(.rosal)) { padding-bottom: 14cqw; }
 #despedida .cierre > :not(.guirnalda):not(.rosal) { position: relative; z-index: 2; }
 #despedida .frase { width: 78cqw; margin: 0 auto; font: italic 500 6.2cqw/1.4 var(--serif); color: var(--rosa-titulo); text-shadow: 0 0 12px rgba(255, 248, 244, .95), 0 0 3px rgba(255, 248, 244, .9); }
-#despedida .te-espero { width: 80cqw; height: auto; margin: 6cqw auto 0; filter: drop-shadow(0 3px 4px rgba(110, 50, 20, .35)); }
+#despedida .te-espero { width: 58cqw; height: auto; margin: 6cqw auto 0; filter: drop-shadow(0 3px 4px rgba(110, 50, 20, .35)); }
 #despedida .te-espero-texto { margin-top: 4cqw; --tam-nombre: 19cqw; }
 #despedida .fecha-corta { margin-top: 4cqw; text-shadow: 0 0 10px rgba(255, 248, 244, .95); }
 .credito { display: block; width: fit-content; margin: 6cqw auto 0; padding: 3.4cqw 7cqw 3.6cqw; border-radius: 4cqw; background: rgba(255, 249, 245, .85); box-shadow: 0 6px 18px rgba(120, 50, 50, .14); font: 600 3cqw/1.6 var(--serif); letter-spacing: .24em; text-transform: uppercase; color: rgba(122, 20, 40, .75); transition: background .3s; }
@@ -582,9 +595,32 @@ body.esperando #petalos { display: none; }
   #petalos { display: none; }
 }
 .rol { display: block; margin: .2em 0 .9em; font: 600 3.2cqw/1 var(--caps); letter-spacing: .22em; text-transform: uppercase; color: var(--oro-osc); }
+/* ===== Niralys v2 ===== */
+.titulo-oro { display: block; width: auto; max-width: 82cqw; height: 15cqw; object-fit: contain; margin: 0 auto; filter: drop-shadow(0 1px 1px rgba(80, 30, 10, .25)); }
+#vestimenta-titulo .titulo-oro, #confirmacion-titulo .titulo-oro { height: 11cqw; }
+#galeria-titulo .titulo-oro { height: 12cqw; }
+.marco-arco .texto p { font-size: 4.3cqw; line-height: 1.4; }
+.firma-oro { display: block; width: 40cqw; margin: 1cqw auto 0; }
+#portada .portada-img { top: 14%; height: 86%; object-position: 66% 8%; -webkit-mask-image: linear-gradient(transparent 0, #000 7%, #000 58%, transparent 86%); mask-image: linear-gradient(transparent 0, #000 7%, #000 58%, transparent 86%); }
+#padres { padding-top: 34cqw; }
+#padres > .revela:first-of-type, #padres .invito { position: relative; max-width: 74cqw; margin-left: auto; margin-right: auto; }
+#padres > .revela:first-of-type { padding: 6cqw 4cqw 4cqw; border-radius: 6cqw; background: radial-gradient(ellipse at center, rgba(255, 250, 244, .92) 55%, rgba(255, 250, 244, 0) 100%); }
+#padres-nombres { font-size: 8.4cqw; }
+#portada .marco-flores { position: absolute; left: 0; top: 0; z-index: 2; width: 100%; height: auto; pointer-events: none; }
+#portada .encabezado { z-index: 4; }
+#cuenta { padding-bottom: 10cqw; overflow: visible; }
+.contador > div { box-shadow: 0 0 0 1.4px var(--oro), 0 8px 18px rgba(80, 20, 30, .18); }
+/* ===== Niralys: video del sobre ===== */
+#apertura .escena { aspect-ratio: 720 / 1280; width: max(100vw, 100svh * .5625); }
+@media (min-aspect-ratio: 9/16) { #apertura .escena { width: calc(100svh * .5625); } }
+#apertura .video { inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 5; opacity: 0; }
+#apertura.con-video .video { opacity: 1; }
+#apertura.con-video.abriendo .escena { scale: 1; transition: opacity .5s ease; }
+#apertura.con-video.abriendo { transition: opacity .7s ease 7.1s, background .3s ease; }
+#apertura.con-video .destello { display: none; }
 /* ===== Niralys: sobre 1 ===== */
 #apertura .puerta, #apertura .rendija, #apertura .luz { display: none; }
-#apertura .sello { top: 50.93%; width: 17.8%; }
+#apertura .sello { top: 51.4%; width: 17.2%; }
 #apertura .sello img { filter: drop-shadow(0 0 10px rgba(255, 226, 170, .85)); }
 #apertura.abriendo .escena { transition: opacity .5s ease, scale 1.6s cubic-bezier(.5, 0, .3, 1) .5s; scale: 1.6; }
 #apertura.abriendo { transition: opacity 1s ease 1.2s, background .3s ease .4s; }
@@ -987,6 +1023,22 @@ body.esperando #petalos { display: none; }
     }
   });
 
+  /* ---------- Títulos en dorado (Gemini) ---------- */
+  Object.entries(CONFIG.titulos || {}).forEach(([id, ruta]) => {
+    const h = $(id); if (!h || !ruta) return;
+    const alt = h.textContent; h.textContent = '';
+    const im = document.createElement('img'); im.className = 'titulo-oro'; im.src = ruta; im.alt = alt; im.decoding = 'async';
+    h.appendChild(im);
+  });
+  if (IM.nombreOro && $('mensaje-firma')) {
+    const f = $('mensaje-firma'); f.textContent = '';
+    const im = document.createElement('img'); im.className = 'firma-oro'; im.src = IM.nombreOro; im.alt = CONFIG.nombre; f.appendChild(im);
+  }
+  if (CONFIG.marcoFlores) {
+    const m = document.createElement('img'); m.className = 'marco-flores'; m.src = CONFIG.marcoFlores; m.alt = ''; m.decoding = 'async';
+    $('portada').appendChild(m);
+  }
+
   /* ---------- Pétalos ---------- */
   if (CONFIG.petalos) {
     const capa = $('petalos');
@@ -1067,6 +1119,7 @@ body.esperando #petalos { display: none; }
       '<div class="capa puerta der"><img alt="" decoding="async"></div>' +
       '<div class="capa rendija"></div>' +
       '<img class="capa marco" alt="" decoding="async">' +
+      (AP.video ? '<video class="capa video" muted playsinline preload="auto"></video>' : '') +
       '<div class="capa sello"><img alt="" decoding="async"><b></b></div>' +
     '</div>' +
     '<div class="toca"></div>';
@@ -1100,8 +1153,18 @@ body.esperando #petalos { display: none; }
     setTimeout(soltar, 1200);            // el resto de la invitación empieza a bajar después de las puertas
     if (pidio) setTimeout(abrir, 350);
   }
+  const vid = ap.querySelector('video.video');
+  if (vid) { vid.src = AP.video; vid.load(); }
   function abrir() {
     if (abierto) return; abierto = true;
+    if (vid && vid.readyState >= 2) {
+      ap.classList.add('con-video', 'abriendo');
+      vid.play().catch(() => {});
+      const dur = (vid.duration || 7.8) * 1000;
+      setTimeout(() => $('portada').classList.add('visible'), dur - 600);
+      vid.onended = terminar; setTimeout(terminar, dur + 600);
+      return;
+    }
     ap.classList.add('abriendo');
     setTimeout(() => $('portada').classList.add('visible'), 1500);
     setTimeout(terminar, 2950);
