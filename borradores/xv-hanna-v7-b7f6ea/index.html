@@ -1614,6 +1614,19 @@ html.lib-bloqueado, html.lib-bloqueado body { overflow: hidden; height: 100%; }
   transition-delay: 0s !important;
 }
 }
+/* 11-nov-2026: "DOMINGO27" salía pegado: la casilla del día era angosta y el número perdió su tamaño al extraerlo */
+[data-sec="xv-princesa-rosa--fecha"] .fecha-fila .lado {
+  width: auto;
+  min-width: 21cqw;
+  padding-left: 2.5cqw;
+  padding-right: 2.2cqw;
+  white-space: nowrap;
+}
+[data-sec="xv-princesa-rosa--fecha"] .fecha-fila b {
+  font: 600 14cqw/1 var(--caps);
+  color: var(--rosa-titulo);
+  padding: 0 1cqw;
+}
 
 /* Princesa Rosa · ubicacion (ceremonia) — generado desde elegancia-de-amor/xv-princesa-rosa */
 @font-face { font-family: "Great Vibes"; font-weight: 400; font-display: swap; src: url("recursos/xv-princesa-rosa--ceremonia/fuente-great-vibes.woff2") format("woff2"); }
@@ -2647,7 +2660,7 @@ html.lib-bloqueado, html.lib-bloqueado body { overflow: hidden; height: 100%; }
   </form>
 </div>
 
-<script>window.__INV = {"fechaEvento":"2026-12-27T15:00:00-06:00","whatsapp":"593900000000","aperturas":{"xv-princesa-rosa--apertura":[{"t":9,"u":"u28","a":"class","v":"tocado abriendo"},{"t":9,"u":"body","a":"class","v":"bloqueado"},{"t":9,"u":"u28","a":"class","v":"tocado abriendo"},{"t":1378,"u":"body","a":"class","v":"bloqueado"},{"t":2972,"u":"body","a":"class","v":""},{"t":2972,"u":"body","a":"class","v":""}]},"hoja":"","textos":{"rsvpEncabezado":"Confirmación · Mis XV Años · Hanna"}};</script>
+<script>window.__INV = {"fechaEvento":"2026-12-27T15:00:00-06:00","whatsapp":"","aperturas":{"xv-princesa-rosa--apertura":[{"t":9,"u":"u28","a":"class","v":"tocado abriendo"},{"t":9,"u":"body","a":"class","v":"bloqueado"},{"t":9,"u":"u28","a":"class","v":"tocado abriendo"},{"t":1378,"u":"body","a":"class","v":"bloqueado"},{"t":2972,"u":"body","a":"class","v":""},{"t":2972,"u":"body","a":"class","v":""}]},"hoja":"","textos":{"rsvpEncabezado":"Confirmación · Mis XV Años · Hanna"}};</script>
 <script>
 /* Motor de Invitaciones de Amor — funciones en vivo de la invitación armada.
    Lee window.__INV (lo escribe armar.js). No hace falta tocar este archivo. */
