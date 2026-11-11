@@ -218,8 +218,8 @@ const CONFIG = {
     "regalos-titulo": "recursos/titulo-sobres.webp",
     "confirmacion-titulo": "recursos/titulo-confirma.webp"
   },
-  marcoFlores: "recursos/marco-flores.webp",
-  misXvOro: "recursos/titulo-misxv.webp",      // "Mis XV Años" en dorado (Gemini)   // marco de rosas reales sobre la foto de la portada
+  marcoFlores: "recursos/columnas.webp",       // columnas con rosas reales a los lados (como Princesa Rosa)
+  misXvOro: "",                               // "" = MIS XV AÑOS en letras (como Princesa Rosa)      // "Mis XV Años" en dorado (Gemini)   // marco de rosas reales sobre la foto de la portada
 
   petalos: true,            // pétalos rosados cayendo
 
@@ -643,6 +643,23 @@ body.esperando #petalos { display: none; }
 #portada::after { content: ""; position: absolute; inset: 3.5cqw; z-index: 3; border: 1px solid rgba(226, 193, 114, .75); pointer-events: none; }
 #portada .baja { color: #e9c98a; text-shadow: none; bottom: 7cqw; }
 #portada .destellos, #portada .mariposa { z-index: 2; }
+/* ===== Niralys v4: portada como Princesa Rosa (nombre arriba, difuminado, columnas con rosas) ===== */
+#portada { background: #f4e9e2; }
+#portada::after { display: none; }
+#portada .portada-img { top: 9%; height: 91%; object-position: 60% 22%; -webkit-mask-image: linear-gradient(transparent 0, #000 14%); mask-image: linear-gradient(transparent 0, #000 14%); }
+#portada .velo { inset: 0 0 auto; height: 78cqw; z-index: 1; background: linear-gradient(rgba(250, 242, 236, .97) 0%, rgba(250, 242, 236, .86) 38%, rgba(250, 242, 236, .45) 70%, rgba(250, 242, 236, 0) 100%); }
+#portada .marco-flores { top: 0; height: 100%; object-fit: fill; }
+#portada:not(.sin-imagen) .encabezado { top: 7cqw; bottom: auto; }
+#portada .arriba { order: 0; margin: 1.5cqw 0 0; color: var(--rosa-titulo); font: 600 5.6cqw/1 var(--caps); letter-spacing: .26em; padding-left: .26em; text-shadow: 0 0 10px rgba(255, 248, 242, .95); }
+#portada:not(.sin-imagen) .nombre { width: 74cqw; }
+#portada .fecha-portada { display: none !important; }
+#portada .baja { color: #fff6ec; text-shadow: 0 1px 6px rgba(40, 0, 10, .8); }
+/* títulos letra B (una línea): más anchos para que se lean */
+#vestimenta-titulo .titulo-oro, #confirmacion-titulo .titulo-oro { width: 80cqw; }
+#galeria-titulo .titulo-oro { width: 72cqw; }
+#regalos-titulo .titulo-oro { width: 72cqw; }
+#fecha-titulo .titulo-oro { width: 74cqw; }
+#despedida .te-espero { position: relative; z-index: 5; width: 52cqw; }
 </style>
 </head>
 
