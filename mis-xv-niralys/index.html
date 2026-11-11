@@ -681,7 +681,9 @@ body { background: #3a0913; }
 .bruma { background: radial-gradient(ellipse 62% 56% at 50% 50%, rgba(58, 9, 20, .88) 0%, rgba(58, 9, 20, .62) 55%, rgba(58, 9, 20, 0) 100%); }
 .boton-linea { background: rgba(58, 9, 20, .75); color: #f2d48f; }
 .boton-linea:active { background: rgba(212, 169, 90, .2); }
-#despedida .cierre .rosal { width: 30cqw; }
+#despedida .cierre .rosal { display: none; }
+#padres { padding-top: 6cqw; }
+#mensaje { padding-bottom: 0; }
 #despedida .te-espero-texto { position: relative; z-index: 4; }
 /* el terciopelo con mariposas, un poco más oscuro detrás del contenido para que se lea */
 #fondo-fijo.con-imagen, #fondo-fijo { background-color: #3a0913; }
@@ -888,8 +890,6 @@ body { background: #3a0913; }
       <p class="frase revela" id="despedida-frase"></p>
       <div class="revela" id="te-espero"></div>
       <p class="caps fecha-corta revela" id="fecha-corta"></p>
-      <img class="rosal izq" data-img="rosal" alt="" loading="lazy" decoding="async">
-      <img class="rosal der" data-img="rosal" alt="" loading="lazy" decoding="async">
     </div>
     <a class="credito" id="credito" target="_blank" rel="noopener"></a>
   </section>
