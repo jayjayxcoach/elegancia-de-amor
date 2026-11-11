@@ -30,7 +30,8 @@
 <!-- Lo primero que baja: las puertas (si cambias estas imágenes en el CONFIG, cambia también estas 3 líneas) -->
 <link rel="preload" href="recursos/apertura-marco.webp" as="image" fetchpriority="high">
 <link rel="preload" href="recursos/sello-corona.webp" as="image" fetchpriority="high">
-<link rel="preload" href="recursos/portada-p8.webp" as="image">
+<link rel="preload" href="recursos/portada-fondo.webp" as="image">
+<link rel="preload" href="recursos/portada-chica.webp" as="image">
 
 <!--
   ==========================================================================
@@ -191,10 +192,10 @@ const CONFIG = {
   // Vacío ("") = se usa la versión hecha con código (colores, marcos y adornos de respaldo).
   // Cuando llegue cada imagen, se pone su ruta, por ejemplo "recursos/portada.webp".
   imagenes: {
-    portada: "recursos/portada-p8.webp",               // Niralys a pantalla completa (portada 7) ("" = el arco de las puertas con el nombre en la luz)
+    portada: "recursos/portada-fondo.webp",               // Niralys a pantalla completa (portada 7) ("" = el arco de las puertas con el nombre en la luz)
     nombreOro: "",          // "Valentina" en dorado 3D (si cambias el nombre, vacíalo o haz otra imagen)
     fondo: "recursos/fondo.webp",                   // fondo fijo: muro del castillo con rosas a los lados
-    guirnalda: "recursos/guirnalda.webp",           // glicinias y rosas colgando
+    guirnalda: "recursos/guirnalda-roja.webp",           // glicinias y rosas colgando
     rosal: "recursos/rosal.webp",                   // rosal de la esquina (el otro lado es el mismo, volteado)
     marcoFiligrana: "recursos/marco-filigrana.webp", // marco dorado en arco del mensaje ("" = arco con doble moldura hecho con código)
     ventanaMarco: { x: 13.3, y: 15.4, w: 73.6, h: 76.1 },   // hueco del marco (%): izquierda, arriba, ancho, alto (se rellena de rosa claro)
@@ -206,7 +207,7 @@ const CONFIG = {
     iconoIglesia: "recursos/icono-iglesia.webp",
     iconoRecepcion: "recursos/icono-recepcion.webp",
     iconoVestimenta: "recursos/icono-vestimenta.webp",
-    iconoSobre: "recursos/icono-sobre.webp",
+    iconoSobre: "recursos/icono-sobre-rojo.webp",
     teEspero: ""          // "Te Espero" en dorado 3D
   },
 
@@ -704,6 +705,21 @@ body { background: #3a0913; }
 #portada.visible .lema { animation: sube .9s 1.2s ease-out forwards; }
 #portada:not(.sin-imagen) .encabezado::before { content: ""; position: absolute; z-index: -1; left: 4cqw; right: 4cqw; top: -4cqw; bottom: -3cqw; background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(70, 8, 22, .55) 0%, rgba(70, 8, 22, .3) 55%, rgba(70, 8, 22, 0) 100%); pointer-events: none; }
 #portada .baja { bottom: 3cqw; color: #f3d79a; text-shadow: 0 1px 4px rgba(30, 0, 6, .9); }
+/* ===== Niralys v7: portada en capas (fondo Gemini + Niralys recortada de la foto original + rosas, tiara y nombre de Gemini) ===== */
+#portada .p-chica { position: absolute; z-index: 1; left: 50%; top: 2%; width: 112cqw; max-width: none; translate: -50% 0; pointer-events: none;
+  -webkit-mask-image: linear-gradient(#000 62%, transparent 92%); mask-image: linear-gradient(#000 62%, transparent 92%); }
+#portada .p-rosas { position: absolute; z-index: 3; left: 0; bottom: 0; width: 100%; height: auto; pointer-events: none; }
+#portada:not(.sin-imagen) .encabezado { top: auto; bottom: 21%; z-index: 4; }
+#portada:not(.sin-imagen) .encabezado::before { top: 2cqw; }
+#portada .nombre { display: none !important; }
+#portada .p-tiara { display: block; width: 44cqw; margin: 0 auto -1cqw; filter: drop-shadow(0 3px 5px rgba(30, 0, 6, .6)); opacity: 0; transform: translateY(-3cqw); }
+#portada .p-nombre { display: block; width: 74cqw; margin: 0 auto; filter: drop-shadow(0 2px 4px rgba(30, 0, 6, .8)); opacity: 0; transform: scale(.92); }
+#portada.visible .p-tiara { animation: sube 1s .2s ease-out forwards; }
+#portada.visible .p-nombre { animation: aparece-nombre 1.3s .5s cubic-bezier(.2, .8, .3, 1) forwards; }
+#portada .lema { margin-top: 0; }
+#portada .mariposa { display: block !important; z-index: 5; }
+#portada .baja { z-index: 6; bottom: 2.5cqw; }
+#despedida .guirnalda { -webkit-mask-image: linear-gradient(transparent 0, #000 22%); mask-image: linear-gradient(transparent 0, #000 22%); }
 </style>
 </head>
 
@@ -726,8 +742,12 @@ body { background: #3a0913; }
     <img class="portada-img" data-img="portada" alt="" loading="lazy" decoding="async" width="720" height="1290">
     <img class="arco-respaldo" id="arco-respaldo" alt="" decoding="async">
     <div class="velo"></div>
+    <img class="p-chica" src="recursos/portada-chica.webp" alt="Niralys" decoding="async">
+    <img class="p-rosas" src="recursos/portada-rosas.webp" alt="" decoding="async">
     <div class="destellos"></div>
     <div class="encabezado">
+      <img class="p-tiara" src="recursos/tiara-portada.webp" alt="" decoding="async">
+      <img class="p-nombre" src="recursos/nombre-portada.webp" alt="Niralys" decoding="async">
       <div class="corona" data-corona></div>
       <div class="nombre" data-nombre></div>
       <p class="arriba" id="arriba"></p>
