@@ -30,6 +30,7 @@
 <!-- Lo primero que baja: las puertas (si cambias estas imágenes en el CONFIG, cambia también estas 3 líneas) -->
 <link rel="preload" href="recursos/apertura-marco.webp" as="image" fetchpriority="high">
 <link rel="preload" href="recursos/sello-corona.webp" as="image" fetchpriority="high">
+<link rel="preload" href="recursos/portada-p8.webp" as="image">
 
 <!--
   ==========================================================================
@@ -61,6 +62,7 @@ const CONFIG = {
 
   // ---------- Quinceañera ----------
   nombre: "Niralys",
+  lema: "Una noche de elegancia, familia y alegría",
   arriba: "Mis XV Años",                  // texto debajo del nombre en la portada
 
   // ---------- Fecha y hora de inicio ----------
@@ -189,7 +191,7 @@ const CONFIG = {
   // Vacío ("") = se usa la versión hecha con código (colores, marcos y adornos de respaldo).
   // Cuando llegue cada imagen, se pone su ruta, por ejemplo "recursos/portada.webp".
   imagenes: {
-    portada: "recursos/portada.webp",               // Niralys a pantalla completa (portada 7) ("" = el arco de las puertas con el nombre en la luz)
+    portada: "recursos/portada-p8.webp",               // Niralys a pantalla completa (portada 7) ("" = el arco de las puertas con el nombre en la luz)
     nombreOro: "",          // "Valentina" en dorado 3D (si cambias el nombre, vacíalo o haz otra imagen)
     fondo: "recursos/fondo.webp",                   // fondo fijo: muro del castillo con rosas a los lados
     guirnalda: "recursos/guirnalda.webp",           // glicinias y rosas colgando
@@ -690,6 +692,18 @@ body { background: #3a0913; }
 #fondo-fijo.con-imagen::after, #fondo-fijo::after { content: ""; position: absolute; inset: 0; background: rgba(48, 4, 14, .28); }
 .credito, .credito span, .credito small { color: #e8c784 !important; }
 .credito em { color: #f2d48f; }
+/* ===== Niralys v6: portada modelada de la P8 (fondo de palacio vino, tiara femenina, rosas abajo) ===== */
+#portada { background: #3a0913; }
+#portada::after { display: none !important; }
+#portada .velo, #portada .mariposa, #portada .corona, #portada .arriba, #portada .fecha-portada { display: none !important; }
+#portada .portada-img { top: 0; height: 100%; object-fit: cover; object-position: 56% 50%; -webkit-mask-image: none; mask-image: none; transform: none; animation: none !important; }
+#portada:not(.sin-imagen) .encabezado { top: 66.5%; bottom: auto; }
+#portada:not(.sin-imagen) .nombre { width: 84cqw; min-height: 0; margin: 0 auto; }
+#portada .nombre .script-oro { --tam-nombre: 19cqw; filter: drop-shadow(0 2px 3px rgba(30, 0, 6, .75)) drop-shadow(0 0 10px rgba(255, 210, 140, .35)); }
+#portada .lema { width: 78cqw; margin: 1cqw auto 0; font: 600 3.7cqw/1.45 var(--caps); letter-spacing: .1em; text-transform: uppercase; color: #f3d79a; text-shadow: 0 1px 3px rgba(30, 0, 6, .9); opacity: 0; transform: translateY(3cqw); }
+#portada.visible .lema { animation: sube .9s 1.2s ease-out forwards; }
+#portada:not(.sin-imagen) .encabezado::before { content: ""; position: absolute; z-index: -1; left: 4cqw; right: 4cqw; top: -4cqw; bottom: -3cqw; background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(70, 8, 22, .55) 0%, rgba(70, 8, 22, .3) 55%, rgba(70, 8, 22, 0) 100%); pointer-events: none; }
+#portada .baja { bottom: 3cqw; color: #f3d79a; text-shadow: 0 1px 4px rgba(30, 0, 6, .9); }
 </style>
 </head>
 
@@ -717,6 +731,7 @@ body { background: #3a0913; }
       <div class="corona" data-corona></div>
       <div class="nombre" data-nombre></div>
       <p class="arriba" id="arriba"></p>
+      <p class="lema" id="lema"></p>
       <p class="caps fecha-portada" id="fecha-portada"></p>
     </div>
     <div class="mariposa" style="--w:10cqw;left:8cqw;top:96cqw;--d:15s;--x1:14cqw;--y1:-12cqw;--x2:30cqw;--y2:-2cqw;--x3:12cqw;--y3:10cqw"><div class="cuerpo"><i></i><i></i></div></div>
@@ -934,6 +949,7 @@ body { background: #3a0913; }
   /* ---------- Textos ---------- */
   document.title = CONFIG.arriba + ' · ' + CONFIG.nombre;
   texto('arriba', CONFIG.arriba);
+  texto('lema', CONFIG.lema || '');
   texto('mensaje-texto', CONFIG.mensaje.texto);
   texto('mensaje-firma', CONFIG.nombre);
 
