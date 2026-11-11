@@ -684,7 +684,8 @@ body { background: #3a0913; }
 #despedida .cierre .rosal { width: 30cqw; }
 #despedida .te-espero-texto { position: relative; z-index: 4; }
 /* el terciopelo con mariposas, un poco más oscuro detrás del contenido para que se lea */
-#fondo-fijo::after { content: ""; position: absolute; inset: 0; background: rgba(40, 4, 12, .32); }
+#fondo-fijo.con-imagen, #fondo-fijo { background-color: #3a0913; }
+#fondo-fijo.con-imagen::after, #fondo-fijo::after { content: ""; position: absolute; inset: 0; background: rgba(48, 4, 14, .28); }
 .credito, .credito span, .credito small { color: #e8c784 !important; }
 .credito em { color: #f2d48f; }
 </style>
