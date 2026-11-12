@@ -124,11 +124,11 @@ const CONFIG = {
   // ---------- Recepción ----------
   recepcion: {
     titulo: "Recepción",
-    lugar: "Sala de Eventos Venezia",
-    direccion: "La Chorrera, Panamá",
+    lugar: "Pequeña Venezia",                 // así sale en Google Maps (Keylin, 12-nov-2026)
+    direccion: "Av. de las Américas, La Chorrera, Panamá Oeste",
     hora: "9:00 p.m.",
     boton: "Ver ubicación",
-    enlace: "https://www.google.com/maps/search/?api=1&query=Sala+de+Eventos+Venezia+La+Chorrera+Panam%C3%A1"
+    enlace: "https://maps.app.goo.gl/MATm7nCWdxkjxcQw8"   // enlace exacto que mandó Keylin desde Google Maps
   },
 
   // ---------- Código de vestimenta ----------
@@ -155,11 +155,11 @@ const CONFIG = {
   // ---------- Confirmación (por WhatsApp) ----------
   confirmacion: {
     titulo: "Confirma tu asistencia",
-    texto: "Me encantaría compartir este sueño contigo. Ayúdame confirmando tu asistencia.",
+    texto: "Me encantaría compartir este sueño contigo. Ayúdame confirmando tu asistencia.\n\nLos puestos son limitados y asignados por invitación. Por favor confirma solo a las personas a quienes va dirigida.",
     limite: "",                             // "" = no aparece (falta que Keylin nos diga la fecha)
     boton: "Confirmar",
     whatsapp: "50761046498",                // WhatsApp de Keylin (+507 6104-6498), puesto tras el pago (12-nov-2026)
-    mensaje: "¡Hola, Keylin! 🦋 Con mucha alegría confirmo mi asistencia a los XV años de Niralys, el sábado 16 de enero a las 9:00 pm en la Sala de Eventos Venezia ✨\n\nMi nombre: \nPersonas que asistimos: "
+    mensaje: "¡Hola, Keylin! 🦋 Con mucha alegría confirmo mi asistencia a los XV años de Niralys, el sábado 16 de enero a las 9:00 pm en Pequeña Venezia ✨\n\nMi nombre: \nPersonas que asistimos: "
   },
 
   // ---------- Despedida ----------
@@ -530,6 +530,7 @@ body.esperando #fondo-fijo, body.esperando .invitacion { display: none; }   /* p
 #confirmacion .titulo-script { --tam: 11.5cqw; }
 #confirmacion .parrafo { margin-top: 3cqw; font-size: 5.2cqw; }
 #confirmacion .limite { margin-top: 4cqw; }
+#confirmacion-texto { white-space: pre-line; }
 .boton-oro { display: inline-flex; align-items: center; gap: 2.4cqw; margin-top: 6cqw; padding: 4.2cqw 10cqw; border-radius: 99px; background: linear-gradient(180deg, #fbe7a6 0%, #e8c068 38%, #c9952f 70%, #e9c46c 100%); color: #7a2f45; font: 600 4cqw/1 var(--caps); letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; box-shadow: 0 6px 18px rgba(120, 70, 20, .35), inset 0 2px 0 rgba(255, 255, 255, .65), inset 0 -2px 3px rgba(130, 80, 10, .35); transition: transform .2s ease; }
 .boton-oro:active { transform: scale(.96); }
 .boton-oro svg { width: 5.4cqw; height: 5.4cqw; fill: currentColor; }
