@@ -18,18 +18,18 @@
 <meta property="og:title" content="Mis XV Años · Niralys">
 <meta property="og:description" content="Estás invitado a mis XV años. Toca el sello para abrir tu invitación ✨">
 <meta property="og:url" content="https://eleganciadeamor.com/mis-xv-niralys/">
-<meta property="og:image" content="https://eleganciadeamor.com/mis-xv-niralys/recursos/vista-previa.jpg?v=2">
-<meta property="og:image:secure_url" content="https://eleganciadeamor.com/mis-xv-niralys/recursos/vista-previa.jpg?v=2">
+<meta property="og:image" content="https://eleganciadeamor.com/mis-xv-niralys/recursos/vista-previa.jpg?v=3">
+<meta property="og:image:secure_url" content="https://eleganciadeamor.com/mis-xv-niralys/recursos/vista-previa.jpg?v=3">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="600">
 <meta property="og:image:height" content="600">
 <meta property="og:image:alt" content="Sobre rojo vino con sello dorado, mariposas doradas y rosas vino">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://eleganciadeamor.com/mis-xv-niralys/recursos/vista-previa.jpg?v=2">
-<link rel="icon" href="recursos/vista-previa.jpg?v=2">
+<meta name="twitter:image" content="https://eleganciadeamor.com/mis-xv-niralys/recursos/vista-previa.jpg?v=3">
+<link rel="icon" href="recursos/vista-previa.jpg?v=3">
 <!-- Lo primero que baja: las puertas (si cambias estas imágenes en el CONFIG, cambia también estas 3 líneas) -->
 <link rel="preload" href="recursos/apertura-marco.webp" as="image" fetchpriority="high">
-<link rel="preload" href="recursos/sello-corona.webp" as="image" fetchpriority="high">
+<link rel="preload" href="recursos/sello-n.webp" as="image" fetchpriority="high">
 <link rel="preload" href="recursos/portada-fondo.webp" as="image">
 <link rel="preload" href="recursos/portada-chica.webp" as="image">
 
@@ -78,8 +78,8 @@ const CONFIG = {
     marco: "recursos/apertura-marco.webp",
     puertaIzquierda: "",                    // sobre 1: no hay puertas, el sobre entero se abre
     puertaDerecha: "",
-    sello: "recursos/sello-corona.webp",
-    video: "recursos/sobre-video.mp4"        // animación del sobre hecha con Gemini (al tocar el sello)
+    sello: "recursos/sello-n.webp",                  // sello con la N que eligió Keylin (Gemini, 11-nov)
+    video: "recursos/sobre-video.mp4"        // animación original del sobre (Gemini) con el nombre y la N nuevos cambiados cuadro por cuadro
   },
 
   // ---------- Mensaje dentro del marco dorado ----------
@@ -134,7 +134,7 @@ const CONFIG = {
   // ---------- Código de vestimenta ----------
   vestimenta: {
     titulo: "Código de vestimenta",
-    estilo: "Color libre",
+    estilo: "De gala",
     nota: "Elige el color que más te guste; solo te pedimos evitar el rojo vino y el dorado, reservados para la quinceañera y su mamá"
   },
 
@@ -158,7 +158,7 @@ const CONFIG = {
     texto: "Me encantaría compartir este sueño contigo. Ayúdame confirmando tu asistencia.",
     limite: "",                             // "" = no aparece (falta que Keylin nos diga la fecha)
     boton: "Confirmar",
-    whatsapp: "",                           // número con código de país, sin + ni espacios (ej. 593991234567)
+    whatsapp: "",                           // se pone DESPUÉS del pago: 50761046498 (WhatsApp de Keylin, +507 6104-6498) · número con código de país, sin + ni espacios
     mensaje: "¡Hola! Confirmo mi asistencia a los XV años de Niralys 🦋"
   },
 
@@ -193,7 +193,7 @@ const CONFIG = {
   // Cuando llegue cada imagen, se pone su ruta, por ejemplo "recursos/portada.webp".
   imagenes: {
     portada: "recursos/portada-fondo.webp",               // Niralys a pantalla completa (portada 7) ("" = el arco de las puertas con el nombre en la luz)
-    nombreOro: "",          // "Valentina" en dorado 3D (si cambias el nombre, vacíalo o haz otra imagen)
+    nombreOro: "recursos/nombre-mensaje.webp",          // nombre dorado que eligió Keylin (opción 1, 11-nov) · va en la firma del mensaje
     fondo: "recursos/fondo.webp",                   // fondo fijo: muro del castillo con rosas a los lados
     guirnalda: "recursos/guirnalda-roja.webp",           // glicinias y rosas colgando
     rosal: "recursos/rosal.webp",                   // rosal de la esquina (el otro lado es el mismo, volteado)
@@ -599,7 +599,7 @@ body.esperando #petalos { display: none; }
 #galeria-titulo .titulo-oro { width: 54cqw; }
 #portada .arriba img { display: block; width: 56cqw; margin: 0 auto; }
 .marco-arco .texto p { font-size: 4.6cqw; line-height: 1.45; }
-.firma-oro { display: block; width: 40cqw; margin: 1cqw auto 0; }
+.firma-oro { display: block; width: 54cqw; margin: 1cqw auto 0; filter: drop-shadow(0 1px 1px rgba(90, 40, 10, .45)); }   /* Niralys v3: nombre que eligió Keylin, más grande */
 #portada .portada-img { top: 9%; height: 91%; object-position: 66% 8%; -webkit-mask-image: linear-gradient(transparent 0, #000 7%, #000 58%, transparent 86%); mask-image: linear-gradient(transparent 0, #000 7%, #000 58%, transparent 86%); }
 #padres { padding-top: 26cqw; }
 #padres .invito { font-size: 3.5cqw; letter-spacing: .12em; padding-left: .12em; }
@@ -713,7 +713,7 @@ body { background: #3a0913; }
 #portada:not(.sin-imagen) .encabezado::before { top: 2cqw; }
 #portada .nombre { display: none !important; }
 #portada .p-tiara { display: block; width: 44cqw; margin: 0 auto -1cqw; filter: drop-shadow(0 3px 5px rgba(30, 0, 6, .6)); opacity: 0; transform: translateY(-3cqw); }
-#portada .p-nombre { display: block; width: 74cqw; margin: 0 auto; filter: drop-shadow(0 2px 4px rgba(30, 0, 6, .8)); opacity: 0; transform: scale(.92); }
+#portada .p-nombre { display: block; width: 80cqw; margin: 0 auto; filter: drop-shadow(0 2px 4px rgba(30, 0, 6, .8)); opacity: 0; transform: scale(.92); }
 #portada.visible .p-tiara { animation: sube 1s .2s ease-out forwards; }
 #portada.visible .p-nombre { animation: aparece-nombre 1.3s .5s cubic-bezier(.2, .8, .3, 1) forwards; }
 #portada .lema { margin-top: 0; }
@@ -751,7 +751,7 @@ body { background: #3a0913; }
     <div class="destellos"></div>
     <div class="encabezado">
       <img class="p-tiara" src="recursos/tiara-portada.webp" alt="" decoding="async">
-      <img class="p-nombre" src="recursos/nombre-portada.webp" alt="Niralys" decoding="async">
+      <img class="p-nombre" src="recursos/nombre-mensaje.webp" alt="Niralys" decoding="async">
       <div class="corona" data-corona></div>
       <div class="nombre" data-nombre></div>
       <p class="arriba" id="arriba"></p>
