@@ -16,7 +16,7 @@ html, body { background: #f6e3ea; }
   font: 600 3.2cqw/1.2 'Cinzel', serif; letter-spacing: .08em; }
 .fondo { inset: -3%; width: 106%; height: 106%; object-fit: cover; filter: blur(var(--blur, 2px)); }
 .velo { left: 0; right: 0; bottom: 0; height: var(--velo-alto, 46cqh); background: linear-gradient(rgba(var(--velo), 0), rgba(var(--velo), .7) 45%, rgba(var(--velo), .92)); }
-.rosas { left: 0; width: 100cqw; bottom: -7cqh; z-index: 8; }
+.rosas { left: 0; width: 100cqw; bottom: 0; z-index: 8; }   /* el arreglo completo, sin cortar */
 .nombre { z-index: 10; left: 50%; translate: -50% 0; width: var(--nombre-ancho, 82cqw); filter: drop-shadow(0 2px 3px rgba(70, 20, 40, .55)) drop-shadow(0 0 10px rgba(255, 255, 255, .35)); }
 .lema { z-index: 10; left: 6cqw; right: 6cqw; text-align: center; font: 600 3.5cqw/1.5 'Cinzel', serif; letter-spacing: .1em; color: var(--texto, #fff);
   text-shadow: 0 1px 3px rgba(70, 20, 40, .7); }
@@ -67,10 +67,11 @@ html, body { background: #f6e3ea; }
 #p5 { --velo: 176, 100, 130; --velo-alto: 42cqh; --blur: 2px; }
 #p5 .fondo { transform: scaleX(-1); }
 #p5 .persona { height: 100cqh; bottom: -8cqh; left: calc(58cqw - 0.46 * 0.695 * 100cqh); }
-#p5 .titulo { z-index: 10; left: 5cqw; right: 5cqw; bottom: 13cqh; text-align: center; }
+#p5 .titulo { z-index: 10; left: 5cqw; right: 5cqw; bottom: 15cqh; text-align: center; }
 #p5 .titulo .nombre { position: relative; display: block; left: auto; translate: none; margin: 0 auto; --nombre-ancho: 76cqw; }
 #p5 .titulo .mis { font: italic 500 6cqw/1.2 'Cormorant', serif; color: #fff; text-shadow: 0 1px 4px rgba(70, 20, 40, .8); }
-#p5 .titulo .fecha { position: relative; margin-top: 1cqh; }
+#p5 .titulo .fecha { position: relative; margin-top: .8cqh; }
+#p5 .sep5 { display: block; width: 38cqw; margin: .6cqh auto 0; filter: drop-shadow(0 1px 2px rgba(70, 20, 40, .55)); }
 
 /* ===== 6 · POLAROIDS (dos fotos completas) · oro rosa ===== */
 #p6 { --velo: 186, 110, 138; --velo-alto: 48cqh; --blur: 3px; --borde: linear-gradient(#fffaf8, #fffaf8); }
@@ -103,7 +104,7 @@ html, body { background: #f6e3ea; }
   <i class="mari" style="left:4cqw;top:12cqh;--w:10cqw"></i><i class="mari" style="right:5cqw;top:38cqh;--w:8cqw;--d:12s"></i>
   <img class="nombre" src="recursos/nombre-champana.webp" alt="Hanna">
   <p class="lema">Una celebración de ensueño<br>en familia y con amor</p>
-  <img class="rosas" src="recursos/rosas.webp" alt="" style="bottom:-9cqh">
+  <img class="rosas" src="recursos/rosas.webp" alt="">
   <p class="fecha" style="z-index:11">27 · 12 · 2026</p>
 </section>
 
@@ -125,7 +126,7 @@ html, body { background: #f6e3ea; }
   <figure class="marco"><img src="recursos/foto-abrazo.webp" alt="Hanna"></figure>
   <img class="rosas-medallon" src="recursos/rosas.webp" alt="">
   <i class="mari" style="left:6cqw;top:6cqh;--w:10cqw"></i><i class="mari" style="right:6cqw;top:16cqh;--w:8cqw;--d:12s"></i>
-  <img class="rosas" src="recursos/rosas.webp" alt="" style="bottom:-12cqh">
+  <img class="rosas" src="recursos/rosas.webp" alt="">
   <p class="mis">MIS XV AÑOS</p>
   <img class="nombre" src="recursos/nombre-rosa-profundo.webp" alt="Hanna" style="filter:drop-shadow(0 0 2px #fff) drop-shadow(0 0 8px rgba(255,255,255,.8))">
   <p class="lema">Una celebración de ensueño<br>en familia y con amor</p>
@@ -137,9 +138,9 @@ html, body { background: #f6e3ea; }
   <img class="fondo" src="recursos/fondo-portada.webp" alt="">
   <img class="persona" src="recursos/p-perfil.webp" alt="Hanna con su caballo">
   <div class="velo"></div>
-  <img class="rosas" src="recursos/rosas.webp" alt="" style="width:70cqw;left:-10cqw">
+  <img class="rosas" src="recursos/rosas.webp" alt="" style="width:66cqw;left:0;-webkit-mask-image:linear-gradient(to right,#000 62%,transparent 98%);mask-image:linear-gradient(to right,#000 62%,transparent 98%)">
   <i class="mari" style="left:10cqw;top:10cqh;--w:11cqw"></i><i class="mari" style="left:30cqw;top:30cqh;--w:7cqw;--d:12s"></i>
-  <div class="titulo"><p class="mis">Mis XV años</p><img class="nombre" src="recursos/nombre-rosa-claro.webp" alt="Hanna"><p class="fecha">27 · 12 · 2026</p></div>
+  <div class="titulo"><p class="mis">Mis XV años</p><img class="nombre" src="recursos/nombre-rosa-claro.webp" alt="Hanna"><img class="sep5" src="recursos/separador-rosa-claro.webp" alt=""><p class="fecha">27 · 12 · 2026</p></div>
 </section>
 
 <section class="pt" id="p6">
