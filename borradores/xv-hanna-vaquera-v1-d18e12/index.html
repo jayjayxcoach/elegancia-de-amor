@@ -78,7 +78,7 @@ const CONFIG = {
     marco: "recursos/apertura-marco.webp",
     puertaIzquierda: "",                    // sobre 1: no hay puertas, el sobre entero se abre
     puertaDerecha: "",
-    sello: "recursos/herradura-xv.webp",                // herradura de plata con el XV
+    sello: "recursos/sello-sobre.webp",                // el sello de cera del sobre 13
     video: ""                                // el sobre definitivo va cuando Hanna elija (documento de sobres vaqueros)
   },
 
@@ -727,12 +727,31 @@ body { background: #84435b; }
 #mensaje .guirnalda { top: -10cqw; -webkit-mask-image: linear-gradient(transparent 0, #000000 30%); mask-image: linear-gradient(transparent 0, #000000 30%); }
 
 /* ===== Hanna (vaquera, rosa y plata) sobre la base de Niralys ===== */
-#vestimenta, #regalos, #confirmacion { display: none !important; }      /* pidió quitar vestimenta y confirmación; no pidió lluvia de sobres */
-#portada .p-tiara { width: 24cqw; margin-bottom: 1cqw; }
-#portada .portada-img { object-position: 50% 30%; }
-#portada div.velo { display: block !important; inset: auto 0 0; top: auto; height: 100cqw; z-index: 2;
-  background: linear-gradient(rgba(150, 82, 108, 0) 0%, rgba(150, 82, 108, .55) 38%, rgba(140, 74, 100, .9) 70%, #8c4a64 100%); }
-#portada .lema { color: #f4f5f8; }
+#vestimenta, #regalos, #confirmacion { display: none !important; }
+#apertura .sello { top: 65.83%; width: 19.7%; }                        /* sello de cera del sobre 13 */      /* pidió quitar vestimenta y confirmación; no pidió lluvia de sobres */
+/* PORTADA EN CAPAS: para ajustar, cambia solo estas variables */
+#portada { --desenfoque: 3px;            /* difuminado del fondo de jardín (más = más difuminado) */
+           --hanna-ancho: 118cqw;        /* tamaño de Hanna con su caballo */
+           --hanna-arriba: 16cqw;        /* qué tan abajo empieza Hanna */
+           --separador-baja: 6cqw;       /* espacio entre el texto y el separador */
+           --velo: .82; }                /* fuerza del rosa detrás del nombre (0 a 1) */
+#portada .portada-img { filter: blur(var(--desenfoque)); transform: scale(1.06); object-position: 50% 40%; }
+#portada .p-hanna { position: absolute; z-index: 1; right: -14cqw; top: var(--hanna-arriba); width: var(--hanna-ancho); max-width: none; pointer-events: none;
+  -webkit-mask-image: linear-gradient(#000 66%, transparent 94%); mask-image: linear-gradient(#000 66%, transparent 94%); }
+#portada div.velo { display: block !important; inset: auto 0 0; top: auto; height: 96cqw; z-index: 2; opacity: var(--velo);
+  background: linear-gradient(rgba(176, 104, 132, 0) 0%, rgba(176, 104, 132, .55) 40%, rgba(160, 88, 116, .9) 72%, #9c5674 100%); }
+#portada .p-rosas { z-index: 3; }
+#portada .lema { color: #ffffff; }
+#portada .p-separador { display: block; width: 44cqw; margin: var(--separador-baja) auto 0; filter: drop-shadow(0 1px 2px rgba(80, 30, 50, .6)); }
+#portada:not(.sin-imagen) .encabezado { bottom: 16%; }
+#portada:not(.sin-imagen) .encabezado::before { display: none; }
+.mariposa i { filter: drop-shadow(0 0 5px rgba(255, 220, 235, .9)); }
+/* FONDO DE PÁGINA (jardín con puente): para ajustar, cambia estas variables */
+:root { --desenfoque-pagina: 3px;   /* difuminado del fondo de toda la invitación */
+        --velo-pagina: .56; }       /* fuerza del rosa encima del fondo (0 a 1): más alto = textos más legibles */
+#fondo-fijo.con-imagen { filter: blur(var(--desenfoque-pagina)); transform: scale(1.04); }
+#fondo-fijo.con-imagen::after, #fondo-fijo::after { background: rgb(124, 62, 90) !important; opacity: var(--velo-pagina); }
+#padres, #cuenta, #galeria .titulo-script, #despedida .frase, #te-espero { text-shadow: 0 1px 6px rgba(70, 25, 45, .55); }
 #video-caballo, #calenda-foto { position: relative; z-index: 2; }
 #video-caballo { padding: 14cqw 0 4cqw; text-align: center; }
 .arco-plata { position: relative; width: 74cqw; margin: 0 auto; aspect-ratio: 9 / 16; border-radius: 37cqw 37cqw 3cqw 3cqw; overflow: hidden;
@@ -768,21 +787,23 @@ body { background: #84435b; }
   <section id="portada">
     <img class="portada-img" data-img="portada" alt="" loading="lazy" decoding="async" width="720" height="1290">
     <img class="arco-respaldo" id="arco-respaldo" alt="" decoding="async">
+    <img class="p-hanna" src="recursos/hanna-caballo.webp" alt="Hanna con su caballo" decoding="async">
     <div class="velo"></div>
     
     <img class="p-rosas" src="recursos/portada-rosas.webp" alt="" decoding="async">
     <div class="destellos"></div>
     <div class="encabezado">
-      <img class="p-tiara" src="recursos/herradura-xv.webp" alt="" decoding="async">
+      
       <img class="p-nombre" src="recursos/nombre-hanna.webp" alt="Hanna" decoding="async">
       <div class="corona" data-corona></div>
       <div class="nombre" data-nombre></div>
       <p class="arriba" id="arriba"></p>
       <p class="lema" id="lema"></p>
+      <img class="p-separador" src="recursos/separador.webp" alt="" decoding="async">
       <p class="caps fecha-portada" id="fecha-portada"></p>
     </div>
-    <div class="mariposa" style="--w:10cqw;left:8cqw;top:96cqw;--d:15s;--x1:14cqw;--y1:-12cqw;--x2:30cqw;--y2:-2cqw;--x3:12cqw;--y3:10cqw"><div class="cuerpo"><i></i><i></i></div></div>
-    <div class="mariposa" style="--w:7.5cqw;right:10cqw;top:120cqw;--d:18s;--r:-6s;--giro:20deg;--x1:-12cqw;--y1:-8cqw;--x2:-22cqw;--y2:6cqw;--x3:-8cqw;--y3:12cqw"><div class="cuerpo"><i></i><i></i></div></div>
+    <div class="mariposa" style="--w:12cqw;left:5cqw;top:30cqw;--d:15s;--x1:12cqw;--y1:-10cqw;--x2:24cqw;--y2:-4cqw;--x3:8cqw;--y3:6cqw"><div class="cuerpo"><i></i><i></i></div></div>
+    <div class="mariposa" style="--w:9cqw;right:6cqw;top:128cqw;--d:18s;--r:-6s;--giro:20deg;--x1:-8cqw;--y1:6cqw;--x2:-14cqw;--y2:12cqw;--x3:-4cqw;--y3:16cqw"><div class="cuerpo"><i></i><i></i></div></div>
     <p class="baja">Desliza</p>
   </section>
 
