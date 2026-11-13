@@ -731,12 +731,13 @@ body { background: #84435b; }
 #apertura .sello { top: 65.83%; width: 19.7%; }                        /* sello de cera del sobre 13 */      /* pidió quitar vestimenta y confirmación; no pidió lluvia de sobres */
 /* PORTADA EN CAPAS: para ajustar, cambia solo estas variables */
 #portada { --desenfoque: 3px;            /* difuminado del fondo de jardín (más = más difuminado) */
-           --hanna-ancho: 118cqw;        /* tamaño de Hanna con su caballo */
-           --hanna-arriba: 16cqw;        /* qué tan abajo empieza Hanna */
+           --hanna-ancho: 142cqw;        /* tamaño de Hanna con su caballo (protagonista) */
+           --hanna-arriba: 6cqw;         /* qué tan abajo empieza Hanna */
+           --hanna-derecha: -30cqw;      /* cuánto se sale el caballo por la derecha */
            --separador-baja: 6cqw;       /* espacio entre el texto y el separador */
            --velo: .82; }                /* fuerza del rosa detrás del nombre (0 a 1) */
 #portada .portada-img { filter: blur(var(--desenfoque)); transform: scale(1.06); object-position: 50% 40%; }
-#portada .p-hanna { position: absolute; z-index: 1; right: -14cqw; top: var(--hanna-arriba); width: var(--hanna-ancho); max-width: none; pointer-events: none;
+#portada .p-hanna { position: absolute; z-index: 1; right: var(--hanna-derecha); top: var(--hanna-arriba); width: var(--hanna-ancho); max-width: none; pointer-events: none;
   -webkit-mask-image: linear-gradient(#000 66%, transparent 94%); mask-image: linear-gradient(#000 66%, transparent 94%); }
 #portada div.velo { display: block !important; inset: auto 0 0; top: auto; height: 96cqw; z-index: 2; opacity: var(--velo);
   background: linear-gradient(rgba(176, 104, 132, 0) 0%, rgba(176, 104, 132, .55) 40%, rgba(160, 88, 116, .9) 72%, #9c5674 100%); }
@@ -746,6 +747,19 @@ body { background: #84435b; }
 #portada:not(.sin-imagen) .encabezado { bottom: 16%; }
 #portada:not(.sin-imagen) .encabezado::before { display: none; }
 .mariposa i { filter: drop-shadow(0 0 5px rgba(255, 220, 235, .9)); }
+#portada .destellos { top: auto; bottom: 0; height: 40%; }    /* los destellos, solo abajo: nunca sobre la cara */
+/* "Hanna" con brillo: resplandor suave + un destello que pasa por las letras + chispitas */
+#portada .nombre-caja { position: relative; width: 84cqw; margin: 0 auto; }
+#portada .nombre-caja .p-nombre { width: 100%; filter: drop-shadow(0 0 5px rgba(255, 255, 255, .8)) drop-shadow(0 0 14px rgba(255, 196, 220, .65)) drop-shadow(0 2px 3px rgba(80, 30, 50, .55)); }
+#portada .nombre-caja .brillo { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: screen;
+  -webkit-mask: url(recursos/nombre-hanna.webp) center / 100% 100% no-repeat; mask: url(recursos/nombre-hanna.webp) center / 100% 100% no-repeat;
+  background: linear-gradient(105deg, transparent 38%, rgba(255, 255, 255, .95) 48%, rgba(255, 228, 240, .9) 53%, transparent 63%) 160% 0 / 300% 100% no-repeat; }
+#portada.visible .nombre-caja .brillo { animation: brillo-nombre 3.6s 2.2s ease-in-out infinite; }
+@keyframes brillo-nombre { 0% { background-position: 160% 0; } 55%, 100% { background-position: -60% 0; } }
+#portada .nombre-caja .chispa { position: absolute; width: 4.2cqw; aspect-ratio: 1; pointer-events: none; opacity: 0;
+  background: radial-gradient(circle, #fff 0 12%, transparent 13%), conic-gradient(from 45deg, transparent 0 10%, #fff 12% 13%, transparent 15% 35%, #fff 37% 38%, transparent 40% 60%, #fff 62% 63%, transparent 65% 85%, #fff 87% 88%, transparent 90%);
+  filter: drop-shadow(0 0 3px #fff) drop-shadow(0 0 6px rgba(255, 190, 215, .9)); animation: chispa 2.8s var(--r, 0s) ease-in-out infinite; }
+@keyframes chispa { 0%, 100% { opacity: 0; transform: scale(.3) rotate(0); } 45% { opacity: 1; transform: scale(1) rotate(45deg); } 70% { opacity: 0; } }
 /* FONDO DE PÁGINA (jardín con puente): para ajustar, cambia estas variables */
 :root { --desenfoque-pagina: 3px;   /* difuminado del fondo de toda la invitación */
         --velo-pagina: .56; }       /* fuerza del rosa encima del fondo (0 a 1): más alto = textos más legibles */
@@ -794,7 +808,7 @@ body { background: #84435b; }
     <div class="destellos"></div>
     <div class="encabezado">
       
-      <img class="p-nombre" src="recursos/nombre-hanna.webp" alt="Hanna" decoding="async">
+      <div class="nombre-caja"><img class="p-nombre" src="recursos/nombre-hanna.webp" alt="Hanna" decoding="async"><i class="brillo"></i><i class="chispa" style="left:8%;top:22%;--r:.2s"></i><i class="chispa" style="left:47%;top:4%;--r:1.1s"></i><i class="chispa" style="left:88%;top:38%;--r:1.9s"></i><i class="chispa" style="left:30%;top:80%;--r:2.6s"></i></div>
       <div class="corona" data-corona></div>
       <div class="nombre" data-nombre></div>
       <p class="arriba" id="arriba"></p>
