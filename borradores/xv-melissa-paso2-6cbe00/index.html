@@ -15,15 +15,17 @@ html, body { background: #f6e3ea; font-family: Georgia, serif; }
   animation: titila var(--d, 3s) ease-in-out infinite; animation-delay: var(--r, 0s); opacity: 0; }
 @keyframes titila { 0%, 100% { opacity: 0; transform: scale(.4); } 50% { opacity: 1; transform: scale(1.2); } }
 </style></head><body>
-<section class="pt"><span class="etiqueta">1 · Portada en el salón rosa</span><img src="portada-rosa.webp" alt="Portada: Melissa en un salón rosa con candelabros, su nombre en dorado y rosas pastel"></section>
-<section class="pt"><span class="etiqueta">2 · Portada con su foto completa</span><img src="portada-farol.webp" alt="Portada: Melissa con el farol junto al estanque, su nombre en dorado y rosas pastel"></section>
+<section class="pt"><span class="etiqueta">Corona 1 · clásica con volutas</span><img src="rosa-corona1.webp" alt="Portada salón rosa con corona clásica dorada"></section>
+<section class="pt"><span class="etiqueta">Corona 2 · princesa oro rosa con perlas</span><img src="rosa-corona2.webp" alt="Portada salón rosa con corona de princesa en oro rosa"></section>
+<section class="pt"><span class="etiqueta">Corona 3 · barroca con piedras rosas</span><img src="rosa-corona3.webp" alt="Portada salón rosa con corona barroca dorada"></section>
+<section class="pt"><span class="etiqueta">Foto completa · corona 2</span><img src="farol-corona2.webp" alt="Portada del farol con las letras nuevas y corona de princesa"></section>
 <section class="pt"><span class="etiqueta">Sobre en rosa con rosas</span><img src="sobre-rosa.webp" alt="Sobre de satín rosa con lacre dorado XV, corona de perlas y rosas"></section>
 <script>
 // destellos dorados suaves sobre la zona del nombre de cada portada
 document.querySelectorAll('.pt').forEach((pt, k) => {
   for (let i = 0; i < 16; i++) {
     const b = document.createElement('i'); b.className = 'brillo';
-    const top = k < 2 ? 50 + Math.random() * 30 : 25 + Math.random() * 50;
+    const top = k < 4 ? 50 + Math.random() * 30 : 25 + Math.random() * 50;
     b.style.cssText = `left:${8 + Math.random() * 84}%;top:${top}%;--t:${1 + Math.random() * 1.8}cqw;--d:${2.2 + Math.random() * 2.5}s;--r:${Math.random() * 3}s`;
     pt.appendChild(b);
   }
