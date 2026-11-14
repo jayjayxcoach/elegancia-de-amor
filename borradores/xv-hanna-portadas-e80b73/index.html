@@ -16,7 +16,9 @@ html, body { background: #f6e3ea; }
   font: 600 3.2cqw/1.2 'Cinzel', serif; letter-spacing: .08em; }
 .fondo { inset: -3%; width: 106%; height: 106%; object-fit: cover; filter: blur(var(--blur, 2px)); }
 .velo { left: 0; right: 0; bottom: 0; height: var(--velo-alto, 46cqh); background: linear-gradient(rgba(var(--velo), 0), rgba(var(--velo), .7) 45%, rgba(var(--velo), .92)); }
-.rosas { left: 0; width: 100cqw; bottom: 0; z-index: 8; }   /* el arreglo completo, sin cortar */
+.rosas { left: 0; width: 100cqw; bottom: -1px; z-index: 8; max-width: none; filter: drop-shadow(0 -1cqw 2cqw rgba(110, 40, 70, .25)); }   /* de borde a borde, pegadas al piso */
+.rB { width: 104cqw; left: -2cqw; }
+.rF { width: 112cqw; left: -6cqw; }
 .nombre { z-index: 10; left: 50%; translate: -50% 0; width: var(--nombre-ancho, 82cqw); filter: drop-shadow(0 2px 3px rgba(70, 20, 40, .55)) drop-shadow(0 0 10px rgba(255, 255, 255, .35)); }
 .lema { z-index: 10; left: 6cqw; right: 6cqw; text-align: center; font: 600 3.5cqw/1.5 'Cinzel', serif; letter-spacing: .1em; color: var(--texto, #fff);
   text-shadow: 0 1px 3px rgba(70, 20, 40, .7); }
@@ -57,7 +59,7 @@ html, body { background: #f6e3ea; }
 #p4 .velo { background: rgba(150, 70, 104, .38); }
 #p4 .marco { left: 50%; translate: -50% 0; top: 9cqh; width: min(76cqw, 44cqh); aspect-ratio: 1; border-radius: 50%; border-width: 1.6cqw; }
 #p4 .marco img { object-position: 44% 38%; transform: scale(2.3); transform-origin: 44% 36%; }
-#p4 .rosas-medallon { z-index: 7; left: 50%; translate: -50% 0; top: calc(9cqh + min(76cqw, 44cqh) * .72); width: min(96cqw, 56cqh); }
+#p4 .rosas-medallon { z-index: 7; left: 50%; translate: -50% 0; top: calc(9cqh + min(76cqw, 44cqh) * .9); width: min(92cqw, 54cqh); max-width: none; }   /* rosas con lazo debajo del círculo, sin tapar la cara */
 #p4 .mis { z-index: 10; left: 0; right: 0; top: calc(9cqh + min(76cqw, 44cqh) + 12cqh); text-align: center; font: 600 3.8cqw/1 'Cinzel', serif; letter-spacing: .35em; color: #fff; text-shadow: 0 1px 4px rgba(70, 20, 40, .7); }
 #p4 .nombre { top: calc(9cqh + min(76cqw, 44cqh) + 15cqh); --nombre-ancho: 74cqw; }
 #p4 .lema { top: calc(9cqh + min(76cqw, 44cqh) + 15cqh + 31cqw); }
@@ -89,7 +91,7 @@ html, body { background: #f6e3ea; }
   <img class="fondo" src="recursos/fondo-jardin-faroles.webp" alt="">
   <img class="persona" src="recursos/p-abrazo.webp" alt="Hanna con su caballo">
   <div class="velo"></div>
-  <img class="rosas" src="recursos/rosas.webp" alt="">
+  <img class="rosas rD" src="recursos/rosas-D.webp" alt="">
   <i class="mari" style="left:6cqw;top:8cqh;--w:11cqw"></i><i class="mari" style="right:10cqw;top:44cqh;--w:8cqw;--d:11s"></i>
   <img class="nombre" src="recursos/nombre-oro-rosa.webp" alt="Hanna">
   <p class="lema">Una celebración de ensueño<br>en familia y con amor</p>
@@ -104,7 +106,7 @@ html, body { background: #f6e3ea; }
   <i class="mari" style="left:4cqw;top:12cqh;--w:10cqw"></i><i class="mari" style="right:5cqw;top:38cqh;--w:8cqw;--d:12s"></i>
   <img class="nombre" src="recursos/nombre-champana.webp" alt="Hanna">
   <p class="lema">Una celebración de ensueño<br>en familia y con amor</p>
-  <img class="rosas" src="recursos/rosas.webp" alt="">
+  <img class="rosas rB" src="recursos/rosas-B.webp" alt="">
   <p class="fecha" style="z-index:11">27 · 12 · 2026</p>
 </section>
 
@@ -115,7 +117,7 @@ html, body { background: #f6e3ea; }
   <div class="titulo"><p class="mis">MIS XV AÑOS</p><img class="nombre" src="recursos/nombre-perla.webp" alt="Hanna"><p class="fecha">27 · 12 · 2026</p></div>
   <img class="persona" src="recursos/p-montada.webp" alt="Hanna montada a caballo">
   <div class="velo"></div>
-  <img class="rosas" src="recursos/rosas.webp" alt="">
+  <img class="rosas rE" src="recursos/rosas-E.webp" alt="">
   <i class="mari" style="left:8cqw;top:40cqh;--w:9cqw"></i><i class="mari" style="right:8cqw;top:36cqh;--w:11cqw;--d:10s"></i>
 </section>
 
@@ -124,9 +126,9 @@ html, body { background: #f6e3ea; }
   <img class="fondo" src="recursos/fondo-portada.webp" alt="">
   <div class="velo"></div>
   <figure class="marco"><img src="recursos/foto-abrazo.webp" alt="Hanna"></figure>
-  <img class="rosas-medallon" src="recursos/rosas.webp" alt="">
+  <img class="rosas-medallon" src="recursos/rosas-C.webp" alt="">
   <i class="mari" style="left:6cqw;top:6cqh;--w:10cqw"></i><i class="mari" style="right:6cqw;top:16cqh;--w:8cqw;--d:12s"></i>
-  <img class="rosas" src="recursos/rosas.webp" alt="">
+  <img class="rosas rA" src="recursos/rosas-A.webp" alt="">
   <p class="mis">MIS XV AÑOS</p>
   <img class="nombre" src="recursos/nombre-rosa-profundo.webp" alt="Hanna" style="filter:drop-shadow(0 0 2px #fff) drop-shadow(0 0 8px rgba(255,255,255,.8))">
   <p class="lema">Una celebración de ensueño<br>en familia y con amor</p>
@@ -138,7 +140,7 @@ html, body { background: #f6e3ea; }
   <img class="fondo" src="recursos/fondo-portada.webp" alt="">
   <img class="persona" src="recursos/p-perfil.webp" alt="Hanna con su caballo">
   <div class="velo"></div>
-  <img class="rosas" src="recursos/rosas.webp" alt="" style="width:66cqw;left:0;-webkit-mask-image:linear-gradient(to right,#000 62%,transparent 98%);mask-image:linear-gradient(to right,#000 62%,transparent 98%)">
+  <img class="rosas rF" src="recursos/rosas-F.webp" alt="">
   <i class="mari" style="left:10cqw;top:10cqh;--w:11cqw"></i><i class="mari" style="left:30cqw;top:30cqh;--w:7cqw;--d:12s"></i>
   <div class="titulo"><p class="mis">Mis XV años</p><img class="nombre" src="recursos/nombre-rosa-claro.webp" alt="Hanna"><img class="sep5" src="recursos/separador-rosa-claro.webp" alt=""><p class="fecha">27 · 12 · 2026</p></div>
 </section>
@@ -150,7 +152,7 @@ html, body { background: #f6e3ea; }
   <figure class="marco m1"><img src="recursos/foto-montada.webp" alt="Hanna montada"></figure>
   <figure class="marco m2"><img src="recursos/foto-perfil.webp" alt="Hanna con su caballo"></figure>
   <i class="mari" style="right:8cqw;top:6cqh;--w:10cqw"></i><i class="mari" style="left:4cqw;top:48cqh;--w:8cqw;--d:12s"></i>
-  <img class="rosas" src="recursos/rosas.webp" alt="">
+  <img class="rosas rC" src="recursos/rosas-C.webp" alt="">
   <img class="nombre" src="recursos/nombre-oro-rosa.webp" alt="Hanna">
   <p class="lema">Una celebración de ensueño<br>en familia y con amor</p>
   <img class="sep" src="recursos/separador-oro-rosa.webp" alt="">
