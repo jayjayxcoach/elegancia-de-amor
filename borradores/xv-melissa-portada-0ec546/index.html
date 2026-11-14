@@ -2,24 +2,81 @@
 <html lang="es"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex">
-<title>Melissa · portada</title>
+<title>Melissa · portadas y sobre</title>
+<link rel="preload" href="recursos/fuente-great-vibes.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+@font-face { font-family: 'Great Vibes'; src: url('recursos/fuente-great-vibes.woff2') format('woff2'); font-display: block; }
+@font-face { font-family: 'Cinzel'; font-weight: 600; src: url('recursos/fuente-cinzel-600.woff2') format('woff2'); font-display: block; }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html, body { background: #f6e3ea; }
-.pt { position: relative; width: 100%; max-width: 500px; aspect-ratio: 9 / 16; margin: 0 auto; overflow: hidden; container-type: inline-size; }
-.pt img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.brillo { position: absolute; width: var(--t, 1.6cqw); aspect-ratio: 1; border-radius: 50%;
-  background: radial-gradient(circle, #fff 0%, #fff4c8 35%, rgba(255, 230, 160, 0) 70%);
-  animation: titila var(--d, 3s) ease-in-out infinite; animation-delay: var(--r, 0s); opacity: 0; }
+.pt { position: relative; width: 100%; max-width: 500px; aspect-ratio: 9 / 16; margin: 0 auto 14px; overflow: hidden; container-type: inline-size; }
+.pt > img.base { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.etiqueta { position: absolute; z-index: 9; left: 3cqw; top: 3cqw; padding: 1.2cqw 3cqw; border-radius: 99px; background: rgba(60, 20, 40, .55);
+  color: #fff; font: 600 3cqw/1.2 'Cinzel', serif; letter-spacing: .06em; }
+
+/* Letras en código, como Niralys: oro con brillo cálido, sin contorno negro */
+.letras { position: absolute; z-index: 5; left: 0; right: 0; top: var(--top, 56%); text-align: center; }
+.letras::before { content: ""; position: absolute; z-index: -1; left: 2cqw; right: 2cqw; top: 2cqw; bottom: -3cqw;
+  background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(var(--velo, 120, 40, 72), .5) 0%, rgba(var(--velo, 120, 40, 72), .28) 55%, rgba(var(--velo, 120, 40, 72), 0) 100%); }
+.tiara { display: block; width: 36cqw; margin: 0 auto -2.5cqw; filter: drop-shadow(0 2px 4px rgba(80, 25, 45, .45)) drop-shadow(0 0 8px rgba(255, 225, 160, .45));
+  opacity: 0; transform: translateY(-3cqw); animation: sube 1s .2s ease-out forwards; }
+.oro { background: linear-gradient(100deg, #b7852e 0%, #f4d98f 18%, #fff3cc 28%, #ecc86e 40%, #bd8b32 55%, #f7e1a0 70%, #fff6d6 78%, #c9973c 92%, #b7852e 100%);
+  background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: brillo 6s ease-in-out infinite; }
+.nombre { display: inline-block; font: 400 var(--tam, 12.6cqw)/1.25 'Great Vibes', cursive; padding: 0 .18em; white-space: nowrap;
+  filter: drop-shadow(0 1.5px 2px rgba(90, 30, 50, .55)) drop-shadow(0 0 9px rgba(255, 220, 150, .55));
+  opacity: 0; transform: scale(.92); animation: aparece 1.4s .5s cubic-bezier(.2, .8, .3, 1) forwards, brillo 6s 2s ease-in-out infinite; }
+.lema { display: block; width: 84cqw; margin: .5cqw auto 0; font: 600 3.7cqw/1.5 'Cinzel', serif; letter-spacing: .11em; text-transform: uppercase;
+  filter: drop-shadow(0 1px 1.5px rgba(90, 30, 50, .6)) drop-shadow(0 0 6px rgba(255, 220, 150, .4)); opacity: 0; animation: sube .9s 1.2s ease-out forwards, brillo 6s 2s ease-in-out infinite; }
+.adorno { display: flex; align-items: center; justify-content: center; gap: 2.2cqw; width: 58cqw; margin: 3cqw auto 0; opacity: 0; animation: sube .9s 1.6s ease-out forwards; }
+.adorno::before, .adorno::after { content: ""; flex: 1; height: 1.6px; background: linear-gradient(90deg, transparent, #e9c56e); box-shadow: 0 0 4px rgba(255, 220, 150, .7); }
+.adorno::after { background: linear-gradient(270deg, transparent, #e9c56e); }
+.adorno i { width: 1.6cqw; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #fff6d6, #e2b85c 60%, #a8762c); box-shadow: 0 0 5px rgba(255, 225, 160, .9); }
+.adorno b { width: 3cqw; aspect-ratio: 1; rotate: 45deg; background: linear-gradient(135deg, #fff1c4, #e2b85c 55%, #a8762c); box-shadow: 0 0 6px rgba(255, 225, 160, .9); }
+@keyframes sube { to { opacity: 1; transform: none; } }
+@keyframes aparece { to { opacity: 1; transform: none; } }
+@keyframes brillo { 0%, 100% { background-position: 100% 0; } 50% { background-position: 0 0; } }
+.chispa { position: absolute; z-index: 6; width: var(--t, 1.6cqw); aspect-ratio: 1; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle, #fff 0%, #fff4c8 35%, rgba(255, 230, 160, 0) 70%); opacity: 0; animation: titila var(--d, 3s) ease-in-out infinite; animation-delay: var(--r, 0s); }
 @keyframes titila { 0%, 100% { opacity: 0; transform: scale(.4); } 50% { opacity: 1; transform: scale(1.2); } }
 </style></head><body>
-<section class="pt"><img src="portada.webp" alt="Portada: Melissa en un salón rosa, su nombre en dorado con tiara y rosas pastel"></section>
+
+<section class="pt"><span class="etiqueta">1 · Salón rosa</span>
+  <img class="base" src="recursos/base-rosa.webp" alt="Melissa en un salón rosa con candelabros y rosas pastel">
+  <div class="letras" style="--top:55.5%">
+    <img class="tiara" src="recursos/tiara.webp" alt="">
+    <span class="nombre oro">Melissa Alejandra</span>
+    <span class="lema oro">Una noche de elegancia,<br>familia y alegría</span>
+    <div class="adorno"><i></i><b></b><i></i></div>
+  </div>
+</section>
+
+<section class="pt"><span class="etiqueta">2 · Foto completa</span>
+  <img class="base" src="recursos/portada-farol.webp" alt="Melissa con el farol junto al estanque, su nombre en dorado y rosas pastel">
+</section>
+
+<section class="pt"><span class="etiqueta">3 · Jardín de rosas</span>
+  <img class="base" src="recursos/base-jardin.webp" alt="Melissa bajo un arco de rosas y bugambilias">
+  <div class="letras" style="--top:57%">
+    <img class="tiara" src="recursos/tiara.webp" alt="">
+    <span class="nombre oro">Melissa Alejandra</span>
+    <span class="lema oro">Una noche de elegancia,<br>familia y alegría</span>
+    <div class="adorno"><i></i><b></b><i></i></div>
+  </div>
+</section>
+
+<section class="pt"><span class="etiqueta">Sobre en rosa con rosas</span>
+  <img class="base" src="recursos/sobre-rosa.webp" alt="Sobre de satín rosa con lacre dorado XV, corona de perlas y rosas">
+</section>
+
 <script>
-const pt = document.querySelector('.pt');
-for (let i = 0; i < 18; i++) {
-  const b = document.createElement('i'); b.className = 'brillo';
-  b.style.cssText = `left:${8 + Math.random() * 84}%;top:${52 + Math.random() * 30}%;--t:${1 + Math.random() * 1.8}cqw;--d:${2.2 + Math.random() * 2.5}s;--r:${Math.random() * 3}s`;
-  pt.appendChild(b);
-}
+document.querySelectorAll('.pt').forEach(pt => {
+  const conLetras = pt.querySelector('.letras');
+  for (let i = 0; i < 16; i++) {
+    const c = document.createElement('i'); c.className = 'chispa';
+    const top = conLetras ? 54 + Math.random() * 26 : 20 + Math.random() * 60;
+    c.style.cssText = `left:${6 + Math.random() * 88}%;top:${top}%;--t:${1 + Math.random() * 1.8}cqw;--d:${2.2 + Math.random() * 2.5}s;--r:${Math.random() * 3}s`;
+    pt.appendChild(c);
+  }
+});
 </script>
 </body></html>
