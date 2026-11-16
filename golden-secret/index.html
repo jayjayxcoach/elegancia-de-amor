@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reserva la fecha · Golden Secret</title>
+<meta name="description" content="Reserva la fecha — rasca el corazón dorado para descubrir la fecha de nuestra boda.">
+<meta property="og:title" content="Reserva la fecha · Golden Secret">
+<meta property="og:type" content="website">
+<meta name="format-detection" content="telephone=no">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 288'%3E%3Cpath d='M150 272 C148 270 10 188 10 96 C10 50 46 16 90 16 C115 16 138 29 150 50 C162 29 185 16 210 16 C254 16 290 50 290 96 C290 188 152 270 150 272Z' fill='%23d4a848'/%3E%3C/svg%3E">
+<style>
+/* ── FUENTES (locales, en recursos/fuentes) ── */
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:300;font-display:swap;src:url('recursos/fuentes/cormorant-garamond-latin-300-normal.woff2') format('woff2');}
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:300;font-display:swap;src:url('recursos/fuentes/cormorant-garamond-latin-300-italic.woff2') format('woff2');}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:400;font-display:swap;src:url('recursos/fuentes/cormorant-garamond-latin-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:500;font-display:swap;src:url('recursos/fuentes/cormorant-garamond-latin-500-italic.woff2') format('woff2');}
+@font-face{font-family:'Cinzel';font-style:normal;font-weight:400;font-display:swap;src:url('recursos/fuentes/cinzel-latin-400-normal.woff2') format('woff2');}
+@font-face{font-family:'GFS Didot';font-style:normal;font-weight:400;font-display:swap;src:url('recursos/fuentes/gfs-didot-latin-400-normal.woff2') format('woff2');}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{min-height:100%;}
+body{
+  background:#fdf9f3;
+  font-family:'Cormorant Garamond',Georgia,serif;
+  -webkit-font-smoothing:antialiased;
+  -webkit-tap-highlight-color:transparent;
+  overflow-x:hidden;
+}
+
+/* ── CONTENEDOR ── */
+.std-root{
+  display:flex;align-items:center;justify-content:center;
+  width:100%;min-height:100vh;min-height:100svh;
+  padding:30px 10px 120px;
+}
+
+/* ── TARJETA ── */
+.std-card{
+  position:relative;display:flex;flex-direction:column;align-items:center;
+  width:100%;max-width:380px;
+  animation:stdCardIn 1.5s cubic-bezier(.16,1,.3,1) forwards;opacity:0;
+}
+@keyframes stdCardIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── TÍTULO ── */
+.std-heading{text-align:center;margin-bottom:14px;}
+.std-heading-text{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(42px,11vw,60px);font-weight:300;font-style:italic;
+  color:#c9a55a;line-height:1;letter-spacing:-.5px;display:block;
+}
+.std-rule{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:9px;}
+.std-rule-line{width:36px;height:.5px;background:#d4b06a;opacity:.55;display:block;}
+.std-rule-diamond{width:4px;height:4px;background:#d4b06a;transform:rotate(45deg);opacity:.65;display:block;flex-shrink:0;}
+
+/* ── NOMBRES ── */
+.std-names{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(30px,8vw,44px);font-weight:400;color:#26180a;
+  letter-spacing:2px;text-align:center;white-space:nowrap;margin-bottom:10px;line-height:1;
+}
+.std-amp{font-family:'GFS Didot',serif;font-style:normal;font-weight:400;color:#d4b06a;font-size:.95em;letter-spacing:0;margin:0 8px;display:inline-block;}
+
+/* ── PISTA "RASCA" ── */
+.std-hint{
+  font-family:'Cinzel',serif;font-size:clamp(11px,2.8vw,14px);letter-spacing:3.5px;
+  color:#c9a55a;text-transform:uppercase;text-align:center;margin-bottom:20px;opacity:.9;
+  animation:stdHintPulse 2.8s ease-in-out 1.8s infinite;transition:opacity .5s;
+}
+@keyframes stdHintPulse{0%,100%{opacity:.68}50%{opacity:1}}
+
+/* ── CORAZÓN ── */
+.std-heart-wrap{position:relative;width:min(300px,calc(100vw - 48px));flex-shrink:0;cursor:pointer;}
+.std-heart-svg{width:100%;height:auto;display:block;overflow:visible;}
+.std-glow{
+  position:absolute;inset:-32px;border-radius:50%;pointer-events:none;z-index:0;
+  background:radial-gradient(ellipse 72% 62% at 50% 55%,rgba(218,175,90,.26) 0%,transparent 68%);
+  animation:stdGlowPulse 3.8s ease-in-out infinite;
+}
+@keyframes stdGlowPulse{0%,100%{opacity:.65;transform:scale(1)}50%{opacity:1;transform:scale(1.05)}}
+.std-inner{
+  width:300px;height:288px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:6px;padding:50px 32px 70px;
+}
+.std-intro{font-family:'Cormorant Garamond',serif;font-size:13px;font-weight:300;color:#8a7060;text-align:center;line-height:1.8;letter-spacing:.3px;}
+.std-date{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;font-style:italic;color:#26180a;letter-spacing:.5px;margin-top:3px;text-align:center;}
+.std-wave{margin-top:5px;opacity:.28;}
+
+.std-cvs-wrap{position:absolute;inset:0;z-index:3;}
+.std-cvs{position:absolute;top:0;left:0;width:100%;height:100%;touch-action:none;cursor:pointer;display:block;}
+
+/* brillo que recorre el oro (de abajo-izquierda a arriba-derecha) */
+.std-shimmer{
+  position:absolute;inset:0;z-index:4;pointer-events:none;
+  background:linear-gradient(-45deg,rgba(210,160,60,0) 38%,rgba(255,245,200,.72) 50%,rgba(210,160,60,0) 62%);
+  background-size:300% 300%;animation:stdShimmer 2.2s linear infinite;
+}
+@keyframes stdShimmer{0%{background-position:100% 100%}100%{background-position:0% 0%}}
+
+/* destellos (aparecen al descubrir) */
+.std-sparkle-wrap{position:absolute;inset:0;pointer-events:none;z-index:2;overflow:hidden;}
+.std-sp{position:absolute;border-radius:50%;background:radial-gradient(circle,#ffe080 0%,#d4a840 60%,transparent 100%);opacity:0;pointer-events:none;animation:stdSpAnim var(--d,2s) ease-in-out var(--dl,0s) infinite;}
+.std-sp.std-star::before,.std-sp.std-star::after{content:'';position:absolute;background:#f8e08a;border-radius:1px;}
+.std-sp.std-star::before{width:1px;height:10px;top:-3px;left:calc(50% - .5px);}
+.std-sp.std-star::after{width:10px;height:1px;top:calc(50% - .5px);left:-3px;}
+@keyframes stdSpAnim{0%,100%{opacity:0;transform:scale(.3) rotate(0deg)}40%,60%{opacity:.9;transform:scale(1.2) rotate(18deg)}}
+
+/* ── PIE ── */
+.std-footer{margin-top:16px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:7px;}
+.std-venue{font-family:'Cormorant Garamond',serif;font-size:clamp(14px,3.5vw,18px);font-weight:300;font-style:italic;color:#8a7060;letter-spacing:.4px;}
+.std-footer-rule{display:flex;align-items:center;gap:12px;}
+.std-footer-hr{width:40px;height:.5px;background:#f0ddb8;display:block;}
+.std-footer-gem{font-size:9px;color:#c9a55a;opacity:.72;}
+.std-footer-sub{font-family:'Cinzel',serif;font-size:clamp(9px,2vw,11px);letter-spacing:3.5px;text-transform:uppercase;color:#c9a55a;opacity:.8;}
+
+/* confeti (capa fija, no afecta al diseño) */
+#std-confetti{position:fixed;inset:0;pointer-events:none;z-index:99999;}
+</style>
+</head>
+<body>
+<canvas id="std-confetti"></canvas>
+
+<div class="std-root">
+  <div class="std-card">
+
+    <div class="std-heading">
+      <span class="std-heading-text" id="std-title">Reserva la fecha</span>
+      <div class="std-rule"><span class="std-rule-line"></span><span class="std-rule-diamond"></span><span class="std-rule-line"></span></div>
+    </div>
+
+    <div class="std-names"><span id="std-novia">Isabelle</span> <span class="std-amp">&amp;</span> <span id="std-novio">Édouard</span></div>
+
+    <div class="std-hint" id="std-hint">✦ &ensp; Rasca para descubrir &ensp; ✦</div>
+
+    <div class="std-heart-wrap" id="std-heart-wrap">
+      <div class="std-glow"></div>
+
+      <!-- Un solo SVG: un clipPath y un borde con la misma forma -->
+      <svg class="std-heart-svg" viewBox="0 0 300 288" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <clipPath id="std-heart-clip">
+            <path d="M150 272 C148 270 10 188 10 96 C10 50 46 16 90 16 C115 16 138 29 150 50 C162 29 185 16 210 16 C254 16 290 50 290 96 C290 188 152 270 150 272Z"/>
+          </clipPath>
+          <linearGradient id="std-ivory-grad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#fefcf6"/>
+            <stop offset="50%" stop-color="#faf3e2"/>
+            <stop offset="100%" stop-color="#f5e8ce"/>
+          </linearGradient>
+        </defs>
+        <rect x="0" y="0" width="300" height="288" fill="url(#std-ivory-grad)" clip-path="url(#std-heart-clip)"/>
+        <foreignObject x="0" y="0" width="300" height="288" clip-path="url(#std-heart-clip)">
+          <div xmlns="http://www.w3.org/1999/xhtml" class="std-inner">
+            <div class="std-intro" id="std-intro">Te invitamos a celebrar<br/>nuestra boda el</div>
+            <div class="std-date" id="std-date">14 de septiembre de 2025</div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="std-wave" width="54" height="13" viewBox="0 0 54 13" fill="none">
+              <path d="M0 6.5Q6.75 1 13.5 6.5Q20.25 12 27 6.5Q33.75 1 40.5 6.5Q47.25 12 54 6.5" stroke="#c9a55a" stroke-width="0.7" fill="none"/>
+              <circle cx="27" cy="6.5" r="1.4" fill="#c9a55a"/>
+            </svg>
+          </div>
+        </foreignObject>
+        <path d="M150 272 C148 270 10 188 10 96 C10 50 46 16 90 16 C115 16 138 29 150 50 C162 29 185 16 210 16 C254 16 290 50 290 96 C290 188 152 270 150 272Z" fill="none" stroke="#c9a55a" stroke-width="1.5" opacity="0.65"/>
+      </svg>
+
+      <div class="std-sparkle-wrap" id="std-sparkle-wrap"></div>
+      <div class="std-cvs-wrap"><canvas class="std-cvs" id="std-cvs"></canvas></div>
+      <div class="std-shimmer" id="std-shimmer"></div>
+    </div>
+
+    <div class="std-footer">
+      <div class="std-venue" id="std-lugar">Château de Vaux-le-Vicomte, Francia</div>
+      <div class="std-footer-rule"><span class="std-footer-hr"></span><span class="std-footer-gem">◆</span><span class="std-footer-hr"></span></div>
+      <div class="std-footer-sub" id="std-pie">Pronto recibirás la invitación formal</div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   CONFIG — cambia aquí los textos de la invitación
+   ============================================================ */
+var CONFIG = {
+  titulo:  "Reserva la fecha",
+  novia:   "Isabelle",
+  novio:   "Édouard",
+  pista:   "Rasca para descubrir",                 // texto que parpadea sobre el corazón
+  intro:   "Te invitamos a celebrar<br>nuestra boda el",  // texto dentro del corazón (acepta <br>)
+  fecha:   "14 de septiembre de 2025",             // fecha que se descubre al rascar
+  lugar:   "Château de Vaux-le-Vicomte, Francia",
+  pie:     "Pronto recibirás la invitación formal"
+};
+
+(function () {
+  'use strict';
+
+  /* aplicar CONFIG */
+  var $ = function (id) { return document.getElementById(id); };
+  $('std-title').textContent = CONFIG.titulo;
+  $('std-novia').textContent = CONFIG.novia;
+  $('std-novio').textContent = CONFIG.novio;
+  $('std-hint').innerHTML = '✦ &ensp; ' + CONFIG.pista + ' &ensp; ✦';
+  $('std-intro').innerHTML = CONFIG.intro;
+  $('std-date').textContent = CONFIG.fecha;
+  $('std-lugar').textContent = CONFIG.lugar;
+  $('std-pie').textContent = CONFIG.pie;
+  document.title = CONFIG.titulo + ' · ' + CONFIG.novia + ' & ' + CONFIG.novio;
+
+  /* ── DESTELLOS ── */
+  var sw = $('std-sparkle-wrap');
+  [[7,19],[18,8],[32,15],[45,6],[56,13],[68,7],[82,14],[90,24],
+   [93,38],[89,54],[84,65],[74,74],[63,82],[53,89],[50,92],
+   [47,89],[37,82],[26,74],[16,65],[11,54],[7,38],[10,24],
+   [26,27],[40,19],[60,19],[74,27]
+  ].forEach(function (p, i) {
+    var el = document.createElement('div');
+    el.className = 'std-sp' + (i % 3 === 0 ? ' std-star' : '');
+    el.style.cssText = 'left:' + p[0] + '%;top:' + p[1] + '%;width:' + (i % 3 === 0 ? 4 : 3) + 'px;height:' + (i % 3 === 0 ? 4 : 3) + 'px;--d:' + (2 + Math.random() * 2.8) + 's;--dl:' + (Math.random() * 3.5) + 's';
+    sw.appendChild(el);
+  });
+
+  /* ── BRILLO recortado con la forma del corazón (se escala con el ancho) ── */
+  var wrapEl = $('std-heart-wrap');
+  var shimmerEl = $('std-shimmer');
+  function updateShimmerClip() {
+    var w = wrapEl.getBoundingClientRect().width;
+    var s = w / 300;
+    var p = 'M' + (150*s) + ' ' + (272*s) +
+            ' C' + (148*s) + ' ' + (270*s) + ' ' + (10*s) + ' ' + (188*s) + ' ' + (10*s) + ' ' + (96*s) +
+            ' C' + (10*s) + ' ' + (50*s) + ' ' + (46*s) + ' ' + (16*s) + ' ' + (90*s) + ' ' + (16*s) +
+            ' C' + (115*s) + ' ' + (16*s) + ' ' + (138*s) + ' ' + (29*s) + ' ' + (150*s) + ' ' + (50*s) +
+            ' C' + (162*s) + ' ' + (29*s) + ' ' + (185*s) + ' ' + (16*s) + ' ' + (210*s) + ' ' + (16*s) +
+            ' C' + (254*s) + ' ' + (16*s) + ' ' + (290*s) + ' ' + (50*s) + ' ' + (290*s) + ' ' + (96*s) +
+            ' C' + (290*s) + ' ' + (188*s) + ' ' + (152*s) + ' ' + (270*s) + ' ' + (150*s) + ' ' + (272*s) + 'Z';
+    shimmerEl.style.clipPath = "path('" + p + "')";
+  }
+  updateShimmerClip();
+
+  /* ── RASCAR ── */
+  var cvs = $('std-cvs');
+  var ctx = cvs.getContext('2d', { willReadFrequently: true });
+  var hintEl = $('std-hint');
+  var SVG_W = 300, SVG_H = 288;
+  var HEART = 'M150 272 C148 270 10 188 10 96 C10 50 46 16 90 16 C115 16 138 29 150 50 C162 29 185 16 210 16 C254 16 290 50 290 96 C290 188 152 270 150 272Z';
+  var isDown = false, revealed = false;
+
+  function sizeCanvas() {
+    cvs.width = SVG_W;
+    cvs.height = SVG_H;
+    var r = wrapEl.getBoundingClientRect();
+    cvs.style.width = r.width + 'px';
+    cvs.style.height = r.height + 'px';
+    if (!revealed) paintGold();
+  }
+
+  function paintGold() {
+    ctx.save();
+    ctx.clip(new Path2D(HEART));
+    var g = ctx.createLinearGradient(0, 0, SVG_W, SVG_H);
+    g.addColorStop(0,    '#e8c060');
+    g.addColorStop(0.22, '#d4a848');
+    g.addColorStop(0.48, '#c49040');
+    g.addColorStop(0.72, '#d4a848');
+    g.addColorStop(1,    '#b07830');
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, SVG_W, SVG_H);
+    /* vetas satinadas en diagonal */
+    ctx.globalAlpha = 0.10;
+    for (var i = -SVG_H; i < SVG_W + SVG_H; i += 22) {
+      ctx.beginPath(); ctx.moveTo(i, SVG_H); ctx.lineTo(i + SVG_H, 0);
+      ctx.strokeStyle = '#fff8e0'; ctx.lineWidth = 10; ctx.stroke();
+    }
+    ctx.globalAlpha = 0.05;
+    for (var j = -SVG_H + 11; j < SVG_W + SVG_H; j += 22) {
+      ctx.beginPath(); ctx.moveTo(j, SVG_H); ctx.lineTo(j + SVG_H, 0);
+      ctx.strokeStyle = '#fff'; ctx.lineWidth = 3; ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+    ctx.restore();
+  }
+
+  sizeCanvas();
+  setTimeout(sizeCanvas, 150);
+  window.addEventListener('resize', function () {
+    var r = wrapEl.getBoundingClientRect();
+    cvs.style.width = r.width + 'px';
+    cvs.style.height = r.height + 'px';
+    updateShimmerClip();
+    var cc = $('std-confetti');
+    cc.width = window.innerWidth; cc.height = window.innerHeight;
+  });
+
+  function toCanvas(clientX, clientY) {
+    var r = cvs.getBoundingClientRect();
+    return { x: (clientX - r.left) * (SVG_W / r.width), y: (clientY - r.top) * (SVG_H / r.height) };
+  }
+
+  function scratchAt(x, y) {
+    ctx.globalCompositeOperation = 'destination-out';
+    ctx.beginPath();
+    ctx.arc(x, y, 26, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(0,0,0,1)';
+    ctx.fill();
+    ctx.globalCompositeOperation = 'source-over';
+    if (!revealed) checkDone();
+  }
+
+  function checkDone() {
+    if (Math.random() > 0.06) return;
+    var d = ctx.getImageData(0, 0, SVG_W, SVG_H).data;
+    var vis = 0, tot = 0;
+    for (var i = 3; i < d.length; i += 16) { tot++; if (d[i] > 10) vis++; }
+    if ((tot - vis) / tot > 0.60) doReveal();
+  }
+
+  function doReveal() {
+    if (revealed) return;
+    revealed = true;
+    shimmerEl.style.animation = 'none';
+    shimmerEl.style.opacity = '0';
+    hintEl.style.animation = 'none';   /* la animación de parpadeo pisaría la opacidad */
+    hintEl.style.transition = 'opacity 0.5s';
+    hintEl.style.opacity = '0';
+    var a = 1;
+    var fade = setInterval(function () {
+      a -= 0.05;
+      if (a <= 0) {
+        clearInterval(fade);
+        cvs.style.display = 'none';
+        launchConfetti();
+      } else {
+        ctx.clearRect(0, 0, SVG_W, SVG_H);
+        ctx.globalAlpha = Math.max(0, a);
+        paintGold();
+        ctx.globalAlpha = 1;
+      }
+    }, 24);
+  }
+
+  cvs.addEventListener('mousedown',  function (e) { isDown = true; var p = toCanvas(e.clientX, e.clientY); scratchAt(p.x, p.y); });
+  cvs.addEventListener('mousemove',  function (e) { if (!isDown) return; var p = toCanvas(e.clientX, e.clientY); scratchAt(p.x, p.y); });
+  cvs.addEventListener('mouseup',    function () { isDown = false; });
+  cvs.addEventListener('mouseleave', function () { isDown = false; });
+  cvs.addEventListener('touchstart', function (e) { e.preventDefault(); isDown = true; var t = e.touches[0]; var p = toCanvas(t.clientX, t.clientY); scratchAt(p.x, p.y); }, { passive: false });
+  cvs.addEventListener('touchmove',  function (e) { e.preventDefault(); if (!isDown) return; var t = e.touches[0]; var p = toCanvas(t.clientX, t.clientY); scratchAt(p.x, p.y); }, { passive: false });
+  cvs.addEventListener('touchend',   function () { isDown = false; });
+
+  /* ── CONFETI ── */
+  function launchConfetti() {
+    var cc = $('std-confetti');
+    var cx = cc.getContext('2d');
+    cc.width = window.innerWidth;
+    cc.height = window.innerHeight;
+    var pal = ['#e8b84b','#f0d060','#f5e08a','#e8987a','#f0b090','#d4805a','#f5c8a0','#ffffff','#f8e8b0','#d4a030','#e09858','#f8c860','#f0e0b0','#e8a060'];
+    var pieces = [];
+    for (var i = 0; i < 130; i++) {
+      pieces.push({
+        x: Math.random() * cc.width, y: -20 - Math.random() * 200,
+        vy: Math.random() * 1.5 + 0.5, vx: (Math.random() - 0.5) * 1.2,
+        w: Math.random() * 12 + 3, h: Math.random() * 5 + 1.5,
+        rot: Math.random() * Math.PI * 2, rv: (Math.random() - 0.5) * 0.08,
+        color: pal[Math.floor(Math.random() * pal.length)],
+        alpha: Math.random() * 0.5 + 0.5,
+        drift: Math.random() * Math.PI * 2, ds: Math.random() * 0.022 + 0.009,
+        shape: Math.random() > 0.4 ? 0 : 1
+      });
+    }
+    var frame = 0, max = 380;
+    (function draw() {
+      cx.clearRect(0, 0, cc.width, cc.height);
+      var fade = Math.max(0, 1 - frame / max);
+      pieces.forEach(function (p) {
+        cx.save(); cx.globalAlpha = p.alpha * fade;
+        cx.translate(p.x, p.y); cx.rotate(p.rot); cx.fillStyle = p.color;
+        if (p.shape === 0) cx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+        else { cx.beginPath(); cx.arc(0, 0, p.h, 0, Math.PI * 2); cx.fill(); }
+        cx.restore();
+        p.y += p.vy; p.x += p.vx + Math.sin(p.drift) * 0.6;
+        p.rot += p.rv; p.drift += p.ds;
+        if (p.y > cc.height + 20) { p.y = -20; p.x = Math.random() * cc.width; }
+      });
+      frame++;
+      if (frame < max) requestAnimationFrame(draw);
+      else cx.clearRect(0, 0, cc.width, cc.height);
+    })();
+  }
+})();
+</script>
+</body>
+</html>

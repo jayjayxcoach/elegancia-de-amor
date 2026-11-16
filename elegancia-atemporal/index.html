@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Daanish & Adeena · Invitación de boda</title>
+
+<script>
+/* ============================================================
+   CONFIGURACIÓN DE LA INVITACIÓN
+   Cambia aquí los textos, la fecha, el lugar, las fotos…
+   Todo lo que aparece en la invitación sale de este bloque.
+   ============================================================ */
+const CONFIG = {
+
+  // ---------- Novios ----------
+  novio: "Daanish",
+  novia: "Adeena",
+  noviosTexto: "Daanish & Adeena",     // aparece en la portada
+
+  // ---------- Fecha y hora ----------
+  // Se usan para la cuenta regresiva.
+  fecha: { anio: 2026, mes: 12, dia: 20, hora: 18, minuto: 0 },   // mes: 1 = enero … 12 = diciembre
+  // Lo que aparece en las tarjetas de "rasca y descubre"
+  fechaTarjetas: { dia: "20", mes: "Diciembre", anio: "2026", etiquetas: ["Día", "Mes", "Año"] },
+
+  // ---------- Sobre (pantalla inicial) ----------
+  sobre: {
+    textoAbrir: "Toca para abrir",
+    imagen: "recursos/sobre-cerrado.jpg",      // sobre cerrado con el sello
+    video: "recursos/sobre-video.mp4"          // animación del sobre abriéndose (8 s)
+  },
+
+  // ---------- Portada ----------
+  portada: {
+    video: "recursos/portada-video.mp4",       // video vertical de fondo (se repite)
+    foto: "recursos/portada-foto.jpg",         // imagen fija de respaldo
+    lineaArriba: "Bienvenidos a la",
+    lineaTitulo: "Ceremonia de Boda",
+    lineaDe: "de",
+    desliza: "Desliza hacia abajo"
+  },
+
+  // ---------- Tarjeta de invitación ----------
+  tarjeta: {
+    adorno: "recursos/tarjeta-adorno.png",     // caligrafía superior (déjalo en "" para quitarla)
+    invitacion: "ESTÁN CORDIALMENTE INVITADOS A LA BODA DE",
+    hijoDe: "HIJO DE",
+    padresNovio: "Sr. y Sra. Hussaini",
+    con: "Con",
+    hijaDe: "HIJA DE",
+    padresNovia: "Sr. y Sra. Farooqi",
+    saludo: "Queridos familia y amigos",
+    texto: "Acompáñennos en una velada de amor, risas, bendiciones y recuerdos inolvidables mientras comenzamos nuestro para siempre."
+  },
+
+  // ---------- Cita ----------
+  cita: {
+    adorno: "recursos/cita-adorno.png",        // caligrafía de la cita (déjalo en "" para quitarla)
+    texto: "«Y los creamos en parejas.»",
+    fuente: "(Sura An-Naba 78:8)"
+  },
+
+  // ---------- Cronograma ----------
+  cronograma: {
+    titulo: "Programa de la boda",
+    eventos: [
+      { hora: "6:00 pm",  nombre: "Llegada y cóctel de bienvenida",        icono: "recursos/cronograma-icono-1.png" },
+      { hora: "6:30 pm",  nombre: "Entrada de la novia",                          icono: "recursos/cronograma-icono-2.png" },
+      { hora: "7:30 pm",  nombre: "Oración de la noche",                          icono: "recursos/cronograma-icono-3.png" },
+      { hora: "8:30 pm",  nombre: "Apertura del buffet",                          icono: "recursos/cronograma-icono-4.png" },
+      { hora: "10:00 pm", nombre: "¡Que empiece la fiesta!",                      icono: "recursos/cronograma-icono-5.png" }
+    ]
+  },
+
+  // ---------- Cuenta regresiva ----------
+  cuentaRegresiva: {
+    titulo: "La celebración comienza",
+    etiquetas: ["Días", "Horas", "Minutos", "Segundos"],
+    terminado: "¡Nos vemos ahí!"
+  },
+
+  // ---------- Lugar ----------
+  lugar: {
+    titulo: "Ubicación",
+    ciudad: "GUAYAQUIL",
+    nombre: "Hotel Four Seasons, Salón Dana",
+    foto: "recursos/lugar-tarjeta.png",
+    mapa: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3610.496042519751!2d55.2561335!3d25.186488999999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f69004ed676fb%3A0x2b1548842e1433c0!2sDubai%20Ballroom%20Entrance!5e0!3m2!1sen!2s!4v1784906284369!5m2!1sen!2s"   // enlace "embed" de Google Maps (Compartir → Insertar un mapa)
+  },
+
+  // ---------- Vestimenta ----------
+  vestimenta: {
+    titulo: "Código de vestimenta",
+    ilustracion: "recursos/vestimenta-ilustracion.png",
+    texto1: "Invitamos a nuestros invitados a vestir",
+    destacado: "Atuendo tradicional",
+    texto2: "en tonos pastel suaves.",
+    tonosTitulo: "Tonos recomendados",
+    tonos: ["#d8c7e2", "#fcd2b7", "#fae6b1", "#f7d3d3", "#d1e2ec", "#d9d4d0"],
+    aviso: "Por favor eviten el color beige, reservado para los novios. El verde salvia está reservado exclusivamente para las damas de honor."
+  },
+
+  // ---------- Regalos ----------
+  regalos: {
+    titulo: "Preferencias de regalo",
+    texto1: "Su amor, sus oraciones y su presencia significan el mundo para nosotros. Si desean bendecirnos con un regalo, hemos creado una lista de regalos para su comodidad.",
+    texto2: "Aunque adoramos a los más pequeños, hemos decidido que sea una celebración solo para adultos. Agradecemos su comprensión.",
+    enlaceTexto: "Ver lista de regalos",
+    enlace: ""     // dirección de la lista de regalos (si se deja vacío, el texto no es clicable)
+  },
+
+  // ---------- Confirmación de asistencia ----------
+  confirmacion: {
+    titulo: "Confirma tu asistencia",
+    texto: "Para ayudarnos a preparar una celebración inolvidable, por favor confirma tu asistencia antes del 30 de noviembre de 2026",
+    boton: "Confirmar",
+    formulario: {
+      titulo: "Confirma tu asistencia",
+      subtitulo: "Por favor confirma antes del 30 de noviembre",
+      campoNombre: "Tu nombre completo",
+      campoAsistencia: "¿Asistirás?",
+      opciones: ["Sí, asistiré", "Lamentablemente no podré"],
+      campoInvitados: "Número de invitados que asisten",
+      botonEnviar: "Enviar",
+      gracias: "¡Gracias por confirmar!"
+    }
+  },
+
+  // ---------- Despedida ----------
+  despedida: {
+    titulo: "Esperamos verte ahí"
+  },
+
+  // ---------- Música ----------
+  // Se reproduce al abrir el sobre. CAMBIAR por un mp3 propio o con licencia
+  // (puedes poner un archivo local, por ejemplo "recursos/musica.mp3").
+  musica: "https://pub-4dc8201144ca418fb604349c73e8c724.r2.dev/Einaudi_ Divenire (1) (1).mp3"
+};
+</script>
+
+<style>
+/* ============================================================
+   ESTILOS
+   ============================================================ */
+
+/* Tipografías (guardadas en la carpeta recursos, no dependen de internet) */
+@font-face { font-family: 'Imperial Script'; font-weight: 400; font-display: swap; src: url('recursos/fuente-imperial-script.woff2') format('woff2'); }
+@font-face { font-family: 'Cormorant'; font-weight: 300 700; font-display: swap; src: url('recursos/fuente-cormorant.woff2') format('woff2'); }
+@font-face { font-family: 'Ovo';    font-weight: 400; font-display: swap; src: url('recursos/fuente-ovo.woff2') format('woff2'); }
+@font-face { font-family: 'Rufina'; font-weight: 400; font-display: swap; src: url('recursos/fuente-rufina.woff2') format('woff2'); }
+
+:root {
+  --crema: #fdf4eb;          /* fondo de los paneles crema */
+  --oro: #806b43;            /* dorado del texto */
+  --oro-claro: #a68547;      /* dorado de títulos y nombres */
+  --oro-oscuro: #7d6332;     /* dorado de la sección de vestimenta */
+  --oro-cuenta: #b48c3d;     /* dorado de la cuenta regresiva */
+  --script: 'Imperial Script', cursive;       /* títulos manuscritos */
+  --serif: 'Cormorant', Georgia, serif;       /* texto general */
+  --numeros: 'Ovo', Georgia, serif;           /* números de la cuenta regresiva */
+  --mayusculas: 'Rufina', Georgia, serif;     /* textos en mayúsculas pequeñas */
+  --ancho: 440px;            /* ancho de la invitación (formato celular) */
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
+body {
+  background: var(--crema);
+  color: var(--oro);
+  font-family: var(--serif);
+  font-size: 21px;
+  line-height: 1.15;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+body.bloqueado { overflow: hidden; height: 100vh; }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+/* Columna central (formato celular). Los adornos que sobresalen se recortan en .pagina */
+.pagina { width: 100%; overflow-x: hidden; overflow-x: clip; }
+.invitacion { position: relative; width: 100%; max-width: var(--ancho); margin: 0 auto; }
+section { position: relative; }
+section.crema { background: var(--crema); }
+
+/* Elementos colocados con coordenadas: --x es la distancia al borde izquierdo de la columna de 440 px;
+   en pantallas más angostas todo queda centrado igual que en el original */
+.pos { position: absolute; left: calc(50% - 220px + var(--x, 0px)); }
+
+.titulo { font-family: var(--script); font-weight: 400; font-size: 41px; line-height: 1.55; text-align: center; color: var(--oro); }
+.texto  { font-size: 21px; line-height: 1.15; text-align: center; color: var(--oro); }
+.centrado { --x: 0px; width: 440px; text-align: center; }
+
+/* Animaciones */
+.aparece { opacity: 0; transition: opacity 1.5s ease; }
+.aparece.visible { opacity: 1; }
+.sube { opacity: 0; transform: translateY(50px); transition: opacity 2s ease, transform 2s ease; }
+.sube.visible { opacity: 1; transform: none; }
+/* Flores que se mecen suavemente (loop) */
+@keyframes mecer-der { 0%, 100% { transform: rotate(-6deg) scale(1); } 35% { transform: rotate(-4deg) scale(1.02) translate(1px, 0); } 65% { transform: rotate(-8deg) scale(1.02) translate(-3px, -2px); } }
+@keyframes mecer-izq { 0%, 100% { transform: rotate(0deg) scale(1); } 35% { transform: rotate(-2deg) scale(1.02) translate(-1px, -2px); } 65% { transform: rotate(2deg) scale(1.02) translate(1px, 2px); } }
+@keyframes mecer-suave { 0%, 100% { transform: rotate(var(--giro, 0deg)) scale(1); } 30% { transform: rotate(calc(var(--giro, 0deg) - 2deg)) scale(1.02); } 70% { transform: rotate(calc(var(--giro, 0deg) + 4deg)) scale(1.02); } }
+.flor-der { animation: mecer-der 7s ease-in-out infinite; transform-origin: center; }
+.flor-izq { animation: mecer-izq 7s ease-in-out infinite; transform-origin: center; }
+.flor-suave { animation: mecer-suave 8s ease-in-out infinite; transform-origin: center; }
+/* Textos con ligero desplazamiento al hacer scroll (efecto parallax del original) */
+.parallax { will-change: transform; }
+
+/* ------------------------------------------------------------
+   1. SOBRE CERRADO (pantalla completa)
+   ------------------------------------------------------------ */
+#sobre { position: fixed; inset: 0; z-index: 100; background: #f9f0e0; display: flex; align-items: center; justify-content: center; cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; transition: opacity 1.4s ease; }
+#sobre.abierto { opacity: 0; pointer-events: none; }
+#sobre img { width: 100%; max-width: 440px; object-fit: contain; }
+#sobre .toca { position: absolute; bottom: 30%; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 7px; animation: toca-entra 1.2s .8s both; }
+@keyframes toca-entra { from { opacity: 0; transform: translateX(-50%) translateY(6px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+#sobre .toca span { font-family: var(--mayusculas); font-size: 11px; letter-spacing: .26em; text-transform: uppercase; color: rgba(140, 100, 60, .75); white-space: nowrap; animation: toca-pulso 2.4s 1.6s ease-in-out infinite; }
+@keyframes toca-pulso { 0%, 100% { opacity: .45; letter-spacing: .26em; } 50% { opacity: 1; letter-spacing: .30em; } }
+#sobre .chevron { width: 10px; height: 10px; border-right: 1.5px solid rgba(140, 100, 60, .6); border-top: 1.5px solid rgba(140, 100, 60, .6); transform: rotate(-45deg); animation: chevron-sube 2.4s 1.9s ease-in-out infinite; }
+@keyframes chevron-sube { 0%, 100% { transform: rotate(-45deg) translate(0, 0); opacity: .6; } 50% { transform: rotate(-45deg) translate(2px, -2px); opacity: 1; } }
+/* Video del sobre abriéndose */
+#sobre-video-caja { position: fixed; inset: 0; z-index: 101; background: #f9f0e0; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity .8s ease; }
+#sobre-video-caja.entra { opacity: 1; }
+#sobre-video-caja.sale { opacity: 0; transition: opacity 1.4s ease; }
+#sobre-video-caja video { width: 100%; max-width: 440px; display: block; object-fit: contain; }
+
+/* ------------------------------------------------------------
+   2. PORTADA (video)
+   ------------------------------------------------------------ */
+#portada { height: 816px; overflow: hidden; }
+#portada .video { --x: 0px; top: 0; width: 440px; height: 780px; overflow: hidden; }
+#portada .video video, #portada .video img { width: 100%; height: 100%; object-fit: cover; display: block; }
+#portada .brillo { --x: 45px; top: 116px; width: 350px; height: 350px; opacity: .7; background: radial-gradient(circle at center, rgba(249, 237, 224, 1) 0%, rgba(255, 247, 5, 0) 74%); }
+#portada .degradado { --x: 0px; top: 560px; width: 440px; height: 256px; background: linear-gradient(to top, var(--crema) 0%, rgba(253, 244, 235, 0) 100%); }
+#portada .flor-1 { --x: 251px; top: 535px; width: 224px; z-index: 2; }
+#portada .flor-2 { --x: -28px; top: 533px; width: 224px; z-index: 2; }
+#portada .encabezado { --x: 40px; top: 160px; width: 360px; text-align: center; color: #9a7b42; z-index: 3; }
+#portada .encabezado .arriba { font-size: 22px; letter-spacing: .5px; }
+#portada .encabezado .ceremonia { font-family: var(--script); font-size: 44px; line-height: 1.15; margin-top: 2px; }
+#portada .encabezado .de { display: flex; align-items: center; justify-content: center; gap: 14px; font-size: 22px; margin: 6px 0 2px; }
+#portada .encabezado .de::before, #portada .encabezado .de::after { content: ""; width: 60px; height: 1px; background: #b89a5e; }
+#portada .encabezado .nombres { font-family: var(--script); font-size: 50px; line-height: 1.1; }
+#portada .desliza { top: 684px; font-family: var(--script); font-size: 32px; line-height: 1.25; color: var(--oro); z-index: 3; }
+#portada .chevron-abajo { --x: 212px; top: 728px; width: 17px; z-index: 3; animation: chevron-baja 1.1s ease-in-out infinite; }
+@keyframes chevron-baja { 0%, 100% { transform: translateY(0); } 55% { transform: translateY(5px); } }
+
+/* ------------------------------------------------------------
+   3. LA FECHA (rasca y descubre)
+   ------------------------------------------------------------ */
+#fecha { height: 340px; padding-top: 60px; overflow: visible; }
+#fecha .titulo { top: 49px; }
+#fecha .instruccion { top: 118px; font-family: var(--numeros); font-size: 20px; color: var(--oro-claro); }
+#fecha .rasca { --x: 0px; top: 150px; width: 440px; display: flex; flex-direction: column; align-items: center; padding: 0 16px; }
+.rasca-paneles { display: flex; gap: 8px; width: 100%; }
+.rasca-panel { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 11px; }
+.rasca-tarjeta {
+  position: relative; width: 90%; aspect-ratio: 1 / 1.15; border-radius: 12px; overflow: hidden; border: 1px solid rgba(190, 128, 39, .42);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .72), 0 8px 24px rgba(135, 83, 23, .13), 0 2px 6px rgba(109, 68, 19, .08); cursor: pointer;
+  background: radial-gradient(circle at 48% 32%, rgba(255, 255, 255, .96) 0%, rgba(255, 250, 241, .86) 34%, transparent 67%), linear-gradient(145deg, #fffdf8 0%, #faf1e5 48%, #eedcc3 100%);
+  display: flex; align-items: center; justify-content: center;
+}
+.rasca-valor { font-family: var(--mayusculas); font-size: clamp(28px, 6.5vw, 38px); user-select: none; pointer-events: none; text-align: center; padding: 0 4px;
+  background: linear-gradient(#d6a64e, #b8781f 48%, #8c5715); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.rasca-valor.mes { font-size: clamp(16px, 4.5vw, 24px); }
+.rasca-tarjeta canvas { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: none; }
+.rasca-etiqueta { font-family: var(--mayusculas); font-size: clamp(9px, 2vw, 11px); letter-spacing: 4px; color: #a96f1b; text-transform: uppercase; }
+#confeti { position: fixed; inset: 0; pointer-events: none; z-index: 90; }
+#destello { position: fixed; inset: 0; pointer-events: none; z-index: 89; opacity: 0; }
+#destello.brilla { animation: destello 1.5s ease forwards; }
+@keyframes destello { 0% { opacity: 0; background: radial-gradient(ellipse 65% 45% at 50% 50%, rgba(201, 139, 56, .16) 0%, rgba(255, 239, 208, .08) 38%, transparent 72%); } 25% { opacity: 1; } 100% { opacity: 0; } }
+
+/* ------------------------------------------------------------
+   4. TARJETA DE INVITACIÓN (marco en arco)
+   ------------------------------------------------------------ */
+#tarjeta { height: 842px; }
+#tarjeta .degradado { --x: -20px; top: 0; width: 480px; height: 129px; background: linear-gradient(to bottom, var(--crema) 0%, rgba(253, 244, 235, 0) 100%); z-index: 1; }
+#tarjeta .marco { --x: -20px; top: 0; width: 480px; max-width: none; pointer-events: none; z-index: 2; }
+#tarjeta .adorno { --x: 155px; top: 182px; width: 130px; z-index: 3; }
+#tarjeta .mayus { font-family: var(--mayusculas); font-size: 14px; line-height: 1.2; letter-spacing: .4px; text-transform: uppercase; white-space: nowrap; z-index: 3; }
+#tarjeta .invitacion-texto { --x: 90px; width: 260px; font-size: 14px; letter-spacing: .4px; white-space: normal; top: 232px; }
+#tarjeta .invitacion-texto { top: 244px; }
+#tarjeta .nombre { top: 300px; font-family: var(--script); font-size: 66px; line-height: 1.25; color: var(--oro-claro); z-index: 3; }
+#tarjeta .separador-1 { --x: 166px; top: 380px; width: 109px; z-index: 3; }
+#tarjeta .hijo-de { top: 403px; font-size: 13px; }
+#tarjeta .padres-novio { top: 425px; }
+#tarjeta .con { top: 448px; font-family: var(--script); font-size: 33px; line-height: 1.25; z-index: 3; }
+#tarjeta .nombre-2 { top: 480px; }
+#tarjeta .separador-2 { --x: 166px; top: 552px; width: 109px; z-index: 3; }
+#tarjeta .hija-de { top: 579px; font-size: 13px; }
+#tarjeta .padres-novia { top: 601px; }
+#tarjeta .saludo { top: 647px; font-family: var(--script); font-size: 31px; line-height: 1.25; z-index: 3; }
+#tarjeta .parrafo { --x: 95px; top: 683px; width: 250px; font-size: 17px; line-height: 1.15; text-align: center; z-index: 3; }
+#tarjeta .rama-1 { --x: -104px; top: 647px; width: 245px; opacity: .89; --giro: 241deg; z-index: 2; }
+#tarjeta .rama-2 { --x: 301px; top: 647px; width: 244px; opacity: .89; --giro: 117deg; z-index: 2; }
+
+/* ------------------------------------------------------------
+   5. CITA
+   ------------------------------------------------------------ */
+#cita { height: 235px; }
+#cita .separador { --x: 141px; top: 36px; width: 158px; }
+#cita .adorno { --x: 102px; top: 60px; width: 237px; }
+#cita .frase { top: 147px; }
+#cita .fuente { top: 179px; font-size: 19px; }
+
+/* ------------------------------------------------------------
+   6. CRONOGRAMA (línea dorada con rombos)
+   ------------------------------------------------------------ */
+#cronograma { height: 1080px; }
+#cronograma .titulo { top: 15px; font-size: 40px; }
+#cronograma .adorno { --x: 103px; top: 71px; width: 234px; }
+#cronograma .linea { --x: 211px; width: 18px; }
+#cronograma .rombo { --x: 215px; width: 10px; height: 10px; background: #d8ae68; transform: rotate(45deg); }
+#cronograma .rombo::after { content: ""; position: absolute; inset: 1px; background: var(--crema); }
+#cronograma .icono { width: 150px; }
+#cronograma .hora { font-family: var(--script); font-size: 35px; line-height: 1.55; text-align: center; width: 106px; }
+#cronograma .nombre { font-size: 21px; line-height: 1.15; text-align: center; width: 154px; }
+#cronograma .flor-movil { --x: 195px; top: 246px; width: 50px; z-index: 2; will-change: transform; }
+
+/* ------------------------------------------------------------
+   7. CUENTA REGRESIVA
+   ------------------------------------------------------------ */
+#cuenta { height: 255px; }
+#cuenta .titulo { top: 28px; color: var(--oro-claro); }
+#cuenta .separador { --x: 146px; top: 79px; width: 148px; }
+#cuenta #contador { --x: 0px; top: 110px; width: 440px; display: flex; justify-content: center; align-items: flex-start; gap: 6px; padding: 0 20px; }
+#cuenta .bloque { text-align: center; }
+#cuenta .numero-caja { overflow: hidden; height: 56px; display: flex; align-items: center; justify-content: center; }
+#cuenta .numero {
+  font-family: var(--numeros); font-size: 45px; line-height: 1.2; white-space: nowrap;
+  background: linear-gradient(105deg, #b48c3d 0%, #b48c3d 25%, #cda95a 46%, #d8ba72 52%, #cda95a 58%, #b48c3d 75%, #b48c3d 100%);
+  background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; color: transparent;
+  clip-path: inset(0 100% 0 0);
+}
+#cuenta.visible .numero { animation: tinta 1.1s cubic-bezier(.4, 0, .2, 1) forwards, brillo-vela 4.5s ease-in-out 1.1s infinite; }
+#cuenta.visible .bloque:nth-child(3) .numero { animation-delay: .18s, 1.28s; }
+#cuenta.visible .bloque:nth-child(5) .numero { animation-delay: .36s, 1.46s; }
+#cuenta.visible .bloque:nth-child(7) .numero { animation-delay: .54s, 1.64s; }
+@keyframes tinta { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes brillo-vela { 0% { background-position: 100% 0; } 50% { background-position: 0% 0; } 100% { background-position: 100% 0; } }
+#cuenta .etiqueta { font-family: var(--numeros); font-size: 19px; margin-top: 8px; color: var(--oro-cuenta); opacity: 0; transition: opacity .8s ease .9s; }
+#cuenta .separador-dos { font-family: var(--numeros); font-size: 52px; margin-top: -40px; line-height: 1; color: var(--oro-cuenta); opacity: 0; transition: opacity .6s ease .3s; }
+#cuenta.visible .etiqueta { opacity: .85; }
+#cuenta.visible .separador-dos { opacity: .9; }
+#cuenta .terminado { font-family: var(--script); font-size: 36px; color: var(--oro-cuenta); }
+
+/* ------------------------------------------------------------
+   8. LUGAR
+   ------------------------------------------------------------ */
+#lugar { height: 591px; }
+#lugar .datos { --x: 60px; top: 67px; width: 320px; text-align: center; z-index: 3; }
+#lugar .datos .titulo { font-size: 40px; line-height: 1.2; }
+#lugar .datos .separador { width: 100px; margin: 4px auto 10px; }
+#lugar .datos .ciudad { font-family: var(--mayusculas); font-size: 18px; letter-spacing: 2px; margin-bottom: 6px; }
+#lugar .datos .nombre { font-size: 22px; line-height: 1.2; }
+#lugar .foto { --x: 0px; top: 236px; width: 440px; opacity: .95; pointer-events: none; z-index: 1; }
+#lugar .flor-1 { --x: 314px; top: -54px; width: 167px; --giro: -6deg; z-index: 2; }
+#lugar .flor-2 { --x: -92px; top: 419px; width: 263px; --giro: 235deg; z-index: 2; }
+
+/* ------------------------------------------------------------
+   9. MAPA
+   ------------------------------------------------------------ */
+#mapa { height: 415px; padding-top: 15px; }
+#mapa .marco { --x: 50px; top: 45px; width: 341px; opacity: .8; }
+#mapa iframe { --x: 53px; top: 48px; width: 335px; height: 335px; border: 0; border-radius: 15px; display: block; }
+#mapa .adorno-arriba { --x: 125px; top: 17px; width: 190px; }
+#mapa .adorno-abajo { --x: 125px; top: 371px; width: 190px; }
+
+/* ------------------------------------------------------------
+   10. VESTIMENTA
+   ------------------------------------------------------------ */
+#vestimenta { height: 832px; color: var(--oro-oscuro); }
+#vestimenta .titulo, #vestimenta .texto { color: var(--oro-oscuro); }
+#vestimenta .titulo { top: 50px; line-height: 1.25; }
+#vestimenta .separador { --x: 146px; top: 97px; width: 148px; }
+#vestimenta .ilustracion { --x: 85px; top: 155px; width: 271px; }
+#vestimenta .texto-1 { top: 378px; }
+#vestimenta .destacado { top: 403px; font-family: var(--script); font-size: 38px; line-height: 1.25; }
+#vestimenta .texto-2 { top: 456px; }
+#vestimenta .separador-2 { --x: 140px; top: 512px; width: 160px; }
+#vestimenta .tonos-titulo { top: 546px; font-size: 19px; }
+#vestimenta .tonos { --x: 60px; top: 583px; width: 320px; display: flex; gap: 4px; }
+#vestimenta .tono { width: 50px; height: 50px; border-radius: 50%; background: var(--oro-oscuro); display: flex; align-items: center; justify-content: center; }
+#vestimenta .tono span { width: 48px; height: 48px; border-radius: 50%; display: block; }
+#vestimenta .separador-3 { --x: 140px; top: 652px; width: 160px; }
+#vestimenta .aviso { top: 706px; --x: 42px; width: 356px; }
+
+/* ------------------------------------------------------------
+   11. REGALOS
+   ------------------------------------------------------------ */
+#regalos { height: 767px; padding-top: 45px; }
+#regalos .marco { --x: 14px; top: 98px; width: 408px; pointer-events: none; z-index: 1; }
+#regalos .titulo { top: 170px; line-height: 1.25; z-index: 2; }
+#regalos .contenido { --x: 80px; top: 238px; width: 280px; font-size: 15px; line-height: 1.3; text-align: center; z-index: 2; }
+#regalos .contenido p + p { margin-top: 14px; }
+#regalos .enlace { top: 462px; font-family: var(--script); font-size: 35px; line-height: 1.15; z-index: 2; }
+#regalos .subrayado { --x: 140px; top: 500px; width: 160px; height: 1px; background: #755f34; z-index: 2; }
+#regalos .flor-1 { --x: -41px; top: 42px; width: 281px; z-index: 3; }
+#regalos .flor-2 { --x: 186px; top: 470px; width: 280px; z-index: 3; }
+
+/* ------------------------------------------------------------
+   12. CONFIRMACIÓN
+   ------------------------------------------------------------ */
+#confirmacion { height: 345px; padding-top: 30px; }
+#confirmacion .titulo { top: 45px; font-size: 40px; color: #9e6624; }
+#confirmacion .separador { --x: 146px; top: 107px; width: 148px; }
+#confirmacion .texto { --x: 40px; top: 163px; width: 360px; font-size: 19px; line-height: 1.2; color: var(--oro-oscuro); }
+#confirmacion .boton {
+  --x: 134px; top: 288px; width: 171px; height: 47px; border-radius: 30px; border: 0; cursor: pointer;
+  font-family: var(--mayusculas); font-size: 22px; line-height: 1.55; color: #fff;
+  background: linear-gradient(119deg, rgba(183, 140, 81, 1) 0%, rgba(235, 187, 109, 1) 100%);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+#confirmacion .boton:hover { transform: translateY(-2px); box-shadow: 0 6px 14px rgba(120, 90, 40, .25); }
+
+/* Ventana emergente del formulario */
+#ventana { position: fixed; inset: 0; z-index: 95; background: rgba(0, 0, 0, .6); display: none; align-items: center; justify-content: center; padding: 20px; }
+#ventana.abierta { display: flex; }
+#ventana .contenido { width: 100%; max-width: 560px; max-height: 92vh; overflow-y: auto; background: #fff; border-radius: 6px; padding: 40px 30px; position: relative; color: #4a4a4a; }
+#ventana .cerrar { position: absolute; right: 14px; top: 10px; background: none; border: 0; font-size: 30px; line-height: 1; color: #999; cursor: pointer; }
+#ventana h3 { font-family: var(--mayusculas); font-weight: 400; font-size: 24px; text-align: center; margin-bottom: 8px; color: #000; }
+#ventana .subtitulo { text-align: center; font-family: var(--mayusculas); font-size: 15px; margin-bottom: 28px; color: #000; }
+#ventana label.campo { display: block; font-family: var(--mayusculas); font-size: 15px; margin-bottom: 6px; color: #000; }
+#ventana input[type=text], #ventana input[type=number] { width: 100%; height: 56px; padding: 0 20px; margin-bottom: 22px; font-family: var(--mayusculas); font-size: 16px; color: #4a4a4a; border: 1px solid #c9c9c9; border-radius: 5px; outline: none; }
+#ventana .opcion { display: flex; align-items: center; gap: 10px; font-family: var(--mayusculas); font-size: 15px; color: #000; margin-bottom: 10px; cursor: pointer; }
+#ventana .opcion input { width: 20px; height: 20px; accent-color: #000; }
+#ventana .opciones { margin-bottom: 22px; }
+#ventana .enviar { display: block; width: 100%; height: 56px; border: 0; border-radius: 30px; cursor: pointer; font-family: var(--mayusculas); font-size: 16px; color: #fff; background: linear-gradient(119deg, rgba(183, 140, 81, 1) 0%, rgba(235, 187, 109, 1) 100%); }
+#ventana .gracias { display: none; text-align: center; font-family: var(--script); font-size: 40px; color: var(--oro-claro); padding: 30px 0; }
+
+/* ------------------------------------------------------------
+   13. DESPEDIDA
+   ------------------------------------------------------------ */
+#despedida { height: 250px; overflow: hidden; }
+#despedida .flor-1 { --x: 251px; top: -15px; width: 224px; }
+#despedida .flor-2 { --x: -28px; top: -17px; width: 224px; }
+#despedida .titulo { top: 70px; font-size: 42px; line-height: 1.25; color: var(--oro-claro); z-index: 2; }
+
+/* ------------------------------------------------------------
+   BOTÓN DE MÚSICA (flotante)
+   ------------------------------------------------------------ */
+#musica-boton {
+  position: fixed; right: 20px; bottom: 20px; width: 60px; height: 60px; border-radius: 50%;
+  background: #cfab66; box-shadow: 0 4px 6px rgba(0, 0, 0, .1); cursor: pointer; z-index: 102;
+  display: flex; justify-content: center; align-items: center;
+  visibility: hidden; opacity: 0; transition: opacity .3s ease;
+}
+#musica-boton.visible { visibility: visible; opacity: 1; }
+#musica-boton svg { width: 30px; height: 30px; fill: #fff; }
+#musica-boton .icono-play { display: none; }
+#musica-boton.pausado .icono-play { display: block; }
+#musica-boton.pausado .icono-pausa { display: none; }
+</style>
+</head>
+
+<body class="bloqueado">
+
+<!-- ============================================================
+     1. SOBRE CERRADO
+     ============================================================ -->
+<div id="sobre">
+  <img id="sobre-imagen" alt="Abre tu invitación" draggable="false">
+  <div class="toca"><div class="chevron"></div><span id="sobre-texto"></span></div>
+</div>
+<div id="sobre-video-caja">
+  <video id="sobre-video" muted playsinline preload="auto"></video>
+</div>
+
+<div class="pagina"><!-- recorta lo que sobresale a los lados -->
+<div class="invitacion">
+
+  <!-- ============================================================
+       2. PORTADA
+       ============================================================ -->
+  <section id="portada">
+    <div class="pos video">
+      <video id="video-portada" muted playsinline loop preload="auto"></video>
+    </div>
+    <div class="pos brillo"></div>
+    <div class="pos encabezado">
+      <div class="arriba" id="portada-arriba"></div>
+      <div class="ceremonia" id="portada-ceremonia"></div>
+      <div class="de" id="portada-de"></div>
+      <div class="nombres" id="portada-nombres"></div>
+    </div>
+    <div class="pos degradado"></div>
+    <img class="pos flor-1 flor-der" src="recursos/flor-derecha.png" alt="">
+    <img class="pos flor-2 flor-izq" src="recursos/flor-izquierda.png" alt="">
+    <div class="pos centrado desliza" id="portada-desliza"></div>
+    <svg class="pos chevron-abajo" viewBox="0 0 17 10.78"><path d="M1 1l7.5 8.5L16 1" fill="none" stroke="#806b43" stroke-width="1.7" stroke-linecap="round"/></svg>
+  </section>
+
+  <!-- ============================================================
+       3. LA FECHA (rasca y descubre)
+       ============================================================ -->
+  <section id="fecha" class="crema">
+    <div class="pos centrado titulo" id="fecha-titulo">La fecha</div>
+    <div class="pos centrado instruccion">✦ Rasca para descubrir la fecha ✦</div>
+    <div class="pos rasca">
+      <div class="rasca-paneles">
+        <div class="rasca-panel">
+          <div class="rasca-tarjeta"><span class="rasca-valor" id="fecha-dia"></span><canvas></canvas></div>
+          <div class="rasca-etiqueta" id="fecha-etiqueta-dia"></div>
+        </div>
+        <div class="rasca-panel">
+          <div class="rasca-tarjeta"><span class="rasca-valor mes" id="fecha-mes"></span><canvas></canvas></div>
+          <div class="rasca-etiqueta" id="fecha-etiqueta-mes"></div>
+        </div>
+        <div class="rasca-panel">
+          <div class="rasca-tarjeta"><span class="rasca-valor" id="fecha-anio"></span><canvas></canvas></div>
+          <div class="rasca-etiqueta" id="fecha-etiqueta-anio"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <canvas id="confeti"></canvas>
+  <div id="destello"></div>
+
+  <!-- ============================================================
+       4. TARJETA DE INVITACIÓN
+       ============================================================ -->
+  <section id="tarjeta">
+    <div class="pos degradado"></div>
+    <img class="pos marco" src="recursos/tarjeta-marco.png" alt="">
+    <img class="pos adorno parallax" id="tarjeta-adorno" alt="">
+    <div class="pos centrado mayus invitacion-texto parallax" id="tarjeta-invitacion"></div>
+    <div class="pos centrado nombre parallax" id="tarjeta-novio"></div>
+    <img class="pos separador-1 parallax" src="recursos/separador-1.png" alt="">
+    <div class="pos centrado mayus hijo-de parallax" id="tarjeta-hijo-de"></div>
+    <div class="pos centrado mayus padres-novio parallax" id="tarjeta-padres-novio"></div>
+    <div class="pos centrado con parallax" id="tarjeta-con"></div>
+    <div class="pos centrado nombre nombre-2 parallax" id="tarjeta-novia"></div>
+    <img class="pos separador-2 parallax" src="recursos/separador-1.png" alt="">
+    <div class="pos centrado mayus hija-de parallax" id="tarjeta-hija-de"></div>
+    <div class="pos centrado mayus padres-novia parallax" id="tarjeta-padres-novia"></div>
+    <div class="pos centrado saludo parallax" id="tarjeta-saludo"></div>
+    <div class="pos parrafo parallax" id="tarjeta-texto"></div>
+    <img class="pos rama-1 flor-suave" src="recursos/flor-rama-1.png" alt="">
+    <img class="pos rama-2 flor-suave" src="recursos/flor-rama-2.png" alt="">
+  </section>
+
+  <!-- ============================================================
+       5. CITA
+       ============================================================ -->
+  <section id="cita">
+    <img class="pos separador parallax" src="recursos/separador-2.png" alt="">
+    <img class="pos adorno parallax" id="cita-adorno" alt="">
+    <div class="pos centrado texto frase parallax" id="cita-texto"></div>
+    <div class="pos centrado texto fuente parallax" id="cita-fuente"></div>
+  </section>
+
+  <!-- ============================================================
+       6. CRONOGRAMA
+       ============================================================ -->
+  <section id="cronograma" class="crema">
+    <div class="pos centrado titulo" id="cronograma-titulo"></div>
+    <img class="pos adorno" src="recursos/cronograma-adorno.png" alt="">
+    <img class="pos linea" src="recursos/linea-arriba.png" style="top:135px" alt="">
+    <img class="pos linea" src="recursos/linea-medio.png"  style="top:375px" alt="">
+    <img class="pos linea" src="recursos/linea-medio.png"  style="top:496px" alt="">
+    <img class="pos linea" src="recursos/linea-medio.png"  style="top:613px" alt="">
+    <img class="pos linea" src="recursos/linea-abajo.png"  style="top:792px" alt="">
+    <div class="pos rombo" style="top:268px"></div>
+    <div class="pos rombo" style="top:437px"></div>
+    <div class="pos rombo" style="top:608px"></div>
+    <div class="pos rombo" style="top:774px"></div>
+    <div class="pos rombo" style="top:946px"></div>
+    <div id="cronograma-eventos"></div>
+    <img class="pos flor-movil" id="cronograma-flor" src="recursos/cronograma-flor.png" alt="">
+  </section>
+
+  <!-- ============================================================
+       7. CUENTA REGRESIVA
+       ============================================================ -->
+  <section id="cuenta">
+    <div class="pos centrado titulo" id="cuenta-titulo"></div>
+    <img class="pos separador" src="recursos/separador-3.png" alt="">
+    <div class="pos sube" id="contador">
+      <div class="bloque"><div class="numero-caja"><div class="numero" id="dias">00</div></div><div class="etiqueta" id="etq-dias"></div></div>
+      <div class="separador-dos">:</div>
+      <div class="bloque"><div class="numero-caja"><div class="numero" id="horas">00</div></div><div class="etiqueta" id="etq-horas"></div></div>
+      <div class="separador-dos">:</div>
+      <div class="bloque"><div class="numero-caja"><div class="numero" id="minutos">00</div></div><div class="etiqueta" id="etq-minutos"></div></div>
+      <div class="separador-dos">:</div>
+      <div class="bloque"><div class="numero-caja"><div class="numero" id="segundos">00</div></div><div class="etiqueta" id="etq-segundos"></div></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       8. LUGAR
+       ============================================================ -->
+  <section id="lugar">
+    <img class="pos flor-1 flor-suave" src="recursos/flor-lugar.png" alt="">
+    <div class="pos datos">
+      <div class="titulo" id="lugar-titulo"></div>
+      <img class="separador" src="recursos/separador-3.png" alt="">
+      <div class="ciudad" id="lugar-ciudad"></div>
+      <div class="nombre" id="lugar-nombre"></div>
+    </div>
+    <img class="pos foto sube" id="lugar-foto" alt="">
+    <img class="pos flor-2 flor-suave" src="recursos/flor-rama-1.png" alt="">
+  </section>
+
+  <!-- ============================================================
+       9. MAPA
+       ============================================================ -->
+  <section id="mapa" class="crema">
+    <img class="pos adorno-arriba" src="recursos/mapa-adorno-arriba.png" alt="">
+    <img class="pos marco" src="recursos/mapa-marco.svg" alt="">
+    <iframe class="pos" id="mapa-iframe" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" title="Mapa"></iframe>
+    <img class="pos adorno-abajo" src="recursos/mapa-adorno-abajo.png" alt="">
+  </section>
+
+  <!-- ============================================================
+       10. VESTIMENTA
+       ============================================================ -->
+  <section id="vestimenta">
+    <div class="pos centrado titulo" id="vestimenta-titulo"></div>
+    <img class="pos separador" src="recursos/separador-3.png" alt="">
+    <img class="pos ilustracion parallax" id="vestimenta-ilustracion" alt="">
+    <div class="pos centrado texto texto-1 sube" id="vestimenta-texto-1"></div>
+    <div class="pos centrado destacado sube" id="vestimenta-destacado"></div>
+    <div class="pos centrado texto texto-2 sube" id="vestimenta-texto-2"></div>
+    <img class="pos separador-2 sube" src="recursos/separador-4.png" alt="">
+    <div class="pos centrado texto tonos-titulo sube" id="vestimenta-tonos-titulo"></div>
+    <div class="pos tonos" id="vestimenta-tonos"></div>
+    <img class="pos separador-3 sube" src="recursos/separador-4.png" alt="">
+    <div class="pos texto aviso sube" id="vestimenta-aviso"></div>
+  </section>
+
+  <!-- ============================================================
+       11. REGALOS
+       ============================================================ -->
+  <section id="regalos" class="crema">
+    <img class="pos marco" src="recursos/regalos-marco.png" alt="">
+    <div class="pos centrado titulo" id="regalos-titulo"></div>
+    <div class="pos contenido"><p id="regalos-texto-1"></p><p id="regalos-texto-2"></p></div>
+    <a class="pos centrado enlace aparece" id="regalos-enlace"></a>
+    <div class="pos subrayado aparece"></div>
+    <img class="pos flor-1 flor-suave" src="recursos/flor-regalos-1.png" alt="">
+    <img class="pos flor-2 flor-suave" src="recursos/flor-regalos-2.png" alt="">
+  </section>
+
+  <!-- ============================================================
+       12. CONFIRMACIÓN
+       ============================================================ -->
+  <section id="confirmacion" class="crema">
+    <div class="pos centrado titulo" id="confirmacion-titulo"></div>
+    <img class="pos separador" src="recursos/separador-3.png" alt="">
+    <div class="pos texto parallax" id="confirmacion-texto"></div>
+    <button class="pos boton" type="button" id="abrir-formulario"></button>
+  </section>
+
+  <!-- ============================================================
+       13. DESPEDIDA
+       ============================================================ -->
+  <section id="despedida">
+    <img class="pos flor-1 flor-der" src="recursos/flor-derecha.png" alt="">
+    <img class="pos flor-2 flor-izq" src="recursos/flor-izquierda.png" alt="">
+    <div class="pos centrado titulo" id="despedida-titulo"></div>
+  </section>
+
+</div><!-- /.invitacion -->
+</div><!-- /.pagina -->
+
+<!-- Ventana emergente: formulario de confirmación -->
+<div id="ventana">
+  <div class="contenido">
+    <button class="cerrar" type="button" id="cerrar-formulario" aria-label="Cerrar">×</button>
+    <h3 id="formulario-titulo"></h3>
+    <div class="subtitulo" id="formulario-subtitulo"></div>
+    <form id="formulario" autocomplete="off">
+      <label class="campo" for="campo-nombre" id="etiqueta-nombre"></label>
+      <input type="text" id="campo-nombre" name="nombre" required>
+      <div class="campo" id="etiqueta-asistencia"></div>
+      <div class="opciones" id="opciones-asistencia"></div>
+      <label class="campo" for="campo-invitados" id="etiqueta-invitados"></label>
+      <input type="number" id="campo-invitados" name="invitados" min="1">
+      <button class="enviar" type="submit" id="boton-enviar"></button>
+    </form>
+    <div class="gracias" id="gracias"></div>
+  </div>
+</div>
+
+<!-- Música de fondo y botón flotante -->
+<audio id="musica" loop preload="none"></audio>
+<div id="musica-boton" class="pausado" title="Música">
+  <svg class="icono-pausa" viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+  <svg class="icono-play" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+</div>
+
+<script>
+/* ============================================================
+   FUNCIONAMIENTO (no hace falta tocar nada de aquí abajo)
+   ============================================================ */
+(function () {
+  const $ = (id) => document.getElementById(id);
+
+  /* ---------- Rellenar textos desde CONFIG ---------- */
+  $('sobre-imagen').src = CONFIG.sobre.imagen;
+  $('sobre-texto').textContent = CONFIG.sobre.textoAbrir;
+  $('sobre-video').src = CONFIG.sobre.video;
+
+  $('video-portada').src = CONFIG.portada.video;
+  $('video-portada').poster = CONFIG.portada.foto;
+  $('portada-arriba').textContent = CONFIG.portada.lineaArriba;
+  $('portada-ceremonia').textContent = CONFIG.portada.lineaTitulo;
+  $('portada-de').textContent = CONFIG.portada.lineaDe;
+  $('portada-nombres').textContent = CONFIG.noviosTexto;
+  $('portada-desliza').textContent = CONFIG.portada.desliza;
+
+  const fc = CONFIG.fechaTarjetas;
+  $('fecha-dia').textContent = fc.dia; $('fecha-mes').textContent = fc.mes; $('fecha-anio').textContent = fc.anio;
+  $('fecha-etiqueta-dia').textContent = fc.etiquetas[0]; $('fecha-etiqueta-mes').textContent = fc.etiquetas[1]; $('fecha-etiqueta-anio').textContent = fc.etiquetas[2];
+
+  const t = CONFIG.tarjeta;
+  if (t.adorno) $('tarjeta-adorno').src = t.adorno; else $('tarjeta-adorno').remove();
+  $('tarjeta-invitacion').textContent = t.invitacion;
+  $('tarjeta-novio').textContent = CONFIG.novio;
+  $('tarjeta-hijo-de').textContent = t.hijoDe;
+  $('tarjeta-padres-novio').textContent = t.padresNovio;
+  $('tarjeta-con').textContent = t.con;
+  $('tarjeta-novia').textContent = CONFIG.novia;
+  $('tarjeta-hija-de').textContent = t.hijaDe;
+  $('tarjeta-padres-novia').textContent = t.padresNovia;
+  $('tarjeta-saludo').textContent = t.saludo;
+  $('tarjeta-texto').textContent = t.texto;
+
+  if (CONFIG.cita.adorno) $('cita-adorno').src = CONFIG.cita.adorno; else $('cita-adorno').remove();
+  $('cita-texto').textContent = CONFIG.cita.texto;
+  $('cita-fuente').textContent = CONFIG.cita.fuente;
+
+  $('cronograma-titulo').textContent = CONFIG.cronograma.titulo;
+  // Posiciones de los 5 eventos (icono, hora y nombre), alternando lado izquierdo y derecho
+  const posiciones = [
+    { icono: [35, 195, 150],  hora: [276, 214], nombre: [252, 270] },
+    { icono: [251, 352, 156], hora: [57, 391],  nombre: [33, 447] },
+    { icono: [35, 534, 150],  hora: [276, 564], nombre: [252, 620] },
+    { icono: [251, 686, 155], hora: [57, 731],  nombre: [33, 787] },
+    { icono: [32, 859, 155],  hora: [252, 900], nombre: [252, 956] }
+  ];
+  const cont = $('cronograma-eventos');
+  CONFIG.cronograma.eventos.slice(0, 5).forEach((ev, i) => {
+    const p = posiciones[i];
+    const grupo = document.createElement('div'); grupo.className = 'grupo aparece'; grupo.style.transitionDelay = (i * .15) + 's';
+    const icono = document.createElement('img'); icono.className = 'pos icono'; icono.src = ev.icono; icono.style.cssText = '--x:' + p.icono[0] + 'px;top:' + p.icono[1] + 'px;width:' + p.icono[2] + 'px';
+    const hora = document.createElement('div'); hora.className = 'pos hora'; hora.textContent = ev.hora; hora.style.cssText = '--x:' + p.hora[0] + 'px;top:' + p.hora[1] + 'px' + (i === 4 ? ';width:154px' : '');
+    const nombre = document.createElement('div'); nombre.className = 'pos nombre'; nombre.textContent = ev.nombre; nombre.style.cssText = '--x:' + p.nombre[0] + 'px;top:' + p.nombre[1] + 'px';
+    grupo.append(icono, hora, nombre); cont.appendChild(grupo);
+  });
+
+  $('cuenta-titulo').textContent = CONFIG.cuentaRegresiva.titulo;
+  ['dias', 'horas', 'minutos', 'segundos'].forEach((k, i) => { $('etq-' + k).textContent = CONFIG.cuentaRegresiva.etiquetas[i]; });
+
+  $('lugar-titulo').textContent = CONFIG.lugar.titulo;
+  $('lugar-ciudad').textContent = CONFIG.lugar.ciudad;
+  $('lugar-nombre').textContent = CONFIG.lugar.nombre;
+  $('lugar-foto').src = CONFIG.lugar.foto;
+  $('mapa-iframe').src = CONFIG.lugar.mapa;
+
+  const v = CONFIG.vestimenta;
+  $('vestimenta-titulo').textContent = v.titulo;
+  $('vestimenta-ilustracion').src = v.ilustracion;
+  $('vestimenta-texto-1').textContent = v.texto1;
+  $('vestimenta-destacado').textContent = v.destacado;
+  $('vestimenta-texto-2').textContent = v.texto2;
+  $('vestimenta-tonos-titulo').textContent = v.tonosTitulo;
+  v.tonos.forEach((c, i) => {
+    const d = document.createElement('div'); d.className = 'tono sube'; d.style.transitionDelay = (i * .1) + 's';
+    d.innerHTML = '<span style="background:' + c + '"></span>';
+    $('vestimenta-tonos').appendChild(d);
+  });
+  $('vestimenta-aviso').textContent = v.aviso;
+
+  const r = CONFIG.regalos;
+  $('regalos-titulo').textContent = r.titulo;
+  $('regalos-texto-1').textContent = r.texto1;
+  $('regalos-texto-2').textContent = r.texto2;
+  $('regalos-enlace').textContent = r.enlaceTexto;
+  if (r.enlace) { $('regalos-enlace').href = r.enlace; $('regalos-enlace').target = '_blank'; }
+
+  $('confirmacion-titulo').textContent = CONFIG.confirmacion.titulo;
+  $('confirmacion-texto').textContent = CONFIG.confirmacion.texto;
+  $('abrir-formulario').textContent = CONFIG.confirmacion.boton;
+  const f = CONFIG.confirmacion.formulario;
+  $('formulario-titulo').textContent = f.titulo;
+  $('formulario-subtitulo').textContent = f.subtitulo;
+  $('etiqueta-nombre').textContent = f.campoNombre;
+  $('etiqueta-asistencia').textContent = f.campoAsistencia;
+  f.opciones.forEach((op) => {
+    const l = document.createElement('label'); l.className = 'opcion';
+    l.innerHTML = '<input type="checkbox" name="asistencia" value="' + op + '"><span>' + op + '</span>';
+    $('opciones-asistencia').appendChild(l);
+  });
+  $('etiqueta-invitados').textContent = f.campoInvitados;
+  $('boton-enviar').textContent = f.botonEnviar;
+  $('gracias').textContent = f.gracias;
+
+  $('despedida-titulo').textContent = CONFIG.despedida.titulo;
+
+  $('musica').src = CONFIG.musica;
+
+  /* ---------- Sobre: tocar, video de apertura, música ---------- */
+  const sobre = $('sobre'), sobreCaja = $('sobre-video-caja'), sobreVideo = $('sobre-video');
+  const videoPortada = $('video-portada'), musica = $('musica'), musicaBoton = $('musica-boton');
+  let abierto = false, introLista = false;
+  function abrirSobre() {
+    if (abierto) return; abierto = true;
+    sobre.classList.add('abierto');
+    setTimeout(() => sobre.remove(), 1400);
+    musica.play().then(() => musicaBoton.classList.remove('pausado')).catch(() => {});
+    musicaBoton.classList.add('visible');
+    const reproducir = () => { sobreCaja.classList.add('entra'); sobreVideo.play().catch(() => terminarIntro()); };
+    if (sobreVideo.readyState >= 2) reproducir(); else { sobreVideo.addEventListener('loadeddata', reproducir, { once: true }); sobreVideo.load(); setTimeout(() => { if (!introLista && sobreVideo.readyState < 2) terminarIntro(); }, 6000); }
+  }
+  function terminarIntro() {
+    if (introLista) return; introLista = true;
+    document.body.classList.remove('bloqueado');
+    sobreCaja.classList.remove('entra'); sobreCaja.classList.add('sale');
+    setTimeout(() => sobreCaja.remove(), 1400);
+    videoPortada.play().catch(() => {});
+  }
+  sobreVideo.addEventListener('timeupdate', () => { if (sobreVideo.duration && sobreVideo.currentTime >= sobreVideo.duration - .8) terminarIntro(); });
+  sobreVideo.addEventListener('ended', terminarIntro);
+  sobreVideo.addEventListener('error', terminarIntro);
+  sobre.addEventListener('click', abrirSobre);
+
+  /* ---------- Música: pausar / reanudar ---------- */
+  musicaBoton.addEventListener('click', () => {
+    if (musica.paused) { musica.play(); musicaBoton.classList.remove('pausado'); }
+    else { musica.pause(); musicaBoton.classList.add('pausado'); }
+  });
+
+  /* ---------- Animaciones al entrar en pantalla ---------- */
+  const observador = new IntersectionObserver((entradas) => {
+    entradas.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observador.unobserve(e.target); } });
+  }, { threshold: .15 });
+  document.querySelectorAll('.aparece, .sube, #cuenta').forEach(el => observador.observe(el));
+
+  /* ---------- Textos que se desplazan un poco con el scroll ---------- */
+  const parallax = document.querySelectorAll('.parallax');
+  function moverParallax() {
+    const alto = window.innerHeight;
+    parallax.forEach(el => {
+      const r = el.getBoundingClientRect();
+      let p = (alto - r.top) / (alto + r.height);     // 0 = entrando por abajo, 1 = saliendo por arriba
+      p = Math.max(0, Math.min(1, p));
+      el.style.transform = 'translateY(' + (-20 * p) + 'px)';
+    });
+  }
+
+  /* ---------- Cronograma: la flor baja por la línea con el scroll ---------- */
+  const cronograma = $('cronograma'), flor = $('cronograma-flor');
+  function moverFlor() {
+    const r = cronograma.getBoundingClientRect();
+    let p = (window.innerHeight * .5 - r.top - 246) / 700;   // 0 = flor en el primer rombo, 1 = en el último
+    p = Math.max(0, Math.min(1, p));
+    flor.style.transform = 'translateY(' + (p * 700) + 'px)';
+  }
+  window.addEventListener('scroll', () => { moverFlor(); moverParallax(); }, { passive: true });
+  window.addEventListener('resize', () => { moverFlor(); moverParallax(); });
+  moverFlor(); moverParallax();
+
+  /* ---------- Cuenta regresiva ---------- */
+  const fe = CONFIG.fecha;
+  const fechaEvento = new Date(fe.anio, fe.mes - 1, fe.dia, fe.hora, fe.minuto, 0);
+  function actualizarCuenta() {
+    const resta = fechaEvento - new Date();
+    if (resta <= 0) { $('contador').innerHTML = '<div class="terminado">' + CONFIG.cuentaRegresiva.terminado + '</div>'; clearInterval(reloj); return; }
+    const p = (n) => String(n).padStart(2, '0');
+    $('dias').textContent = String(Math.floor(resta / 86400000));
+    $('horas').textContent = p(Math.floor(resta % 86400000 / 3600000));
+    $('minutos').textContent = p(Math.floor(resta % 3600000 / 60000));
+    $('segundos').textContent = p(Math.floor(resta % 60000 / 1000));
+  }
+  const reloj = setInterval(actualizarCuenta, 1000); actualizarCuenta();
+
+  /* ---------- Formulario (solo visual por ahora) ---------- */
+  const ventana = $('ventana');
+  $('abrir-formulario').addEventListener('click', () => ventana.classList.add('abierta'));
+  $('cerrar-formulario').addEventListener('click', () => ventana.classList.remove('abierta'));
+  ventana.addEventListener('click', (e) => { if (e.target === ventana) ventana.classList.remove('abierta'); });
+  $('formulario').addEventListener('submit', (e) => {
+    e.preventDefault();
+    $('formulario').style.display = 'none';
+    $('gracias').style.display = 'block';
+  });
+
+  /* ---------- Rasca y descubre la fecha ---------- */
+  const tarjetas = document.querySelectorAll('.rasca-tarjeta');
+  let listas = 0;
+
+  function pintarCapa(ctx, w, h) {              // capa dorada que se rasca
+    const base = ctx.createLinearGradient(0, 0, w, h);
+    base.addColorStop(0, '#fffdf7'); base.addColorStop(.24, '#f9eedc'); base.addColorStop(.52, '#eed8b8');
+    base.addColorStop(.78, '#d7b67f'); base.addColorStop(1, '#b98238');
+    ctx.fillStyle = base; ctx.fillRect(0, 0, w, h);
+    const brillo = ctx.createRadialGradient(w * .42, h * .25, 0, w * .42, h * .25, w * .82);
+    brillo.addColorStop(0, 'rgba(255,255,252,.98)'); brillo.addColorStop(.3, 'rgba(255,247,229,.58)'); brillo.addColorStop(.67, 'rgba(245,222,185,.12)'); brillo.addColorStop(1, 'rgba(245,222,185,0)');
+    ctx.fillStyle = brillo; ctx.fillRect(0, 0, w, h);
+    ctx.globalAlpha = .085;
+    for (let i = -h; i < w + h; i += 22) { ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i + h * .72, h); ctx.strokeStyle = '#fff9ec'; ctx.lineWidth = 8; ctx.stroke(); }
+    ctx.globalAlpha = .045;
+    for (let i = 11 - h; i < w + h; i += 22) { ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i + h * .72, h); ctx.strokeStyle = '#a66c20'; ctx.lineWidth = 2; ctx.stroke(); }
+    ctx.globalAlpha = 1;
+    [[.14,.18],[.5,.1],[.84,.22],[.22,.78],[.72,.82],[.88,.58],[.08,.52],[.62,.42],[.38,.62]].forEach(([x, y], i) => {
+      const rad = i % 3 === 0 ? 7 : 5;
+      const g = ctx.createRadialGradient(w * x, h * y, 0, w * x, h * y, rad);
+      g.addColorStop(0, 'rgba(255,255,250,1)'); g.addColorStop(.4, 'rgba(255,239,206,.42)'); g.addColorStop(1, 'rgba(255,230,183,0)');
+      ctx.fillStyle = g; ctx.globalAlpha = .34; ctx.beginPath(); ctx.arc(w * x, h * y, rad, 0, Math.PI * 2); ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+    ctx.strokeStyle = 'rgba(255,253,246,.88)'; ctx.lineWidth = 1.5; ctx.strokeRect(.75, .75, w - 1.5, h - 1.5);
+    ctx.strokeStyle = 'rgba(171,108,29,.22)'; ctx.lineWidth = 1; ctx.strokeRect(2.25, 2.25, w - 4.5, h - 4.5);
+  }
+
+  tarjetas.forEach(tarjeta => {
+    const cvs = tarjeta.querySelector('canvas');
+    const ctx = cvs.getContext('2d', { willReadFrequently: true });
+    let presionado = false, lista = false;
+    function ajustar() {
+      const r = tarjeta.getBoundingClientRect();
+      cvs.width = Math.round(r.width); cvs.height = Math.round(r.height);
+      if (!lista) pintarCapa(ctx, cvs.width, cvs.height);
+    }
+    ajustar(); window.addEventListener('resize', ajustar);
+    setTimeout(ajustar, 300); setTimeout(ajustar, 1000);
+    function xy(cx, cy) { const r = cvs.getBoundingClientRect(); return { x: (cx - r.left) * (cvs.width / r.width), y: (cy - r.top) * (cvs.height / r.height) }; }
+    function rascar(x, y) {
+      if (lista) return;
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.fillStyle = '#000';
+      ctx.beginPath(); ctx.arc(x, y, 36, 0, Math.PI * 2); ctx.fill();
+      ctx.globalCompositeOperation = 'source-over';
+      if (Math.random() > .12) return;
+      const d = ctx.getImageData(0, 0, cvs.width, cvs.height).data;
+      let vis = 0, tot = 0;
+      for (let i = 3; i < d.length; i += 12) { tot++; if (d[i] > 10) vis++; }
+      if ((tot - vis) / tot > .4) terminar();
+    }
+    function terminar() {
+      if (lista) return; lista = true;
+      let a = 1;
+      const fundido = setInterval(() => {
+        a -= .055;
+        if (a <= 0) { clearInterval(fundido); cvs.style.display = 'none'; }
+        else { ctx.clearRect(0, 0, cvs.width, cvs.height); ctx.globalAlpha = a; pintarCapa(ctx, cvs.width, cvs.height); ctx.globalAlpha = 1; }
+      }, 22);
+      listas++;
+      if (listas === tarjetas.length) setTimeout(todasListas, 550);
+    }
+    cvs.addEventListener('mousedown', e => { presionado = true; const p = xy(e.clientX, e.clientY); rascar(p.x, p.y); });
+    cvs.addEventListener('mousemove', e => { if (presionado) { const p = xy(e.clientX, e.clientY); rascar(p.x, p.y); } });
+    window.addEventListener('mouseup', () => presionado = false);
+    cvs.addEventListener('touchstart', e => { e.preventDefault(); presionado = true; const t = e.touches[0]; const p = xy(t.clientX, t.clientY); rascar(p.x, p.y); }, { passive: false });
+    cvs.addEventListener('touchmove', e => { e.preventDefault(); if (presionado) { const t = e.touches[0]; const p = xy(t.clientX, t.clientY); rascar(p.x, p.y); } }, { passive: false });
+    cvs.addEventListener('touchend', () => presionado = false);
+  });
+
+  function todasListas() {
+    $('destello').classList.add('brilla');
+    confeti();
+  }
+
+  function confeti() {                          // lluvia de confeti dorado
+    const cc = $('confeti'), cx = cc.getContext('2d');
+    cc.width = window.innerWidth; cc.height = window.innerHeight;
+    const colores = ['#b97820', '#d5a54d', '#e5c98f', '#f4e8d3', '#fff9ef', '#c38a35', 'rgba(183,120,32,.58)', 'rgba(255,243,221,.78)', '#93601b', '#ead8b8'];
+    const piezas = Array.from({ length: 80 }, () => ({
+      x: Math.random() * cc.width, y: -15 - Math.random() * 160, vy: Math.random() * 1.1 + .5, vx: (Math.random() - .5) * .9,
+      w: Math.random() * 10 + 2.5, h: Math.random() * 3.5 + 1.2, rot: Math.random() * Math.PI * 2, rv: (Math.random() - .5) * .055,
+      color: colores[Math.floor(Math.random() * colores.length)], alpha: Math.random() * .6 + .38,
+      drift: Math.random() * Math.PI * 2, ds: Math.random() * .016 + .007, forma: Math.random() > .45 ? 0 : 1
+    }));
+    let fr = 0, max = 320;
+    (function dibujar() {
+      cx.clearRect(0, 0, cc.width, cc.height);
+      const fade = Math.max(0, 1 - fr / max);
+      piezas.forEach(p => {
+        cx.save(); cx.globalAlpha = p.alpha * fade; cx.translate(p.x, p.y); cx.rotate(p.rot); cx.fillStyle = p.color;
+        if (p.forma === 0) cx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h); else { cx.beginPath(); cx.arc(0, 0, p.h, 0, Math.PI * 2); cx.fill(); }
+        cx.restore();
+        p.y += p.vy; p.x += p.vx + Math.sin(p.drift) * .4; p.rot += p.rv; p.drift += p.ds;
+        if (p.y > cc.height + 20) { p.y = -15; p.x = Math.random() * cc.width; }
+      });
+      fr++;
+      if (fr < max) requestAnimationFrame(dibujar); else cx.clearRect(0, 0, cc.width, cc.height);
+    })();
+  }
+})();
+</script>
+</body>
+</html>

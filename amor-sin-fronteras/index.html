@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Elisabeth & Marcus · Invitación de boda</title>
+
+<script>
+/* ============================================================
+   CONFIGURACIÓN DE LA INVITACIÓN
+   Cambia aquí los textos, la fecha, el lugar, las fotos…
+   Todo lo que aparece en la invitación sale de este bloque.
+   ============================================================ */
+const CONFIG = {
+
+  // ---------- Novios ----------
+  noviosTexto: "Elisabeth & Marcus",                    // portada
+  noviosCompleto: "Elisabeth Swan y Marcus Lagarde",    // pasaporte
+  noviosDespedida: "Elisabeth y Marcus",                // final
+
+  // ---------- Pantalla de bienvenida (aparece al abrir) ----------
+  bienvenida: {
+    marco: "recursos/bienvenida-marco.png",   // círculo con avión y maletas
+    titulo: "¡Estás invitado!",
+    texto: "¡Acompáñanos a hacer de este día algo inolvidable!",
+    boton: "Descubre los detalles"
+  },
+
+  // ---------- Portada ----------
+  portada: {
+    franja: "pase de abordar",       // texto que se repite en la franja superior
+    subtitulo: "¡se casan!",
+    mapa: "recursos/portada-mapa.jpg",
+    destino: "México",
+    invitados: "¡Estás invitado!",
+    texto: "Empaca, abróchate el cinturón y prepárate para nuestra gran aventura.",
+    fechaLugar: "05.05.2027 | México"
+  },
+
+  // ---------- Pasaporte ----------
+  pasaporte: {
+    titulo: "Pasaporte al matrimonio",
+    tipo: "TIPO: BODA",
+    codigo: "CÓDIGO: MÉXICO",
+    numero: "PASAPORTE: 050527",
+    foto: "recursos/pasaporte-foto.jpg",
+    etiquetaNovios: "LOS NOVIOS:",
+    etiquetaFecha: "FECHA:",
+    fecha: "Lunes, 5 de mayo de 2027",
+    etiquetaHora: "HORA:",
+    hora: "2 PM - 10 PM",
+    etiquetaDestino: "DESTINO:",
+    destino: "Casa Karma",
+    linea1: "<<<<NO PODEMOS<<<<<<<<ESPERAR<<<<<<<PARA<<<<<<<<<",
+    linea2: "<<<<<<<< CELEBRAR<<<<<<<<CONTIGO<<<<<<<<<<<<<<<",
+    sello: "recursos/sello-viaje.png"      // sello "It's time for travel" (imagen con texto en inglés)
+  },
+
+  // ---------- Programa del evento (máximo 6 paradas sobre la ruta; textos cortos para que quepan) ----------
+  cronograma: {
+    titulo: "Programa del evento",
+    eventos: [
+      "2 PM - Ceremonia",
+      "2:30 PM - Fotos",
+      "3 PM - Cóctel",
+      "5 PM - Cena",
+      "7 PM - Juegos",
+      "7:30 PM - 10 PM - Fiesta y baile"
+    ]
+  },
+
+  // ---------- Lugar de la boda ----------
+  lugar: {
+    titulo: "Lugar de la boda",
+    nombre: "Casa Karma",
+    direccion: "Dirección: Puerto Vallarta, MX",
+    foto: "recursos/lugar-foto.jpg"
+  },
+
+  // ---------- Código de vestimenta ----------
+  vestimenta: {
+    titulo: "Código de vestimenta",
+    texto: "Nos encantaría que tu atuendo vaya en los colores de la temática de la boda.",
+    galeria: ["recursos/galeria-1.jpg", "recursos/galeria-2.jpg", "recursos/galeria-3.jpg", "recursos/galeria-4.jpg", "recursos/galeria-5.jpg", "recursos/galeria-6.jpg", "recursos/galeria-7.jpg", "recursos/galeria-8.jpg", "recursos/galeria-9.jpg", "recursos/galeria-10.jpg"],
+    etiquetaColores: "Colores:",
+    colores: ["#faf1db", "#f5d9b1", "#f2cac9", "#afcff1", "#7ebbfa"],
+    detalle: "Damas: vestidos elegantes de verano en tonos pastel. Recomendamos llevar sombrero y gafas de sol para mayor comodidad.<br><br>Caballeros: trajes o camisas en tonos clásicos. ¡Gris, azul, café y beige son excelentes opciones!"
+  },
+
+  // ---------- Aspectos organizativos (tres boletos) ----------
+  detalles: {
+    titulo: "Aspectos organizativos",
+    tarjetas: [
+      { etiqueta: "Contacto", texto: "Si tienes alguna pregunta, siempre puedes contactar a nuestra organizadora de bodas, Emma", destacado: "+593 99 123 4567" },
+      { etiqueta: "Regalos", texto: "Celebrar contigo es el mejor regalo para nosotros. Si aun así deseas regalarnos algo, nos encantaría recibir una contribución para nuestra luna de miel." },
+      { etiqueta: "Felicitaciones", texto: "¡Nos encantaría ver tu creatividad en tus felicitaciones! Por ejemplo, comparte una historia divertida sobre nosotros con los invitados para reírnos todos juntos." }
+    ]
+  },
+
+  // ---------- Confirmación de asistencia ----------
+  confirmacion: {
+    titulo: "Tu boleto al amor",
+    texto: "Confirma tu asistencia para asegurar tu lugar y ayudarnos a planear la experiencia perfecta para ti",
+    boton: "Reserva tu lugar",
+    formulario: {
+      imagen: "recursos/formulario-sello.jpg",
+      titulo: "¡Reserva tu lugar!",
+      texto: "Por favor confirma antes del 20 de marzo",
+      campoNombre: "Tu nombre",
+      campoAsistencia: "¿Asistirás?",
+      opcionesAsistencia: ["Sí, asistiré", "Lamentablemente no podré :(", "Les confirmo un poco más adelante"],
+      campoIntolerancias: "¿Tienes alguna intolerancia alimentaria?",
+      botonEnviar: "Enviar",
+      gracias: "¡Gracias por confirmar!"
+    },
+    foto: "recursos/despedida-foto.jpg"    // foto grande debajo del botón
+  },
+
+  // ---------- Mapa ----------
+  mapa: {
+    titulo: "El destino",
+    enlace: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3735.0316169000253!2d-105.244597!3d20.5867664!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x84215b96f9a1a8e1%3A0x7c2ab6c835e5220a!2sCasa%20Karma%20Private%20Villa%20%26%20Event%20Space!5e0!3m2!1sen!2see!4v1741454416763!5m2!1sen!2see"   // enlace "embed" de Google Maps (Compartir → Insertar un mapa)
+  },
+
+  // ---------- Despedida ----------
+  despedida: {
+    titulo: "Esperamos verte ahí",
+    corazon: "recursos/despedida-corazon.png"
+  },
+
+  // ---------- Música ----------
+  // Ruta o enlace a un archivo de audio (mp3). Si se deja vacío, no suena nada ni aparece el botón.
+  // Empieza a sonar al pulsar el botón de la pantalla de bienvenida. Puede ser un archivo local (ej. "recursos/cancion.mp3")
+  // o un enlace. El enlace de abajo es el de la plantilla original (canción con derechos, necesita internet).
+  musica: {
+    archivo: "https://dl.dropboxusercontent.com/scl/fi/ax9m2vf0b9felhibvksow/Stephen-Sanchez-Until-I-Found-You-Official-Video-GxldQ9eX2wo.mp3?rlkey=l9cbkv01nzm0scxti8il1719p&st=7ukkvg5q"
+  }
+};
+</script>
+
+<style>
+/* ============================================================
+   ESTILOS
+   ============================================================ */
+
+/* Tipografías (guardadas en la carpeta recursos, no dependen de internet) */
+@font-face { font-family: 'Rufina'; font-weight: 400; font-display: swap; src: url('recursos/fuente-rufina.woff2') format('woff2'); }
+@font-face { font-family: 'Beau Rivage'; font-weight: 400; font-display: swap; src: url('recursos/fuente-beau-rivage.woff2') format('woff2'); }
+@font-face { font-family: 'Great Vibes'; font-weight: 400; font-display: swap; src: url('recursos/fuente-great-vibes.woff2') format('woff2'); }
+
+:root {
+  --blanco: #ffffff;
+  --arena: #f3ece4;          /* fondo de la sección pasaporte */
+  --franja: #f1e9e1;         /* franja "pase de abordar" */
+  --boleto: #f3ede5;         /* boletos de aspectos organizativos */
+  --texto: #4a4a4a;
+  --texto-suave: #616161;
+  --texto-programa: #646464;
+  --verde: #9bb7a1;          /* verde salvia: puntos, botones, avión */
+  --script: 'Beau Rivage', cursive;             /* títulos */
+  --serif: 'Rufina', Georgia, serif;            /* texto general */
+  --bienvenida: 'Great Vibes', cursive;         /* título de la pantalla de bienvenida */
+  --ancho: 440px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
+body { background: var(--blanco); color: var(--texto); font-family: var(--serif); font-size: 19px; line-height: 1.55; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+body.bloqueado { overflow: hidden; height: 100vh; }
+img { display: block; max-width: 100%; }
+
+.pagina { width: 100%; overflow-x: hidden; overflow-x: clip; }
+.invitacion { position: relative; width: 100%; max-width: var(--ancho); margin: 0 auto; }
+section { position: relative; overflow: hidden; background: var(--blanco); }
+
+/* Elementos colocados con coordenadas: --x es la distancia al borde izquierdo de la columna de 440 px */
+.pos { position: absolute; left: calc(50% - 220px + var(--x, 0px)); }
+.centrado { --x: 0px; width: 440px; text-align: center; }
+
+.script { font-family: var(--script); font-weight: 400; line-height: 1.15; }
+.titulo { font-family: var(--script); font-weight: 400; font-size: 40px; line-height: 1.15; text-align: center; }
+.etiqueta { font-size: 14px; line-height: 1.25; text-transform: uppercase; }
+.dato { font-size: 19px; line-height: 1.25; }
+
+/* Animaciones al aparecer */
+.aparece { opacity: 0; transition: opacity 1s ease; }
+.aparece-izq { opacity: 0; transform: translateX(-100px); transition: opacity 1s ease, transform 1s ease; }
+.aparece-der { opacity: 0; transform: translateX(100px);  transition: opacity 1s ease, transform 1s ease; }
+.aparece.visible, .aparece-izq.visible, .aparece-der.visible { opacity: 1; transform: none; }
+
+/* ------------------------------------------------------------
+   1. PANTALLA DE BIENVENIDA
+   ------------------------------------------------------------ */
+#bienvenida { position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,.9); display: flex; align-items: center; justify-content: center; transition: opacity .4s ease; }
+#bienvenida.fuera { opacity: 0; pointer-events: none; }
+#bienvenida .marco { position: relative; width: 100%; max-width: 450px; min-width: 350px; aspect-ratio: 1.22; background: no-repeat center / contain; display: flex; align-items: center; justify-content: center; }
+#bienvenida .contenido { width: 100%; text-align: center; padding: 0 70px 0 80px; }
+#bienvenida h2 { font-family: var(--bienvenida); font-weight: 400; font-size: 37px; line-height: 1.2; color: #313131; margin-top: 13px; }
+#bienvenida p { font-size: 16px; line-height: 1.5; color: #313131; margin: 10px 0 20px; }
+#bienvenida button { padding: 10px 17px; font-family: var(--serif); font-size: 13px; background: var(--verde); border: 0; border-radius: 15px; color: #fff; cursor: pointer; }
+
+/* Botón flotante de música */
+#musica-boton { position: fixed; right: 20px; bottom: 20px; width: 60px; height: 60px; border-radius: 50%; background: var(--verde); display: none; align-items: center; justify-content: center; cursor: pointer; z-index: 90; box-shadow: 0 4px 6px rgba(0,0,0,.1); }
+#musica-boton svg { width: 30px; height: 30px; fill: #fff; }
+#musica-boton.visible { display: flex; }
+
+/* ------------------------------------------------------------
+   2. PORTADA
+   ------------------------------------------------------------ */
+#portada { height: 800px; overflow: visible; }
+/* La franja ocupa todo el ancho de la pantalla, como en el original */
+#portada .franja { position: absolute; left: 50%; width: 100vw; margin-left: -50vw; top: 38px; height: 38px; background: var(--franja); overflow: hidden; }
+#portada .franja .pista { position: absolute; left: 50%; top: 7px; display: flex; white-space: nowrap; --paso: 180px; animation: franja 2s linear infinite; }
+#portada .franja span { display: inline-block; padding-right: 40px; font-size: 19px; line-height: 1.25; }
+@keyframes franja { from { transform: translateX(calc(-11 * var(--paso))); } to { transform: translateX(calc(-10 * var(--paso))); } }
+#portada .nombres { --x: 50px; top: 130px; width: 341px; text-align: center; font-size: 45px; white-space: nowrap; }
+#portada .subtitulo { --x: 46px; top: 187px; width: 349px; text-align: center; font-size: 23px; line-height: 1.25; }
+#portada .mapa { --x: 12px; top: 257px; width: 431px; height: 284px; background: no-repeat center / cover; }
+#portada .pin { --x: 68px; top: 379px; width: 51px; }
+#portada .destino { --x: 25px; top: 437px; width: 137px; text-align: center; font-size: 19px; line-height: 1.25; }
+#portada .ruta { --x: 168px; top: 472px; width: 268px; }
+#portada .ruta svg { display: block; width: 100%; height: auto; }
+#portada .avion { --x: 144px; top: 463px; width: 40px; transform: rotate(265deg); }
+#portada .invitados { --x: 62px; top: 601px; width: 317px; text-align: center; font-size: 29px; line-height: 1.25; }
+#portada .texto { --x: 42px; top: 647px; width: 357px; text-align: center; font-size: 19px; line-height: 1.25; }
+#portada .fecha { --x: 47px; top: 707px; width: 349px; text-align: center; font-size: 19px; line-height: 1.25; }
+
+/* ------------------------------------------------------------
+   3. PASAPORTE
+   ------------------------------------------------------------ */
+#pasaporte { height: 838px; background: var(--arena); overflow: visible; }
+#pasaporte::before { content: ""; position: absolute; left: 50%; top: 0; width: 100vw; height: 100%; margin-left: -50vw; background: var(--arena); z-index: 0; }
+#pasaporte > * { z-index: 1; }
+#pasaporte .titulo { --x: 62px; top: 45px; width: 317px; white-space: nowrap; }
+#pasaporte .linea { --x: 11px; top: 115px; width: 419px; }
+#pasaporte .tipo { --x: 36px; top: 124px; white-space: nowrap; font-size: 13px; }
+#pasaporte .codigo { --x: 138px; top: 124px; white-space: nowrap; font-size: 13px; }
+#pasaporte .numero { --x: 268px; top: 124px; white-space: nowrap; font-size: 13px; }
+#pasaporte .foto { --x: 34px; top: 185px; width: 373px; height: 249px; border-radius: 10px; background: no-repeat center / cover; }
+#pasaporte .etq-novios { --x: 35px; top: 470px; width: 300px; }
+#pasaporte .novios { --x: 35px; top: 489px; width: 370px; white-space: nowrap; }
+#pasaporte .etq-fecha { --x: 35px; top: 532px; width: 200px; }
+#pasaporte .fecha { --x: 35px; top: 551px; width: 300px; white-space: nowrap; }
+#pasaporte .etq-hora { --x: 35px; top: 594px; width: 200px; }
+#pasaporte .hora { --x: 35px; top: 613px; width: 250px; }
+#pasaporte .etq-destino { --x: 35px; top: 664px; width: 200px; }
+#pasaporte .destino { --x: 35px; top: 683px; width: 250px; }
+#pasaporte .linea-1 { --x: -2px; top: 741px; width: 482px; font-size: 16px; line-height: 1.25; white-space: nowrap; }
+#pasaporte .linea-2 { --x: -5px; top: 758px; width: 487px; font-size: 16px; line-height: 1.25; white-space: nowrap; }
+/* Sello: aparece "estampándose" cuando la sección entra en pantalla */
+#pasaporte .sello { --x: 297px; top: 608px; width: 102px; opacity: 0; transform: scale(3); }
+#pasaporte .sello.estampado { animation: estampar .35s ease-in forwards; }
+@keyframes estampar { from { opacity: 0; transform: scale(3) translate(-40px, 60px); } 60% { opacity: 1; } to { opacity: 1; transform: scale(1); } }
+
+/* ------------------------------------------------------------
+   4. PROGRAMA DEL EVENTO
+   ------------------------------------------------------------ */
+#cronograma { height: 637px; }
+#cronograma .titulo { --x: 62px; top: 45px; width: 317px; }
+#cronograma .ruta { --x: 1px; top: 122px; width: 446px; max-width: none; }
+#cronograma .ruta svg { display: block; width: 100%; height: auto; }
+#cronograma .evento { font-size: 21px; line-height: 1.81; color: var(--texto-programa); white-space: nowrap; }
+#cronograma .ev-1 { --x: 36px;  top: 127px; }
+#cronograma .ev-2 { --x: 146px; top: 185px; }
+#cronograma .ev-3 { --x: 186px; top: 244px; }
+#cronograma .ev-4 { --x: 206px; top: 313px; }
+#cronograma .ev-5 { --x: 186px; top: 382px; }
+#cronograma .ev-6 { --x: 99px;  top: 451px; }
+#cronograma .punto { width: 8px; height: 8px; border-radius: 50%; background: var(--verde); }
+#cronograma .p-1 { --x: 6px;   top: 147px; }
+#cronograma .p-2 { --x: 99px;  top: 206px; }
+#cronograma .p-3 { --x: 151px; top: 265px; }
+#cronograma .p-4 { --x: 168px; top: 329px; }
+#cronograma .p-5 { --x: 144px; top: 399px; }
+#cronograma .p-6 { --x: 59px;  top: 472px; }
+#cronograma .avion { --x: 73px; top: 493px; width: 40px; }
+#cronograma .avion img { transform: rotate(67deg); }
+
+/* ------------------------------------------------------------
+   5. LUGAR DE LA BODA
+   ------------------------------------------------------------ */
+#lugar { height: 555px; }
+#lugar .titulo { --x: 65px; top: 18px; width: 317px; }
+#lugar .pin { --x: 28px; top: 94px; width: 51px; }
+#lugar .nombre { --x: 89px; top: 97px; width: 300px; font-size: 22px; line-height: 1.25; }
+#lugar .direccion { --x: 89px; top: 127px; width: 330px; font-size: 19px; line-height: 1.25; }
+#lugar .foto { --x: -3px; top: 157px; width: 446px; height: 377px; background: no-repeat center / cover; max-width: none; }
+#lugar .degradado { --x: -3px; top: 157px; width: 446px; height: 83px; background: no-repeat center / cover; max-width: none; }
+
+/* ------------------------------------------------------------
+   6. CÓDIGO DE VESTIMENTA + GALERÍA + COLORES
+   ------------------------------------------------------------ */
+#vestimenta { height: 254px; }
+#vestimenta .titulo { --x: 61px; top: 40px; width: 317px; }
+#vestimenta .texto { --x: 38px; top: 124px; width: 363px; text-align: center; font-size: 19px; line-height: 1.25; }
+#vestimenta .flecha { --x: 175px; top: 210px; width: 90px; animation: vaiven 1.6s ease-in-out infinite; }
+@keyframes vaiven { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(10px); } }
+
+#galeria { padding: 0 0 15px; }
+#galeria .tira { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 0 20px 0 max(20px, calc(50% - 200px)); scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+#galeria .tira::-webkit-scrollbar { display: none; }
+#galeria img { height: 500px; width: auto; flex: 0 0 auto; scroll-snap-align: start; }
+@media (max-width: 960px) { #galeria img { height: 350px; } }
+
+#colores { height: auto; padding: 134px 0 30px; }
+#colores .etiqueta-colores { --x: 41px; top: 53px; width: 96px; font-size: 19px; line-height: 1.25; }
+#colores .circulos { --x: 139px; top: 34px; display: flex; gap: -10px; }
+#colores .circulo { width: 60px; height: 60px; border-radius: 50%; border: 1px solid #f2e9df; margin-right: -10px; }
+#colores .detalle { position: relative; width: 387px; max-width: calc(100% - 40px); margin: 0 auto; font-size: 19px; line-height: 1.25; }
+
+/* ------------------------------------------------------------
+   7. ASPECTOS ORGANIZATIVOS (boletos)
+   ------------------------------------------------------------ */
+#detalles { height: 899px; }
+#detalles .titulo { --x: 61px; top: 42px; width: 317px; }
+#detalles .boleto { --x: 32px; width: 377px; height: 152px; background: var(--boleto); border-radius: 12px; display: flex; overflow: hidden; }
+#detalles .b-1 { top: 141px; }
+#detalles .b-2 { top: 348px; flex-direction: row-reverse; }
+#detalles .b-3 { top: 555px; }
+/* muescas laterales */
+#detalles .boleto::before, #detalles .boleto::after { content: ""; position: absolute; top: 50%; width: 16px; height: 16px; margin-top: -8px; border-radius: 50%; background: #fff; }
+#detalles .boleto::before { left: -8px; }
+#detalles .boleto::after { right: -8px; }
+#detalles .talon { position: relative; flex: 0 0 98px; display: flex; align-items: center; justify-content: center; }
+#detalles .talon .rotulo { position: absolute; left: 6px; top: 50%; transform: rotate(-90deg) translateX(-50%); transform-origin: left top; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; white-space: nowrap; line-height: 1; }
+#detalles .b-2 .talon .rotulo { left: auto; right: 6px; transform: rotate(90deg) translateX(50%); transform-origin: right top; }
+#detalles .talon img { width: 38px; margin-left: 14px; }
+#detalles .b-2 .talon img { margin-left: 0; margin-right: 14px; }
+/* línea perforada con muescas arriba y abajo */
+#detalles .perforado { position: relative; flex: 0 0 0; border-left: 3px dashed #fff; }
+#detalles .perforado::before, #detalles .perforado::after { content: ""; position: absolute; left: -9px; width: 16px; height: 16px; border-radius: 50%; background: #fff; }
+#detalles .perforado::before { top: -8px; }
+#detalles .perforado::after { bottom: -8px; }
+#detalles .cuerpo { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 10px 14px; font-size: 15px; line-height: 1.3; }
+#detalles .destacado { font-family: var(--script); font-size: 24px; line-height: 1.1; margin-top: 6px; white-space: nowrap; }
+#detalles .ruta { --x: -7px; top: 704px; width: 454px; max-width: none; }
+#detalles .ruta svg { display: block; width: 100%; height: auto; }
+#detalles .avion { --x: 362px; top: 732px; width: 55px; }
+
+/* ------------------------------------------------------------
+   8. CONFIRMACIÓN
+   ------------------------------------------------------------ */
+#confirmacion { height: 240px; }
+#confirmacion .titulo { --x: 56px; top: 10px; width: 329px; }
+#confirmacion .texto { --x: 33px; top: 92px; width: 375px; text-align: center; font-size: 19px; line-height: 1.25; }
+#confirmacion .boton { --x: 126px; top: 181px; width: 189px; height: 50px; border-radius: 30px; background: #99b7a0; color: #fff; border: 0; font-family: var(--serif); font-size: 18px; cursor: pointer; }
+#confirmacion-foto { height: 558px; }
+#confirmacion-foto .foto { --x: 0px; top: 0; width: 440px; height: 558px; background: no-repeat center / cover; }
+#confirmacion-foto .degradado { --x: 0px; top: 0; width: 440px; height: 139px; background: no-repeat center / cover; }
+
+/* Ventana del formulario */
+#formulario-ventana { position: fixed; inset: 0; z-index: 95; background: rgba(0,0,0,.6); display: none; align-items: flex-start; justify-content: center; overflow-y: auto; padding: 40px 0; }
+#formulario-ventana.abierta { display: flex; }
+#formulario-ventana .caja { position: relative; width: 560px; max-width: 100%; background: #fff; }
+#formulario-ventana .cerrar { position: absolute; top: -34px; right: 8px; width: 23px; height: 23px; cursor: pointer; background: none; border: 0; }
+#formulario-ventana .cerrar::before, #formulario-ventana .cerrar::after { content: ""; position: absolute; left: 10px; top: -4px; width: 2px; height: 30px; background: #fff; transform: rotate(45deg); }
+#formulario-ventana .cerrar::after { transform: rotate(-45deg); }
+#formulario-ventana img { width: 100%; }
+#formulario-ventana .interior { padding: 40px 45px; font-family: Georgia, serif; color: var(--texto); }
+#formulario-ventana h3 { font-weight: 400; font-size: 22px; line-height: 1.23; text-align: center; margin-bottom: 11px; }
+#formulario-ventana .descripcion { font-size: 18px; line-height: 1.55; text-align: center; margin-bottom: 30px; }
+#formulario-ventana .campo { display: block; font-size: 20px; line-height: 1.55; margin-bottom: 6px; }
+#formulario-ventana input[type=text] { width: 100%; height: 56px; padding: 0 20px; margin-bottom: 20px; font-family: Georgia, serif; font-size: 16px; color: var(--texto); border: 1px solid #c9c9c9; border-radius: 5px; outline: none; }
+#formulario-ventana .opciones { margin-bottom: 20px; }
+#formulario-ventana .opcion { display: flex; align-items: center; gap: 10px; font-size: 16px; line-height: 1.55; cursor: pointer; }
+#formulario-ventana .opcion input { width: 20px; height: 20px; accent-color: var(--verde); }
+#formulario-ventana .enviar { display: block; margin: 10px auto 0; height: 60px; padding: 0 60px; background: var(--verde); color: #fff; border: 0; border-radius: 20px; font-family: Georgia, serif; font-size: 16px; cursor: pointer; }
+#formulario-ventana .gracias { display: none; text-align: center; font-size: 20px; padding: 20px 0; }
+@media (max-width: 560px) { #formulario-ventana { padding: 0; } #formulario-ventana .caja { min-height: 100%; } #formulario-ventana .cerrar { top: 12px; right: 12px; z-index: 2; } #formulario-ventana .interior { padding: 30px 20px; } }
+
+/* ------------------------------------------------------------
+   9. MAPA Y DESPEDIDA
+   ------------------------------------------------------------ */
+#mapa-titulo { height: 158px; }
+#mapa-titulo .titulo { --x: 100px; top: 66px; width: 240px; color: var(--texto-suave); }
+#mapa { height: 400px; }
+#mapa iframe { position: absolute; left: calc(50% - 220px); top: 0; width: 440px; height: 400px; border: 0; }
+#despedida { height: 247px; }
+#despedida .despedida-titulo { --x: 60px; top: 48px; width: 320px; text-align: center; font-size: 33px; color: var(--texto-suave); white-space: nowrap; }
+#despedida .nombres { --x: 20px; top: 100px; width: 400px; text-align: center; font-size: 29px; line-height: 1.25; }
+#despedida .corazon { --x: 205px; top: 161px; width: 30px; }
+
+/* Celulares más angostos que la columna de 440 px */
+@media (max-width: 439px) {
+  #mapa iframe { left: 0; width: 100%; }
+}
+</style>
+</head>
+
+<body class="bloqueado">
+
+<!-- ========== 1. PANTALLA DE BIENVENIDA ========== -->
+<div id="bienvenida">
+  <div class="marco" id="bienvenida-marco">
+    <div class="contenido">
+      <h2 id="bienvenida-titulo"></h2>
+      <p id="bienvenida-texto"></p>
+      <button type="button" id="bienvenida-boton"></button>
+    </div>
+  </div>
+</div>
+
+<!-- Música (opcional) -->
+<audio id="musica" loop></audio>
+<div id="musica-boton" title="Música">
+  <svg id="icono-pausa" viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+  <svg id="icono-play" viewBox="0 0 24 24" style="display:none"><polygon points="5,3 19,12 5,21"/></svg>
+</div>
+
+<!-- Ventana del formulario de confirmación -->
+<div id="formulario-ventana">
+  <div class="caja">
+    <button type="button" class="cerrar" id="formulario-cerrar" aria-label="Cerrar"></button>
+    <img id="formulario-imagen" src="" alt="">
+    <div class="interior">
+      <h3 id="formulario-titulo"></h3>
+      <div class="descripcion" id="formulario-texto"></div>
+      <form id="formulario" autocomplete="off">
+        <label class="campo" for="nombre" id="etiqueta-nombre"></label>
+        <input type="text" id="nombre" name="nombre" required>
+        <div class="campo" id="etiqueta-asistencia"></div>
+        <div class="opciones" id="opciones-asistencia"></div>
+        <label class="campo" for="intolerancias" id="etiqueta-intolerancias"></label>
+        <input type="text" id="intolerancias" name="intolerancias">
+        <button type="submit" class="enviar" id="boton-enviar"></button>
+      </form>
+      <div class="gracias" id="gracias"></div>
+    </div>
+  </div>
+</div>
+
+<div class="pagina">
+<div class="invitacion">
+
+  <!-- ========== 2. PORTADA ========== -->
+  <section id="portada">
+    <div class="franja"><div class="pista" id="franja-pista"></div></div>
+    <div class="pos nombres script" id="portada-nombres"></div>
+    <div class="pos subtitulo" id="portada-subtitulo"></div>
+    <div class="pos mapa" id="portada-mapa"></div>
+    <img class="pos pin aparece" src="recursos/pin.png" alt="">
+    <div class="pos destino aparece" id="portada-destino"></div>
+    <div class="pos ruta aparece">
+      <svg fill="none" viewBox="0 0 266.04 136.18" xmlns="http://www.w3.org/2000/svg"> <path d="M264.95 136.08C264.35 125.64 248.93 115.17 240.41 111.60C224.73 105.03 209.89 98.02 193.21 93.57C161.84 85.20 130.51 68.74 123.51 34.73C121.21 23.55 122.48 14.45 128.54 5.06C132.39 -0.89 148.80 -0.27 150.49 6.74C151.38 10.46 150.18 15.75 150.02 19.58C149.81 24.56 141.76 27.16 141.69 23.32C141.56 15.02 149.56 9.17 156.74 5.57C160.07 3.89 166.00 5.27 169.68 5.43C174.10 5.62 172.12 12.31 171.97 15.74C171.86 18.41 172.88 26.34 171.14 28.34C168.43 31.44 164.87 32.65 161.92 35.36C155.14 41.60 143.98 46.25 135.69 51.05C125.14 57.16 112.81 61.97 100.76 64.87C95.01 66.25 88.57 66.02 82.64 65.77C74.83 65.44 73.43 63.48 67.39 59.68C64.22 57.69 63.36 53.08 60.19 50.90C56.99 48.71 55.12 43.17 52.16 40.28C46.36 34.60 39.67 31.53 33.26 27.60C29.87 25.53 25.28 26.50 21.80 24.78C19.46 23.62 17.66 23.54 15.05 23.43C6.76 23.08 -0.97 13.53 1.45 14.29" stroke="#9BB7A1" stroke-dasharray="6 6" stroke-width="2"></path> </svg>
+    </div>
+    <img class="pos avion aparece" src="recursos/avion.png" alt="">
+    <div class="pos invitados aparece" id="portada-invitados"></div>
+    <div class="pos texto aparece" id="portada-texto" style="transition-delay:.2s"></div>
+    <div class="pos fecha aparece" id="portada-fecha" style="transition-delay:.4s"></div>
+  </section>
+
+  <!-- ========== 3. PASAPORTE ========== -->
+  <section id="pasaporte">
+    <div class="pos titulo" id="pasaporte-titulo"></div>
+    <img class="pos linea" src="recursos/pasaporte-linea.png" alt="">
+    <div class="pos etiqueta tipo" id="pasaporte-tipo"></div>
+    <div class="pos etiqueta codigo" id="pasaporte-codigo"></div>
+    <div class="pos etiqueta numero" id="pasaporte-numero"></div>
+    <div class="pos foto" id="pasaporte-foto"></div>
+    <div class="pos etiqueta etq-novios" id="pasaporte-etq-novios"></div>
+    <div class="pos dato novios" id="pasaporte-novios"></div>
+    <div class="pos etiqueta etq-fecha" id="pasaporte-etq-fecha"></div>
+    <div class="pos dato fecha" id="pasaporte-fecha"></div>
+    <div class="pos etiqueta etq-hora" id="pasaporte-etq-hora"></div>
+    <div class="pos dato hora" id="pasaporte-hora"></div>
+    <div class="pos etiqueta etq-destino" id="pasaporte-etq-destino"></div>
+    <div class="pos dato destino" id="pasaporte-destino"></div>
+    <div class="pos linea-1" id="pasaporte-linea-1"></div>
+    <div class="pos linea-2" id="pasaporte-linea-2"></div>
+    <img class="pos sello" id="pasaporte-sello" src="" alt="">
+  </section>
+
+  <!-- ========== 4. PROGRAMA DEL EVENTO ========== -->
+  <section id="cronograma">
+    <div class="pos ruta">
+      <svg fill="none" viewBox="0 0 440 514.00" xmlns="http://www.w3.org/2000/svg"> <path d="M0.98 0.98C0.98 16.70 6.95 28.70 16.20 40.75C23.71 50.53 37.43 74.92 45.66 84.46C54.84 95.08 56.96 101.72 56.96 115.89C56.96 124.62 53.60 129.89 45.66 133.57C37.88 137.17 28.23 135.00 24.06 127.18C16.93 113.81 21.78 104.39 30.93 93.79C42.04 80.93 53.12 80.04 68.75 80.04C81.10 80.04 99.24 84.63 108.03 93.79C116.87 100.17 122.25 104.77 129.15 111.96C136.16 119.26 133.06 117.77 139.46 125.22C146.18 133.04 156.22 158.17 159.10 167.94C161.99 177.72 161.52 181.24 164.50 188.08C167.48 194.91 168.92 220.94 168.92 228.34C168.92 240.29 164.60 249.53 159.10 259.77C148.92 278.76 122.06 290.64 103.71 299.15C84.24 308.16 65.05 322.23 61.38 343.25C57.14 367.54 79.29 383.79 103.18 392.09C128.89 401.01 157.84 403.07 184.83 405.32C237.96 409.74 291.64 416.23 343.72 429.04C378.46 437.59 431.12 462.71 439.01 503.83" stroke="#9BB7A1" stroke-dasharray="6 6" stroke-linecap="round" stroke-width="2"></path> </svg>
+    </div>
+    <div class="pos titulo" id="cronograma-titulo"></div>
+    <div class="pos evento ev-1 aparece" id="evento-1"></div>
+    <div class="pos evento ev-2 aparece" id="evento-2" style="transition-delay:.1s"></div>
+    <div class="pos evento ev-3 aparece" id="evento-3" style="transition-delay:.2s"></div>
+    <div class="pos evento ev-4 aparece" id="evento-4" style="transition-delay:.3s"></div>
+    <div class="pos evento ev-5 aparece" id="evento-5" style="transition-delay:.4s"></div>
+    <div class="pos evento ev-6 aparece" id="evento-6" style="transition-delay:.5s"></div>
+    <div class="pos punto p-1"></div><div class="pos punto p-2"></div><div class="pos punto p-3"></div>
+    <div class="pos punto p-4"></div><div class="pos punto p-5"></div><div class="pos punto p-6"></div>
+    <div class="pos avion" id="cronograma-avion"><img src="recursos/avion.png" alt=""></div>
+  </section>
+
+  <!-- ========== 5. LUGAR DE LA BODA ========== -->
+  <section id="lugar">
+    <div class="pos titulo" id="lugar-titulo"></div>
+    <img class="pos pin" src="recursos/pin.png" alt="">
+    <div class="pos nombre" id="lugar-nombre"></div>
+    <div class="pos direccion" id="lugar-direccion"></div>
+    <div class="pos foto" id="lugar-foto"></div>
+    <div class="pos degradado" style="background-image:url('recursos/lugar-degradado.png')"></div>
+  </section>
+
+  <!-- ========== 6. CÓDIGO DE VESTIMENTA ========== -->
+  <section id="vestimenta">
+    <div class="pos titulo" id="vestimenta-titulo"></div>
+    <div class="pos texto" id="vestimenta-texto"></div>
+    <img class="pos flecha" src="recursos/scroll-flecha.png" alt="desliza">
+  </section>
+  <section id="galeria"><div class="tira" id="galeria-tira"></div></section>
+  <section id="colores">
+    <div class="pos etiqueta-colores" id="colores-etiqueta"></div>
+    <div class="pos circulos" id="colores-circulos"></div>
+    <div class="detalle" id="colores-detalle"></div>
+  </section>
+
+  <!-- ========== 7. ASPECTOS ORGANIZATIVOS ========== -->
+  <section id="detalles">
+    <div class="pos titulo" id="detalles-titulo"></div>
+    <div class="pos boleto b-1 aparece-der" id="boleto-1"></div>
+    <div class="pos boleto b-2 aparece-izq" id="boleto-2"></div>
+    <div class="pos boleto b-3 aparece-der" id="boleto-3"></div>
+    <div class="pos ruta">
+      <svg fill="none" viewBox="0 0 440 189" xmlns="http://www.w3.org/2000/svg"> <path d="M438.55 1.44C438.55 18.19 426.06 31.45 415.44 40.43C404.11 50.02 370.03 57.66 356.23 62.10C323.49 72.62 292.40 75.33 258.99 83.28C217.59 89.05 178.65 97.40 136.91 105.74C115.38 110.05 97.72 114.09 74.13 125.64C63.54 132.86 46.69 142.49 38.03 150.67C32.17 156.20 20.21 168.48 13.96 177.15C5.81 183.67 4.64 196.76 1.44 206.36" stroke="#9BB7A1" stroke-dasharray="6 6" stroke-linecap="round" stroke-width="3"></path> </svg>
+    </div>
+    <div class="pos avion" id="detalles-avion"><img src="recursos/avion.png" alt=""></div>
+  </section>
+
+  <!-- ========== 8. CONFIRMACIÓN ========== -->
+  <section id="confirmacion">
+    <div class="pos titulo" id="confirmacion-titulo"></div>
+    <div class="pos texto" id="confirmacion-texto"></div>
+    <button type="button" class="pos boton" id="confirmacion-boton"></button>
+  </section>
+  <section id="confirmacion-foto">
+    <div class="pos foto" id="confirmacion-foto-img"></div>
+    <div class="pos degradado" style="background-image:url('recursos/despedida-degradado.png')"></div>
+  </section>
+
+  <!-- ========== 9. MAPA ========== -->
+  <section id="mapa-titulo"><div class="pos titulo" id="mapa-titulo-texto"></div></section>
+  <section id="mapa">
+    <iframe id="mapa-iframe" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" title="Mapa"></iframe>
+  </section>
+
+  <!-- ========== 10. DESPEDIDA ========== -->
+  <section id="despedida">
+    <div class="pos despedida-titulo script aparece" id="despedida-titulo"></div>
+    <div class="pos nombres aparece" id="despedida-nombres" style="transition-delay:.2s"></div>
+    <img class="pos corazon aparece" id="despedida-corazon" src="" alt="" style="transition-delay:.4s">
+  </section>
+
+</div>
+</div>
+
+<script>
+/* ============================================================
+   FUNCIONAMIENTO (no hace falta tocar nada de aquí abajo)
+   ============================================================ */
+(function () {
+  const $ = (id) => document.getElementById(id);
+
+  /* ---------- Rellenar textos desde CONFIG ---------- */
+  const b = CONFIG.bienvenida;
+  $('bienvenida-marco').style.backgroundImage = 'url("' + b.marco + '")';
+  $('bienvenida-titulo').textContent = b.titulo;
+  $('bienvenida-texto').textContent = b.texto;
+  $('bienvenida-boton').textContent = b.boton;
+
+  const p = CONFIG.portada;
+  for (let i = 0; i < 24; i++) { const s = document.createElement('span'); s.textContent = p.franja; $('franja-pista').appendChild(s); }
+  window.addEventListener('load', () => { $('franja-pista').style.setProperty('--paso', $('franja-pista').firstChild.offsetWidth + 'px'); });
+  $('portada-nombres').textContent = CONFIG.noviosTexto;
+  $('portada-subtitulo').textContent = p.subtitulo;
+  $('portada-mapa').style.backgroundImage = 'url("' + p.mapa + '")';
+  $('portada-destino').textContent = p.destino;
+  $('portada-invitados').textContent = p.invitados;
+  $('portada-texto').textContent = p.texto;
+  $('portada-fecha').textContent = p.fechaLugar;
+
+  const ps = CONFIG.pasaporte;
+  $('pasaporte-titulo').textContent = ps.titulo;
+  $('pasaporte-tipo').textContent = ps.tipo;
+  $('pasaporte-codigo').textContent = ps.codigo;
+  $('pasaporte-numero').textContent = ps.numero;
+  $('pasaporte-foto').style.backgroundImage = 'url("' + ps.foto + '")';
+  $('pasaporte-etq-novios').textContent = ps.etiquetaNovios;
+  $('pasaporte-novios').textContent = CONFIG.noviosCompleto;
+  $('pasaporte-etq-fecha').textContent = ps.etiquetaFecha;
+  $('pasaporte-fecha').textContent = ps.fecha;
+  $('pasaporte-etq-hora').textContent = ps.etiquetaHora;
+  $('pasaporte-hora').textContent = ps.hora;
+  $('pasaporte-etq-destino').textContent = ps.etiquetaDestino;
+  $('pasaporte-destino').textContent = ps.destino;
+  $('pasaporte-linea-1').textContent = ps.linea1;
+  $('pasaporte-linea-2').textContent = ps.linea2;
+  $('pasaporte-sello').src = ps.sello;
+
+  $('cronograma-titulo').textContent = CONFIG.cronograma.titulo;
+  CONFIG.cronograma.eventos.slice(0, 6).forEach((t, i) => { $('evento-' + (i + 1)).textContent = t; });
+
+  $('lugar-titulo').textContent = CONFIG.lugar.titulo;
+  $('lugar-nombre').textContent = CONFIG.lugar.nombre;
+  $('lugar-direccion').textContent = CONFIG.lugar.direccion;
+  $('lugar-foto').style.backgroundImage = 'url("' + CONFIG.lugar.foto + '")';
+
+  const v = CONFIG.vestimenta;
+  $('vestimenta-titulo').textContent = v.titulo;
+  $('vestimenta-texto').textContent = v.texto;
+  v.galeria.forEach((src) => { const im = document.createElement('img'); im.src = src; im.alt = ''; im.loading = 'lazy'; $('galeria-tira').appendChild(im); });
+  $('colores-etiqueta').textContent = v.etiquetaColores;
+  v.colores.forEach((c, i) => { const d = document.createElement('div'); d.className = 'circulo aparece'; d.style.background = c; d.style.transitionDelay = (i * .1) + 's'; $('colores-circulos').appendChild(d); });
+  $('colores-detalle').innerHTML = v.detalle;
+
+  $('detalles-titulo').textContent = CONFIG.detalles.titulo;
+  CONFIG.detalles.tarjetas.slice(0, 3).forEach((t, i) => {
+    const el = $('boleto-' + (i + 1));
+    el.innerHTML = '<div class="talon"><div class="rotulo"></div><img src="recursos/avion.png" alt=""></div><div class="perforado"></div><div class="cuerpo"><div class="texto"></div>' + (t.destacado ? '<div class="destacado"></div>' : '') + '</div>';
+    el.querySelector('.rotulo').textContent = t.etiqueta;
+    el.querySelector('.texto').textContent = t.texto;
+    if (t.destacado) el.querySelector('.destacado').textContent = t.destacado;
+  });
+
+  const c = CONFIG.confirmacion, f = c.formulario;
+  $('confirmacion-titulo').textContent = c.titulo;
+  $('confirmacion-texto').textContent = c.texto;
+  $('confirmacion-boton').textContent = c.boton;
+  $('confirmacion-foto-img').style.backgroundImage = 'url("' + c.foto + '")';
+  $('formulario-imagen').src = f.imagen;
+  $('formulario-titulo').textContent = f.titulo;
+  $('formulario-texto').textContent = f.texto;
+  $('etiqueta-nombre').textContent = f.campoNombre;
+  $('etiqueta-asistencia').textContent = f.campoAsistencia;
+  f.opcionesAsistencia.forEach((op) => {
+    const l = document.createElement('label'); l.className = 'opcion';
+    l.innerHTML = '<input type="checkbox" name="asistencia" value="' + op + '"><span>' + op + '</span>';
+    $('opciones-asistencia').appendChild(l);
+  });
+  $('etiqueta-intolerancias').textContent = f.campoIntolerancias;
+  $('boton-enviar').textContent = f.botonEnviar;
+  $('gracias').textContent = f.gracias;
+
+  $('mapa-titulo-texto').textContent = CONFIG.mapa.titulo;
+  $('mapa-iframe').src = CONFIG.mapa.enlace;
+  $('despedida-titulo').textContent = CONFIG.despedida.titulo;
+  $('despedida-nombres').textContent = CONFIG.noviosDespedida;
+  $('despedida-corazon').src = CONFIG.despedida.corazon;
+
+  /* ---------- Pantalla de bienvenida ---------- */
+  $('bienvenida-boton').addEventListener('click', () => {
+    $('bienvenida').classList.add('fuera');
+    document.body.classList.remove('bloqueado');
+    setTimeout(() => $('bienvenida').remove(), 500);
+    document.querySelectorAll('#portada .aparece').forEach(e => e.classList.add('visible'));
+    iniciarMusica();
+  });
+
+  /* ---------- Música (solo si hay archivo en CONFIG) ---------- */
+  const audio = $('musica'), botonMusica = $('musica-boton');
+  function iniciarMusica() {
+    if (!CONFIG.musica.archivo) return;
+    audio.src = CONFIG.musica.archivo;
+    audio.play().then(() => botonMusica.classList.add('visible')).catch(() => {});
+  }
+  botonMusica.addEventListener('click', () => {
+    if (audio.paused) { audio.play(); $('icono-play').style.display = 'none'; $('icono-pausa').style.display = 'block'; }
+    else { audio.pause(); $('icono-play').style.display = 'block'; $('icono-pausa').style.display = 'none'; }
+  });
+
+  /* ---------- Ventana del formulario (solo visual por ahora) ---------- */
+  const ventana = $('formulario-ventana');
+  $('confirmacion-boton').addEventListener('click', () => { ventana.classList.add('abierta'); document.body.classList.add('bloqueado'); });
+  const cerrarVentana = () => { ventana.classList.remove('abierta'); document.body.classList.remove('bloqueado'); };
+  $('formulario-cerrar').addEventListener('click', cerrarVentana);
+  ventana.addEventListener('click', (e) => { if (e.target === ventana) cerrarVentana(); });
+  $('formulario').addEventListener('submit', (e) => { e.preventDefault(); $('formulario').style.display = 'none'; $('gracias').style.display = 'block'; });
+
+  /* ---------- Animaciones al entrar en pantalla ---------- */
+  const observador = new IntersectionObserver((entradas) => {
+    entradas.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observador.unobserve(e.target); } });
+  }, { threshold: .1 });
+  document.querySelectorAll('.aparece, .aparece-izq, .aparece-der').forEach(el => { if (!el.closest('#portada')) observador.observe(el); });
+  const obsSello = new IntersectionObserver((entradas) => {
+    entradas.forEach(e => { if (e.isIntersecting) { $('pasaporte-sello').classList.add('estampado'); obsSello.disconnect(); } });
+  }, { threshold: .6 });
+  obsSello.observe($('pasaporte'));
+
+  /* ---------- Aviones que avanzan por la ruta al hacer scroll ---------- */
+  // pasos: [desplazamiento x, desplazamiento y, giro, distancia de scroll hasta llegar]
+  function avionPorScroll(el, pasos) {
+    const total = pasos.reduce((s, q) => s + q[3], 0);
+    const seccion = el.parentElement;
+    function actualizar() {
+      const r = seccion.getBoundingClientRect();
+      const avance = Math.max(0, Math.min(total, window.innerHeight - r.top - 200));
+      let acumulado = 0, x = 0, y = 0, g = 0;
+      for (const q of pasos) {
+        if (avance >= acumulado + q[3]) { acumulado += q[3]; x = q[0]; y = q[1]; g = q[2]; continue; }
+        const t = q[3] ? (avance - acumulado) / q[3] : 1;
+        x = x + (q[0] - x) * t; y = y + (q[1] - y) * t; g = g + (q[2] - g) * t; break;
+      }
+      el.style.transform = 'translate(' + x + 'px,' + y + 'px) rotate(' + g + 'deg)';
+    }
+    window.addEventListener('scroll', actualizar, { passive: true }); window.addEventListener('resize', actualizar); actualizar();
+  }
+  avionPorScroll($('cronograma-avion'), [[17,5,0,35],[41,12,-12,100],[177,28,-12,250],[197,31,-12,70],[246,42,-10,120],[277,51,-2,120],[294,57,2,70],[322,74,15,120],[337,89,28,70],[346,103,41,150],[355,121,49,70]]);
+  avionPorScroll($('detalles-avion'), [[-98,24,6,280],[-262,56,6,360],[-317,73,-8,120],[-332,81,-15,80],[-349,95,-20,80]]);
+})();
+</script>
+</body>
+</html>

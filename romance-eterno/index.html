@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Thanu & Jathu · Invitación de boda</title>
+
+<script>
+/* ============================================================
+   CONFIGURACIÓN DE LA INVITACIÓN
+   Cambia aquí los textos, la fecha, el lugar, las fotos…
+   Todo lo que aparece en la invitación sale de este bloque.
+   ============================================================ */
+const CONFIG = {
+
+  // ---------- Novios ----------
+  noviosTexto: "Thanu & Jathu",        // aparece en la portada y en la despedida
+
+  // ---------- Fecha y hora ----------
+  // Se usan para la cuenta regresiva.
+  fecha: { anio: 2026, mes: 12, dia: 12, hora: 15, minuto: 30 },   // mes: 1 = enero … 12 = diciembre
+  fechaTexto: "12.12.2026",            // aparece en la portada
+  fechaLarga: "12 de diciembre",       // aparece en la pestaña del cronograma
+
+  // ---------- Lugar ----------
+  lugar: "Hacienda El Roble",           // aparece en la portada
+  etiquetaFecha: "fecha",
+  etiquetaLugar: "lugar",
+
+  // ---------- Pantalla de bienvenida (ventana inicial) ----------
+  bienvenida: {
+    titulo: "¡Estás invitado!",
+    texto: "Acompáñanos a hacer de este día algo inolvidable",
+    boton: "Descubre los detalles",
+    marco: "recursos/bienvenida-marco.png"     // círculo con conchas y estrellas de mar
+  },
+
+  // ---------- Portada ----------
+  portada: {
+    titulo: "¡Te invitamos a nuestra recepción!",
+    subtitulo: "¡Celebremos juntos el mejor día de nuestras vidas!",
+    foto: "recursos/portada-marco.png"          // foto vertical con la parte superior difuminada
+  },
+
+  // ---------- Mensaje ----------
+  mensaje: {
+    titulo: "¡Queridos familia y amigos!",
+    texto: "Nos emociona anunciar un evento muy especial que se celebrará esta primavera: ¡la recepción de nuestra boda! Este día no estaría completo sin nuestros seres queridos, por eso los invitamos con mucho cariño a acompañarnos y celebrar juntos esta alegre ocasión.",
+    cierre: "¡No vemos la hora de compartir este momento tan especial con ustedes!",
+    adorno: "recursos/mensaje-adorno.png"       // paloma blanca
+  },
+
+  // ---------- Cronograma ----------
+  cronograma: {
+    titulo: "Programa del evento",
+    eventos: [
+      { hora: "15:30", nombre: "Ceremonia" },
+      { hora: "17:00", nombre: "Cóctel" },
+      { hora: "19:00", nombre: "Cena" },
+      { hora: "20:00", nombre: "Primer baile" },
+      { hora: "20:15", nombre: "Fiesta" },
+      { hora: "01:45", nombre: "Cierre" }
+    ]
+  },
+
+  // ---------- Cuenta regresiva ----------
+  cuentaRegresiva: {
+    titulo: "El evento comienza en:",
+    etiquetas: ["Días", "Horas", "Minutos", "Segundos"],
+    terminado: "¡Llegó el gran día!",
+    foto: "recursos/cuenta-marco.png"           // foto de los novios en la playa
+  },
+
+  // ---------- Vestimenta ----------
+  vestimenta: {
+    titulo: "Código de vestimenta",
+    texto: "¡Nos encantaría que tu atuendo refleje el estilo de nuestra celebración!",
+    damas: "Anarkali, lehengas o saris para las damas",
+    caballeros: "Traje o elegante casual para los caballeros",
+    colores: "Todos los colores y estampados son bienvenidos",
+    foto1: "recursos/vestimenta-foto-1.png",     // grupo de damas (grande, arriba)
+    foto2: "recursos/vestimenta-foto-4.png",     // dama con vestido rosa (vertical)
+    foto3: "recursos/vestimenta-foto-2.png",     // dos damas en el palacio
+    foto4: "recursos/vestimenta-foto-3.png",     // grupo de caballeros
+    foto5: "recursos/vestimenta-foto-5.png"      // damas con saris de colores
+  },
+
+  // ---------- Confirmación de asistencia ----------
+  confirmacion: {
+    titulo: "Por favor confirma tu asistencia",
+    formulario: {
+      campoNombre: "Tu nombre",
+      campoAsistencia: "¿Asistirás?",
+      opciones: ["Sí, asistiré", "Lamentablemente no podré :(", "Les confirmo un poco más adelante"],
+      campoInvitados: "¿Cuántos invitados de tu familia?",
+      campoDieta: "¿Alguna restricción alimentaria?",
+      campoBebida: "¿Qué te gustaría beber?",
+      botonEnviar: "ENVIAR",
+      gracias: "¡Gracias por confirmar!"
+    }
+  },
+
+  // ---------- Detalles ----------
+  detalles: {
+    titulo: "Aspectos organizativos",
+    texto: "Si tienes alguna pregunta, siempre puedes contactar a Thanu y Jathu",
+    telefono1: "+593 99 123 4567",
+    telefono2: "+593 98 765 4321",
+    regalos: "Tu presencia en nuestra boda es todo lo que realmente necesitamos. Si deseas hacernos un regalo, una contribución para nuestro camino juntos será muy apreciada. ¡Gracias por celebrar este momento con nosotros!",
+    foto: "recursos/detalles-foto-1.png"        // foto de los novios de la mano frente al mar
+  },
+
+  // ---------- Despedida ----------
+  despedida: {
+    titulo: "¡Esperamos verte ahí!",
+    corazon: "recursos/despedida-corazon.png"
+  },
+
+  // ---------- Música ----------
+  // Se reproduce al pulsar el botón de la bienvenida. CAMBIAR por un mp3 propio o con licencia
+  // (puedes poner un archivo local, por ejemplo "recursos/musica.mp3").
+  musica: "https://dl.dropboxusercontent.com/scl/fi/v3h8kkw607tx9cb31r02h/Alex-Warren-Ordinary-Official-Video.mp3?rlkey=9taqn02332fuabd4175jdwxdw&st=dkeamyq2"
+};
+</script>
+
+<style>
+/* ============================================================
+   ESTILOS
+   ============================================================ */
+
+/* Tipografías (guardadas en la carpeta recursos, no dependen de internet) */
+@font-face { font-family: 'Beau Rivage'; font-weight: 400; font-display: swap; src: url('recursos/fuente-beau-rivage.woff2') format('woff2'); }
+@font-face { font-family: 'Great Vibes'; font-weight: 400; font-display: swap; src: url('recursos/fuente-great-vibes.woff2') format('woff2'); }
+@font-face { font-family: 'Rufina';      font-weight: 400; font-display: swap; src: url('recursos/fuente-rufina.woff2') format('woff2'); }
+
+:root {
+  --texto: #4a4a4a;          /* gris del texto principal */
+  --gris: #616161;           /* gris de etiquetas y título del cronograma */
+  --azul: #1287b4;           /* botones */
+  --script: 'Beau Rivage', cursive;          /* títulos manuscritos */
+  --serif: 'Rufina', Georgia, serif;         /* texto general */
+  --numeros: 'Times New Roman', Times, serif; /* números de la cuenta regresiva */
+  --ancho: 440px;            /* ancho de la invitación (formato celular) */
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
+body {
+  background: #fff;
+  color: var(--texto);
+  font-family: var(--serif);
+  font-size: 19px;
+  line-height: 1.55;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+body.bloqueado { overflow: hidden; height: 100vh; }
+img { display: block; max-width: 100%; }
+
+/* Columna central (la invitación tiene formato de celular) */
+.pagina { width: 100%; overflow-x: hidden; overflow-x: clip; }
+.invitacion { position: relative; width: 100%; max-width: var(--ancho); margin: 0 auto; }
+section { position: relative; }
+
+/* Elementos colocados con coordenadas (igual que el diseño original) */
+.pos { position: absolute; left: calc(50% - 220px + var(--x, 0px)); }
+/* --x es la distancia desde el borde izquierdo de la columna de 440 px; en pantallas más angostas todo queda centrado igual que en el original */
+
+.titulo { font-family: var(--script); font-weight: 400; font-size: 33px; line-height: 1.55; text-align: center; color: var(--texto); }
+.texto  { font-size: 19px; line-height: 1.55; text-align: center; color: var(--texto); }
+
+/* Animaciones de aparición al hacer scroll */
+.aparece     { opacity: 0; transition: opacity 1s ease, transform 1s ease; }
+.aparece-izq { opacity: 0; transform: translateX(-100px); transition: opacity 1s ease, transform 1s ease; }
+.aparece-der { opacity: 0; transform: translateX(100px);  transition: opacity 1s ease, transform 1s ease; }
+.aparece-sub { opacity: 0; transform: translateY(100px);  transition: opacity 1s ease, transform 1s ease; }
+.aparece.visible, .aparece-izq.visible, .aparece-der.visible, .aparece-sub.visible { opacity: 1; transform: none; }
+.aparece-lento { opacity: 0; transition: opacity 2s ease; }
+.aparece-lento.visible { opacity: 1; }
+
+/* ------------------------------------------------------------
+   1. BIENVENIDA (ventana sobre fondo oscuro)
+   ------------------------------------------------------------ */
+#bienvenida { position: fixed; inset: 0; z-index: 100; background: rgba(0, 0, 0, .9); display: flex; justify-content: center; align-items: center; overflow: hidden; transition: opacity .5s ease; }
+#bienvenida.cerrada { opacity: 0; pointer-events: none; }
+#bienvenida .circulo {
+  position: relative; width: 100%; max-width: 450px; min-width: 350px; aspect-ratio: 1.22;
+  background: no-repeat center / contain;
+  display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 10px;
+}
+#bienvenida h2 { font-family: 'Great Vibes', cursive; font-weight: 400; font-size: 2.3rem; color: #313131; line-height: 1.2; }
+#bienvenida p  { font-size: 1rem; line-height: 1.5; color: #313131; margin: 10px 80px 20px 90px; }
+#bienvenida button {
+  padding: 12px 20px; font-size: .9rem; font-family: var(--serif); background: var(--azul); color: #fff;
+  border: none; border-radius: 15px; cursor: pointer; transition: transform .2s ease, box-shadow .2s ease;
+}
+#bienvenida button:hover { transform: scale(1.05); box-shadow: 0 4px 10px rgba(0, 0, 0, .3); }
+
+/* ------------------------------------------------------------
+   2. PORTADA
+   ------------------------------------------------------------ */
+#portada { height: 882px; }
+#portada .dato { text-align: center; font-size: 20px; line-height: 1.25; }
+#portada .dato small { display: block; font-size: 16px; margin-top: 5px; }
+#portada .fecha { --x: 45px; top: 39px; width: 170px; }
+#portada .sitio { --x: 166px; top: 40px; width: 255px; }
+#portada .linea { --x: 80px; top: 90px; width: 280px; height: 2px; }
+#portada .nombres { --x: 50px; top: 131px; width: 341px; font-size: 34px; line-height: 1.35; z-index: 3; }
+#portada .invitacion-titulo { --x: 66px; top: 182px; width: 317px; font-size: 29px; line-height: 1.25; z-index: 3; }
+#portada .invitacion-sub { --x: 92px; top: 264px; width: 257px; font-size: 19px; line-height: 1.25; z-index: 3; }
+#portada .foto { --x: 0px; top: 181px; width: 440px; z-index: 1; }
+
+/* ------------------------------------------------------------
+   3. MENSAJE
+   ------------------------------------------------------------ */
+#mensaje { height: 520px; }
+#mensaje .titulo { --x: 50px; top: 48px; width: 340px; line-height: 1.35; }
+#mensaje .parrafo { --x: 40px; top: 108px; width: 360px; line-height: 1.55; }
+#mensaje .cierre  { --x: 46px; top: 352px; width: 349px; line-height: 1.25; }
+#mensaje .paloma  { --x: 283px; top: 405px; width: 138px; height: 108px; background: no-repeat center / cover; }
+
+/* ------------------------------------------------------------
+   4. CRONOGRAMA (tarjeta con pestaña para la fecha)
+   ------------------------------------------------------------ */
+#cronograma { height: 435px; }
+#cronograma .titulo { --x: 50px; top: 0; width: 340px; color: var(--gris); line-height: 1.35; }
+#cronograma .marco-arriba { --x: 40px; top: 71px; width: 358px; }
+#cronograma .marco-abajo  { --x: 40px; top: 163px; width: 358px; }
+#cronograma .fecha-larga { --x: 66px; top: 80px; width: 311px; font-size: 17px; line-height: 1.25; }
+#cronograma .evento-hora   { --x: 74px;  width: 89px;  font-size: 21px; line-height: 2; color: #000; }
+#cronograma .evento-nombre { --x: 178px; width: 220px; font-size: 21px; line-height: 2; color: #000; white-space: nowrap; }
+
+/* ------------------------------------------------------------
+   5. CUENTA REGRESIVA
+   ------------------------------------------------------------ */
+#cuenta { height: 680px; padding-top: 15px; }
+#cuenta .titulo { --x: 0px; top: 47px; width: 440px; }
+#cuenta .foto { --x: 0px; top: 107px; width: 440px; z-index: 1; }
+#cuenta #contador { --x: 0px; top: 112px; width: 440px; z-index: 2; display: flex; justify-content: center; align-items: flex-start; gap: 6px; padding: 0 20px; }
+#cuenta .bloque { text-align: center; }
+#cuenta .numero { font-family: var(--numeros); font-size: 52px; line-height: 1.15; color: var(--texto); }
+#cuenta .etiqueta { font-size: 16px; margin-top: 10px; color: var(--gris); line-height: 1.2; }
+#cuenta .separador { font-family: var(--numeros); font-size: 52px; line-height: 1.15; color: var(--texto); }
+#cuenta .terminado { font-family: var(--script); font-size: 34px; color: var(--texto); }
+
+/* ------------------------------------------------------------
+   6. VESTIMENTA (collage de fotos con flechas)
+   ------------------------------------------------------------ */
+#vestimenta { height: 1584px; }
+#vestimenta .titulo { --x: 22px; top: 51px; width: 396px; line-height: 1.35; }
+#vestimenta .texto-intro { --x: 27px; top: 111px; width: 387px; line-height: 1.55; }
+#vestimenta .foto { border-radius: 10px; background: no-repeat center / cover; }
+#vestimenta .foto-1 { --x: 33px;  top: 190px;  width: 375px; height: 305px; }
+#vestimenta .foto-2 { --x: 34px;  top: 520px;  width: 157px; height: 290px; }
+#vestimenta .foto-3 { --x: 216px; top: 713px;  width: 192px; height: 260px; }
+#vestimenta .foto-4 { --x: 33px;  top: 997px;  width: 303px; height: 240px; }
+#vestimenta .foto-5 { --x: 160px; top: 1261px; width: 248px; height: 258px; }
+#vestimenta .damas      { --x: 253px; top: 539px;  width: 150px; text-align: right; line-height: 1.55; }
+#vestimenta .caballeros { --x: 36px;  top: 861px;  width: 131px; text-align: left;  line-height: 1.55; }
+#vestimenta .colores    { --x: 32px;  top: 1282px; width: 110px; text-align: left;  line-height: 1.55; }
+#vestimenta .flecha-1 { --x: 200px; top: 562px;  width: 205px; }
+#vestimenta .flecha-2 { --x: 119px; top: 900px;  width: 90px; transform: rotate(-3deg); }
+#vestimenta .flecha-3 { --x: 61px;  top: 1363px; width: 83px; }
+
+/* ------------------------------------------------------------
+   7. CONFIRMACIÓN (formulario dentro de un marco)
+   ------------------------------------------------------------ */
+#confirmacion { height: 700px; }
+#confirmacion .marco-arriba { --x: 30px; top: 18px;  width: 381px; }
+#confirmacion .marco-abajo  { --x: 30px; top: 313px; width: 381px; }
+#confirmacion .titulo { --x: 0px; top: 58px; width: 440px; line-height: 1.55; }
+#confirmacion form { --x: 76px; top: 125px; width: 289px; }
+#confirmacion label.campo { display: block; font-size: 17px; font-weight: 500; color: #000; margin-bottom: 5px; line-height: 1.3; }
+#confirmacion input[type=text], #confirmacion input[type=number] {
+  width: 100%; height: 40px; margin-bottom: 16px; padding: 0 12px;
+  font-family: Georgia, serif; font-size: 14px; color: #000; background: #f3f1ed; border: 1px solid #000; border-radius: 0; outline: none;
+}
+#confirmacion .opciones { margin-bottom: 16px; }
+#confirmacion .opcion { display: flex; align-items: center; gap: 8px; font-size: 15px; color: #000; line-height: 1.4; margin-bottom: 4px; cursor: pointer; }
+#confirmacion .opcion input { width: 18px; height: 18px; accent-color: #000; flex: none; }
+#confirmacion .boton {
+  display: block; width: 130px; height: 40px; margin: 8px auto 0;
+  font-family: var(--serif); font-size: 13px; color: #fff; background: var(--azul); border: none; border-radius: 10px; cursor: pointer;
+}
+#confirmacion .gracias { display: none; text-align: center; font-family: var(--script); font-size: 34px; color: var(--texto); padding-top: 120px; }
+
+/* ------------------------------------------------------------
+   8. DETALLES
+   ------------------------------------------------------------ */
+#detalles { height: 800px; }
+#detalles .titulo { --x: 0px; top: 43px; width: 440px; text-align: center; white-space: nowrap; line-height: 1.35; }
+#detalles .texto-intro { --x: 33px; top: 110px; width: 374px; line-height: 1.55; }
+#detalles .telefono { font-family: var(--script); font-size: 27px; line-height: 1.55; text-align: center; white-space: nowrap; }
+#detalles .telefono-1 { --x: 40px; top: 178px; width: 360px; }
+#detalles .telefono-2 { --x: 40px; top: 220px; width: 360px; }
+#detalles .regalos { --x: 33px; top: 280px; width: 374px; line-height: 1.55; }
+#detalles .foto { --x: 0px; top: 464px; width: 440px; height: 313px; border-radius: 30px; background: no-repeat center / cover; overflow: hidden; }
+/* Difuminado hacia blanco en la parte superior de la foto (como en el original) */
+#detalles .foto::after { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 160px; background: linear-gradient(#fff, rgba(255, 255, 255, 0)); }
+
+/* ------------------------------------------------------------
+   9. DESPEDIDA
+   ------------------------------------------------------------ */
+#despedida { height: 270px; }
+#despedida .titulo { --x: 6px; top: 62px; width: 428px; line-height: 1.35; }
+#despedida .nombres { --x: 20px; top: 114px; width: 400px; font-size: 29px; line-height: 1.55; }
+#despedida .corazon { --x: 205px; top: 168px; width: 30px; height: 30px; background: no-repeat center / cover; }
+
+/* ------------------------------------------------------------
+   BOTÓN DE MÚSICA (flotante)
+   ------------------------------------------------------------ */
+#musica-boton {
+  position: fixed; right: 20px; bottom: 20px; width: 60px; height: 60px; border-radius: 50%;
+  background: var(--azul); box-shadow: 0 4px 6px rgba(0, 0, 0, .1); cursor: pointer; z-index: 90;
+  display: flex; justify-content: center; align-items: center;
+  visibility: hidden; opacity: 0; transition: opacity .3s ease;
+}
+#musica-boton.visible { visibility: visible; opacity: 1; }
+#musica-boton svg { width: 30px; height: 30px; fill: #fff; }
+#musica-boton .icono-play { display: none; }
+#musica-boton.pausado .icono-play { display: block; }
+#musica-boton.pausado .icono-pausa { display: none; }
+</style>
+</head>
+
+<body class="bloqueado">
+
+<!-- ============================================================
+     1. BIENVENIDA
+     ============================================================ -->
+<div id="bienvenida">
+  <div class="circulo" id="bienvenida-circulo">
+    <h2 id="bienvenida-titulo"></h2>
+    <p id="bienvenida-texto"></p>
+    <button id="bienvenida-boton" type="button"></button>
+  </div>
+</div>
+
+<div class="pagina"><!-- recorta lo que sobresale a los lados -->
+<div class="invitacion">
+
+  <!-- ============================================================
+       2. PORTADA
+       ============================================================ -->
+  <section id="portada">
+    <div class="pos dato fecha"><span id="portada-fecha"></span><small id="portada-etq-fecha"></small></div>
+    <div class="pos dato sitio"><span id="portada-lugar"></span><small id="portada-etq-lugar"></small></div>
+    <img class="pos linea" src="recursos/linea.png" alt="">
+    <div class="pos titulo nombres aparece" id="portada-nombres"></div>
+    <div class="pos texto invitacion-titulo aparece" id="portada-titulo" style="transition-delay:.2s"></div>
+    <div class="pos texto invitacion-sub aparece" id="portada-subtitulo" style="transition-delay:.4s"></div>
+    <img class="pos foto" id="portada-foto" alt="">
+  </section>
+
+  <!-- ============================================================
+       3. MENSAJE
+       ============================================================ -->
+  <section id="mensaje">
+    <div class="pos titulo" id="mensaje-titulo"></div>
+    <div class="pos texto parrafo" id="mensaje-texto"></div>
+    <div class="pos texto cierre" id="mensaje-cierre"></div>
+    <div class="pos paloma" id="mensaje-adorno"></div>
+  </section>
+
+  <!-- ============================================================
+       4. CRONOGRAMA
+       ============================================================ -->
+  <section id="cronograma">
+    <div class="pos titulo" id="cronograma-titulo"></div>
+    <img class="pos marco-arriba" src="recursos/cronograma-fondo-arriba.png" alt="">
+    <img class="pos marco-abajo"  src="recursos/cronograma-fondo-abajo.png" alt="">
+    <div class="pos texto fecha-larga" id="cronograma-fecha"></div>
+    <div id="cronograma-eventos"></div>
+  </section>
+
+  <!-- ============================================================
+       5. CUENTA REGRESIVA
+       ============================================================ -->
+  <section id="cuenta">
+    <div class="pos titulo" id="cuenta-titulo"></div>
+    <img class="pos foto" id="cuenta-foto" alt="">
+    <div class="pos" id="contador">
+      <div class="bloque"><div class="numero" id="dias">00</div><div class="etiqueta" id="etq-dias"></div></div>
+      <div class="separador">:</div>
+      <div class="bloque"><div class="numero" id="horas">00</div><div class="etiqueta" id="etq-horas"></div></div>
+      <div class="separador">:</div>
+      <div class="bloque"><div class="numero" id="minutos">00</div><div class="etiqueta" id="etq-minutos"></div></div>
+      <div class="separador">:</div>
+      <div class="bloque"><div class="numero" id="segundos">00</div><div class="etiqueta" id="etq-segundos"></div></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       6. VESTIMENTA
+       ============================================================ -->
+  <section id="vestimenta">
+    <div class="pos titulo" id="vestimenta-titulo"></div>
+    <div class="pos texto texto-intro" id="vestimenta-texto"></div>
+    <div class="pos foto foto-1 aparece-izq" id="vestimenta-foto-1"></div>
+    <div class="pos foto foto-2 aparece-der" id="vestimenta-foto-2"></div>
+    <div class="pos texto damas aparece-izq" id="vestimenta-damas"></div>
+    <img class="pos flecha-1 aparece-izq" src="recursos/flecha-1.png" alt="">
+    <div class="pos foto foto-3 aparece-sub" id="vestimenta-foto-3"></div>
+    <div class="pos texto caballeros aparece-der" id="vestimenta-caballeros"></div>
+    <img class="pos flecha-2 aparece-der" src="recursos/flecha-2.png" alt="">
+    <div class="pos foto foto-4 aparece-izq" id="vestimenta-foto-4"></div>
+    <div class="pos foto foto-5 aparece-der" id="vestimenta-foto-5"></div>
+    <div class="pos texto colores aparece-der" id="vestimenta-colores"></div>
+    <img class="pos flecha-3 aparece-der" src="recursos/flecha-3.png" alt="">
+  </section>
+
+  <!-- ============================================================
+       7. CONFIRMACIÓN
+       ============================================================ -->
+  <section id="confirmacion">
+    <img class="pos marco-arriba" src="recursos/confirmacion-adorno-5.png" alt="">
+    <img class="pos marco-abajo"  src="recursos/confirmacion-adorno-3.png" alt="">
+    <div class="pos titulo" id="confirmacion-titulo"></div>
+    <form class="pos" id="formulario" autocomplete="off">
+      <label class="campo" for="campo-nombre" id="etiqueta-nombre"></label>
+      <input type="text" id="campo-nombre" name="nombre" required>
+
+      <div class="campo" id="etiqueta-asistencia"></div>
+      <div class="opciones" id="opciones-asistencia"></div>
+
+      <label class="campo" for="campo-invitados" id="etiqueta-invitados"></label>
+      <input type="number" id="campo-invitados" name="invitados" min="1" required>
+
+      <label class="campo" for="campo-dieta" id="etiqueta-dieta"></label>
+      <input type="text" id="campo-dieta" name="dieta">
+
+      <label class="campo" for="campo-bebida" id="etiqueta-bebida"></label>
+      <input type="text" id="campo-bebida" name="bebida" required>
+
+      <button class="boton" type="submit" id="boton-enviar"></button>
+    </form>
+    <div class="pos gracias" id="gracias" style="--x:76px;top:125px;width:289px"></div>
+  </section>
+
+  <!-- ============================================================
+       8. DETALLES
+       ============================================================ -->
+  <section id="detalles">
+    <div class="pos titulo" id="detalles-titulo"></div>
+    <div class="pos texto texto-intro" id="detalles-texto"></div>
+    <div class="pos telefono telefono-1 aparece" id="detalles-telefono-1"></div>
+    <div class="pos telefono telefono-2 aparece" id="detalles-telefono-2" style="transition-delay:.1s"></div>
+    <div class="pos texto regalos" id="detalles-regalos"></div>
+    <div class="pos foto" id="detalles-foto"></div>
+  </section>
+
+  <!-- ============================================================
+       9. DESPEDIDA
+       ============================================================ -->
+  <section id="despedida">
+    <div class="pos titulo aparece-lento" id="despedida-titulo"></div>
+    <div class="pos texto nombres aparece-lento" id="despedida-nombres" style="transition-delay:.2s"></div>
+    <div class="pos corazon aparece-lento" id="despedida-corazon" style="transition-delay:.4s"></div>
+  </section>
+
+</div><!-- /.invitacion -->
+</div><!-- /.pagina -->
+
+<!-- Música de fondo y botón flotante -->
+<audio id="musica" loop preload="none"></audio>
+<div id="musica-boton" class="pausado" title="Música">
+  <svg class="icono-pausa" viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+  <svg class="icono-play" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+</div>
+
+<script>
+/* ============================================================
+   FUNCIONAMIENTO (no hace falta tocar nada de aquí abajo)
+   ============================================================ */
+(function () {
+  const $ = (id) => document.getElementById(id);
+
+  /* ---------- Rellenar textos desde CONFIG ---------- */
+  $('bienvenida-circulo').style.backgroundImage = 'url("' + CONFIG.bienvenida.marco + '")';
+  $('bienvenida-titulo').textContent = CONFIG.bienvenida.titulo;
+  $('bienvenida-texto').textContent = CONFIG.bienvenida.texto;
+  $('bienvenida-boton').textContent = CONFIG.bienvenida.boton;
+
+  $('portada-fecha').textContent = CONFIG.fechaTexto;
+  $('portada-etq-fecha').textContent = CONFIG.etiquetaFecha;
+  $('portada-lugar').textContent = CONFIG.lugar;
+  $('portada-etq-lugar').textContent = CONFIG.etiquetaLugar;
+  $('portada-nombres').textContent = CONFIG.noviosTexto;
+  $('portada-titulo').textContent = CONFIG.portada.titulo;
+  $('portada-subtitulo').textContent = CONFIG.portada.subtitulo;
+  $('portada-foto').src = CONFIG.portada.foto;
+
+  $('mensaje-titulo').textContent = CONFIG.mensaje.titulo;
+  $('mensaje-texto').textContent = CONFIG.mensaje.texto;
+  $('mensaje-cierre').textContent = CONFIG.mensaje.cierre;
+  $('mensaje-adorno').style.backgroundImage = 'url("' + CONFIG.mensaje.adorno + '")';
+
+  $('cronograma-titulo').textContent = CONFIG.cronograma.titulo;
+  $('cronograma-fecha').textContent = CONFIG.fechaLarga;
+  // Eventos: uno cada 42 px, hora a la izquierda y nombre a la derecha (aparecen uno tras otro)
+  const cont = $('cronograma-eventos');
+  CONFIG.cronograma.eventos.forEach((ev, i) => {
+    const top = 140 + i * 42;
+    const hora = document.createElement('div'); hora.className = 'pos evento-hora aparece'; hora.style.top = top + 'px'; hora.style.transitionDelay = (i * .1) + 's'; hora.textContent = ev.hora;
+    const nombre = document.createElement('div'); nombre.className = 'pos evento-nombre aparece'; nombre.style.top = top + 'px'; nombre.style.transitionDelay = (i * .1) + 's'; nombre.textContent = ev.nombre;
+    cont.append(hora, nombre);
+  });
+
+  $('cuenta-titulo').textContent = CONFIG.cuentaRegresiva.titulo;
+  $('cuenta-foto').src = CONFIG.cuentaRegresiva.foto;
+  ['dias', 'horas', 'minutos', 'segundos'].forEach((k, i) => { $('etq-' + k).textContent = CONFIG.cuentaRegresiva.etiquetas[i]; });
+
+  const v = CONFIG.vestimenta;
+  $('vestimenta-titulo').textContent = v.titulo;
+  $('vestimenta-texto').textContent = v.texto;
+  $('vestimenta-damas').textContent = v.damas;
+  $('vestimenta-caballeros').textContent = v.caballeros;
+  $('vestimenta-colores').textContent = v.colores;
+  [v.foto1, v.foto2, v.foto3, v.foto4, v.foto5].forEach((src, i) => { $('vestimenta-foto-' + (i + 1)).style.backgroundImage = 'url("' + src + '")'; });
+
+  $('confirmacion-titulo').textContent = CONFIG.confirmacion.titulo;
+  const f = CONFIG.confirmacion.formulario;
+  $('etiqueta-nombre').textContent = f.campoNombre;
+  $('etiqueta-asistencia').textContent = f.campoAsistencia;
+  f.opciones.forEach((op) => {
+    const l = document.createElement('label'); l.className = 'opcion';
+    l.innerHTML = '<input type="checkbox" name="asistencia" value="' + op + '"><span>' + op + '</span>';
+    $('opciones-asistencia').appendChild(l);
+  });
+  $('etiqueta-invitados').textContent = f.campoInvitados;
+  $('etiqueta-dieta').textContent = f.campoDieta;
+  $('etiqueta-bebida').textContent = f.campoBebida;
+  $('boton-enviar').textContent = f.botonEnviar;
+  $('gracias').textContent = f.gracias;
+
+  $('detalles-titulo').textContent = CONFIG.detalles.titulo;
+  $('detalles-texto').textContent = CONFIG.detalles.texto;
+  $('detalles-telefono-1').textContent = CONFIG.detalles.telefono1;
+  $('detalles-telefono-2').textContent = CONFIG.detalles.telefono2;
+  $('detalles-regalos').textContent = CONFIG.detalles.regalos;
+  $('detalles-foto').style.backgroundImage = 'url("' + CONFIG.detalles.foto + '")';
+
+  $('despedida-titulo').textContent = CONFIG.despedida.titulo;
+  $('despedida-nombres').textContent = CONFIG.noviosTexto;
+  $('despedida-corazon').style.backgroundImage = 'url("' + CONFIG.despedida.corazon + '")';
+
+  $('musica').src = CONFIG.musica;
+
+  /* ---------- Bienvenida: entrar y arrancar la música ---------- */
+  const bienvenida = $('bienvenida'), musica = $('musica'), musicaBoton = $('musica-boton');
+  $('bienvenida-boton').addEventListener('click', () => {
+    bienvenida.classList.add('cerrada');
+    document.body.classList.remove('bloqueado');
+    musica.play().then(() => musicaBoton.classList.remove('pausado')).catch(() => {});
+    musicaBoton.classList.add('visible');
+    setTimeout(() => bienvenida.remove(), 600);
+    setTimeout(() => document.querySelectorAll('#portada .aparece').forEach(e => e.classList.add('visible')), 100);
+  });
+
+  /* ---------- Música: pausar / reanudar ---------- */
+  musicaBoton.addEventListener('click', () => {
+    if (musica.paused) { musica.play(); musicaBoton.classList.remove('pausado'); }
+    else { musica.pause(); musicaBoton.classList.add('pausado'); }
+  });
+
+  /* ---------- Animaciones al entrar en pantalla ---------- */
+  const observador = new IntersectionObserver((entradas) => {
+    entradas.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observador.unobserve(e.target); } });
+  }, { threshold: .1 });
+  document.querySelectorAll('.aparece, .aparece-izq, .aparece-der, .aparece-sub, .aparece-lento').forEach(el => { if (!el.closest('#portada')) observador.observe(el); });
+
+  /* ---------- Cuenta regresiva ---------- */
+  const fe = CONFIG.fecha;
+  const fechaEvento = new Date(fe.anio, fe.mes - 1, fe.dia, fe.hora, fe.minuto, 0);
+  function actualizarCuenta() {
+    const resta = fechaEvento - new Date();
+    if (resta <= 0) { $('contador').innerHTML = '<div class="terminado">' + CONFIG.cuentaRegresiva.terminado + '</div>'; clearInterval(reloj); return; }
+    const p = (n) => String(n).padStart(2, '0');
+    $('dias').textContent = p(Math.floor(resta / 86400000));
+    $('horas').textContent = p(Math.floor(resta % 86400000 / 3600000));
+    $('minutos').textContent = p(Math.floor(resta % 3600000 / 60000));
+    $('segundos').textContent = p(Math.floor(resta % 60000 / 1000));
+  }
+  const reloj = setInterval(actualizarCuenta, 1000); actualizarCuenta();
+
+  /* ---------- Formulario (solo visual por ahora) ---------- */
+  $('formulario').addEventListener('submit', (e) => {
+    e.preventDefault();
+    $('formulario').style.display = 'none';
+    $('gracias').style.display = 'block';
+  });
+})();
+</script>
+</body>
+</html>
