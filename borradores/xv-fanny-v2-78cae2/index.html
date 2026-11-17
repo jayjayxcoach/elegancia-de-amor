@@ -199,10 +199,10 @@ const CONFIG = {
     marcoFiligrana: "recursos/marco-ovalado.webp",   // espejo ovalado dorado (el de la plantilla Atardecer Rosa, pasado a dorado) · antes: "recursos/marco-filigrana.webp"
     ventanaMarco: { x: 20.3, y: 20.1, w: 59.4, h: 58.8 },   // hueco del marco (%): izquierda, arriba, ancho, alto (se rellena de rosa claro)
     textoMarco: { x: 20.3, y: 20.1, w: 59.4, h: 58.8 },   // el texto usa el mismo hueco (con margen interno), como en Atardecer Rosa            // dónde va el texto dentro del marco (%), sin pisar los adornos
-    corona: "recursos/corona.webp",                 // tiara dorada sobre las tarjetas
+    corona: "recursos/corona.webp?v=2",             // tiara dorada con aguamarinas (Gemini, 17-nov)
     esquina: "recursos/esquina.webp",               // filigrana dorada de las esquinas de abajo
     mariposa: "recursos/mariposa.webp",             // mariposas de cristal (las de la puerta)
-    iconoCalendario: "recursos/icono-calendario.webp",
+    iconoCalendario: "recursos/icono-calendario.webp?v=2",   // calendario azul plumbago con aguamarina (Gemini, 17-nov)
     iconoIglesia: "recursos/icono-iglesia.webp",
     iconoRecepcion: "recursos/icono-recepcion.webp",
     iconoVestimenta: "recursos/icono-vestimenta.webp",
@@ -294,7 +294,7 @@ body.esperando #fondo-fijo, body.esperando .invitacion { display: none; }   /* p
 }
 
 /* Textos comunes */
-.titulo-script { font: 400 var(--tam, 12cqw)/1.15 var(--script); color: #b8862f; padding: .22em .2em; margin: -.22em 0;   /* el relleno evita que el degradado corte los adornos de las letras */
+.titulo-script { font: 400 var(--tam, 12cqw)/1.15 var(--script); color: #b8862f; padding: .3em .2em; margin: -.3em 0;   /* el relleno evita que el degradado corte los adornos de las letras */
   background: linear-gradient(180deg, #edc977 0%, #cf9c45 42%, #9a6a25 78%, #c99a3e 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
   filter: drop-shadow(0 1px 0 rgba(255, 255, 255, .8)) drop-shadow(0 0 5px rgba(255, 255, 255, .85)); }   /* títulos dorados */
 .parrafo { font: 600 4.7cqw/1.5 var(--serif); font-variant-numeric: lining-nums; font-feature-settings: 'lnum' 1; color: var(--texto); }
@@ -308,7 +308,7 @@ body.esperando #fondo-fijo, body.esperando .invitacion { display: none; }   /* p
 .adorno i { width: 2.6cqw; aspect-ratio: 1; rotate: 45deg; background: linear-gradient(135deg, #fbe6b0, var(--oro) 60%, #a8762c); }
 
 /* Tiara (imagen de IA o la de respaldo) */
-.corona { width: var(--cw, 22cqw); aspect-ratio: 100 / 70; margin: 0 auto; background: var(--img-corona, var(--corona-respaldo)) center / contain no-repeat; filter: drop-shadow(0 3px 4px rgba(140, 90, 30, .3)); }
+.corona { width: var(--cw, 22cqw); aspect-ratio: 520 / 297; margin: 0 auto; background: var(--img-corona, var(--corona-respaldo)) center / contain no-repeat; filter: drop-shadow(0 3px 4px rgba(140, 90, 30, .3)); }
 
 /* Aparecer al bajar */
 .revela { opacity: 0; transform: translateY(8cqw); transition: opacity .9s ease, transform .9s ease; }
@@ -462,13 +462,13 @@ body.esperando #fondo-fijo, body.esperando .invitacion { display: none; }   /* p
 .nombres .y { display: block; font-size: .7em; line-height: 1; color: var(--oro); }
 #padrinos-caja .nombres { font-size: 9cqw; }
 #padres .invito { max-width: 74cqw; margin: 8cqw auto 0; }
-#padres .mis-xv { --tam: 14cqw; margin-top: 7.5cqw; }   /* centrado entre "Tengo el honor…" y la corona de abajo */
+#padres .mis-xv { --tam: 14cqw; margin: 6.5cqw -8cqw -.3em; white-space: nowrap; }   /* una sola línea, centrado entre la invitación y la corona */   /* centrado entre "Tengo el honor…" y la corona de abajo */
 
 /* ------------------------------------------------------------
    PANELES (como los paneles de las puertas: arco, doble moldura dorada)
    ------------------------------------------------------------ */
 .bloque { padding: 22cqw 0 0; overflow: visible; }
-#fecha.bloque { padding-top: 14cqw; }   /* visible: la sombra del panel no se corta */
+#fecha.bloque { padding-top: 12cqw; }   /* visible: la sombra del panel no se corta */
 .panel { position: relative; width: 82cqw; margin: 0 auto; padding: 14cqw 7cqw 14cqw;   /* con esquinas doradas, abajo 21cqw (ver más abajo) */
   border-radius: 41cqw 41cqw 3cqw 3cqw / 30cqw 30cqw 3cqw 3cqw; background: var(--panel);
   box-shadow: 0 0 0 1.6px var(--oro), 0 0 0 5px rgba(248, 251, 255, .9), 0 0 0 6.4px var(--oro), 0 18px 36px rgba(50, 80, 140, .18); }
