@@ -177,7 +177,7 @@ const CONFIG = {
   // y los botones de mapa y WhatsApp avisan que se activan en la versión final.
   // Al entregar la invitación pagada: activa: false
   muestra: {
-    activa: true,            // para revisar sin marca: agrega ?sinmarca al enlace
+    activa: false,           // true = con marca de agua (para la clienta antes del pago); ?sinmarca la quita
     texto: "MUESTRA · INVITACIONES DE AMOR",
     color: "negro",          // color de la marca de agua: "negro", "blanco" o "dorado"
     aviso: "Se activa en la versión final ✨"
@@ -193,9 +193,9 @@ const CONFIG = {
     fondo: "recursos/fondo.webp",                   // fondo fijo: muro del castillo con rosas a los lados
     guirnalda: "recursos/guirnalda.webp",           // glicinias y rosas colgando
     rosal: "recursos/rosal.webp",                   // rosal de la esquina (rosas azules) (el otro lado es el mismo, volteado)
-    marcoFiligrana: "recursos/marco-filigrana.webp", // marco dorado en arco del mensaje ("" = arco con doble moldura hecho con código)
-    ventanaMarco: { x: 13.7, y: 10.5, w: 73.1, h: 81.2 },   // hueco del marco (%): izquierda, arriba, ancho, alto (se rellena de rosa claro)
-    textoMarco: { x: 22, y: 17, w: 56, h: 62 },            // dónde va el texto dentro del marco (%), sin pisar los adornos
+    marcoFiligrana: "recursos/marco-ovalado.webp",   // espejo ovalado dorado (el de la plantilla Atardecer Rosa, pasado a dorado) · antes: "recursos/marco-filigrana.webp"
+    ventanaMarco: { x: 20.3, y: 20.1, w: 59.4, h: 58.8 },   // hueco del marco (%): izquierda, arriba, ancho, alto (se rellena de rosa claro)
+    textoMarco: { x: 24.5, y: 26, w: 51, h: 47 },            // dónde va el texto dentro del marco (%), sin pisar los adornos
     corona: "recursos/corona.webp",                 // tiara dorada sobre las tarjetas
     esquina: "recursos/esquina.webp",               // filigrana dorada de las esquinas de abajo
     mariposa: "recursos/mariposa.webp",             // mariposas de cristal (las de la puerta)
@@ -425,12 +425,12 @@ body.esperando #fondo-fijo, body.esperando .invitacion { display: none; }   /* p
    ------------------------------------------------------------ */
 #mensaje { padding: 34cqw 0 6cqw; overflow: visible; }
 #mensaje:not(:has(.guirnalda)) { padding-top: 16cqw; }
-.marco-arco { position: relative; width: 92cqw; margin: 0 auto; }
-.marco-arco .relleno { position: absolute; z-index: 1; border-radius: 50% 50% 3% 3% / 25% 25% 3% 3%; background: linear-gradient(180deg, #fbfdff 0%, #e6eef9 100%); }
+.marco-arco { position: relative; width: 104cqw; margin: 0 0 0 -2cqw; }
+.marco-arco .relleno { position: absolute; z-index: 1; border-radius: 50%; box-shadow: inset 0 0 5cqw rgba(110, 150, 210, .3); background: linear-gradient(180deg, #fbfdff 0%, #e6eef9 100%); }
 .marco-arco .marco-img { position: relative; z-index: 2; width: 100%; height: auto; filter: drop-shadow(0 10px 16px rgba(50, 80, 140, .22)); }
 .marco-arco .texto { position: absolute; z-index: 3; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 0 1cqw; }
-.marco-arco .texto p { font: italic 500 5cqw/1.45 var(--serif); color: var(--texto); }
-.marco-arco .firma { margin-top: 3cqw; font: 400 11cqw/1 var(--script) !important; font-style: normal !important; color: var(--rosa-titulo) !important; }
+.marco-arco .texto p { font: italic 500 4.5cqw/1.42 var(--serif); color: var(--texto); }
+.marco-arco .firma { margin-top: 2.4cqw; font: 400 10cqw/1 var(--script) !important; font-style: normal !important; color: var(--rosa-titulo) !important; }
 /* Sin imagen del marco: arco con doble moldura dorada, como los paneles de las puertas */
 .marco-arco.sin-marco { width: 84cqw; padding: 30cqw 8cqw 15cqw; border-radius: 42cqw 42cqw 3cqw 3cqw / 36cqw 36cqw 3cqw 3cqw; background: var(--panel);
   box-shadow: 0 0 0 1.6px var(--oro), 0 0 0 5px rgba(248, 251, 255, .9), 0 0 0 6.4px var(--oro), 0 18px 36px rgba(50, 80, 140, .2); }
