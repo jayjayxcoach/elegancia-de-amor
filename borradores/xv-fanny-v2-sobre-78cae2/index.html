@@ -425,16 +425,11 @@ body.esperando #fondo-fijo, body.esperando .invitacion { display: none; }   /* p
    3. MENSAJE EN EL MARCO DORADO
    ------------------------------------------------------------ */
 #mensaje { z-index: 3; margin-top: -34cqw; padding-bottom: 2cqw; overflow: visible; }
-/* Puente entre el espejo y los padres: frase + separador dorado con la aguamarina del sobre */
+/* Puente entre el espejo y los padres: la aguamarina del sobre y la frase */
 .puente { position: relative; z-index: 3; margin-top: 22cqw; }   /* cae donde el jardín ya se desvaneció */
 .puente-frase { font: 400 9.6cqw/1.15 var(--script); color: var(--rosa-titulo); padding: 0 .12em;
   text-shadow: 0 0 14px rgba(246, 249, 255, 1), 0 0 5px rgba(246, 249, 255, 1), 0 0 26px rgba(246, 249, 255, .9); }
-.separador { display: flex; align-items: center; justify-content: center; gap: 2.6cqw; width: 84cqw; margin: 4cqw auto 0; }
-.separador i { position: relative; flex: 1; height: 1.6px; background: linear-gradient(90deg, transparent, var(--oro) 45%, #f3d48f); }
-.separador i:last-child { background: linear-gradient(270deg, transparent, var(--oro) 45%, #f3d48f); }
-.separador i::after { content: ""; position: absolute; top: 50%; right: 3cqw; width: 2.2cqw; aspect-ratio: 1; translate: 0 -50%; rotate: 45deg; background: linear-gradient(135deg, #fbe6b0, var(--oro) 60%, #a8762c); }
-.separador i:last-child::after { right: auto; left: 3cqw; }
-.separador img { width: 15cqw; height: auto; filter: drop-shadow(0 3px 6px rgba(40, 70, 130, .35)) drop-shadow(0 0 8px rgba(220, 240, 255, .8)); }   /* como Atardecer Rosa: el espejo sube sobre la portada */
+.puente-gema { width: 16cqw; height: auto; margin: 0 auto 3cqw; filter: drop-shadow(0 3px 6px rgba(40, 70, 130, .35)) drop-shadow(0 0 8px rgba(220, 240, 255, .8)); }   /* como Atardecer Rosa: el espejo sube sobre la portada */
 #mensaje .fondo-jardin { position: absolute; inset: 0; z-index: 0; background: var(--img, linear-gradient(#e6eef9, #c9d9ef)) 50% 0 / cover no-repeat;
   -webkit-mask-image: linear-gradient(transparent 0, #000 38cqw, #000 calc(100% - 64cqw), transparent calc(100% - 22cqw));
           mask-image: linear-gradient(transparent 0, #000 38cqw, #000 calc(100% - 64cqw), transparent calc(100% - 22cqw)); }   /* el jardín se desvanece antes de la frase */
@@ -643,8 +638,8 @@ body.esperando #petalos { display: none; }
       </div>
     </figure>
     <div class="puente revela">
+      <img class="puente-gema" src="recursos/aguamarina.webp" alt="" loading="lazy" decoding="async">
       <p class="puente-frase" id="puente-frase"></p>
-      <div class="separador"><i></i><img src="recursos/aguamarina.webp" alt="" loading="lazy" decoding="async"><i></i></div>
     </div>
     <div class="mariposa" style="--w:9cqw;right:7cqw;bottom:30cqw;--d:16s;--r:-3s;--giro:18deg;--x1:-12cqw;--y1:-6cqw;--x2:-22cqw;--y2:4cqw;--x3:-8cqw;--y3:8cqw"><div class="cuerpo"><i></i><i></i></div></div>
   </section>
@@ -655,7 +650,6 @@ body.esperando #petalos { display: none; }
   <section id="padres">
     <div class="destellos"></div>
     <div class="revela">
-      <div class="corona" data-corona></div>
       <p class="intro" id="padres-titulo"></p>
       <p class="nombres" id="padres-nombres"></p>
     </div>
