@@ -18,8 +18,8 @@ html, body { background: #5e2a38; min-height: 100%; }
 .luz { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 38% at 50% 30%, rgba(255, 222, 180, .5), rgba(255, 222, 180, 0) 100%); }
 /* Kharla en plano medio: la foto es de cuerpo entero, se agranda y se deja de la cadera para arriba */
 .kharla { position: absolute; z-index: 2; left: 50%; top: var(--k-top, 9cqw); width: var(--k-ancho, 168cqw); max-width: none; translate: -50% 0;
-  filter: drop-shadow(0 2cqw 4cqw rgba(60, 20, 30, .35));
   -webkit-mask-image: linear-gradient(#000 var(--k-f1, 48%), transparent var(--k-f2, 64%)); mask-image: linear-gradient(#000 var(--k-f1, 48%), transparent var(--k-f2, 64%)); }
+.k-sombra { position: absolute; inset: 0; z-index: 2; filter: drop-shadow(0 2cqw 4cqw rgba(60, 20, 30, .35)); }   /* la sombra va en una capa aparte: junto con la máscara marcaba el borde del recuadro */
 .velo { position: absolute; z-index: 3; left: 0; right: 0; bottom: 0; height: 92cqw;
   background: linear-gradient(rgba(var(--base), 0) 0%, rgba(var(--base), .55) 30%, rgba(var(--base), .9) 55%, rgb(var(--base)) 75%); }
 .rosas { position: absolute; z-index: 5; left: -2cqw; bottom: -6cqw; width: 104cqw; max-width: none; filter: drop-shadow(0 -1cqw 2cqw rgba(40, 10, 20, .4)); }
@@ -52,14 +52,45 @@ html, body { background: #5e2a38; min-height: 100%; }
 .quieta *, .quieta *::before, .quieta *::after { animation: none !important; opacity: 1 !important; transform: none; }
 .quieta .fondo { transform: scale(1.06); }
 .quieta .chispa { opacity: .8 !important; }
+
+/* ===== Variaciones (pedido de Jay 16-nov): ?v=1 ella más abajo, letras abajo · ?v=2 letras arriba ===== */
+.pt.v1 { --k-top: 21cqw; --l-top: 94cqw; }
+.pt.v1 .rosas { bottom: -13cqw; }
+.velo-arriba { display: none; position: absolute; z-index: 3; left: 0; right: 0; top: 0; height: 92cqw;
+  background: linear-gradient(rgba(var(--base), .94) 0%, rgba(var(--base), .82) 34%, rgba(var(--base), .42) 66%, rgba(var(--base), 0) 100%); }
+.pt.v2 { --k-top: 72cqw; --l-top: 2cqw; }
+.pt.v2 .corona { width: 26cqw; }
+.pt.v2 .nombre { width: 78cqw; }
+.pt.v2 .frase { margin-top: 2.4cqw; }
+.pt.v2 .velo-arriba { display: block; }
+.pt.v2 .velo { height: 52cqw; }
+.pt.v2 .letras::before { top: 4cqw; }
+.pt.v2 .adorno { margin-top: 2.4cqw; }
+/* Pétalos rosas cayendo */
+.petalo { position: absolute; z-index: 8; top: -8cqw; left: var(--x); width: var(--t); height: calc(var(--t) * 1.25); border-radius: 70% 0 70% 0; opacity: .88; pointer-events: none;
+  background: radial-gradient(circle at 30% 30%, #ffe6ec, #f6b3c3 52%, #e0899f); box-shadow: 0 .3cqw .8cqw rgba(120, 40, 60, .25);
+  animation: cae var(--d) linear var(--r) infinite; will-change: transform; }
+@keyframes cae { 0% { transform: translate3d(0, 0, 0) rotate(0deg); } 50% { transform: translate3d(var(--dx), 96cqw, 0) rotate(260deg); } 100% { transform: translate3d(0, 196cqw, 0) rotate(520deg); } }
+/* 3 mariposas de cuento (oro rosa) aleteando y volando */
+.mariposa { position: absolute; z-index: 8; width: var(--w, 10cqw); aspect-ratio: 1.48; pointer-events: none; perspective: 40cqw; animation: vuela var(--d, 16s) var(--r, 0s) ease-in-out infinite;
+  filter: drop-shadow(0 0 .9cqw rgba(255, 225, 200, .9)) drop-shadow(0 0 .25cqw rgba(255, 240, 220, .9)); }
+.mariposa .cuerpo { position: absolute; inset: 0; transform: rotateX(48deg) rotateZ(var(--giro, -18deg)); transform-style: preserve-3d; }
+.mariposa i { position: absolute; inset: 0; background: url('recursos/mariposa.webp') center / contain no-repeat; }
+.mariposa i:first-child { clip-path: inset(0 50% 0 0); animation: ala-izq .34s ease-in-out infinite alternate; }
+.mariposa i:last-child { clip-path: inset(0 0 0 50%); animation: ala-der .34s ease-in-out infinite alternate; }
+@keyframes ala-izq { from { transform: rotateY(-8deg); } to { transform: rotateY(68deg); } }
+@keyframes ala-der { from { transform: rotateY(8deg); } to { transform: rotateY(-68deg); } }
+@keyframes vuela { 0%, 100% { transform: translate(0, 0) rotate(0deg); } 25% { transform: translate(var(--x1), var(--y1)) rotate(8deg); }
+  50% { transform: translate(var(--x2), var(--y2)) rotate(-6deg); } 75% { transform: translate(var(--x3), var(--y3)) rotate(5deg); } }
 @media (prefers-reduced-motion: reduce) { .pt *, .pt *::before { animation: none !important; opacity: 1 !important; transform: none; } .pt .fondo { transform: scale(1.06); } }
 </style></head><body>
 
 <section class="pt" id="portada">
   <img class="fondo" id="fondo" src="recursos/fondo-A.webp" alt="">
   <div class="luz"></div>
-  <img class="kharla" src="recursos/kharla.webp" alt="Kharla con su vestido rosa de encaje dorado y su tiara">
+  <div class="k-sombra"><img class="kharla" src="recursos/kharla.webp" alt="Kharla con su vestido rosa de encaje dorado y su tiara"></div>
   <div class="velo"></div>
+  <div class="velo-arriba"></div>
   <img class="rosas" src="recursos/rosas-joyeria.webp" alt="">
   <div class="letras">
     <img class="corona" src="recursos/corona.webp" alt="">
@@ -68,6 +99,9 @@ html, body { background: #5e2a38; min-height: 100%; }
     <span class="frase">Como en un cuento de hadas,<br>mi sueño se hace realidad</span>
     <div class="adorno"><i></i><b></b><i></i></div>
   </div>
+  <div class="mariposa" style="--w:11cqw;left:5cqw;top:58cqw;--d:15s;--x1:10cqw;--y1:-14cqw;--x2:16cqw;--y2:-4cqw;--x3:6cqw;--y3:10cqw"><div class="cuerpo"><i></i><i></i></div></div>
+  <div class="mariposa" style="--w:8.5cqw;right:6cqw;top:30cqw;--d:18s;--r:-6s;--giro:20deg;--x1:-8cqw;--y1:10cqw;--x2:-14cqw;--y2:24cqw;--x3:-4cqw;--y3:12cqw"><div class="cuerpo"><i></i><i></i></div></div>
+  <div class="mariposa" style="--w:7cqw;right:12cqw;top:118cqw;--d:16s;--r:-3s;--giro:12deg;--x1:-10cqw;--y1:-10cqw;--x2:-4cqw;--y2:-22cqw;--x3:4cqw;--y3:-8cqw"><div class="cuerpo"><i></i><i></i></div></div>
 </section>
 
 <script>
@@ -76,9 +110,16 @@ const f = (q.get('fondo') || 'A').toUpperCase();
 if ('ABC'.includes(f)) document.getElementById('fondo').src = 'recursos/fondo-' + f + '.webp';
 const pt = document.getElementById('portada');
 if (q.has('quieta')) pt.classList.add('quieta');
+const v = q.get('v'); if (v === '1' || v === '2') pt.classList.add('v' + v);
+for (let i = 0; i < 14; i++) {   // pétalos rosas cayendo
+  const p = document.createElement('i'); p.className = 'petalo';
+  p.style.cssText = `--x:${(Math.random() * 96).toFixed(1)}%;--t:${(2.2 + Math.random() * 1.8).toFixed(2)}cqw;--d:${(9 + Math.random() * 7).toFixed(1)}s;--r:${(-Math.random() * 16).toFixed(1)}s;--dx:${((Math.random() - .5) * 26).toFixed(1)}cqw`;
+  if (q.has('quieta')) { let x, y; do { x = Math.random() * 96; y = 4 + Math.random() * 90; } while (x > 26 && x < 74 && y > (v === '2' ? 34 : 8) && y < (v === '2' ? 66 : 42)); p.style.left = x + '%'; p.style.top = y + '%'; p.style.rotate = (Math.random() * 360) + 'deg'; }
+  pt.appendChild(p);
+}
 for (let i = 0; i < 18; i++) {
   const c = document.createElement('i'); c.className = 'chispa';
-  let x, y; do { x = 4 + Math.random() * 92; y = 8 + Math.random() * 80; } while (x > 28 && x < 72 && y < 48);  // nunca sobre su cara ni su torso
+  let x, y; do { x = 4 + Math.random() * 92; y = 8 + Math.random() * 80; } while (x > 28 && x < 72 && (pt.classList.contains('v2') ? (y > 32 && y < 80) : (y < 48 + (pt.classList.contains('v1') ? 8 : 0))));  // nunca sobre su cara ni su torso
   c.style.cssText = `left:${x}%;top:${y}%;--t:${1 + Math.random() * 1.8}cqw;--d:${2.2 + Math.random() * 2.5}s;--r:${Math.random() * 3}s`;
   pt.appendChild(c);
 }
