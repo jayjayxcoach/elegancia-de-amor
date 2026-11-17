@@ -81,21 +81,21 @@ const CONFIG = {
 
   // ---------- Mensaje dentro del marco dorado ----------
   mensaje: {
-    puente: "Y así comienza mi cuento…",    // frase debajo del espejo ("" = no aparece)
+    puente: "Y así comienza…",    // frase debajo del espejo ("" = no aparece)
     texto: "Desde niña soñé con este día… Hoy las puertas de mi castillo se abren para celebrar mis quince años, el comienzo de un nuevo capítulo lleno de sueños, ilusiones y bendiciones."
   },
 
   // ---------- Padres y padrinos ----------
   padres: {
     titulo: "Con la bendición de Dios y el amor de mis padres",
-    nombres: ["Marko A. Miranda Valderas", "Isabel Gaxiola Chavez"]
+    nombres: ["Marko Miranda Valderas", "Isabel Gaxiola Chavez"]
   },
   padrinos: {
     titulo: "y de mis padrinos",
     nombres: ["Sr. Carlos Astorga Espinoza", "Sra. Daysi Gómez Pérez"]       // [] = no aparece
   },
-  invitacion: "Tengo el honor de invitarte a celebrar",
-  invitacionCierre: "Mis XV Años",          // debajo, en letra cursiva dorada ("" = no aparece)
+  invitacion: "Tengo el honor de invitarte a celebrar mis",
+  invitacionCierre: { numero: "15", palabra: "Años" },   // debajo, grande y dorado (como en el sobre)
 
   // ---------- Cuenta regresiva ----------
   cuentaRegresiva: {
@@ -487,6 +487,47 @@ body.esperando #fondo-fijo, body.esperando .invitacion { display: none; }   /* p
 .panel .titulo-script { --tam: 11cqw; }
 .panel .titulo-script + .parrafo { margin-top: 3cqw; }
 
+/* Dorado para frases y nombres */
+.puente-frase, .nombres { color: #b8862f; background: linear-gradient(180deg, #edc977 0%, #cf9c45 45%, #9a6a25 80%, #c99a3e 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  text-shadow: none; padding: .25em .2em; margin: -.25em 0; filter: drop-shadow(0 1px 0 rgba(255, 255, 255, .8)) drop-shadow(0 0 5px rgba(255, 255, 255, .85)); }
+.nombres { font-size: 7.6cqw !important; line-height: 1.25; white-space: nowrap; }
+#padrinos-caja .nombres { font-size: 6.8cqw !important; }
+.nombres .y { color: #c99a3e; -webkit-text-fill-color: #c99a3e; }
+#padres .nombres { margin-left: -6cqw; margin-right: -6cqw; }
+/* "15 AÑOS": número grande dorado, legible, con filetes como en el sobre */
+.quince { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; column-gap: 3cqw; width: 80cqw; margin: 5cqw auto 0; }
+.quince b { font: 600 25cqw/1 var(--caps); letter-spacing: .02em; color: #b8862f; background: linear-gradient(180deg, #f6dc94 0%, #d6a54c 40%, #9a6a25 75%, #d4a54e 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; padding: .1em .06em; filter: drop-shadow(0 2px 2px rgba(110, 70, 20, .35)); }
+.quince .filete { height: 1.6px; background: linear-gradient(90deg, transparent, #cf9c45); position: relative; }
+.quince .filete:last-of-type { background: linear-gradient(270deg, transparent, #cf9c45); }
+.quince .filete::after { content: ""; position: absolute; top: 50%; right: 0; width: 2.2cqw; aspect-ratio: 1; translate: 0 -50%; rotate: 45deg; background: linear-gradient(135deg, #fbe6b0, #cf9c45 60%, #a8762c); }
+.quince .filete:last-of-type::after { right: auto; left: 0; }
+.quince em { grid-column: 1 / -1; margin-top: 1cqw; font: 600 7.4cqw/1 var(--caps); font-style: normal; letter-spacing: .32em; padding-left: .32em; color: #b8862f; background: linear-gradient(180deg, #edc977, #9a6a25); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+
+/* ---- Capas: la noche asoma detrás de "Reserva la fecha" y "Misa" se monta sobre el final de la noche ---- */
+#fecha { z-index: 3; }
+#cuenta.con-escena { z-index: 1; margin-top: -56cqw; padding-top: 70cqw; min-height: 0; padding-bottom: 92cqw; }
+#cuenta.con-escena .escena-fondo { background-position: 50% 100%; background-size: 100% auto;
+  -webkit-mask-image: linear-gradient(transparent 0, #000 14cqw); mask-image: linear-gradient(transparent 0, #000 14cqw); }   /* el borde de arriba queda escondido detrás de la tarjeta */
+#cuenta.con-escena::before { content: ""; position: absolute; left: 0; right: 0; top: 0; bottom: 170cqw; z-index: 0; background: #1b2754;
+  -webkit-mask-image: linear-gradient(transparent 0, #000 14cqw); mask-image: linear-gradient(transparent 0, #000 14cqw); }   /* cielo de noche arriba de la imagen */
+#eventos { z-index: 3; margin-top: -30cqw; padding-top: 0; }
+
+/* ---- Un solo marco largo para Misa, Fiesta y Vestimenta ---- */
+.marco-largo { position: relative; width: 100cqw; margin: 0 auto; padding: 42cqw 18cqw 40cqw; }
+.marco-largo::before { content: ""; position: absolute; z-index: 0; left: 13.4cqw; right: 13.4cqw; top: 11.6cqw; bottom: 9cqw;
+  border-radius: 36.6cqw 36.6cqw 1.6cqw 1.6cqw / 34cqw 34cqw 1.6cqw 1.6cqw; background: linear-gradient(180deg, #fbfdff 0%, #edf3fb 50%, #e3ecf8 100%); box-shadow: inset 0 0 4cqw rgba(110, 150, 210, .25); }
+.marco-largo::after { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; border-style: solid; border-width: 44.8cqw 15cqw 37cqw 15cqw;
+  border-image: var(--img-marco-tarjeta-url) 380 127 314 127 / 44.8cqw 15cqw 37cqw 15cqw round;
+  -webkit-mask-image: linear-gradient(transparent 0, #000 5cqw, #000 calc(100% - 5cqw), transparent); mask-image: linear-gradient(transparent 0, #000 5cqw, #000 calc(100% - 5cqw), transparent); }
+.marco-largo > * { position: relative; z-index: 1; }
+.marco-largo > .corona { position: absolute; left: 50%; top: -6cqw; translate: -50% 0; --cw: 24cqw; z-index: 3; }
+.marco-largo .evento .titulo-script { --tam: 11cqw; }
+.marco-largo .evento .icono { --iw: 30cqw; }
+.conector { display: flex; flex-direction: column; align-items: center; margin: 7cqw auto; }
+.conector::before, .conector::after { content: ""; width: 1.6px; height: 8cqw; background: linear-gradient(transparent, #cf9c45); }
+.conector::after { background: linear-gradient(#cf9c45, transparent); }
+.conector img { width: 8cqw; height: auto; margin: 1.6cqw 0; filter: drop-shadow(0 2px 4px rgba(40, 70, 130, .3)); }
+
 /* Tarjeta con el marco ilustrado (arco con rosas y glicinas): el contenido va en el hueco del arco */
 .panel.ilustrado { width: 100cqw; aspect-ratio: 848 / 1264; padding: 23.5cqw 18cqw 19cqw;   /* de borde a borde: las flores del marco llegan a los lados de la página */ display: flex; flex-direction: column; justify-content: center; background: none; box-shadow: none; border-radius: 0; }
 .panel.ilustrado::before { inset: auto; left: 13.4%; top: 7.8%; width: 73.2%; height: 85.4%; border: 0; z-index: 0; border-radius: 50% 50% 1.5% 1.5% / 27% 27% 1.5% 1.5%; background: linear-gradient(180deg, #fbfdff 0%, #edf3fb 70%, #e3ecf8 100%); box-shadow: inset 0 0 4cqw rgba(110, 150, 210, .25); }
@@ -507,7 +548,7 @@ body.esperando #fondo-fijo, body.esperando .invitacion { display: none; }   /* p
 .escena-fondo { position: absolute; inset: 0; z-index: 0; background: var(--img) 50% 100% / cover no-repeat;
   -webkit-mask-image: linear-gradient(transparent 0, #000 22cqw, #000 calc(100% - 22cqw), transparent);
           mask-image: linear-gradient(transparent 0, #000 22cqw, #000 calc(100% - 22cqw), transparent); }
-#cuenta.con-escena { min-height: 186cqw; padding-top: 34cqw; }
+/* (medidas de #cuenta.con-escena: ver "Capas" más arriba) */
 #cuenta.con-escena .titulo-script { --tam: 14cqw; }
 #cuenta.con-escena .contador { margin-top: 6cqw; }
 #despedida .cierre.con-escena { min-height: 178cqw; padding: 38cqw 0 70cqw; }
@@ -698,7 +739,7 @@ body.esperando #petalos { display: none; }
       <p class="nombres" id="padrinos-nombres"></p>
     </div>
     <p class="caps invito revela" id="invitacion"></p>
-    <p class="titulo-script mis-xv revela" id="invitacion-cierre"></p>
+    <div class="quince revela" id="invitacion-cierre"><span class="filete"></span><b></b><span class="filete"></span><em></em></div>
   </section>
 
   <!-- ============================================================
@@ -738,11 +779,12 @@ body.esperando #petalos { display: none; }
   </section>
 
   <!-- ============================================================
-       7. CEREMONIA
+       7-9. MISA, FIESTA Y CÓDIGO DE VESTIMENTA (un solo marco largo, como un camino)
        ============================================================ -->
-  <section class="bloque" id="ceremonia">
-    <div class="panel revela">
+  <section class="bloque" id="eventos">
+    <div class="marco-largo">
       <div class="corona" data-corona></div>
+      <div class="evento revela" id="ceremonia">
       <div class="icono" data-icono="iconoIglesia">
         <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4v8M20.5 7.5h7"/><path d="M13 22l11-10 11 10"/><path d="M15.5 20v20h17V20"/><path d="M8 40h32"/><path d="M21 40v-6.5a3 3 0 0 1 6 0V40"/><circle cx="24" cy="25.5" r="2.4"/></svg>
       </div>
@@ -750,15 +792,9 @@ body.esperando #petalos { display: none; }
       <p class="lugar"><span id="ceremonia-lugar"></span><small id="ceremonia-direccion"></small></p>
       <p class="hora" id="ceremonia-hora"></p>
       <a class="boton-linea" id="ceremonia-mapa" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg><span></span></a>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       8. RECEPCIÓN
-       ============================================================ -->
-  <section class="bloque" id="recepcion">
-    <div class="panel revela">
-      <div class="corona" data-corona></div>
+      </div>
+      <div class="conector revela" id="conector-1"><img src="recursos/aguamarina.webp" alt="" loading="lazy" decoding="async"></div>
+      <div class="evento revela" id="recepcion">
       <div class="icono" data-icono="iconoRecepcion">
         <svg viewBox="0 0 48 48" aria-hidden="true"><g transform="rotate(-12 19 40)"><path d="M14.5 10h9l-.7 9.5a3.8 3.8 0 0 1-7.6 0z"/><path d="M19 23.3V36M15 38.5h8"/></g><g transform="rotate(12 29 40)"><path d="M24.5 10h9l-.7 9.5a3.8 3.8 0 0 1-7.6 0z"/><path d="M29 23.3V36M25 38.5h8"/></g><path d="M24 3v3.5M20.5 5l1.6 1.8M27.5 5l-1.6 1.8"/></svg>
       </div>
@@ -766,21 +802,16 @@ body.esperando #petalos { display: none; }
       <p class="lugar"><span id="recepcion-lugar"></span><small id="recepcion-direccion"></small></p>
       <p class="hora" id="recepcion-hora"></p>
       <a class="boton-linea" id="recepcion-mapa" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg><span></span></a>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       9. CÓDIGO DE VESTIMENTA
-       ============================================================ -->
-  <section class="bloque" id="vestimenta">
-    <div class="panel revela">
-      <div class="corona" data-corona></div>
+      </div>
+      <div class="conector revela" id="conector-2"><img src="recursos/aguamarina.webp" alt="" loading="lazy" decoding="async"></div>
+      <div class="evento revela" id="vestimenta">
       <div class="icono" data-icono="iconoVestimenta">
         <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4.5a2.2 2.2 0 1 1 2.2 2.2c-1.2 0-2.2.8-2.2 2v1.8"/><path d="M13 16.5l11-6 11 6"/><path d="M20.2 15l-1.8 6.5 3.1 2.2L14 41h20l-7.5-17.3 3.1-2.2-1.8-6.5"/><path d="M21.5 23.7h5"/></svg>
       </div>
       <h2 class="titulo-script" id="vestimenta-titulo" style="--tam:9.6cqw"></h2>
       <p class="estilo" id="vestimenta-estilo"></p>
       <p class="parrafo nota" id="vestimenta-nota"></p>
+      </div>
     </div>
   </section>
 
@@ -898,7 +929,7 @@ body.esperando #petalos { display: none; }
   const pd = CONFIG.padrinos || {};
   if (pd.nombres && pd.nombres.length) { texto('padrinos-titulo', pd.titulo); ponerNombres('padrinos-nombres', pd.nombres); } else quitar('padrinos-caja');
   if (CONFIG.invitacion) texto('invitacion', CONFIG.invitacion); else quitar('invitacion');
-  if (CONFIG.invitacionCierre) texto('invitacion-cierre', CONFIG.invitacionCierre); else quitar('invitacion-cierre');
+  if (CONFIG.invitacionCierre) { const q = $('invitacion-cierre'); q.querySelector('b').textContent = CONFIG.invitacionCierre.numero; q.querySelector('em').textContent = CONFIG.invitacionCierre.palabra; } else quitar('invitacion-cierre');
 
   const cr = CONFIG.cuentaRegresiva;
   texto('cuenta-titulo', cr.titulo);
@@ -996,7 +1027,7 @@ body.esperando #petalos { display: none; }
   }
   if (IM.fondo) { $('fondo-fijo').classList.add('con-imagen'); $('fondo-fijo').style.setProperty('--img', url(IM.fondo)); }
   if (IM.fondoJardin) $('fondo-jardin').style.setProperty('--img', url(IM.fondoJardin));
-  if (IM.marcoTarjeta) { raiz.style.setProperty('--img-marco-tarjeta', url(IM.marcoTarjeta)); $$('.panel').forEach(p => p.classList.add('ilustrado')); }
+  if (IM.marcoTarjeta) { raiz.style.setProperty('--img-marco-tarjeta', url(IM.marcoTarjeta)); raiz.style.setProperty('--img-marco-tarjeta-url', url(IM.marcoTarjeta)); $$('.panel').forEach(p => p.classList.add('ilustrado')); }
   if (IM.puertita) { raiz.style.setProperty('--img-puertita', url(IM.puertita)); $('contador').classList.add('puertitas'); }
   if (IM.escenaNoche) { $('escena-noche').style.setProperty('--img', url(IM.escenaNoche)); $('cuenta').classList.add('con-escena'); } else quitar('escena-noche');
   if (IM.escenaCierre) {
