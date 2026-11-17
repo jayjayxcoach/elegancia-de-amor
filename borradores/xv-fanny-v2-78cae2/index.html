@@ -193,9 +193,10 @@ const CONFIG = {
     fondo: "recursos/fondo.webp",                   // fondo fijo: muro del castillo con rosas a los lados
     guirnalda: "recursos/guirnalda.webp",           // glicinias y rosas colgando
     rosal: "recursos/rosal.webp",                   // rosal de la esquina (rosas azules) (el otro lado es el mismo, volteado)
+    fondoJardin: "recursos/fondo-jardin.webp",       // jardín detrás del espejo (el de Atardecer Rosa pasado a azul)
     marcoFiligrana: "recursos/marco-ovalado.webp",   // espejo ovalado dorado (el de la plantilla Atardecer Rosa, pasado a dorado) · antes: "recursos/marco-filigrana.webp"
     ventanaMarco: { x: 20.3, y: 20.1, w: 59.4, h: 58.8 },   // hueco del marco (%): izquierda, arriba, ancho, alto (se rellena de rosa claro)
-    textoMarco: { x: 24.5, y: 26, w: 51, h: 47 },            // dónde va el texto dentro del marco (%), sin pisar los adornos
+    textoMarco: { x: 20.3, y: 20.1, w: 59.4, h: 58.8 },   // el texto usa el mismo hueco (con margen interno), como en Atardecer Rosa            // dónde va el texto dentro del marco (%), sin pisar los adornos
     corona: "recursos/corona.webp",                 // tiara dorada sobre las tarjetas
     esquina: "recursos/esquina.webp",               // filigrana dorada de las esquinas de abajo
     mariposa: "recursos/mariposa.webp",             // mariposas de cristal (las de la puerta)
@@ -396,7 +397,7 @@ body.esperando #fondo-fijo, body.esperando .invitacion { display: none; }   /* p
 #portada.visible .fecha-portada { animation: sube .9s 1.6s ease-out forwards; }
 #portada.sin-imagen .baja { bottom: 9cqw; }
 #portada .portada-img { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 35%; transform: scale(1.08);
-  -webkit-mask-image: linear-gradient(#000 82%, transparent); mask-image: linear-gradient(#000 82%, transparent); }
+}
 #portada.visible .portada-img { animation: acerca 9s ease-out forwards; }
 @keyframes acerca { to { transform: scale(1); } }
 #portada .velo { position: absolute; inset: 0 0 auto; z-index: 1; height: 62cqw; background: linear-gradient(rgba(246, 249, 255, .45), transparent); }
@@ -423,14 +424,16 @@ body.esperando #fondo-fijo, body.esperando .invitacion { display: none; }   /* p
 /* ------------------------------------------------------------
    3. MENSAJE EN EL MARCO DORADO
    ------------------------------------------------------------ */
-#mensaje { padding: 34cqw 0 6cqw; overflow: visible; }
-#mensaje:not(:has(.guirnalda)) { padding-top: 16cqw; }
-.marco-arco { position: relative; width: 104cqw; margin: 0 0 0 -2cqw; }
-.marco-arco .relleno { position: absolute; z-index: 1; border-radius: 50%; box-shadow: inset 0 0 5cqw rgba(110, 150, 210, .3); background: linear-gradient(180deg, #fbfdff 0%, #e6eef9 100%); }
-.marco-arco .marco-img { position: relative; z-index: 2; width: 100%; height: auto; filter: drop-shadow(0 10px 16px rgba(50, 80, 140, .22)); }
-.marco-arco .texto { position: absolute; z-index: 3; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 0 1cqw; }
-.marco-arco .texto p { font: italic 500 4.5cqw/1.42 var(--serif); color: var(--texto); }
-.marco-arco .firma { margin-top: 2.4cqw; font: 400 10cqw/1 var(--script) !important; font-style: normal !important; color: var(--rosa-titulo) !important; }
+#mensaje { z-index: 3; margin-top: -34cqw; padding-bottom: 26cqw; overflow: visible; }   /* como Atardecer Rosa: el espejo sube sobre la portada */
+#mensaje .fondo-jardin { position: absolute; inset: 0; z-index: 0; background: var(--img, linear-gradient(#e6eef9, #c9d9ef)) 50% 0 / cover no-repeat;
+  -webkit-mask-image: linear-gradient(transparent 0, #000 38cqw, #000 calc(100% - 34cqw), transparent);
+          mask-image: linear-gradient(transparent 0, #000 38cqw, #000 calc(100% - 34cqw), transparent); }
+.marco-arco { position: relative; z-index: 2; width: 106cqw; margin: 0 0 0 -3cqw; }
+.marco-arco .relleno { position: absolute; z-index: 1; border-radius: 50%; background: radial-gradient(ellipse at 50% 45%, rgba(252, 253, 255, .97) 55%, rgba(232, 239, 250, .96) 100%); box-shadow: inset 0 0 5cqw rgba(110, 150, 210, .35); }
+.marco-arco .marco-img { position: relative; z-index: 2; width: 100%; height: auto; filter: drop-shadow(0 10px 16px rgba(30, 50, 100, .3)); }
+.marco-arco .texto { position: absolute; z-index: 3; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 3cqw 5.6cqw; }
+.marco-arco .texto p { font: 600 4.1cqw/1.4 var(--serif); font-variant-numeric: lining-nums; font-feature-settings: 'lnum' 1; color: var(--texto); }
+.marco-arco .firma { margin-top: 2.6cqw; font: 400 9cqw/1.1 var(--script) !important; font-style: normal !important; color: var(--rosa-titulo) !important; }
 /* Sin imagen del marco: arco con doble moldura dorada, como los paneles de las puertas */
 .marco-arco.sin-marco { width: 84cqw; padding: 30cqw 8cqw 15cqw; border-radius: 42cqw 42cqw 3cqw 3cqw / 36cqw 36cqw 3cqw 3cqw; background: var(--panel);
   box-shadow: 0 0 0 1.6px var(--oro), 0 0 0 5px rgba(248, 251, 255, .9), 0 0 0 6.4px var(--oro), 0 18px 36px rgba(50, 80, 140, .2); }
@@ -612,22 +615,21 @@ body.esperando #petalos { display: none; }
     </div>
     <div class="mariposa" style="--w:10cqw;left:8cqw;top:96cqw;--d:15s;--x1:14cqw;--y1:-12cqw;--x2:30cqw;--y2:-2cqw;--x3:12cqw;--y3:10cqw"><div class="cuerpo"><i></i><i></i></div></div>
     <div class="mariposa" style="--w:7.5cqw;right:10cqw;top:120cqw;--d:18s;--r:-6s;--giro:20deg;--x1:-12cqw;--y1:-8cqw;--x2:-22cqw;--y2:6cqw;--x3:-8cqw;--y3:12cqw"><div class="cuerpo"><i></i><i></i></div></div>
-    <p class="baja">Desliza</p>
   </section>
 
   <!-- ============================================================
        3. MENSAJE EN EL MARCO DORADO
        ============================================================ -->
   <section id="mensaje">
-    <img class="guirnalda" data-img="guirnalda" alt="" loading="lazy" decoding="async">
+    <div class="fondo-jardin" id="fondo-jardin"></div>
     <div class="destellos"></div>
-    <figure class="marco-arco revela" id="marco-arco">
+    <figure class="marco-arco" id="marco-arco">
       <div class="relleno"></div>
       <img class="marco-img" data-img="marcoFiligrana" alt="" loading="lazy" decoding="async">
       <div class="corona corona-arco" data-corona></div>
       <div class="texto">
-        <p id="mensaje-texto"></p>
-        <p class="firma" id="mensaje-firma"></p>
+        <div class="revela"><p id="mensaje-texto"></p>
+        <p class="firma" id="mensaje-firma"></p></div>
       </div>
     </figure>
   </section>
@@ -939,6 +941,7 @@ body.esperando #petalos { display: none; }
     $$('.panel').forEach(p => { p.insertAdjacentHTML('afterbegin', '<i class="esq izq"></i><i class="esq"></i>'); });
   }
   if (IM.fondo) { $('fondo-fijo').classList.add('con-imagen'); $('fondo-fijo').style.setProperty('--img', url(IM.fondo)); }
+  if (IM.fondoJardin) $('fondo-jardin').style.setProperty('--img', url(IM.fondoJardin));
   // Iconos
   $$('[data-icono]').forEach(caja => {
     const ruta = IM[caja.dataset.icono];
