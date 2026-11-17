@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Kharla · portada v6</title>
+<link rel="preload" href="recursos/kharla.webp" as="image">
+<style>
+/* Portada XV Kharla (La Bella Durmiente, rosa y dorado). Estructura de Niralys: plano medio, ella grande arriba,
+   la foto se funde abajo; tiara, nombre (Gemini), MIS XV AÑOS, frase y adorno; rosas de joyería al pie.
+   ?fondo=B (salón) o ?fondo=C (bosque) cambia el fondo; ?quieta deja todo sin animación (para exportar). */
+@font-face { font-family: 'Cinzel'; font-weight: 600; src: url('recursos/fuente-cinzel-600.woff2') format('woff2'); font-display: block; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { background: rgb(var(--base)); min-height: 100%; }
+:root { --base: 196, 128, 128; --sombra: 100, 52, 32; }
+/* Pantalla completa del teléfono (ronda 5): el alto es el de la pantalla; las rosas quedan pegadas al borde de abajo */
+.pt { position: relative; width: 100%; max-width: 480px; height: 100svh; min-height: 560px; max-height: 1100px; margin: 0 auto; overflow: hidden; container-type: size;
+  background: rgb(var(--base)); }
+.fondo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%;
+  filter: blur(.9cqw) saturate(1.04); transform: scale(1.06); animation: acerca 14s ease-out forwards; }
+.luz { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 38% at 50% 30%, rgba(255, 222, 180, .5), rgba(255, 222, 180, 0) 100%); }
+/* Kharla en plano medio: la foto es de cuerpo entero, se agranda y se deja de la cadera para arriba */
+.kharla { position: absolute; z-index: 2; left: 50%; top: var(--k-top, 7cqh); width: calc(var(--k-alto, 96cqh) / 1.278); max-width: none; translate: -50% 0;
+  -webkit-mask-image: linear-gradient(#000 var(--k-f1, 48%), transparent var(--k-f2, 64%)); mask-image: linear-gradient(#000 var(--k-f1, 48%), transparent var(--k-f2, 64%)); }
+.k-sombra { position: absolute; inset: 0; z-index: 2; filter: drop-shadow(0 2cqw 4cqw rgba(var(--sombra), .35)); }   /* la sombra va en una capa aparte: junto con la máscara marcaba el borde del recuadro */
+.velo { position: absolute; z-index: 3; left: 0; right: 0; bottom: 0; height: 92cqw;
+  background: linear-gradient(rgba(var(--base), 0) 0%, rgba(var(--base), .55) 30%, rgba(var(--base), .9) 55%, rgb(var(--base)) 75%); }
+.rosas { position: absolute; z-index: 5; left: 0; bottom: 0; width: 100%; max-width: none; filter: drop-shadow(0 -1cqw 2cqw rgba(var(--sombra), .4)); }
+.letras { position: absolute; z-index: 6; left: 0; right: 0; bottom: 26cqw; text-align: center; }
+.letras::before { content: ""; position: absolute; z-index: -1; left: 2cqw; right: 2cqw; top: 6cqw; bottom: -2cqw;
+  background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(var(--sombra), .5) 0%, rgba(var(--sombra), .25) 55%, rgba(var(--sombra), 0) 100%); }
+.corona { display: block; width: 30cqw; margin: 0 auto 3.5cqw; filter: drop-shadow(0 .6cqw 1cqw rgba(var(--sombra), .55));
+  opacity: 0; transform: translateY(-3cqw); animation: sube 1s .2s ease-out forwards; }
+.nombre { display: block; width: 84cqw; margin: 0 auto; filter: drop-shadow(0 .5cqw .8cqw rgba(var(--sombra), .75)) drop-shadow(0 0 2.5cqw rgba(255, 220, 160, .35));
+  opacity: 0; transform: scale(.92); animation: aparece 1.4s .5s cubic-bezier(.2, .8, .3, 1) forwards; }
+.oro { background: linear-gradient(100deg, #b7852e 0%, #f4d98f 18%, #fff3cc 28%, #ecc86e 40%, #bd8b32 55%, #f7e1a0 70%, #fff6d6 78%, #c9973c 92%, #b7852e 100%);
+  background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; }
+.xv { display: block; margin-top: .5cqw; font: 600 5.4cqw/1 'Cinzel', Georgia, serif; letter-spacing: .3em; padding-left: .3em;
+  filter: drop-shadow(0 .3cqw .4cqw rgba(var(--sombra), .8)); opacity: 0; transform: translateY(3cqw); animation: sube .9s 1.1s ease-out forwards, brillo 6s 2s ease-in-out infinite; }
+.frase { display: block; width: 80cqw; margin: 3cqw auto 0; font: 600 3.6cqw/1.55 'Cinzel', Georgia, serif; letter-spacing: .1em; text-transform: uppercase;
+  color: #f6e2b8; text-shadow: 0 .3cqw .6cqw rgba(var(--sombra), .85); opacity: 0; transform: translateY(3cqw); animation: sube .9s 1.5s ease-out forwards; }
+.adorno { display: flex; align-items: center; justify-content: center; gap: 2.2cqw; width: 52cqw; margin: 3cqw auto 0; opacity: 0; animation: sube .9s 1.9s ease-out forwards; }
+.adorno::before, .adorno::after { content: ""; flex: 1; height: 1.6px; background: linear-gradient(90deg, transparent, #e9c56e); box-shadow: 0 0 4px rgba(255, 220, 150, .7); }
+.adorno::after { background: linear-gradient(270deg, transparent, #e9c56e); }
+.adorno i { width: 1.6cqw; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #fff6d6, #e2b85c 60%, #a8762c); box-shadow: 0 0 5px rgba(255, 225, 160, .9); }
+.adorno b { width: 3cqw; aspect-ratio: 1; rotate: 45deg; background: linear-gradient(135deg, #fff1c4, #e2b85c 55%, #a8762c); box-shadow: 0 0 6px rgba(255, 225, 160, .9); }
+.chispa { position: absolute; z-index: 7; width: var(--t, 1.6cqw); aspect-ratio: 1; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle, #fff 0%, #fff4c8 35%, rgba(255, 230, 160, 0) 70%); opacity: 0; animation: titila var(--d, 3s) ease-in-out infinite; animation-delay: var(--r, 0s); }
+@keyframes sube { to { opacity: 1; transform: none; } }
+@keyframes aparece { to { opacity: 1; transform: none; } }
+@keyframes acerca { from { transform: scale(1.12); } to { transform: scale(1.06); } }
+@keyframes brillo { 0%, 100% { background-position: 100% 0; } 50% { background-position: 0 0; } }
+@keyframes titila { 0%, 100% { opacity: 0; transform: scale(.4); } 50% { opacity: 1; transform: scale(1.2); } }
+.pt.quieta { max-width: none; }
+.quieta *, .quieta *::before, .quieta *::after { animation: none !important; opacity: 1 !important; transform: none; }
+.quieta .fondo { transform: scale(1.06); }
+.quieta .chispa { opacity: .8 !important; }
+
+/* ===== Variaciones (pedido de Jay 16-nov): ?v=1 ella más abajo, letras abajo · ?v=2 letras arriba ===== */
+/* Ronda 6 (Jay): Kharla más grande en primer plano, sin difuminado rosa; las letras más abajo, encima del vestido y los brazos */
+.pt.v1 { --k-top: 25cqh; --k-alto: 114cqh; }   /* 17-nov: Jay bajó la cabeza hasta la línea roja */
+.pt.v1 .velo { display: none; }
+.pt.v1 .kharla { -webkit-mask-image: none; mask-image: none; }
+.pt.v1 .letras { bottom: 22cqw; }
+.pt.v1 .letras::before { left: -4cqw; right: -4cqw; top: 10cqw; bottom: -4cqw;
+  background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(var(--sombra), .42) 0%, rgba(var(--sombra), .22) 55%, rgba(var(--sombra), 0) 100%); }
+.pt.v1 .nombre { filter: drop-shadow(0 .5cqw .8cqw rgba(var(--sombra), .9)) drop-shadow(0 0 2cqw rgba(var(--sombra), .45)); }
+.pt.v1 .xv { filter: drop-shadow(0 .3cqw .4cqw rgba(var(--sombra), .95)) drop-shadow(0 0 1.5cqw rgba(var(--sombra), .55)); }
+.pt.v1 .frase { text-shadow: 0 .3cqw .6cqw rgba(var(--sombra), .95), 0 0 2cqw rgba(var(--sombra), .7); }
+.velo-arriba { display: none; position: absolute; z-index: 3; left: 0; right: 0; top: 0; height: 92cqw;
+  background: linear-gradient(rgba(var(--base), .94) 0%, rgba(var(--base), .82) 34%, rgba(var(--base), .42) 66%, rgba(var(--base), 0) 100%); }
+.pt.v2 { --k-top: 76cqw; }
+.pt.v2 .letras { top: 3cqw; bottom: auto; }
+.pt.v2 .corona { width: 26cqw; }
+.pt.v2 .nombre { width: 78cqw; }
+.pt.v2 .frase { margin-top: 2.4cqw; }
+.pt.v2 .velo-arriba { display: block; }
+.pt.v2 .velo { height: 34cqh; }
+.pt.v2 .letras::before { top: 4cqw; }
+.pt.v2 .adorno { margin-top: 2.4cqw; }
+/* Pétalos rosas cayendo */
+.petalo { position: absolute; z-index: 8; top: -8cqw; left: var(--x); width: var(--t); height: calc(var(--t) * 1.25); border-radius: 70% 0 70% 0; opacity: .88; pointer-events: none;
+  background: radial-gradient(circle at 30% 30%, #ffe6ec, #f6b3c3 52%, #e0899f); box-shadow: 0 .3cqw .8cqw rgba(120, 40, 60, .25);
+  animation: cae var(--d) linear var(--r) infinite; will-change: transform; }
+@keyframes cae { 0% { transform: translate3d(0, 0, 0) rotate(0deg); } 50% { transform: translate3d(var(--dx), 96cqw, 0) rotate(260deg); } 100% { transform: translate3d(0, 196cqw, 0) rotate(520deg); } }
+/* 3 mariposas de cuento (oro rosa) aleteando y volando */
+.mariposa { position: absolute; z-index: 8; width: var(--w, 10cqw); aspect-ratio: 1.48; pointer-events: none; perspective: 40cqw; animation: vuela var(--d, 16s) var(--r, 0s) ease-in-out infinite;
+  filter: drop-shadow(0 0 .9cqw rgba(255, 225, 200, .9)) drop-shadow(0 0 .25cqw rgba(255, 240, 220, .9)); }
+.mariposa .cuerpo { position: absolute; inset: 0; transform: rotateX(48deg) rotateZ(var(--giro, -18deg)); transform-style: preserve-3d; }
+.mariposa i { position: absolute; inset: 0; background: url('recursos/mariposa.webp') center / contain no-repeat; }
+.mariposa i:first-child { clip-path: inset(0 50% 0 0); animation: ala-izq .34s ease-in-out infinite alternate; }
+.mariposa i:last-child { clip-path: inset(0 0 0 50%); animation: ala-der .34s ease-in-out infinite alternate; }
+@keyframes ala-izq { from { transform: rotateY(-8deg); } to { transform: rotateY(68deg); } }
+@keyframes ala-der { from { transform: rotateY(8deg); } to { transform: rotateY(-68deg); } }
+@keyframes vuela { 0%, 100% { transform: translate(0, 0) rotate(0deg); } 25% { transform: translate(var(--x1), var(--y1)) rotate(8deg); }
+  50% { transform: translate(var(--x2), var(--y2)) rotate(-6deg); } 75% { transform: translate(var(--x3), var(--y3)) rotate(5deg); } }
+/* respaldo: si un navegador no corre las animaciones de entrada, a los 3,5 s las letras quedan visibles igual */
+.pt.listo .corona, .pt.listo .nombre, .pt.listo .xv, .pt.listo .frase, .pt.listo .adorno { opacity: 1 !important; transform: none !important; }
+@media (prefers-reduced-motion: reduce) { .pt *, .pt *::before { animation: none !important; opacity: 1 !important; transform: none; } .pt .fondo { transform: scale(1.06); } }
+</style></head><body>
+
+<section class="pt" id="portada">
+  <img class="fondo" id="fondo" src="recursos/fondo-A.webp" alt="">
+  <div class="luz"></div>
+  <div class="k-sombra"><img class="kharla" src="recursos/kharla.webp" alt="Kharla con su vestido rosa de encaje dorado y su tiara"></div>
+  <div class="velo"></div>
+  <div class="velo-arriba"></div>
+  <img class="rosas" src="recursos/rosas-joyeria.webp" alt="">
+  <div class="letras">
+    <img class="corona" src="recursos/corona.webp" alt="">
+    <img class="nombre" src="recursos/nombre.webp" alt="Kharla">
+    <span class="xv oro">Mis XV Años</span>
+    <span class="frase">Como en un cuento de hadas,<br>mi sueño se hace realidad</span>
+    <div class="adorno"><i></i><b></b><i></i></div>
+  </div>
+  <div class="mariposa" style="--w:11cqw;left:5cqw;top:58cqw;--d:15s;--x1:10cqw;--y1:-14cqw;--x2:16cqw;--y2:-4cqw;--x3:6cqw;--y3:10cqw"><div class="cuerpo"><i></i><i></i></div></div>
+  <div class="mariposa" style="--w:8.5cqw;right:6cqw;top:30cqw;--d:18s;--r:-6s;--giro:20deg;--x1:-8cqw;--y1:10cqw;--x2:-14cqw;--y2:24cqw;--x3:-4cqw;--y3:12cqw"><div class="cuerpo"><i></i><i></i></div></div>
+  <div class="mariposa" style="--w:7cqw;right:12cqw;top:118cqw;--d:16s;--r:-3s;--giro:12deg;--x1:-10cqw;--y1:-10cqw;--x2:-4cqw;--y2:-22cqw;--x3:4cqw;--y3:-8cqw"><div class="cuerpo"><i></i><i></i></div></div>
+</section>
+
+<script>
+const q = new URLSearchParams(location.search);
+const f = (q.get('fondo') || 'A').toUpperCase();
+if ('ABC'.includes(f)) document.getElementById('fondo').src = 'recursos/fondo-' + f + '.webp';
+const pt = document.getElementById('portada');
+if (q.has('quieta')) pt.classList.add('quieta');
+setTimeout(() => pt.classList.add('listo'), 3500);
+const v = q.get('v') === '2' ? '2' : '1'; pt.classList.add('v' + v);   // sin ?v = variación 1
+const tonos = { '1': '196, 128, 128', '2': '212, 160, 150', '3': '205, 140, 135' };
+if (tonos[q.get('tono')]) document.documentElement.style.setProperty('--base', tonos[q.get('tono')]);
+for (let i = 0; i < 14; i++) {   // pétalos rosas cayendo
+  const p = document.createElement('i'); p.className = 'petalo';
+  p.style.cssText = `--x:${(Math.random() * 96).toFixed(1)}%;--t:${(2.2 + Math.random() * 1.8).toFixed(2)}cqw;--d:${(9 + Math.random() * 7).toFixed(1)}s;--r:${(-Math.random() * 16).toFixed(1)}s;--dx:${((Math.random() - .5) * 26).toFixed(1)}cqw`;
+  if (q.has('quieta')) { let x, y; do { x = Math.random() * 96; y = 4 + Math.random() * 90; } while (x > 26 && x < 74 && y > (v === '2' ? 34 : 8) && y < (v === '2' ? 66 : 42)); p.style.left = x + '%'; p.style.top = y + '%'; p.style.rotate = (Math.random() * 360) + 'deg'; }
+  pt.appendChild(p);
+}
+for (let i = 0; i < 18; i++) {
+  const c = document.createElement('i'); c.className = 'chispa';
+  let x, y; do { x = 4 + Math.random() * 92; y = 8 + Math.random() * 80; } while (x > 28 && x < 72 && (pt.classList.contains('v2') ? (y > 32 && y < 80) : (y < 48 + (pt.classList.contains('v1') ? 8 : 0))));  // nunca sobre su cara ni su torso
+  c.style.cssText = `left:${x}%;top:${y}%;--t:${1 + Math.random() * 1.8}cqw;--d:${2.2 + Math.random() * 2.5}s;--r:${Math.random() * 3}s`;
+  pt.appendChild(c);
+}
+</script>
+</body></html>
