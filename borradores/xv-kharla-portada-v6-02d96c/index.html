@@ -93,6 +93,8 @@ html, body { background: rgb(var(--base)); min-height: 100%; }
 @keyframes ala-der { from { transform: rotateY(8deg); } to { transform: rotateY(-68deg); } }
 @keyframes vuela { 0%, 100% { transform: translate(0, 0) rotate(0deg); } 25% { transform: translate(var(--x1), var(--y1)) rotate(8deg); }
   50% { transform: translate(var(--x2), var(--y2)) rotate(-6deg); } 75% { transform: translate(var(--x3), var(--y3)) rotate(5deg); } }
+/* respaldo: si un navegador no corre las animaciones de entrada, a los 3,5 s las letras quedan visibles igual */
+.pt.listo .corona, .pt.listo .nombre, .pt.listo .xv, .pt.listo .frase, .pt.listo .adorno { opacity: 1 !important; transform: none !important; }
 @media (prefers-reduced-motion: reduce) { .pt *, .pt *::before { animation: none !important; opacity: 1 !important; transform: none; } .pt .fondo { transform: scale(1.06); } }
 </style></head><body>
 
@@ -121,6 +123,7 @@ const f = (q.get('fondo') || 'A').toUpperCase();
 if ('ABC'.includes(f)) document.getElementById('fondo').src = 'recursos/fondo-' + f + '.webp';
 const pt = document.getElementById('portada');
 if (q.has('quieta')) pt.classList.add('quieta');
+setTimeout(() => pt.classList.add('listo'), 3500);
 const v = q.get('v') === '2' ? '2' : '1'; pt.classList.add('v' + v);   // sin ?v = variación 1
 const tonos = { '1': '196, 128, 128', '2': '212, 160, 150', '3': '205, 140, 135' };
 if (tonos[q.get('tono')]) document.documentElement.style.setProperty('--base', tonos[q.get('tono')]);
