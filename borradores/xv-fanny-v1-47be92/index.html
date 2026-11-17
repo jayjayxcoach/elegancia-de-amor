@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#dfe8f6">
+<title>Mis XV años · Fanny</title>
+<meta name="description" content="Estás invitado a mis XV años. Toca las puertas para abrir tu invitación.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Invitaciones de Amor">
+<meta property="og:title" content="Mis XV años · Fanny">
+<meta property="og:description" content="Estás invitado a mis XV años. Toca las puertas para abrir tu invitación ✨">
+<meta property="og:url" content="https://eleganciadeamor.com/borradores/xv-fanny-v1-47be92/">
+<meta property="og:image" content="https://eleganciadeamor.com/borradores/xv-fanny-v1-47be92/recursos/vista-previa.jpg">
+<meta property="og:image:width" content="600">
+<meta property="og:image:height" content="600">
+<meta property="og:image:alt" content="Puertas azul plumbago con medallón dorado y hortensias azules">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Pinyon+Script&display=swap">
+<link rel="preload" as="image" href="recursos/sobre.webp">
+
+<script>
+/* ============================================================
+   DATOS DE LA INVITACIÓN — todo lo que se cambia está aquí
+   ============================================================ */
+const CONFIG = {
+  nombre: "Fanny",
+  nombreCompleto: "Fanny Miranda Gaxiola",
+  arriba: "Mis XV años",
+  fechaPortada: "19 · Diciembre · 2026",
+
+  // Fecha y hora de la misa, hora de Sinaloa (America/Mazatlan, UTC-7, sin horario de verano)
+  evento: "2026-12-19T19:00:00-07:00",
+  fechaLarga: "Sábado 19 de diciembre de 2026",
+
+  // Frase de bienvenida (opción elegida; las otras están en la ficha para Jay)
+  bienvenida: "Como en un cuento, hoy comienza un nuevo capítulo de mi vida, y quiero que tú formes parte de él.",
+
+  cuentaRegresiva: { titulo: "Faltan", etiquetas: ["Días", "Horas", "Minutos", "Segundos"] },
+
+  padres: { titulo: "Mis papás", nombres: ["Marko A. Miranda Valderas", "Isabel Gaxiola Chavez"] },
+  padrinos: { titulo: "Mis padrinos", nombres: ["Sr. Carlos Astorga Espinoza", "Sra. Daysi Gómez Pérez"] },
+
+  misa: {
+    titulo: "Misa",
+    hora: "7:00 PM",
+    lugar: "Iglesia Divina Providencia",
+    direccion: "Veracruz #120 (entre Durango y Chihuahua), Col. San Francisco",
+    ciudad: "Los Mochis, Sinaloa",
+    // Comprobado en Google Maps (16-nov-2026): Parroquia La Divina Providencia, C. Veracruz Norte 120, San Francisco
+    mapa: "https://www.google.com/maps/search/?api=1&query=Parroquia%20La%20Divina%20Providencia%2C%20Veracruz%20Norte%20120%2C%20San%20Francisco%2C%20Los%20Mochis%2C%20Sinaloa"
+  },
+  fiesta: {
+    titulo: "Fiesta",
+    hora: "9:00 PM",
+    lugar: "Salón Abu Dhabi",
+    direccion: "Blvd. Zacatecas #1256, Fracc. San Rafael",
+    ciudad: "Los Mochis, Sinaloa",
+    // Comprobado en Google Maps (16-nov-2026): Salón de eventos Abu Dhabi, Blvd. Zacatecas, San Rafael
+    mapa: "https://www.google.com/maps/search/?api=1&query=Sal%C3%B3n%20de%20eventos%20Abu%20Dhabi%2C%20Blvd.%20Zacatecas%2C%20Los%20Mochis%2C%20Sinaloa"
+  },
+
+  vestimenta: { titulo: "Código de vestimenta", estilo: "Formal", nota: "Azul reservado para la quinceañera" },
+
+  confirmacion: {
+    titulo: "Confirma tu asistencia",
+    texto: "Me encantaría saber si me acompañas en esta noche tan especial.",
+    boton: "Confirmar",
+    whatsapp: "",              // PENDIENTE: número con lada, solo dígitos (ej. 52668…). Vacío = el botón avisa.
+    mensaje: "¡Hola! Confirmo mi asistencia a los XV años de Fanny 💙"
+  },
+
+  cierre: { frase: "Gracias por ser parte de este sueño. Tu presencia hará esta noche inolvidable.", firma: "¡Te espero!" },
+
+  credito: { texto: "Página hecha con amor por", marca: "Invitaciones de Amor", boton: "Ver nuestros trabajos", enlace: "https://eleganciadeamor.com/#nuestros-trabajos" },
+
+  // Vista previa antes del pago: marca de agua y botones que avisan. Al entregar pagada: activa: false
+  muestra: { activa: true, texto: "PRUEBA · INVITACIONES DE AMOR", aviso: "Se activa en la versión final ✨" },
+
+  // Música: Claro de luna (Debussy), grabación de dominio público (Laurens Goedhart, Wikimedia Commons)
+  musica: "recursos/musica.mp3"
+};
+</script>
+
+<style>
+:root {
+  --azul: #8fb0dd;          /* azul plumbago */
+  --azul-claro: #dfe8f6;
+  --azul-texto: #4a64a0;    /* etiquetas (el de la portada) */
+  --tinta: #33466a;         /* textos */
+  --suave: #5f7193;
+  --crema: #fcf3e7;
+  --oro: #c9a14f;
+  --oro-osc: #9a7228;
+  --oro-grad: linear-gradient(170deg, #ecd28c 0%, #c99d48 26%, #96691f 50%, #d9b25e 70%, #7f5917 100%);
+  --script: 'Pinyon Script', cursive;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --caps: 'Cinzel', Georgia, serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { overflow-x: hidden; -webkit-text-size-adjust: 100%; }
+body { background: #e9eef7; color: var(--tinta); font-family: var(--serif); font-weight: 600; font-variant-numeric: lining-nums; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+body.cerrado { overflow: hidden; height: 100svh; }
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration: none; }
+
+/* Columna de teléfono, centrada en pantallas grandes */
+#app { position: relative; width: 100%; max-width: 440px; margin: 0 auto; container-type: inline-size; overflow: hidden; background: var(--crema); box-shadow: 0 0 40px rgba(60, 90, 140, .18); }
+#fondo-fijo { position: fixed; inset: 0; left: 50%; translate: -50% 0; width: 100%; max-width: 440px; z-index: 0; background: var(--crema) url("recursos/fondo.webp") center / cover no-repeat; }
+#app > section { position: relative; z-index: 1; }
+
+/* ---------- Letras ---------- */
+.titulo { font-family: var(--script); font-weight: 400; font-size: 15cqw; line-height: 1.15; text-align: center; padding: 0 .1em .08em;
+  background: var(--oro-grad); -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, .8)) drop-shadow(0 2px 3px rgba(120, 85, 20, .28)); }
+.caps { font-family: var(--caps); font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--azul-texto); }
+.dato { font-size: 5.6cqw; line-height: 1.3; color: var(--tinta); text-align: center; }
+.chico { font-size: 4.4cqw; line-height: 1.4; color: var(--suave); text-align: center; font-weight: 600; }
+.raya { width: 34cqw; height: 1px; margin: 3cqw auto; background: linear-gradient(90deg, transparent, var(--oro), transparent); }
+.icono { height: 13cqw; width: auto; margin: 0 auto 1cqw; filter: drop-shadow(0 1px 2px rgba(120, 85, 20, .25)); }
+
+/* ---------- Aparecer al bajar ---------- */
+.revela { opacity: 0; transform: translateY(16px); transition: opacity 1s ease, transform 1s cubic-bezier(.2, .7, .2, 1); transition-delay: var(--d, 0s); will-change: opacity, transform; }
+.revela.ver { opacity: 1; transform: none; }
+
+/* ============================================================
+   1. SOBRE: puertas que se abren
+   ============================================================ */
+#sobre { position: fixed; inset: 0; z-index: 50; display: flex; justify-content: center; background: #cfdcef; cursor: pointer; }
+#sobre .marco { position: relative; width: 100%; max-width: 440px; height: 100%; overflow: hidden; perspective: 1600px; }
+#sobre .lienzo { position: absolute; left: 50%; top: 50%; translate: -50% -50%; }
+.puerta { position: absolute; top: 0; bottom: 0; width: 50%; background: url("recursos/sobre.webp") 0 0 / 200% 100% no-repeat; backface-visibility: hidden;
+  transition: transform 2.3s cubic-bezier(.55, .05, .3, 1) .2s, filter 2.3s ease .2s; }
+.puerta.izq { left: 0; transform-origin: 0 50%; }
+.puerta.der { right: 0; background-position: 100% 0; transform-origin: 100% 50%; }
+#sobre.abierto .puerta.izq { transform: rotateY(86deg); filter: brightness(.75); }
+#sobre.abierto .puerta.der { transform: rotateY(-86deg); filter: brightness(.75); }
+#sobre .luz { position: absolute; inset: 0; pointer-events: none; opacity: 0; background: radial-gradient(45% 40% at 50% 50%, rgba(255, 250, 232, .95), rgba(255, 240, 205, .45) 45%, transparent 75%); }
+#sobre.abierto .luz { animation: luz 2.6s ease .3s forwards; }
+@keyframes luz { 0% { opacity: 0 } 40% { opacity: 1 } 100% { opacity: 0 } }
+#sobre.abierto { pointer-events: none; animation: irse 1s ease 2.2s forwards; }
+@keyframes irse { to { opacity: 0; visibility: hidden; } }
+.toca { position: absolute; left: 50%; bottom: max(5.5%, calc(env(safe-area-inset-bottom) + 18px)); translate: -50% 0; z-index: 3; white-space: nowrap; padding: .7em 1.5em; border-radius: 99px;
+  background: rgba(255, 253, 246, .94); border: 1px solid #e3c98a; box-shadow: 0 6px 18px rgba(40, 60, 110, .28);
+  font: 600 13px var(--caps); letter-spacing: .2em; text-transform: uppercase; color: var(--azul-texto); animation: pulso 2.2s ease-in-out infinite; }
+#sobre.abierto .toca { opacity: 0; animation: none; transition: opacity .3s; }
+@keyframes pulso { 50% { transform: scale(1.06); } }
+.chispa { position: absolute; z-index: 2; width: 8px; height: 8px; border-radius: 50%; pointer-events: none; opacity: 0;
+  background: radial-gradient(circle, #fff 0%, #ffe9a8 40%, transparent 70%); animation: chispa 3.6s ease-in-out infinite; }
+@keyframes chispa { 0% { opacity: 0; transform: translateY(10px) scale(.6) } 40% { opacity: 1 } 100% { opacity: 0; transform: translateY(-40px) scale(1) } }
+
+/* ============================================================
+   2. PORTADA
+   ============================================================ */
+#portada { height: 100svh; min-height: 560px; overflow: hidden; }
+#portada .lienzo { position: absolute; left: 50%; top: 50%; translate: -50% -50%; container-type: inline-size; }
+#portada .lienzo img.fondo { width: 100%; height: 100%; object-fit: cover; transform: scale(1.06); transition: transform 3.2s cubic-bezier(.3, .1, .2, 1); }
+body.abierta #portada .lienzo img.fondo { transform: scale(1); }
+.centro { position: absolute; left: 50%; top: 49.6%; translate: -50% -50%; width: 50cqw; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.centro .nom { width: 46cqw; margin-bottom: 1cqw; filter: drop-shadow(0 1px 0 rgba(255, 255, 255, .8)) drop-shadow(0 2px 3px rgba(110, 80, 20, .25)); }
+.centro .mis { font-size: 3.5cqw; letter-spacing: .3em; }
+.centro .raya { width: 26cqw; margin: 2cqw auto; }
+.centro .fecha { font-size: 2.9cqw; letter-spacing: .22em; }
+.entra { opacity: 0; transform: translateY(12px); transition: opacity 1.4s ease, transform 1.4s ease; }
+body.abierta .entra { opacity: 1; transform: none; }
+.flecha { position: absolute; left: 50%; bottom: max(14px, env(safe-area-inset-bottom)); translate: -50% 0; width: 30px; height: 30px; border-right: 2px solid var(--oro); border-bottom: 2px solid var(--oro);
+  rotate: 45deg; opacity: 0; transition: opacity 1s ease 3.4s; }
+body.abierta .flecha { opacity: .8; animation: baja 2s ease-in-out 3.4s infinite; }
+@keyframes baja { 50% { transform: translate(5px, 5px); } }
+
+/* ============================================================
+   SECCIONES
+   ============================================================ */
+.bloque { padding: 14cqw 8cqw; display: flex; flex-direction: column; align-items: center; }
+.divisor { width: 78cqw; margin: 0 auto; }
+
+/* Tarjeta con marco de flores (imagen) y el contenido encima */
+.tarjeta { position: relative; width: 100%; }
+.tarjeta > img.marco { width: 100%; height: auto; -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 2.5%, #000 97.5%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0, #000 2.5%, #000 97.5%, transparent 100%); }
+.tarjeta.espejo > img.marco { transform: scaleX(-1); }
+.tarjeta .dentro { position: absolute; inset: var(--in, 17% 14% 16%); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 1.2cqw; }
+
+/* 3. Bienvenida */
+#bienvenida .dentro { --in: 23% 18% 34%; }
+#bienvenida .frase { font-style: italic; font-weight: 500; font-size: 6.4cqw; line-height: 1.45; color: var(--tinta); }
+#bienvenida .firma { width: 36cqw; margin-top: 3cqw; }
+#bienvenida .completo { font-size: 3cqw; letter-spacing: .2em; margin-top: .5cqw; }
+
+/* 4. Cuenta regresiva */
+#cuenta { padding: 10cqw 6cqw 12cqw; }
+#cuenta .icono { height: 15cqw; }
+.contador { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.6cqw; width: 100%; margin-top: 3cqw; }
+.contador div { display: flex; flex-direction: column; align-items: center; gap: 1cqw; padding: 3.6cqw 0 3cqw; border-radius: 16px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, .85), rgba(223, 232, 246, .85)); border: 1px solid rgba(201, 161, 79, .55); box-shadow: 0 6px 16px rgba(70, 100, 160, .12); }
+.contador b { font: 600 9.4cqw/1 var(--serif); color: var(--azul-texto); font-variant-numeric: tabular-nums lining-nums; }
+.contador span { font: 600 2.5cqw var(--caps); letter-spacing: .14em; text-transform: uppercase; color: var(--oro-osc); }
+#cuenta .cuando { margin-top: 5cqw; }
+
+/* 5. Papás y padrinos */
+#familia .dentro { --in: 26% 15% 27%; gap: .4cqw; }
+#familia .titulo { font-size: 11.5cqw; }
+#familia .raya { margin: 1.6cqw auto; }
+#familia .nombres { display: flex; flex-direction: column; gap: 1.4cqw; }
+#familia .y { font: 400 6.5cqw/1 var(--script); color: var(--oro); }
+
+/* 6. Misa y fiesta */
+.evento .dentro { --in: 21% 14% 23%; gap: 1.2cqw; }
+.evento .titulo { font-size: 13cqw; }
+.evento .hora { font: 600 8cqw/1.1 var(--serif); color: var(--azul-texto); }
+.evento .lugar { font-size: 6.2cqw; font-weight: 700; }
+.evento .dir { max-width: 70cqw; text-wrap: balance; }
+.boton { white-space: nowrap; display: inline-flex; align-items: center; justify-content: center; gap: .6em; min-height: 46px; margin-top: 3cqw; padding: .8em 1.6em; border-radius: 99px;
+  font: 600 13px var(--caps); letter-spacing: .14em; text-transform: uppercase; color: #fff; cursor: pointer; border: 0;
+  background: linear-gradient(170deg, #e2c27a, #b48632); box-shadow: 0 6px 16px rgba(160, 120, 40, .3); -webkit-tap-highlight-color: transparent; }
+.boton:active { transform: scale(.97); }
+.boton svg { width: 18px; height: 18px; fill: currentColor; }
+
+/* 7. Vestimenta */
+#vestimenta .estilo { font: 600 8cqw/1.1 var(--serif); color: var(--azul-texto); letter-spacing: .04em; }
+#vestimenta .vestido { width: 46cqw; margin: 2cqw auto 0; }
+.reservado { display: inline-block; margin-top: 2cqw; padding: 2.2cqw 4.4cqw; border-radius: 99px; background: rgba(143, 176, 221, .22); border: 1px solid rgba(143, 176, 221, .7);
+  font-size: 4.6cqw; font-weight: 700; color: var(--azul-texto); }
+
+/* 8. Confirmación */
+#confirmacion .dentro { --in: 20% 16% 35%; gap: 1cqw; }
+
+/* 9. Cierre */
+#cierre { padding: 0 0 8cqw; }
+#cierre .ramo-arriba { width: 72cqw; align-self: flex-start; margin-bottom: -6cqw; }
+#cierre .ramo-abajo { width: 72cqw; align-self: flex-end; transform: rotate(180deg); margin-top: -2cqw; }
+#cierre .frase { font-style: italic; font-weight: 500; font-size: 6cqw; line-height: 1.45; text-align: center; padding: 0 12cqw; }
+#cierre .firma { width: 52cqw; margin: 4cqw auto 0; }
+#cierre .te-espero { font-size: 10cqw; margin-top: 1cqw; }
+.credito { display: flex; flex-direction: column; align-items: center; gap: 1.2cqw; padding: 8cqw 6cqw 12cqw; text-align: center; font: 600 3cqw var(--caps); letter-spacing: .16em; text-transform: uppercase; color: var(--suave); }
+.credito b { font: 400 8cqw/1.15 var(--script); letter-spacing: 0; text-transform: none; color: var(--oro); }
+.credito em { font-style: normal; margin-top: 1.4cqw; padding: 1.2cqw 3.6cqw; border: 1px solid rgba(201, 161, 79, .6); border-radius: 99px; color: var(--azul-texto); }
+
+/* Florecitas de plumbago que caen */
+#flores { position: fixed; inset: 0; z-index: 40; pointer-events: none; overflow: hidden; }
+#flores i { position: absolute; top: -30px; width: var(--t, 14px); height: var(--t, 14px);
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cg fill='%23a9c3ea' stroke='%2385a6d8' stroke-width='.8'%3E%3Cellipse cx='20' cy='9' rx='6' ry='8.5'/%3E%3Cellipse cx='20' cy='9' rx='6' ry='8.5' transform='rotate(72 20 20)'/%3E%3Cellipse cx='20' cy='9' rx='6' ry='8.5' transform='rotate(144 20 20)'/%3E%3Cellipse cx='20' cy='9' rx='6' ry='8.5' transform='rotate(216 20 20)'/%3E%3Cellipse cx='20' cy='9' rx='6' ry='8.5' transform='rotate(288 20 20)'/%3E%3C/g%3E%3Ccircle cx='20' cy='20' r='3' fill='%23e8c879'/%3E%3C/svg%3E") center / contain no-repeat;
+  opacity: .7; animation: cae var(--dur, 14s) linear var(--del, 0s) infinite; }
+@keyframes cae { 0% { transform: translate(0, 0) rotate(0) } 50% { transform: translate(var(--x, 30px), 55vh) rotate(180deg) } 100% { transform: translate(0, 110vh) rotate(360deg) } }
+
+/* Música */
+#musica-boton { position: fixed; right: max(14px, calc(50vw - 220px + 14px)); bottom: max(16px, env(safe-area-inset-bottom)); z-index: 60; width: 48px; height: 48px; border-radius: 50%; display: none; align-items: center; justify-content: center; cursor: pointer;
+  background: linear-gradient(170deg, #f1d996, #b88a35); box-shadow: 0 6px 16px rgba(120, 90, 30, .35); border: 2px solid #fff8e6; color: #fff; }
+#musica-boton.ver { display: flex; }
+#musica-boton svg { width: 20px; height: 20px; fill: currentColor; }
+#musica-boton .play, #musica-boton.pausado .pausa { display: none; }
+#musica-boton.pausado .play { display: block; }
+
+/* Marca de agua (vista previa) */
+#marca-agua { position: fixed; inset: 0; z-index: 101; pointer-events: none; background: var(--marca) 0 0 / 260px 200px repeat; }
+body.muestra { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+body.muestra img { pointer-events: none; -webkit-user-drag: none; }
+#aviso { position: fixed; left: 50%; bottom: 84px; z-index: 103; translate: -50% 0; max-width: 90vw; padding: 10px 18px; border-radius: 99px; background: rgba(60, 85, 135, .94); color: #fff;
+  font: 600 15px/1.2 var(--serif); letter-spacing: .03em; text-align: center; box-shadow: 0 6px 18px rgba(0, 0, 0, .25); opacity: 0; transform: translateY(10px); transition: opacity .3s, transform .3s; pointer-events: none; }
+#aviso.ver { opacity: 1; transform: none; }
+@media print { body.muestra > * { display: none !important; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .revela, .entra { transition-duration: .01s !important; transition-delay: 0s !important; }
+  .toca, .chispa, #flores i, .flecha { animation: none !important; }
+}
+</style>
+</head>
+<body class="cerrado">
+
+<!-- 1. SOBRE -->
+<div id="sobre" role="button" tabindex="0" aria-label="Toca para abrir la invitación">
+  <div class="marco">
+    <div class="lienzo" id="lienzo-sobre">
+      <div class="luz"></div>
+      <div class="puerta izq"></div>
+      <div class="puerta der"></div>
+    </div>
+    <span class="toca">Toca para abrir</span>
+  </div>
+</div>
+
+<div id="fondo-fijo" aria-hidden="true"></div>
+
+<main id="app">
+
+  <!-- 2. PORTADA -->
+  <section id="portada">
+    <div class="lienzo" id="lienzo-portada">
+      <img class="fondo" src="recursos/portada.webp" alt="" width="1080" height="1935">
+      <div class="centro">
+        <img class="nom entra" style="transition-delay:1.2s" src="recursos/nombre-fanny.webp" alt="Fanny" width="667" height="300">
+        <span class="caps mis entra" style="transition-delay:1.7s" id="arriba"></span>
+        <span class="raya entra" style="transition-delay:1.9s"></span>
+        <span class="caps fecha entra" style="transition-delay:2.1s" id="fecha-portada"></span>
+      </div>
+    </div>
+    <span class="flecha" aria-hidden="true"></span>
+  </section>
+
+  <!-- 3. BIENVENIDA -->
+  <section id="bienvenida">
+    <div class="tarjeta">
+      <img class="marco" src="recursos/marco-arco.webp" alt="" loading="lazy" decoding="async">
+      <div class="dentro">
+        <p class="frase revela" id="bienvenida-frase"></p>
+        <img class="firma revela" style="--d:.3s" src="recursos/nombre-fanny.webp" alt="Fanny" loading="lazy">
+        <p class="caps completo revela" style="--d:.4s" id="nombre-completo"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. CUENTA REGRESIVA -->
+  <section id="cuenta" class="bloque">
+    <img class="divisor revela" src="recursos/divisor.webp" alt="" loading="lazy">
+    <img class="icono revela" style="margin-top:5cqw" src="recursos/icono-reloj.webp" alt="" loading="lazy">
+    <h2 class="titulo revela" id="cuenta-titulo"></h2>
+    <div class="contador revela" style="--d:.2s" id="contador">
+      <div><b id="dias">--</b><span></span></div>
+      <div><b id="horas">--</b><span></span></div>
+      <div><b id="minutos">--</b><span></span></div>
+      <div><b id="segundos">--</b><span></span></div>
+    </div>
+    <p class="chico cuando revela" style="--d:.3s" id="cuenta-cuando"></p>
+  </section>
+
+  <!-- 5. PAPÁS Y PADRINOS -->
+  <section id="familia">
+    <div class="tarjeta">
+      <img class="marco" src="recursos/marco-tarjeta.webp" alt="" loading="lazy" decoding="async">
+      <div class="dentro">
+        <h2 class="titulo revela" id="padres-titulo"></h2>
+        <div class="nombres dato revela" style="--d:.15s" id="padres-nombres"></div>
+        <span class="raya revela" style="--d:.25s"></span>
+        <h2 class="titulo revela" style="--d:.3s" id="padrinos-titulo"></h2>
+        <div class="nombres dato revela" style="--d:.45s" id="padrinos-nombres"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. MISA Y FIESTA -->
+  <section id="misa" class="evento">
+    <div class="tarjeta espejo">
+      <img class="marco" src="recursos/marco-tarjeta.webp" alt="" loading="lazy" decoding="async">
+      <div class="dentro">
+        <img class="icono revela" src="recursos/icono-iglesia.webp" alt="" loading="lazy">
+        <h2 class="titulo revela" id="misa-titulo"></h2>
+        <p class="hora revela" style="--d:.1s" id="misa-hora"></p>
+        <p class="dato lugar revela" style="--d:.2s" id="misa-lugar"></p>
+        <p class="chico dir revela" style="--d:.25s" id="misa-dir"></p>
+        <a class="boton revela" style="--d:.35s" id="misa-mapa" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Cómo llegar</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="fiesta" class="evento">
+    <div class="tarjeta">
+      <img class="marco" src="recursos/marco-tarjeta.webp" alt="" loading="lazy" decoding="async">
+      <div class="dentro">
+        <img class="icono revela" src="recursos/icono-copas.webp" alt="" loading="lazy">
+        <h2 class="titulo revela" id="fiesta-titulo"></h2>
+        <p class="hora revela" style="--d:.1s" id="fiesta-hora"></p>
+        <p class="dato lugar revela" style="--d:.2s" id="fiesta-lugar"></p>
+        <p class="chico dir revela" style="--d:.25s" id="fiesta-dir"></p>
+        <a class="boton revela" style="--d:.35s" id="fiesta-mapa" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Cómo llegar</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. VESTIMENTA -->
+  <section id="vestimenta" class="bloque">
+    <img class="divisor revela" src="recursos/divisor.webp" alt="" loading="lazy">
+    <img class="icono revela" style="margin-top:5cqw" src="recursos/icono-vestido.webp" alt="" loading="lazy">
+    <h2 class="titulo revela" id="vestimenta-titulo" style="font-size:12.5cqw"></h2>
+    <p class="estilo revela" style="--d:.15s" id="vestimenta-estilo"></p>
+    <img class="vestido revela" style="--d:.25s" src="recursos/vestido.webp" alt="" loading="lazy">
+    <p class="reservado revela" style="--d:.35s" id="vestimenta-nota"></p>
+  </section>
+
+  <!-- 8. CONFIRMACIÓN -->
+  <section id="confirmacion">
+    <div class="tarjeta">
+      <img class="marco" src="recursos/marco-arco.webp" alt="" loading="lazy" decoding="async">
+      <div class="dentro">
+        <img class="icono revela" src="recursos/icono-sobre.webp" alt="" loading="lazy">
+        <h2 class="titulo revela" id="confirmacion-titulo" style="font-size:12cqw"></h2>
+        <p class="dato revela" style="--d:.15s;font-weight:500;font-style:italic" id="confirmacion-texto"></p>
+        <a class="boton revela" style="--d:.3s" id="confirmacion-boton" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-3.3-.8-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6-.3.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 .9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg><span id="confirmacion-boton-texto"></span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. CIERRE -->
+  <section id="cierre" class="bloque">
+    <img class="ramo-arriba revela" src="recursos/ramo.webp" alt="" loading="lazy">
+    <p class="frase revela" id="cierre-frase"></p>
+    <img class="firma revela" style="--d:.2s" src="recursos/nombre-fanny.webp" alt="Fanny" loading="lazy">
+    <p class="titulo te-espero revela" style="--d:.35s" id="cierre-firma"></p>
+    <p class="caps revela" style="--d:.45s;font-size:3cqw;margin-top:2cqw" id="cierre-fecha"></p>
+    <img class="ramo-abajo revela" src="recursos/ramo.webp" alt="" loading="lazy">
+    <a class="credito" id="credito" target="_blank" rel="noopener"><span></span><b></b><em></em></a>
+  </section>
+</main>
+
+<div id="flores" aria-hidden="true"></div>
+<audio id="musica" loop preload="auto"></audio>
+<div id="musica-boton" class="pausado" role="button" aria-label="Pausar o reproducir la música" tabindex="0">
+  <svg class="pausa" viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+  <svg class="play" viewBox="0 0 24 24"><polygon points="7,4 20,12 7,20"/></svg>
+</div>
+
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const texto = (id, t) => { const el = $(id); if (el) el.textContent = t || ''; };
+  const C = CONFIG;
+
+  /* ---------- Textos ---------- */
+  document.title = C.arriba + ' · ' + C.nombre;
+  texto('arriba', C.arriba);
+  texto('fecha-portada', C.fechaPortada);
+  texto('bienvenida-frase', C.bienvenida);
+  texto('nombre-completo', C.nombreCompleto);
+  texto('cuenta-titulo', C.cuentaRegresiva.titulo);
+  document.querySelectorAll('#contador span').forEach((s, i) => s.textContent = C.cuentaRegresiva.etiquetas[i]);
+  texto('cuenta-cuando', C.fechaLarga + ' · ' + C.misa.hora);
+  const nombres = (id, lista) => {
+    const el = $(id); el.textContent = '';
+    lista.forEach((n, i) => {
+      if (i) { const y = document.createElement('span'); y.className = 'y'; y.textContent = '&'; el.appendChild(y); }
+      const s = document.createElement('span'); s.textContent = n; el.appendChild(s);
+    });
+  };
+  texto('padres-titulo', C.padres.titulo); nombres('padres-nombres', C.padres.nombres);
+  texto('padrinos-titulo', C.padrinos.titulo); nombres('padrinos-nombres', C.padrinos.nombres);
+  ['misa', 'fiesta'].forEach(k => {
+    const e = C[k];
+    texto(k + '-titulo', e.titulo); texto(k + '-hora', e.hora); texto(k + '-lugar', e.lugar);
+    const d = $(k + '-dir'); d.textContent = e.direccion; d.appendChild(document.createElement('br')); d.appendChild(document.createTextNode(e.ciudad));
+    $(k + '-mapa').href = e.mapa;
+  });
+  texto('vestimenta-titulo', C.vestimenta.titulo); texto('vestimenta-estilo', C.vestimenta.estilo); texto('vestimenta-nota', C.vestimenta.nota);
+  const co = C.confirmacion;
+  texto('confirmacion-titulo', co.titulo); texto('confirmacion-texto', co.texto); texto('confirmacion-boton-texto', co.boton);
+  if (co.whatsapp) $('confirmacion-boton').href = 'https://wa.me/' + co.whatsapp.replace(/\D/g, '') + '?text=' + encodeURIComponent(co.mensaje);
+  texto('cierre-frase', C.cierre.frase); texto('cierre-firma', C.cierre.firma); texto('cierre-fecha', C.fechaPortada);
+  const cr = $('credito'); cr.href = C.credito.enlace;
+  cr.children[0].textContent = C.credito.texto; cr.children[1].textContent = C.credito.marca; cr.children[2].textContent = C.credito.boton + ' ›';
+
+  /* ---------- Lienzos que cubren la pantalla (sobre y portada) ---------- */
+  const RATIO = 1935 / 1080;
+  function cubrir() {
+    const ancho = Math.min(window.innerWidth, 440), alto = window.innerHeight;
+    let w = ancho, h = w * RATIO;
+    if (h < alto) { h = alto; w = h / RATIO; }
+    [$('lienzo-sobre'), $('lienzo-portada')].forEach(l => { l.style.width = w + 'px'; l.style.height = h + 'px'; });
+  }
+  cubrir(); addEventListener('resize', cubrir);
+
+  /* ---------- Chispas en el sobre ---------- */
+  const marcoSobre = document.querySelector('#sobre .marco');
+  for (let i = 0; i < 8; i++) {
+    const s = document.createElement('span'); s.className = 'chispa';
+    s.style.left = (14 + Math.random() * 72) + '%'; s.style.top = (22 + Math.random() * 56) + '%'; s.style.animationDelay = (i * .45) + 's';
+    marcoSobre.appendChild(s);
+  }
+
+  /* ---------- Música ---------- */
+  const musica = $('musica'), mb = $('musica-boton');
+  if (C.musica) musica.src = C.musica;
+  const tocar = () => { if (!C.musica) return; const p = musica.play(); if (p && p.then) p.then(() => mb.classList.remove('pausado')).catch(() => mb.classList.add('pausado')); };
+  const alternar = () => { if (musica.paused) tocar(); else { musica.pause(); mb.classList.add('pausado'); } };
+  mb.addEventListener('click', alternar);
+  mb.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); alternar(); } });
+
+  /* ---------- Abrir el sobre ---------- */
+  const sobre = $('sobre');
+  let abierto = false;
+  function abrir() {
+    if (abierto) return; abierto = true;
+    tocar();
+    sobre.classList.add('abierto');
+    setTimeout(() => { document.body.classList.remove('cerrado'); document.body.classList.add('abierta'); if (C.musica) mb.classList.add('ver'); flores(); }, 1500);
+    setTimeout(() => sobre.remove(), 3400);
+  }
+  sobre.addEventListener('click', abrir);
+  sobre.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); abrir(); } });
+
+  /* ---------- Florecitas de plumbago ---------- */
+  function flores() {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const caja = $('flores');
+    for (let i = 0; i < 9; i++) {
+      const f = document.createElement('i');
+      f.style.left = (Math.random() * 92) + '%';
+      f.style.setProperty('--t', (10 + Math.random() * 9) + 'px');
+      f.style.setProperty('--dur', (13 + Math.random() * 9) + 's');
+      f.style.setProperty('--del', (i * 1.6) + 's');
+      f.style.setProperty('--x', (Math.random() * 70 - 35) + 'px');
+      caja.appendChild(f);
+    }
+  }
+
+  /* ---------- Aparecer al bajar ---------- */
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('ver'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px', threshold: .12 });
+  document.querySelectorAll('.revela').forEach(el => io.observe(el));
+
+  /* ---------- Cuenta regresiva (hora de Sinaloa) ---------- */
+  const meta = new Date(C.evento).getTime();
+  const dos = n => String(n).padStart(2, '0');
+  function cuenta() {
+    let r = Math.max(0, meta - Date.now());
+    $('dias').textContent = Math.floor(r / 86400000);
+    $('horas').textContent = dos(Math.floor(r % 86400000 / 3600000));
+    $('minutos').textContent = dos(Math.floor(r % 3600000 / 60000));
+    $('segundos').textContent = dos(Math.floor(r % 60000 / 1000));
+  }
+  cuenta(); setInterval(cuenta, 1000);
+
+  /* ---------- Avisos ---------- */
+  const MU = C.muestra || {};
+  const aviso = document.createElement('div'); aviso.id = 'aviso'; document.body.appendChild(aviso);
+  let tAviso;
+  const avisar = (msg) => (e) => { e.preventDefault(); aviso.textContent = msg; aviso.classList.add('ver'); clearTimeout(tAviso); tAviso = setTimeout(() => aviso.classList.remove('ver'), 2400); };
+  const enMuestra = MU.activa && !location.search.includes('sinmarca');
+  if (!co.whatsapp && !enMuestra) $('confirmacion-boton').addEventListener('click', avisar('Falta el número de WhatsApp para confirmar'));
+
+  /* ---------- Vista previa: marca de agua (?sinmarca = sin marca, para revisar) ---------- */
+  if (enMuestra) {
+    document.body.classList.add('muestra');
+    const t = (MU.texto || 'MUESTRA').replace(/&/g, '&amp;').replace(/</g, '&lt;');
+    const fila = (x, y) => "<text x='" + x + "' y='" + y + "' text-anchor='middle' font-family='Georgia,serif' font-size='14' font-weight='700' letter-spacing='2.5' fill='rgba(184,135,58,.42)' stroke='rgba(255,255,255,.25)' stroke-width='.5'>" + t + "</text>";
+    const svg = "<svg xmlns='http://www.w3.org/2000/svg' width='260' height='200'><g transform='rotate(-28 130 100)'>" + fila(130, 70) + fila(0, 160) + fila(260, 160) + "</g></svg>";
+    const capa = document.createElement('div'); capa.id = 'marca-agua'; capa.setAttribute('aria-hidden', 'true');
+    capa.style.setProperty('--marca', 'url("data:image/svg+xml,' + encodeURIComponent(svg) + '")');
+    document.body.appendChild(capa);
+    ['contextmenu', 'dragstart', 'selectstart', 'copy', 'cut'].forEach(ev => document.addEventListener(ev, e => e.preventDefault()));
+    document.addEventListener('keydown', e => {
+      const k = (e.key || '').toLowerCase(), mod = e.ctrlKey || e.metaKey;
+      if (e.key === 'F12' || (mod && ['s', 'u', 'p', 'c', 'a'].includes(k)) || (mod && e.shiftKey && ['i', 'j', 'c'].includes(k))) e.preventDefault();
+    });
+    ['misa-mapa', 'fiesta-mapa', 'confirmacion-boton'].forEach(id => $(id).addEventListener('click', avisar(MU.aviso), true));
+  }
+})();
+</script>
+</body>
+</html>
