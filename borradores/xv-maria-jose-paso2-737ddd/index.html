@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>María Jose · Mis XV años · Elige tu invitación</title>
+<meta property="og:title" content="María Jose · Mis XV años">
+<meta property="og:description" content="Tres invitaciones en celeste cielo. Toca cada sobre para abrirlo y elige la tuya.">
+<meta property="og:image" content="recursos/vista-previa.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Allura&family=Alex+Brush&family=Italianno&family=Corinthia:wght@400;700&display=swap">
+<style>
+:root{
+  --fondo:#eaf6fd; --celeste:#8fd0f2; --celeste-fuerte:#2f86bf; --tinta:#1f3f57; --suave:#5a7790; --linea:#cfe6f4;
+  --oro1:#fbf0cf; --oro2:#dcbc7a; --oro3:#b08a45; --plata1:#ffffff; --plata2:#c9d6e0; --plata3:#8b9cab;
+  --titulo:'Cinzel',Georgia,serif; --texto:'Cormorant Garamond',Georgia,serif; color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:radial-gradient(120% 55% at 50% 0%,#ffffff 0%,var(--fondo) 60%) fixed,var(--fondo);color:var(--tinta);
+  font-family:var(--texto);font-size:18px;line-height:1.5;padding:28px max(16px,env(safe-area-inset-left)) 64px max(16px,env(safe-area-inset-right))}
+.envoltura{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:36px}
+header{text-align:center;display:flex;flex-direction:column;gap:6px;align-items:center}
+.eyebrow{font-family:var(--titulo);font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--suave)}
+h1{margin:0;font-family:'Allura',cursive;font-weight:400;font-size:clamp(66px,15vw,116px);line-height:1.05;color:var(--celeste-fuerte);
+  text-shadow:0 1px 0 #fff,0 2px 10px rgba(143,208,242,.6);padding:0 .1em}
+.sub{margin:0 auto;max-width:56ch;color:var(--suave);font-size:19px}
+.opciones{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px}
+@media (max-width:980px){.opciones{grid-template-columns:1fr;max-width:420px;margin:0 auto;width:100%}}
+.opcion{display:flex;flex-direction:column;gap:14px;align-items:center}
+.opcion h2{margin:0;font-family:var(--titulo);font-weight:600;font-size:15px;letter-spacing:.2em;text-transform:uppercase;color:var(--celeste-fuerte);text-align:center}
+.opcion h2 span{display:block;font-family:var(--texto);font-style:italic;font-weight:500;text-transform:none;letter-spacing:0;font-size:23px;color:var(--tinta)}
+
+/* Teléfono: sobre delante, portada detrás */
+.tel{position:relative;width:100%;max-width:360px;aspect-ratio:9/16;border-radius:26px;overflow:hidden;background:#fff;
+  box-shadow:0 0 0 7px #fff,0 0 0 8px var(--linea),0 22px 50px rgba(47,134,191,.22);perspective:1400px;cursor:pointer;isolation:isolate}
+.portada{position:absolute;inset:0;background:center/cover no-repeat;transform:scale(1.08);transition:transform 2.8s cubic-bezier(.3,.1,.2,1) .6s}
+.tel.abierta .portada{transform:scale(1)}
+.nombre{position:absolute;left:0;right:0;top:var(--y,26%);text-align:center;display:flex;flex-direction:column;align-items:center;gap:.1em;
+  padding:0 var(--px,10%);opacity:0;translate:0 calc(-50% + 14px);transition:opacity 1.4s ease 2s,translate 1.6s ease 2s}
+.tel.abierta .nombre{opacity:1;translate:0 -50%}
+.nombre .mis{font-family:var(--titulo);font-weight:600;letter-spacing:.34em;font-size:calc(var(--w) * .036);color:var(--c-mis)}
+.nombre .n{font-family:var(--fuente),cursive;font-weight:400;font-size:calc(var(--w) * var(--tam,.2));line-height:1.08;padding:.06em .14em .1em;white-space:nowrap;
+  color:var(--c-nombre);text-shadow:var(--sombra-nombre)}
+.nombre .raya{width:42%;height:1px;background:var(--raya);margin:.2em 0}
+.nombre .fecha{font-family:var(--titulo);font-weight:600;letter-spacing:.2em;font-size:calc(var(--w) * .033);color:var(--c-mis)}
+.velo{position:absolute;left:0;right:0;top:calc(var(--y,26%) - 17%);height:34%;pointer-events:none;opacity:0;transition:opacity 1.4s ease 1.8s;
+  background:radial-gradient(60% 50% at 50% 50%,rgba(255,255,255,.75),rgba(255,255,255,.35) 55%,transparent 80%)}
+.tel.abierta .velo{opacity:var(--velo,1)}
+
+/* Sobre entero (opciones 1 y 3) */
+.sobre{position:absolute;inset:0;background:center/cover no-repeat;z-index:3;transform-origin:50% 60%;
+  transition:transform 2.2s cubic-bezier(.55,.05,.3,1) .5s,opacity 1.2s ease 1.5s,filter 1.6s ease .6s}
+.tel.abierta .sobre.sube{transform:translateY(-14%) scale(1.12);opacity:0;filter:brightness(1.25) blur(2px)}
+.tel.abierta .sobre.flota{transform:translateY(-38%) scale(.82) rotate(-4deg);opacity:0;filter:brightness(1.15) blur(3px)}
+.sello{position:absolute;z-index:4;left:var(--sx);top:var(--sy);width:var(--sd);aspect-ratio:1;translate:-50% -50%;border-radius:50%;
+  display:grid;place-items:center;font-family:var(--titulo);font-weight:600;font-size:calc(var(--w) * var(--st,.05));line-height:1;
+  color:#a77f3b;text-shadow:0 1px 0 rgba(255,246,214,.8),0 -1px 0 rgba(110,80,30,.45);transition:opacity .8s ease .4s;pointer-events:none}
+.sello::after{content:"";position:absolute;inset:-30%;border-radius:50%;background:radial-gradient(circle,rgba(255,240,190,.7),transparent 65%);opacity:0;animation:brillo 2.6s ease-in-out infinite}
+@keyframes brillo{50%{opacity:1}}
+.tel.abierta .sello{opacity:0}
+/* Puertas (opción 2) */
+.puerta{position:absolute;top:0;bottom:0;width:50%;background-size:200% 100%;background-repeat:no-repeat;z-index:3;backface-visibility:hidden;
+  transition:transform 2.3s cubic-bezier(.55,.05,.3,1) .35s,filter 2.3s ease .35s}
+.puerta.izq{left:0;background-position:0 0;transform-origin:0 50%}
+.puerta.der{right:0;background-position:100% 0;transform-origin:100% 50%}
+.tel.abierta .puerta{opacity:0;transition:transform 2.3s cubic-bezier(.55,.05,.3,1) .35s,filter 2.3s ease .35s,opacity .8s ease 2.2s}
+.tel.abierta .puerta.izq{transform:rotateY(88deg);filter:brightness(.75)}
+.tel.abierta .puerta.der{transform:rotateY(-88deg);filter:brightness(.75)}
+.rafaga{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:0;background:radial-gradient(42% 50% at 50% 50%,rgba(255,255,255,.98),rgba(220,242,255,.6) 40%,transparent 75%)}
+.tel.abierta .rafaga{animation:rafaga 2.4s ease .45s forwards}
+@keyframes rafaga{0%{opacity:0}35%{opacity:1}100%{opacity:0}}
+.toca{position:absolute;left:50%;bottom:5%;translate:-50%;z-index:5;padding:.55em 1.4em;border-radius:99px;white-space:nowrap;background:rgba(255,255,255,.92);
+  box-shadow:0 4px 16px rgba(47,110,150,.25);border:1px solid var(--borde-boton,#e2c88f);font:600 12.5px var(--titulo);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--celeste-fuerte);animation:pulso 2.2s ease-in-out infinite;transition:opacity .4s}
+.tel.abierta .toca{opacity:0;animation:none}
+@keyframes pulso{50%{transform:scale(1.06)}}
+.chispa{position:absolute;z-index:4;width:7px;height:7px;border-radius:50%;pointer-events:none;opacity:0;background:radial-gradient(circle,#fff 0%,var(--chispa,#ffeebd) 40%,transparent 70%);animation:sube 3.6s ease-in-out infinite}
+@keyframes sube{0%{opacity:0;transform:translateY(10px) scale(.6)}40%{opacity:1}100%{opacity:0;transform:translateY(-40px) scale(1)}}
+.tel.abierta .chispa{display:none}
+.botones{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+button{font:600 13px var(--titulo);letter-spacing:.14em;text-transform:uppercase;border-radius:99px;padding:.85em 1.4em;cursor:pointer;min-height:44px}
+.otra{background:#fff;border:1px solid var(--celeste);color:var(--celeste-fuerte)}
+.elegir{background:linear-gradient(170deg,#9fd8f5,#3f93c9);border:0;color:#fff;box-shadow:0 6px 16px rgba(47,134,191,.3)}
+.opcion.elegida .tel{box-shadow:0 0 0 7px #fff,0 0 0 10px var(--celeste-fuerte),0 22px 50px rgba(47,134,191,.35)}
+.opcion.elegida .elegir{background:var(--tinta)}
+.que{font-size:16.5px;color:var(--suave);text-align:center;max-width:36ch;margin:0}
+.elegida-msg{min-height:1.5em;text-align:center;font-family:var(--titulo);letter-spacing:.12em;color:var(--celeste-fuerte);font-size:14px;text-transform:uppercase}
+footer{text-align:center;color:var(--suave);font-size:16px}
+@media (prefers-reduced-motion:reduce){.puerta,.portada,.nombre,.sobre,.velo{transition-duration:.01s!important;transition-delay:0s!important}.toca,.chispa,.sello::after{animation:none}}
+/* Tonos por opción */
+.oro{--c-mis:#2f7fb4;--c-nombre:#2b77ad;--raya:linear-gradient(90deg,transparent,#c9a560,transparent);
+  --sombra-nombre:0 1px 0 #fff,0 0 1px #c9a560,0 2px 12px rgba(255,255,255,.9)}
+.plata{--c-mis:#3d7fa8;--c-nombre:#2e78a8;--raya:linear-gradient(90deg,transparent,#9fb2c2,transparent);--borde-boton:#b9c8d4;--chispa:#e6f4ff;
+  --sombra-nombre:0 1px 0 #fff,0 0 1px #8fa3b4,0 2px 12px rgba(255,255,255,.95)}
+.espera{aspect-ratio:9/16;width:100%;max-width:340px;border:2px dashed var(--celeste-fuerte);border-radius:28px;display:flex;flex-direction:column;justify-content:center;gap:12px;padding:28px;text-align:center;color:var(--suave);font-size:16px;box-sizing:border-box}
+.espera b{font-family:var(--titulo);letter-spacing:.14em;text-transform:uppercase;color:var(--celeste-fuerte);font-size:15px}
+</style>
+</head>
+<body>
+<div class="envoltura">
+  <header>
+    <span class="eyebrow">Mis XV años · 19 de diciembre de 2026</span>
+    <h1>María Jose</h1>
+    <p class="sub">Avance: la opción 1 está lista; toca el sello para abrir el sobre y ver su portada. Las opciones 2 y 3 están en pausa, sin diseñar.</p>
+  </header>
+
+  <div class="opciones">
+    <section class="opcion" data-n="1">
+      <h2>Opción 1<span>Té en el jardín</span></h2>
+      <div class="tel oro" role="button" tabindex="0" aria-label="Abrir la opción 1" style="--fuente:'Alex Brush';--y:22%;--tam:.17;--sx:51%;--sy:47.2%;--sd:15.4%">
+        <div class="portada" style="background-image:url(recursos/portada-1.jpg)"></div>
+        <div class="velo"></div>
+        <div class="nombre"><span class="mis">MIS XV AÑOS</span><span class="n">María Jose</span><span class="raya"></span><span class="fecha">19 · DICIEMBRE · 2026</span></div>
+        <div class="rafaga"></div>
+        <div class="sobre sube" style="background-image:url(recursos/sobre-1.jpg)"></div>
+        <span class="sello">MJ</span>
+        <span class="toca">Toca el sello para abrir</span>
+      </div>
+      <p class="que">Sobre celeste con lazo de satén blanco, sello dorado y llave antigua entre rosas blancas. Al abrir: mesa de té con tacita de porcelana, reloj de bolsillo dorado, rosas blancas, nomeolvides y mariposas.</p>
+      <div class="botones"><button class="otra">Ver de nuevo</button><button class="elegir">Elijo la 1</button></div>
+    </section>
+
+    <section class="opcion pendiente" data-n="2">
+      <h2>Opción 2<span>La puerta secreta</span></h2>
+      <div class="espera"><b>Sin diseñar todavía</b><span>Idea: puertas celestes con arco y filigrana de plata que se abren; portada con una puerta pequeña entre rosas blancas, frasquito con etiqueta y reloj de plata.</span></div>
+    </section>
+
+    <section class="opcion pendiente" data-n="3">
+      <h2>Opción 3<span>El espejo de nubes</span></h2>
+      <div class="espera"><b>Sin diseñar todavía</b><span>Idea: sobre en acuarela celeste flotando entre nubes y mariposas; portada con un espejo ovalado dorado entre nubes y naipes de corazón discretos.</span></div>
+    </section>
+  </div>
+
+  <p class="elegida-msg" id="msg" aria-live="polite"></p>
+  <footer>Invitaciones de Amor · eleganciadeamor.com</footer>
+</div>
+<script>
+document.querySelectorAll('.tel').forEach(t => {
+  for (let i = 0; i < 7; i++) {
+    const s = document.createElement('span'); s.className = 'chispa';
+    s.style.left = (15 + Math.random() * 70) + '%'; s.style.top = (25 + Math.random() * 55) + '%';
+    s.style.animationDelay = (i * .5) + 's'; t.appendChild(s);
+  }
+});
+const medir = () => document.querySelectorAll('.tel').forEach(t => t.style.setProperty('--w', t.clientWidth + 'px'));
+medir(); addEventListener('resize', medir);
+document.querySelectorAll('.opcion:not(.pendiente)').forEach(op => {
+  const tel = op.querySelector('.tel');
+  const abrir = () => tel.classList.add('abierta');
+  tel.addEventListener('click', abrir);
+  tel.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); abrir(); } });
+  op.querySelector('.otra').addEventListener('click', () => { tel.classList.remove('abierta'); setTimeout(abrir, 900); });
+  op.querySelector('.elegir').addEventListener('click', () => {
+    document.querySelectorAll('.opcion').forEach(o => o.classList.toggle('elegida', o === op));
+    tel.classList.add('abierta');
+    document.getElementById('msg').textContent = 'Elegiste la opción ' + op.dataset.n + '. Escríbenos "la ' + op.dataset.n + '" por WhatsApp.';
+    try { localStorage.setItem('maria-jose-opcion', op.dataset.n); } catch (e) {}
+  });
+});
+try { const n = localStorage.getItem('maria-jose-opcion'); if (n) document.querySelector('.opcion[data-n="' + n + '"] .elegir').click(); } catch (e) {}
+</script>
+</body>
+</html>
