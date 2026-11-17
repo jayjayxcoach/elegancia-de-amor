@@ -61,6 +61,7 @@ const CONFIG = {
 
   // ---------- Quinceañera ----------
   nombre: "Fanny",
+  apellidos: "Miranda Gaxiola",           // van debajo del nombre en la firma del espejo ("" = solo el nombre)
   arriba: "Mis XV Años",                  // texto debajo del nombre en la portada
 
   // ---------- Fecha y hora de inicio ----------
@@ -196,9 +197,9 @@ const CONFIG = {
     guirnalda: "recursos/guirnalda.webp",           // glicinias y rosas colgando
     rosal: "recursos/rosal.webp",                   // rosal de la esquina (rosas azules) (el otro lado es el mismo, volteado)
     fondoJardin: "recursos/fondo-jardin.webp",       // jardín detrás del espejo (el de Atardecer Rosa pasado a azul)
-    marcoFiligrana: "recursos/marco-ovalado.webp",   // espejo ovalado dorado (el de la plantilla Atardecer Rosa, pasado a dorado) · antes: "recursos/marco-filigrana.webp"
-    ventanaMarco: { x: 20.3, y: 20.1, w: 59.4, h: 58.8 },   // hueco del marco (%): izquierda, arriba, ancho, alto (se rellena de rosa claro)
-    textoMarco: { x: 20.3, y: 20.1, w: 59.4, h: 58.8 },   // el texto usa el mismo hueco (con margen interno), como en Atardecer Rosa            // dónde va el texto dentro del marco (%), sin pisar los adornos
+    marcoFiligrana: "recursos/marco-ovalado-oro.webp", // espejo ovalado en el mismo dorado del nombre (Gemini, 17-nov)
+    ventanaMarco: { x: 19.0, y: 18.6, w: 61.9, h: 61.6 },   // hueco del marco (%): izquierda, arriba, ancho, alto (se rellena de rosa claro)
+    textoMarco: { x: 19.0, y: 18.6, w: 61.9, h: 61.6 },   // el texto usa el mismo hueco (con margen interno), como en Atardecer Rosa            // dónde va el texto dentro del marco (%), sin pisar los adornos
     corona: "recursos/corona.webp?v=2",             // tiara dorada con aguamarinas (Gemini, 17-nov)
     esquina: "recursos/esquina.webp",               // filigrana dorada de las esquinas de abajo
     mariposa: "recursos/mariposa.webp",             // mariposas de cristal (las de la puerta)
@@ -442,6 +443,7 @@ body.esperando #fondo-fijo, body.esperando .invitacion { display: none; }   /* p
 .marco-arco .marco-img { position: relative; z-index: 2; width: 100%; height: auto; filter: drop-shadow(0 10px 16px rgba(30, 50, 100, .3)); }
 .marco-arco .texto { position: absolute; z-index: 3; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 3cqw 5.6cqw; }
 .marco-arco .texto p { font: 600 4.1cqw/1.4 var(--serif); font-variant-numeric: lining-nums; font-feature-settings: 'lnum' 1; color: var(--texto); }
+.marco-arco .firma small { display: block; margin-top: .5cqw; font: 400 6.2cqw/1.1 var(--script); }
 .marco-arco .firma { margin-top: 2.6cqw; font: 400 9cqw/1.1 var(--script) !important; font-style: normal !important; color: var(--rosa-titulo) !important; }
 /* Sin imagen del marco: arco con doble moldura dorada, como los paneles de las puertas */
 .marco-arco.sin-marco { width: 84cqw; padding: 30cqw 8cqw 15cqw; border-radius: 42cqw 42cqw 3cqw 3cqw / 36cqw 36cqw 3cqw 3cqw; background: var(--panel);
@@ -847,6 +849,7 @@ body.esperando #petalos { display: none; }
   texto('arriba', CONFIG.arriba);
   texto('mensaje-texto', CONFIG.mensaje.texto);
   texto('mensaje-firma', CONFIG.nombre);
+  if (CONFIG.apellidos) { const ap = document.createElement('small'); ap.textContent = CONFIG.apellidos; $('mensaje-firma').appendChild(ap); }
   if (CONFIG.mensaje.puente) texto('puente-frase', CONFIG.mensaje.puente); else quitar('puente-frase');
 
   // Nombres en dos líneas con "&" en medio
