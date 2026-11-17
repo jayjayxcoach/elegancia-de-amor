@@ -496,7 +496,7 @@ body.esperando #fondo-fijo, body.esperando .invitacion { display: none; }   /* p
 #vestimenta .nota { margin-top: 3cqw; }
 
 /* Cuenta regresiva: cuatro "puertitas" con moldura dorada */
-#cuenta { padding-top: 20cqw; }
+#cuenta { padding-top: 20cqw; padding-bottom: 8cqw; } /* espacio abajo: la sección recorta (overflow hidden) y cortaba el borde inferior de los marcos */
 #cuenta .titulo-script { --tam: 13cqw; text-shadow: 0 0 14px rgba(255, 248, 244, .95), 0 0 4px rgba(255, 248, 244, .9); }
 .contador { display: flex; justify-content: center; gap: 2.8cqw; margin: 4cqw auto 0; }
 .contador > div { width: 16.6cqw; padding: 6.4cqw 0 3.4cqw; border-radius: 8.3cqw 8.3cqw 1.6cqw 1.6cqw / 7.2cqw 7.2cqw 1.6cqw 1.6cqw; background: var(--panel);
