@@ -91,7 +91,8 @@ const CONFIG = {
     titulo: "y de mis padrinos",
     nombres: ["Sr. Carlos Astorga Espinoza", "Sra. Daysi Gómez Pérez"]       // [] = no aparece
   },
-  invitacion: "Tengo el honor de invitarte a celebrar esta noche tan especial",
+  invitacion: "Tengo el honor de invitarte a celebrar",
+  invitacionCierre: "Mis XV Años",          // debajo, en letra cursiva dorada ("" = no aparece)
 
   // ---------- Cuenta regresiva ----------
   cuentaRegresiva: {
@@ -291,7 +292,9 @@ body.esperando #fondo-fijo, body.esperando .invitacion { display: none; }   /* p
 }
 
 /* Textos comunes */
-.titulo-script { font: 400 var(--tam, 12cqw)/1.15 var(--script); color: var(--rosa-titulo); padding: 0 .12em; }
+.titulo-script { font: 400 var(--tam, 12cqw)/1.15 var(--script); color: #b8862f; padding: 0 .12em;
+  background: linear-gradient(180deg, #edc977 0%, #cf9c45 42%, #9a6a25 78%, #c99a3e 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, .8)) drop-shadow(0 0 5px rgba(255, 255, 255, .85)); }   /* títulos dorados */
 .parrafo { font: 600 4.7cqw/1.5 var(--serif); font-variant-numeric: lining-nums; font-feature-settings: 'lnum' 1; color: var(--texto); }
 .intro { font: italic 500 5.2cqw/1.4 var(--serif); color: var(--texto); }
 .caps { font: 600 3.5cqw/1.4 var(--caps); letter-spacing: .16em; padding-left: .16em; text-transform: uppercase; color: var(--oro-osc); }
@@ -426,10 +429,10 @@ body.esperando #fondo-fijo, body.esperando .invitacion { display: none; }   /* p
    ------------------------------------------------------------ */
 #mensaje { z-index: 3; margin-top: -34cqw; padding-bottom: 2cqw; overflow: visible; }
 /* Puente entre el espejo y los padres: la aguamarina del sobre y la frase */
-.puente { position: relative; z-index: 3; margin-top: 22cqw; }   /* cae donde el jardín ya se desvaneció */
+.puente { position: relative; z-index: 3; margin-top: 7cqw; }   /* la piedra queda entre el marco y la frase; la frase cae donde el jardín ya se desvaneció */
 .puente-frase { font: 400 9.6cqw/1.15 var(--script); color: var(--rosa-titulo); padding: 0 .12em;
   text-shadow: 0 0 14px rgba(246, 249, 255, 1), 0 0 5px rgba(246, 249, 255, 1), 0 0 26px rgba(246, 249, 255, .9); }
-.puente-gema { width: 16cqw; height: auto; margin: 0 auto 3cqw; filter: drop-shadow(0 3px 6px rgba(40, 70, 130, .35)) drop-shadow(0 0 8px rgba(220, 240, 255, .8)); }   /* como Atardecer Rosa: el espejo sube sobre la portada */
+.puente-gema { width: 16cqw; height: auto; margin: 0 auto 18cqw; filter: drop-shadow(0 3px 6px rgba(40, 70, 130, .35)) drop-shadow(0 0 8px rgba(220, 240, 255, .8)); }   /* como Atardecer Rosa: el espejo sube sobre la portada */
 #mensaje .fondo-jardin { position: absolute; inset: 0; z-index: 0; background: var(--img, linear-gradient(#e6eef9, #c9d9ef)) 50% 0 / cover no-repeat;
   -webkit-mask-image: linear-gradient(transparent 0, #000 38cqw, #000 calc(100% - 64cqw), transparent calc(100% - 22cqw));
           mask-image: linear-gradient(transparent 0, #000 38cqw, #000 calc(100% - 64cqw), transparent calc(100% - 22cqw)); }   /* el jardín se desvanece antes de la frase */
@@ -458,6 +461,7 @@ body.esperando #fondo-fijo, body.esperando .invitacion { display: none; }   /* p
 .nombres .y { display: block; font-size: .7em; line-height: 1; color: var(--oro); }
 #padrinos-caja .nombres { font-size: 9cqw; }
 #padres .invito { max-width: 74cqw; margin: 8cqw auto 0; }
+#padres .mis-xv { --tam: 14cqw; margin-top: 2cqw; }
 
 /* ------------------------------------------------------------
    PANELES (como los paneles de las puertas: arco, doble moldura dorada)
@@ -505,7 +509,7 @@ body.esperando #fondo-fijo, body.esperando .invitacion { display: none; }   /* p
 
 /* Cuenta regresiva: cuatro "puertitas" con moldura dorada */
 #cuenta { padding-top: 20cqw; padding-bottom: 8cqw; } /* espacio abajo: la sección recorta (overflow hidden) y cortaba el borde inferior de los marcos */
-#cuenta .titulo-script { --tam: 13cqw; text-shadow: 0 0 14px rgba(246, 249, 255, .95), 0 0 4px rgba(246, 249, 255, .9); }
+#cuenta .titulo-script { --tam: 13cqw; }
 .contador { display: flex; justify-content: center; gap: 2.8cqw; margin: 4cqw auto 0; }
 .contador > div { width: 16.6cqw; padding: 6.4cqw 0 3.4cqw; border-radius: 8.3cqw 8.3cqw 1.6cqw 1.6cqw / 7.2cqw 7.2cqw 1.6cqw 1.6cqw; background: var(--panel);
   box-shadow: 0 0 0 1.4px var(--oro), 0 0 0 3.4px rgba(248, 251, 255, .9), 0 0 0 4.6px var(--oro), 0 8px 18px rgba(50, 80, 140, .18); }
@@ -516,7 +520,7 @@ body.esperando #fondo-fijo, body.esperando .invitacion { display: none; }   /* p
 
 /* Galería deslizable */
 #galeria { padding-top: 20cqw; }
-#galeria .titulo-script { --tam: 13cqw; text-shadow: 0 0 14px rgba(246, 249, 255, .95); }
+#galeria .titulo-script { --tam: 13cqw; }
 .carrusel { display: flex; gap: 5cqw; overflow-x: auto; scroll-snap-type: x mandatory; padding: 5cqw 17cqw 6cqw; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
 .carrusel::-webkit-scrollbar { display: none; }
 .carrusel figure { flex: 0 0 66cqw; scroll-snap-align: center; aspect-ratio: 3 / 4.2; padding: 1.8cqw; border-radius: 33cqw 33cqw 2.4cqw 2.4cqw / 26cqw 26cqw 2.4cqw 2.4cqw; background: linear-gradient(160deg, #fbe7b4, #cf9c4c 45%, #f3d48f 70%, #b8833a); box-shadow: 0 10px 22px rgba(50, 80, 140, .25); }
@@ -529,7 +533,7 @@ body.esperando #fondo-fijo, body.esperando .invitacion { display: none; }   /* p
 #confirmacion .titulo-script { --tam: 11.5cqw; }
 #confirmacion .parrafo { margin-top: 3cqw; font-size: 5.2cqw; }
 #confirmacion .limite { margin-top: 4cqw; }
-.boton-oro { display: inline-flex; align-items: center; gap: 2.4cqw; margin-top: 6cqw; padding: 4.2cqw 10cqw; border-radius: 99px; border: 1.5px solid #e2c06f; background: linear-gradient(180deg, #b3cbec 0%, #8fb0dd 45%, #7397cd 100%); color: #fff; text-shadow: 0 1px 2px rgba(30, 55, 105, .45); font: 600 4cqw/1 var(--caps); letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; box-shadow: 0 6px 18px rgba(40, 70, 130, .35), inset 0 2px 0 rgba(255, 255, 255, .55), inset 0 -2px 3px rgba(30, 60, 120, .3); transition: transform .2s ease; }
+.boton-oro { display: inline-flex; align-items: center; gap: 2.4cqw; margin-top: 6cqw; padding: 4.2cqw 10cqw; border-radius: 99px; background: linear-gradient(180deg, #fbe7a6 0%, #e8c068 38%, #c9952f 70%, #e9c46c 100%); color: #2f4a82; font: 600 4cqw/1 var(--caps); letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; box-shadow: 0 6px 18px rgba(120, 85, 20, .35), inset 0 2px 0 rgba(255, 255, 255, .65), inset 0 -2px 3px rgba(130, 80, 10, .35); transition: transform .2s ease; }
 .boton-oro:active { transform: scale(.96); }
 .boton-oro svg { width: 5.4cqw; height: 5.4cqw; fill: currentColor; }
 
@@ -659,21 +663,7 @@ body.esperando #petalos { display: none; }
       <p class="nombres" id="padrinos-nombres"></p>
     </div>
     <p class="caps invito revela" id="invitacion"></p>
-  </section>
-
-  <!-- ============================================================
-       5. CUENTA REGRESIVA
-       ============================================================ -->
-  <section id="cuenta">
-    <div class="destellos"></div>
-    <div class="mariposa" style="--w:9cqw;left:6cqw;top:4cqw;--d:17s;--x1:16cqw;--y1:4cqw;--x2:30cqw;--y2:-4cqw;--x3:14cqw;--y3:-8cqw"><div class="cuerpo"><i></i><i></i></div></div>
-    <h2 class="titulo-script revela" id="cuenta-titulo"></h2>
-    <div class="contador revela" id="contador">
-      <div><b id="dias">0</b><span></span></div>
-      <div><b id="horas">00</b><span></span></div>
-      <div><b id="minutos">00</b><span></span></div>
-      <div><b id="segundos">00</b><span></span></div>
-    </div>
+    <p class="titulo-script mis-xv revela" id="invitacion-cierre"></p>
   </section>
 
   <!-- ============================================================
@@ -693,6 +683,21 @@ body.esperando #petalos { display: none; }
         <span class="lado" id="anio-texto"></span>
       </div>
       <p class="hora-linea" id="hora-linea"></p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       5. CUENTA REGRESIVA
+       ============================================================ -->
+  <section id="cuenta">
+    <div class="destellos"></div>
+    <div class="mariposa" style="--w:9cqw;left:6cqw;top:4cqw;--d:17s;--x1:16cqw;--y1:4cqw;--x2:30cqw;--y2:-4cqw;--x3:14cqw;--y3:-8cqw"><div class="cuerpo"><i></i><i></i></div></div>
+    <h2 class="titulo-script revela" id="cuenta-titulo"></h2>
+    <div class="contador revela" id="contador">
+      <div><b id="dias">0</b><span></span></div>
+      <div><b id="horas">00</b><span></span></div>
+      <div><b id="minutos">00</b><span></span></div>
+      <div><b id="segundos">00</b><span></span></div>
     </div>
   </section>
 
@@ -855,6 +860,7 @@ body.esperando #petalos { display: none; }
   const pd = CONFIG.padrinos || {};
   if (pd.nombres && pd.nombres.length) { texto('padrinos-titulo', pd.titulo); ponerNombres('padrinos-nombres', pd.nombres); } else quitar('padrinos-caja');
   if (CONFIG.invitacion) texto('invitacion', CONFIG.invitacion); else quitar('invitacion');
+  if (CONFIG.invitacionCierre) texto('invitacion-cierre', CONFIG.invitacionCierre); else quitar('invitacion-cierre');
 
   const cr = CONFIG.cuentaRegresiva;
   texto('cuenta-titulo', cr.titulo);
