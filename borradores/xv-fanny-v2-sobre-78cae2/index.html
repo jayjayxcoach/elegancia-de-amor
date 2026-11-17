@@ -92,8 +92,8 @@ const CONFIG = {
     titulo: "y de mis padrinos",
     nombres: ["Sr. Carlos Astorga Espinoza", "Sra. Daysi Gómez Pérez"]       // [] = no aparece
   },
-  invitacion: "Tengo el honor de invitarte a celebrar mis",
-  invitacionCierre: { numero: "15", palabra: "Años" },   // debajo, grande y dorado (como en el sobre)
+  invitacion: "Tengo el honor\nde invitarte\na celebrar mis",   // la barra-n es un salto de línea
+  invitacionCierre: "recursos/quince.webp",   // "15 AÑOS" con cristales de aguamarina (Gemini) ("" = no aparece)
 
   // ---------- Cuenta regresiva ----------
   cuentaRegresiva: {
@@ -201,6 +201,7 @@ const CONFIG = {
     corona: "recursos/corona.webp?v=2",             // tiara dorada con aguamarinas (Gemini, 17-nov)
     marcoTarjeta: "recursos/marco-tarjeta.webp",    // arco ilustrado con rosas y glicinas para las tarjetas ("" = arco hecho con código)
     puertita: "recursos/puertita.webp",              // puertita del contador ("" = cuadritos hechos con código)
+    cortinas: "recursos/cortinas.webp",              // cortinas de tul con rosas detrás de los padres
     escenaNoche: "recursos/escena-noche.webp",       // el castillo de noche detrás de "Falta poco"
     escenaCierre: "recursos/escena-escalinata.webp", // la escalinata con la zapatilla en el cierre
     esquina: "",                                     // sin esquinas doradas (el marco ilustrado ya las trae)               // filigrana dorada de las esquinas de abajo
@@ -432,15 +433,15 @@ body.esperando #fondo-fijo, body.esperando .invitacion { display: none; }   /* p
 /* ------------------------------------------------------------
    3. MENSAJE EN EL MARCO DORADO
    ------------------------------------------------------------ */
-#mensaje { z-index: 3; margin-top: -34cqw; padding-bottom: 2cqw; overflow: visible; }
+#mensaje { z-index: 3; margin-top: -34cqw; padding-bottom: 14cqw; overflow: visible; }
 /* Puente entre el espejo y los padres: la aguamarina del sobre y la frase */
-.puente { position: relative; z-index: 3; margin-top: 7cqw; }   /* la piedra queda entre el marco y la frase; la frase cae donde el jardín ya se desvaneció */
+.puente { position: relative; z-index: 3; margin-top: 0; }
 .puente-frase { font: 400 9.6cqw/1.15 var(--script); color: var(--rosa-titulo); padding: 0 .12em;
   text-shadow: 0 0 14px rgba(246, 249, 255, 1), 0 0 5px rgba(246, 249, 255, 1), 0 0 26px rgba(246, 249, 255, .9); }
-.puente-gema { width: 16cqw; height: auto; margin: 0 auto 18cqw; filter: drop-shadow(0 3px 6px rgba(40, 70, 130, .35)) drop-shadow(0 0 8px rgba(220, 240, 255, .8)); }   /* como Atardecer Rosa: el espejo sube sobre la portada */
+.puente-gema { width: 15cqw; height: auto; margin: 0 auto 6cqw; filter: drop-shadow(0 3px 6px rgba(40, 70, 130, .35)) drop-shadow(0 0 8px rgba(220, 240, 255, .8)); }   /* como Atardecer Rosa: el espejo sube sobre la portada */
 #mensaje .fondo-jardin { position: absolute; inset: 0; z-index: 0; background: var(--img, linear-gradient(#e6eef9, #c9d9ef)) 50% 0 / cover no-repeat;
-  -webkit-mask-image: linear-gradient(transparent 0, #000 38cqw, #000 calc(100% - 64cqw), transparent calc(100% - 22cqw));
-          mask-image: linear-gradient(transparent 0, #000 38cqw, #000 calc(100% - 64cqw), transparent calc(100% - 22cqw)); }   /* el jardín se desvanece antes de la frase */
+  -webkit-mask-image: linear-gradient(transparent 0, #000 38cqw, #000 calc(100% - 26cqw), transparent);
+          mask-image: linear-gradient(transparent 0, #000 38cqw, #000 calc(100% - 26cqw), transparent); }
 .marco-arco { position: relative; z-index: 2; width: 106cqw; margin: 0 0 0 -3cqw; }
 .marco-arco .relleno { position: absolute; z-index: 1; border-radius: 50%; background: radial-gradient(ellipse at 50% 45%, rgba(252, 253, 255, .97) 55%, rgba(232, 239, 250, .96) 100%); box-shadow: inset 0 0 5cqw rgba(110, 150, 210, .35); }
 .marco-arco .marco-img { position: relative; z-index: 2; width: 100%; height: auto; filter: drop-shadow(0 10px 16px rgba(30, 50, 100, .3)); }
@@ -460,13 +461,16 @@ body.esperando #fondo-fijo, body.esperando .invitacion { display: none; }   /* p
 /* ------------------------------------------------------------
    4. PADRES Y PADRINOS
    ------------------------------------------------------------ */
-#padres { padding: 5cqw 8cqw 3cqw; }
+#padres { z-index: 2; margin-top: -16cqw; padding: 40cqw 21cqw 58cqw; }   /* el texto queda entre las cortinas */
+#padres::before { content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background: var(--img-cortinas, none) 50% 0 / 100% 100% no-repeat, linear-gradient(180deg, #f6f9fe 0%, #eef3fb 100%);
+  -webkit-mask-image: linear-gradient(transparent 0, #000 16cqw); mask-image: linear-gradient(transparent 0, #000 16cqw); }   /* cortinas de tul con rosas a los costados */
 #padres .corona { --cw: 18cqw; margin-bottom: 4cqw; }
 #padres .intro { max-width: 76cqw; margin: 0 auto; }
 .nombres { margin-top: 3cqw; font: 400 10.4cqw/1.15 var(--script); color: var(--rosa-titulo); }
 .nombres .y { display: block; font-size: .7em; line-height: 1; color: var(--oro); }
 #padrinos-caja .nombres { font-size: 9cqw; }
-#padres .invito { max-width: 74cqw; margin: 8cqw auto 0; }
+#padres .invito { max-width: 70cqw; margin: 10cqw -4cqw 0; letter-spacing: .12em; padding-left: .12em; white-space: pre-line; }
 #padres .mis-xv { --tam: 14cqw; margin: 6.5cqw -8cqw -.3em; white-space: nowrap; }   /* una sola línea, centrado entre la invitación y la corona */   /* centrado entre "Tengo el honor…" y la corona de abajo */
 
 /* ------------------------------------------------------------
@@ -487,13 +491,17 @@ body.esperando #fondo-fijo, body.esperando .invitacion { display: none; }   /* p
 .panel .titulo-script + .parrafo { margin-top: 3cqw; }
 
 /* Dorado para frases y nombres */
-.puente-frase, .nombres { color: #b8862f; background: linear-gradient(180deg, #edc977 0%, #cf9c45 45%, #9a6a25 80%, #c99a3e 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+.puente-frase, .nombres .n { color: #b8862f; background: linear-gradient(180deg, #edc977 0%, #cf9c45 45%, #9a6a25 80%, #c99a3e 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
   text-shadow: none; padding: .25em .2em; margin: -.25em 0; filter: drop-shadow(0 1px 0 rgba(255, 255, 255, .8)) drop-shadow(0 0 5px rgba(255, 255, 255, .85)); }
-.nombres { font-size: 7.6cqw !important; line-height: 1.25; white-space: nowrap; }
-#padrinos-caja .nombres { font-size: 6.8cqw !important; }
+.nombres { font-size: 6.2cqw !important; line-height: 1.25; white-space: nowrap; }
+.nombres .n { display: block; }
+#padrinos-titulo { color: #8a5d1e; font-weight: 600; }
+#padrinos-caja .nombres { font-size: 5.6cqw !important; }
 .nombres .y { color: #c99a3e; -webkit-text-fill-color: #c99a3e; }
-#padres .nombres { margin-left: -6cqw; margin-right: -6cqw; }
+#padres .nombres { margin-left: -4cqw; margin-right: -4cqw; }
+#padres .intro { font-size: 4.6cqw; }
 /* "15 AÑOS": número grande dorado, legible, con filetes como en el sobre */
+.quince-img { width: 74cqw; height: auto; margin: 4cqw auto 0; filter: drop-shadow(0 4px 8px rgba(60, 80, 130, .25)); }
 .quince { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; column-gap: 3cqw; width: 80cqw; margin: 5cqw auto 0; }
 .quince b { font: 600 25cqw/1 var(--caps); letter-spacing: .02em; color: #b8862f; background: linear-gradient(180deg, #f6dc94 0%, #d6a54c 40%, #9a6a25 75%, #d4a54e 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; padding: .1em .06em; filter: drop-shadow(0 2px 2px rgba(110, 70, 20, .35)); }
 .quince .filete { height: 1.6px; background: linear-gradient(90deg, transparent, #cf9c45); position: relative; }
@@ -503,7 +511,7 @@ body.esperando #fondo-fijo, body.esperando .invitacion { display: none; }   /* p
 .quince em { grid-column: 1 / -1; margin-top: 1cqw; font: 600 7.4cqw/1 var(--caps); font-style: normal; letter-spacing: .32em; padding-left: .32em; color: #b8862f; background: linear-gradient(180deg, #edc977, #9a6a25); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
 
 /* ---- Capas: la noche asoma detrás de "Reserva la fecha" y "Misa" se monta sobre el final de la noche ---- */
-#fecha { z-index: 3; }
+#fecha { z-index: 3; margin-top: -40cqw; }   /* la tarjeta se monta sobre el final de las cortinas */
 #cuenta.con-escena { z-index: 1; margin-top: -56cqw; padding-top: 70cqw; min-height: 0; padding-bottom: 92cqw; }
 #cuenta.con-escena .escena-fondo { background-position: 50% 100%; background-size: 100% auto;
   -webkit-mask-image: linear-gradient(transparent 0, #000 14cqw); mask-image: linear-gradient(transparent 0, #000 14cqw); }   /* el borde de arriba queda escondido detrás de la tarjeta */
@@ -512,7 +520,7 @@ body.esperando #fondo-fijo, body.esperando .invitacion { display: none; }   /* p
 #eventos { z-index: 3; margin-top: -30cqw; padding-top: 0; }
 
 /* ---- Un solo marco largo para Misa, Fiesta y Vestimenta ---- */
-.marco-largo { position: relative; width: 100cqw; margin: 0 auto; padding: 42cqw 18cqw 40cqw; }
+.marco-largo { position: relative; width: 100cqw; margin: 0 auto; padding: 24cqw 18cqw 40cqw; }
 .marco-largo::before { content: ""; position: absolute; z-index: 0; left: 13.4cqw; right: 13.4cqw; top: 11.6cqw; bottom: 9cqw;
   border-radius: 36.6cqw 36.6cqw 1.6cqw 1.6cqw / 34cqw 34cqw 1.6cqw 1.6cqw; background: linear-gradient(180deg, #fbfdff 0%, #edf3fb 50%, #e3ecf8 100%); box-shadow: inset 0 0 4cqw rgba(110, 150, 210, .25); }
 .marco-largo::after { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; border-style: solid; border-width: 44.8cqw 15cqw 37cqw 15cqw;
@@ -522,6 +530,7 @@ body.esperando #fondo-fijo, body.esperando .invitacion { display: none; }   /* p
 .marco-largo > .corona { position: absolute; left: 50%; top: -6cqw; translate: -50% 0; --cw: 24cqw; z-index: 3; }
 .marco-largo .evento .titulo-script { --tam: 11cqw; }
 .marco-largo .evento .icono { --iw: 30cqw; }
+.gema-arco { display: block; width: 12cqw; height: auto; margin: 0 auto 2cqw; filter: drop-shadow(0 2px 4px rgba(40, 70, 130, .3)); }
 .conector { display: flex; flex-direction: column; align-items: center; margin: 7cqw auto; }
 .conector::before, .conector::after { content: ""; width: 1.6px; height: 8cqw; background: linear-gradient(transparent, #cf9c45); }
 .conector::after { background: linear-gradient(#cf9c45, transparent); }
@@ -716,10 +725,6 @@ body.esperando #petalos { display: none; }
         <p class="firma" id="mensaje-firma"></p></div>
       </div>
     </figure>
-    <div class="puente revela">
-      <img class="puente-gema" src="recursos/aguamarina.webp" alt="" loading="lazy" decoding="async">
-      <p class="puente-frase" id="puente-frase"></p>
-    </div>
     <div class="mariposa" style="--w:9cqw;right:7cqw;bottom:30cqw;--d:16s;--r:-3s;--giro:18deg;--x1:-12cqw;--y1:-6cqw;--x2:-22cqw;--y2:4cqw;--x3:-8cqw;--y3:8cqw"><div class="cuerpo"><i></i><i></i></div></div>
   </section>
 
@@ -728,6 +733,10 @@ body.esperando #petalos { display: none; }
        ============================================================ -->
   <section id="padres">
     <div class="destellos"></div>
+    <div class="puente revela">
+      <img class="puente-gema" src="recursos/aguamarina.webp" alt="" loading="lazy" decoding="async">
+      <p class="puente-frase" id="puente-frase"></p>
+    </div>
     <div class="revela">
       <p class="intro" id="padres-titulo"></p>
       <p class="nombres" id="padres-nombres"></p>
@@ -738,7 +747,7 @@ body.esperando #petalos { display: none; }
       <p class="nombres" id="padrinos-nombres"></p>
     </div>
     <p class="caps invito revela" id="invitacion"></p>
-    <div class="quince revela" id="invitacion-cierre"><span class="filete"></span><b></b><span class="filete"></span><em></em></div>
+    <img class="quince-img revela" id="invitacion-cierre" alt="15 años" loading="lazy" decoding="async">
   </section>
 
   <!-- ============================================================
@@ -783,6 +792,7 @@ body.esperando #petalos { display: none; }
   <section class="bloque" id="eventos">
     <div class="marco-largo">
       <div class="corona" data-corona></div>
+      <img class="gema-arco" src="recursos/aguamarina.webp" alt="" loading="lazy" decoding="async">
       <div class="evento revela" id="ceremonia">
       <div class="icono" data-icono="iconoIglesia">
         <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4v8M20.5 7.5h7"/><path d="M13 22l11-10 11 10"/><path d="M15.5 20v20h17V20"/><path d="M8 40h32"/><path d="M21 40v-6.5a3 3 0 0 1 6 0V40"/><circle cx="24" cy="25.5" r="2.4"/></svg>
@@ -920,7 +930,7 @@ body.esperando #petalos { display: none; }
     const el = $(id); el.textContent = '';
     (lista || []).forEach((n, i) => {
       if (i) { const y = document.createElement('span'); y.className = 'y'; y.textContent = '&'; el.appendChild(y); }
-      el.appendChild(document.createTextNode(n));
+      const s = document.createElement('span'); s.className = 'n'; s.textContent = n; el.appendChild(s);
     });
   };
   texto('padres-titulo', CONFIG.padres.titulo);
@@ -928,7 +938,7 @@ body.esperando #petalos { display: none; }
   const pd = CONFIG.padrinos || {};
   if (pd.nombres && pd.nombres.length) { texto('padrinos-titulo', pd.titulo); ponerNombres('padrinos-nombres', pd.nombres); } else quitar('padrinos-caja');
   if (CONFIG.invitacion) texto('invitacion', CONFIG.invitacion); else quitar('invitacion');
-  if (CONFIG.invitacionCierre) { const q = $('invitacion-cierre'); q.querySelector('b').textContent = CONFIG.invitacionCierre.numero; q.querySelector('em').textContent = CONFIG.invitacionCierre.palabra; } else quitar('invitacion-cierre');
+  if (CONFIG.invitacionCierre) $('invitacion-cierre').src = CONFIG.invitacionCierre; else quitar('invitacion-cierre');
 
   const cr = CONFIG.cuentaRegresiva;
   texto('cuenta-titulo', cr.titulo);
@@ -1028,6 +1038,7 @@ body.esperando #petalos { display: none; }
   if (IM.fondoJardin) $('fondo-jardin').style.setProperty('--img', url(IM.fondoJardin));
   if (IM.marcoTarjeta) { raiz.style.setProperty('--img-marco-tarjeta', url(IM.marcoTarjeta)); raiz.style.setProperty('--img-marco-tarjeta-url', url(IM.marcoTarjeta)); $$('.panel').forEach(p => p.classList.add('ilustrado')); }
   if (IM.puertita) { raiz.style.setProperty('--img-puertita', url(IM.puertita)); $('contador').classList.add('puertitas'); }
+  if (IM.cortinas) $('padres').style.setProperty('--img-cortinas', url(IM.cortinas));
   if (IM.escenaNoche) { $('escena-noche').style.setProperty('--img', url(IM.escenaNoche)); $('cuenta').classList.add('con-escena'); } else quitar('escena-noche');
   if (IM.escenaCierre) {
     $('escena-cierre').style.setProperty('--img', url(IM.escenaCierre)); document.querySelector('#despedida .cierre').classList.add('con-escena');
