@@ -199,12 +199,16 @@ const CONFIG = {
     ventanaMarco: { x: 19.0, y: 18.6, w: 61.9, h: 61.6 },   // hueco del marco (%): izquierda, arriba, ancho, alto (se rellena de rosa claro)
     textoMarco: { x: 19.0, y: 18.6, w: 61.9, h: 61.6 },   // el texto usa el mismo hueco (con margen interno), como en Atardecer Rosa            // dónde va el texto dentro del marco (%), sin pisar los adornos
     corona: "recursos/corona.webp?v=2",             // tiara dorada con aguamarinas (Gemini, 17-nov)
-    esquina: "recursos/esquina.webp",               // filigrana dorada de las esquinas de abajo
+    marcoTarjeta: "recursos/marco-tarjeta.webp",    // arco ilustrado con rosas y glicinas para las tarjetas ("" = arco hecho con código)
+    puertita: "recursos/puertita.webp",              // puertita del contador ("" = cuadritos hechos con código)
+    escenaNoche: "recursos/escena-noche.webp",       // el castillo de noche detrás de "Falta poco"
+    escenaCierre: "recursos/escena-escalinata.webp", // la escalinata con la zapatilla en el cierre
+    esquina: "",                                     // sin esquinas doradas (el marco ilustrado ya las trae)               // filigrana dorada de las esquinas de abajo
     mariposa: "recursos/mariposa.webp",             // mariposas de cristal (las de la puerta)
-    iconoCalendario: "recursos/icono-calendario.webp?v=2",   // calendario azul plumbago con aguamarina (Gemini, 17-nov)
-    iconoIglesia: "recursos/icono-iglesia.webp",
-    iconoRecepcion: "recursos/icono-recepcion.webp",
-    iconoVestimenta: "recursos/icono-vestimenta.webp",
+    iconoCalendario: "recursos/icono-calendario.webp?v=3",   // ilustrado en el estilo de la portada (Gemini, 17-nov)
+    iconoIglesia: "recursos/icono-iglesia.webp?v=3",   // ilustrado en el estilo de la portada (Gemini, 17-nov)
+    iconoRecepcion: "recursos/icono-recepcion.webp?v=3",   // ilustrado en el estilo de la portada (Gemini, 17-nov)
+    iconoVestimenta: "recursos/icono-vestimenta.webp?v=3",   // ilustrado en el estilo de la portada (Gemini, 17-nov)
     iconoSobre: "recursos/icono-sobre.webp",
     teEspero: "recursos/te-espero-oro.webp"          // "Te Espero" en dorado 3D
   },
@@ -482,6 +486,32 @@ body.esperando #fondo-fijo, body.esperando .invitacion { display: none; }   /* p
 .panel .titulo-script { --tam: 11cqw; }
 .panel .titulo-script + .parrafo { margin-top: 3cqw; }
 
+/* Tarjeta con el marco ilustrado (arco con rosas y glicinas): el contenido va en el hueco del arco */
+.panel.ilustrado { width: 94cqw; aspect-ratio: 848 / 1264; padding: 22cqw 17cqw 18cqw; display: flex; flex-direction: column; justify-content: center; background: none; box-shadow: none; border-radius: 0; }
+.panel.ilustrado::before { inset: auto; left: 13.4%; top: 7.8%; width: 73.2%; height: 85.4%; border: 0; z-index: 0; border-radius: 50% 50% 1.5% 1.5% / 27% 27% 1.5% 1.5%; background: linear-gradient(180deg, #fbfdff 0%, #edf3fb 70%, #e3ecf8 100%); box-shadow: inset 0 0 4cqw rgba(110, 150, 210, .25); }
+.panel.ilustrado::after { content: ""; position: absolute; inset: 0; z-index: 2; background: var(--img-marco-tarjeta) center / 100% 100% no-repeat; pointer-events: none; filter: drop-shadow(0 8px 14px rgba(40, 70, 130, .18)); }
+.panel.ilustrado > .corona { top: -7cqw; z-index: 3; }
+.panel.ilustrado .icono { --iw: 30cqw; }
+.bloque:has(.panel.ilustrado) { padding-top: 16cqw; }
+
+/* Contador con puertitas del castillo */
+.contador.puertitas { gap: 2.4cqw; }
+.contador.puertitas > div { position: relative; width: 19.5cqw; aspect-ratio: 375 / 600; padding: 0; border-radius: 0; background: var(--img-puertita) center / 100% 100% no-repeat; box-shadow: none; filter: drop-shadow(0 5px 8px rgba(10, 25, 60, .35)); }
+.contador.puertitas > div::before { content: ""; position: absolute; left: 21%; top: 35%; width: 58%; height: 33%; border-radius: 1.4cqw; background: linear-gradient(180deg, #fffdf6, #f3ead6); box-shadow: 0 0 0 1px #d6ad5c, inset 0 1px 3px rgba(120, 90, 30, .25); }
+.contador.puertitas b { position: absolute; left: 0; right: 0; top: 37%; font-size: 6.6cqw; line-height: 1.6; color: #2f4a82; }
+.contador.puertitas span { position: absolute; left: -2cqw; right: -2cqw; top: 103%; margin: 0; font-size: 2.6cqw; color: #f3d48f; text-shadow: 0 1px 2px rgba(0, 0, 0, .5); }
+
+/* Escenas del cuento detrás de algunas secciones (se funden arriba y abajo) */
+.escena-fondo { position: absolute; inset: 0; z-index: 0; background: var(--img) 50% 100% / cover no-repeat;
+  -webkit-mask-image: linear-gradient(transparent 0, #000 22cqw, #000 calc(100% - 22cqw), transparent);
+          mask-image: linear-gradient(transparent 0, #000 22cqw, #000 calc(100% - 22cqw), transparent); }
+#cuenta.con-escena { min-height: 186cqw; padding-top: 34cqw; }
+#cuenta.con-escena .titulo-script { --tam: 14cqw; }
+#cuenta.con-escena .contador { margin-top: 6cqw; }
+#despedida .cierre.con-escena { min-height: 178cqw; padding: 38cqw 0 70cqw; }
+#despedida .cierre.con-escena .frase { color: #f4f7fc; text-shadow: 0 1px 3px rgba(10, 20, 50, .8), 0 0 14px rgba(10, 20, 50, .6); }
+#despedida .cierre.con-escena .fecha-corta { color: #fff; text-shadow: 0 1px 3px rgba(10, 20, 50, .95), 0 0 10px rgba(10, 20, 50, .7); }
+
 /* Iconos: imagen de IA o dibujo de línea dorada de respaldo */
 .icono { display: flex; justify-content: center; align-items: center; width: var(--iw, 30cqw); margin: 0 auto 2cqw; }
 .icono img { width: 100%; height: auto; filter: drop-shadow(0 4px 6px rgba(130, 70, 30, .2)); }
@@ -546,7 +576,7 @@ body.esperando #fondo-fijo, body.esperando .invitacion { display: none; }   /* p
 #despedida .guirnalda { z-index: 1; }
 #despedida .cierre:not(:has(.guirnalda)) { padding-top: 22cqw; }
 #despedida .cierre:not(:has(.rosal)) { padding-bottom: 14cqw; }
-#despedida .cierre > :not(.guirnalda):not(.rosal) { position: relative; z-index: 2; }
+#despedida .cierre > :not(.guirnalda):not(.rosal):not(.escena-fondo) { position: relative; z-index: 2; }
 #despedida .frase { width: 78cqw; margin: 0 auto; font: italic 500 6.2cqw/1.4 var(--serif); color: var(--rosa-titulo); text-shadow: 0 0 12px rgba(246, 249, 255, .95), 0 0 3px rgba(246, 249, 255, .9); }
 #despedida .te-espero { width: 80cqw; height: auto; margin: 6cqw auto 0; filter: drop-shadow(0 3px 4px rgba(110, 50, 20, .35)); }
 #despedida .te-espero-texto { margin-top: 4cqw; --tam-nombre: 19cqw; }
@@ -693,6 +723,7 @@ body.esperando #petalos { display: none; }
        5. CUENTA REGRESIVA
        ============================================================ -->
   <section id="cuenta">
+    <div class="escena-fondo" id="escena-noche"></div>
     <div class="destellos"></div>
     <div class="mariposa" style="--w:9cqw;left:6cqw;top:4cqw;--d:17s;--x1:16cqw;--y1:4cqw;--x2:30cqw;--y2:-4cqw;--x3:14cqw;--y3:-8cqw"><div class="cuerpo"><i></i><i></i></div></div>
     <h2 class="titulo-script revela" id="cuenta-titulo"></h2>
@@ -794,6 +825,7 @@ body.esperando #petalos { display: none; }
        ============================================================ -->
   <section id="despedida">
     <div class="cierre">
+      <div class="escena-fondo" id="escena-cierre"></div>
       <img class="guirnalda" data-img="guirnalda" alt="" loading="lazy" decoding="async">
       <div class="destellos"></div>
       <div class="mariposa" style="--w:9cqw;right:8cqw;top:40cqw;--d:16s;--r:-4s;--giro:16deg;--x1:-14cqw;--y1:8cqw;--x2:-26cqw;--y2:-2cqw;--x3:-10cqw;--y3:-10cqw"><div class="cuerpo"><i></i><i></i></div></div>
@@ -962,6 +994,13 @@ body.esperando #petalos { display: none; }
   }
   if (IM.fondo) { $('fondo-fijo').classList.add('con-imagen'); $('fondo-fijo').style.setProperty('--img', url(IM.fondo)); }
   if (IM.fondoJardin) $('fondo-jardin').style.setProperty('--img', url(IM.fondoJardin));
+  if (IM.marcoTarjeta) { raiz.style.setProperty('--img-marco-tarjeta', url(IM.marcoTarjeta)); $$('.panel').forEach(p => p.classList.add('ilustrado')); }
+  if (IM.puertita) { raiz.style.setProperty('--img-puertita', url(IM.puertita)); $('contador').classList.add('puertitas'); }
+  if (IM.escenaNoche) { $('escena-noche').style.setProperty('--img', url(IM.escenaNoche)); $('cuenta').classList.add('con-escena'); } else quitar('escena-noche');
+  if (IM.escenaCierre) {
+    $('escena-cierre').style.setProperty('--img', url(IM.escenaCierre)); document.querySelector('#despedida .cierre').classList.add('con-escena');
+    $$('#despedida .cierre .guirnalda, #despedida .cierre .rosal').forEach(el => el.parentNode.removeChild(el));   // la escena ya trae sus flores
+  } else quitar('escena-cierre');
   // Iconos
   $$('[data-icono]').forEach(caja => {
     const ruta = IM[caja.dataset.icono];
