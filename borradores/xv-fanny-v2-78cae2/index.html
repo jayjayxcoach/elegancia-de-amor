@@ -294,7 +294,7 @@ body.esperando #fondo-fijo, body.esperando .invitacion { display: none; }   /* p
 }
 
 /* Textos comunes */
-.titulo-script { font: 400 var(--tam, 12cqw)/1.15 var(--script); color: #b8862f; padding: 0 .12em;
+.titulo-script { font: 400 var(--tam, 12cqw)/1.15 var(--script); color: #b8862f; padding: .22em .2em; margin: -.22em 0;   /* el relleno evita que el degradado corte los adornos de las letras */
   background: linear-gradient(180deg, #edc977 0%, #cf9c45 42%, #9a6a25 78%, #c99a3e 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
   filter: drop-shadow(0 1px 0 rgba(255, 255, 255, .8)) drop-shadow(0 0 5px rgba(255, 255, 255, .85)); }   /* títulos dorados */
 .parrafo { font: 600 4.7cqw/1.5 var(--serif); font-variant-numeric: lining-nums; font-feature-settings: 'lnum' 1; color: var(--texto); }
@@ -455,19 +455,20 @@ body.esperando #fondo-fijo, body.esperando .invitacion { display: none; }   /* p
 /* ------------------------------------------------------------
    4. PADRES Y PADRINOS
    ------------------------------------------------------------ */
-#padres { padding: 5cqw 8cqw 6cqw; }
+#padres { padding: 5cqw 8cqw 3cqw; }
 #padres .corona { --cw: 18cqw; margin-bottom: 4cqw; }
 #padres .intro { max-width: 76cqw; margin: 0 auto; }
 .nombres { margin-top: 3cqw; font: 400 10.4cqw/1.15 var(--script); color: var(--rosa-titulo); }
 .nombres .y { display: block; font-size: .7em; line-height: 1; color: var(--oro); }
 #padrinos-caja .nombres { font-size: 9cqw; }
 #padres .invito { max-width: 74cqw; margin: 8cqw auto 0; }
-#padres .mis-xv { --tam: 14cqw; margin-top: 2cqw; }
+#padres .mis-xv { --tam: 14cqw; margin-top: 7.5cqw; }   /* centrado entre "Tengo el honor…" y la corona de abajo */
 
 /* ------------------------------------------------------------
    PANELES (como los paneles de las puertas: arco, doble moldura dorada)
    ------------------------------------------------------------ */
-.bloque { padding: 22cqw 0 0; overflow: visible; }   /* visible: la sombra del panel no se corta */
+.bloque { padding: 22cqw 0 0; overflow: visible; }
+#fecha.bloque { padding-top: 14cqw; }   /* visible: la sombra del panel no se corta */
 .panel { position: relative; width: 82cqw; margin: 0 auto; padding: 14cqw 7cqw 14cqw;   /* con esquinas doradas, abajo 21cqw (ver más abajo) */
   border-radius: 41cqw 41cqw 3cqw 3cqw / 30cqw 30cqw 3cqw 3cqw; background: var(--panel);
   box-shadow: 0 0 0 1.6px var(--oro), 0 0 0 5px rgba(248, 251, 255, .9), 0 0 0 6.4px var(--oro), 0 18px 36px rgba(50, 80, 140, .18); }
