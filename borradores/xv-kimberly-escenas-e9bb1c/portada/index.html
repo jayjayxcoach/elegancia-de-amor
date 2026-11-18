@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Kimberly · Mis XV años</title>
+<style>
+@font-face { font-family: 'Great Vibes'; src: url(recursos/fuente-great-vibes.woff2) format('woff2'); font-display: block; }
+@font-face { font-family: 'Cinzel'; src: url(recursos/fuente-cinzel-600.woff2) format('woff2'); font-weight: 500 800; font-display: block; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 100%; height: 100%; overflow: hidden; background: #6e4a8a; }
+.pt { position: fixed; inset: 0; overflow: hidden; }
+.pt .foto { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; transform-origin: 50% 35%; }
+.pt .velo { position: absolute; inset: 0; background: linear-gradient(180deg,rgba(70,40,90,.25) 0%,rgba(70,40,90,0) 18%,rgba(90,55,115,0) 50%,rgba(95,60,120,.45) 64%,rgba(85,50,110,.72) 80%,rgba(70,40,95,.85) 100%); }
+/* las capas de la portada (1080x1920) se escalan al ancho y quedan pegadas abajo, como en la imagen aprobada */
+.lienzo { position: absolute; left: 50%; bottom: 0; width: 1080px; height: 1920px; transform-origin: 50% 100%; transform: translateX(-50%) scale(var(--s, .36)); }
+.abs { position: absolute; }
+.nombre { width: 100%; text-align: center; font-family: 'Great Vibes', cursive; font-size: 250px; line-height: 1;
+  background: linear-gradient(180deg,#ffffff 0%,#f3f0f7 35%,#b7b2c2 55%,#ffffff 72%,#a39daf 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 0 2px rgba(255,255,255,.9)) drop-shadow(0 0 18px rgba(255,235,250,.75)) drop-shadow(0 4px 6px rgba(60,25,70,.75)); }
+.lema { width: 100%; text-align: center; font-family: 'Cinzel', serif; font-weight: 700; font-size: 34px; letter-spacing: .06em; line-height: 1.4;
+  color: #fff; text-shadow: 0 0 10px rgba(255,220,245,.6), 0 2px 6px rgba(60,20,70,.85); }
+.lema .m { font-size: 44px; }
+.fecha { width: 100%; text-align: center; font-family: 'Cinzel', serif; font-weight: 700; font-size: 30px; letter-spacing: .32em; color: #fff;
+  text-shadow: 0 0 8px rgba(255,220,245,.6), 0 2px 5px rgba(60,20,70,.85); }
+/* ---- animación de entrada ---- */
+.pt .foto { animation: acerca 9s cubic-bezier(.2,.7,.3,1) both; }
+@keyframes acerca { from { transform: scale(1.12); filter: brightness(.75); } to { transform: scale(1); filter: none; } }
+.corona { animation: baja 1.6s .9s cubic-bezier(.2,.8,.3,1) both; }
+@keyframes baja { from { opacity: 0; transform: translateY(-60px) scale(.9); } to { opacity: 1; transform: none; } }
+.nombre { animation: aparece 2s 1.5s ease both; }
+@keyframes aparece { from { opacity: 0; letter-spacing: .08em; filter: blur(12px); } to { opacity: 1; } }
+.lema, .fecha, .sep { animation: sube 1.4s ease both; }
+.lema { animation-delay: 2.6s; } .sep { animation-delay: 3s; } .fecha { animation-delay: 3.3s; }
+@keyframes sube { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+.rosas { animation: rosas 2.2s .3s cubic-bezier(.2,.8,.3,1) both; }
+@keyframes rosas { from { opacity: 0; transform: translateY(120px); } to { opacity: 1; transform: none; } }
+.brillos .b { transform-box: fill-box; transform-origin: center; animation: titila 2.8s var(--d) ease-in-out infinite both; }
+@keyframes titila { 0%, 100% { opacity: .15; transform: scale(.55) rotate(0deg); } 50% { opacity: 1; transform: scale(1) rotate(25deg); } }
+.pt.pausa, .pt.pausa * { animation-play-state: paused !important; }
+.pt.quieta, .pt.quieta * { animation: none !important; }
+</style></head>
+<body>
+<svg width="0" height="0" style="position:absolute"><defs>
+ <linearGradient id="plataH" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#9c97a8" stop-opacity="0"/><stop offset=".2" stop-color="#f7f5fa"/>
+  <stop offset=".5" stop-color="#b9b4c4"/><stop offset=".8" stop-color="#ffffff"/><stop offset="1" stop-color="#9c97a8" stop-opacity="0"/></linearGradient>
+ <filter id="sombra" x="-30%" y="-60%" width="160%" height="220%"><feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#3c1946" flood-opacity=".75"/></filter>
+ <symbol id="brillo" viewBox="-50 -50 100 100"><path d="M0,-48 C4,-10 10,-4 48,0 C10,4 4,10 0,48 C-4,10 -10,4 -48,0 C-10,-4 -4,-10 0,-48 Z"/></symbol>
+</defs></svg>
+<div class="pt" id="pt">
+  <img class="foto" id="foto" src="recursos/foto-3.webp" alt="Kimberly con su vestido lila de XV años">
+  <div class="velo"></div>
+  <div class="lienzo" id="lienzo">
+    <img class="abs corona" src="recursos/corona.webp" style="left:370px;top:935px;width:340px" alt="">
+    <div class="abs nombre" style="top:1065px">Kimberly</div>
+    <div class="abs lema" style="top:1335px"><span class="m">U</span>NA NOCHE DE ELEGANCIA,<br>FAMILIA Y ALEGRÍA</div>
+    <svg class="abs capa sep" style="left:0;top:0" width="1080" height="1920" viewBox="0 0 1080 1920"><g filter="url(#sombra)" fill="none" stroke="url(#plataH)" stroke-width="3.2" stroke-linecap="round">
+ <path d="M300,1545 C360,1541 420,1519 470,1535 C495,1543 505,1561 488,1563 C474,1565 470,1549 482,1545"/>
+ <path d="M780,1545 C720,1541 660,1519 610,1535 C585,1543 575,1561 592,1563 C606,1565 610,1549 598,1545"/>
+ <path d="M390,1551 C440,1575 500,1569 540,1549 C580,1569 640,1575 690,1551" stroke-width="2.4"/>
+</g>
+<g filter="url(#sombra)"><path d="M540,1523 L552,1545 L540,1567 L528,1545 Z" fill="#f4f2f8"/><circle cx="540" cy="1545" r="5" fill="#e7a9d0"/></g></svg><svg class="abs capa brillos" style="left:0;top:0" width="1080" height="1920" viewBox="0 0 1080 1920"><g class="b" style="--d:0s"><use href="#brillo" x="148.0" y="958.0" width="44" height="44" fill="#ffffff" opacity="0.95"/></g><g class="b" style="--d:0.7s"><use href="#brillo" x="877.0" y="902.0" width="56" height="56" fill="#ffffff" opacity="0.95"/></g><g class="b" style="--d:1.4s"><use href="#brillo" x="966.0" y="1206.0" width="28" height="28" fill="#ffffff" opacity="0.95"/></g><g class="b" style="--d:2.1s"><use href="#brillo" x="79.0" y="1294.0" width="32" height="32" fill="#ffffff" opacity="0.95"/></g><g class="b" style="--d:0.4s"><use href="#brillo" x="803.0" y="163.0" width="34" height="34" fill="#ffffff" opacity="0.8"/></g><g class="b" style="--d:1.8s"><use href="#brillo" x="218.0" y="248.0" width="24" height="24" fill="#ffffff" opacity="0.7"/></g></svg>
+    <div class="abs fecha" style="top:1458px">28 · NOVIEMBRE · 2026</div>
+    <img class="abs rosas" src="recursos/rosas.webp" style="left:-20px;bottom:-150px;width:1120px" alt="">
+  </div>
+</div>
+<script>
+const q = new URLSearchParams(location.search), pt = document.getElementById('pt');
+const p = ['1', '2', '3'].includes(q.get('p')) ? q.get('p') : '3';
+document.getElementById('foto').src = 'recursos/foto-' + p + '.webp';
+function medir() { const s = Math.min(innerWidth / 1080, innerHeight / 1920 * 1.18); document.getElementById('lienzo').style.setProperty('--s', s); }
+medir(); addEventListener('resize', medir);
+if (q.has('quieta')) pt.classList.add('quieta');
+else if (q.has('espera')) { pt.classList.add('pausa'); addEventListener('message', e => { if (e.data === 'empezar') pt.classList.remove('pausa'); }); }
+</script>
+</body></html>
