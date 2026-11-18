@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mis XV Años · María Jose</title>
+<meta name="description" content="Estás invitado a mis XV años. Toca el sobre para abrir mi invitación ✨">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Invitaciones de Amor">
+<meta property="og:title" content="Mis XV Años · María Jose">
+<meta property="og:description" content="Estás invitado a mis XV años. Toca el sobre para abrir mi invitación ✨">
+<meta property="og:image" content="https://eleganciadeamor.com/borradores/xv-maria-jose-v4-fc0bfd/recursos/vista-previa.jpg?v=1">
+<meta property="og:image:width" content="1000">
+<meta property="og:image:height" content="1000">
+<meta property="og:image:alt" content="Sobre celeste abierto con naipes y rosas en un bosque encantado de Alicia en el País de las Maravillas">
+<meta property="og:url" content="https://eleganciadeamor.com/borradores/xv-maria-jose-v4-fc0bfd/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://eleganciadeamor.com/borradores/xv-maria-jose-v4-fc0bfd/recursos/vista-previa.jpg?v=1">
+<link rel="icon" href="recursos/vista-previa.jpg">
+<link rel="preload" as="image" href="recursos/apertura-marco.webp" fetchpriority="high">
+<script>
+/* ===================== DATOS DE LA INVITACIÓN (cambiar aquí) ===================== */
+const CONFIG = {
+  festejada: "María Jose",                         // María CON tilde, Jose SIN tilde (lo pidió ella)
+  fechaLarga: "Sábado 19 de diciembre de 2026",
+  fechaCorta: "19 · 12 · 2026",
+  hora: "6:00 p.m.",
+  cuentaHasta: "2026-12-19T18:00:00-05:00",       // hora de Colombia (Piedecuesta)
+  frase: "Como en un cuento de maravillas, hoy cruzo una puertita mágica hacia mis quince años: un mundo nuevo lleno de sueños, ilusiones y bendiciones, que quiero vivir contigo.",
+  bendicion: "Con la bendición de Dios, de mi familia y mi padre",
+  padre: "Ángel Torres",
+  invitacion: "Quiero invitarlos a celebrar<br>este día tan especial",
+  fiesta: { lugar: "Finca Villa Melita", direccion: "Sector La Españolita - Piedecuesta",
+            mapa: "https://www.google.com/maps/search/?api=1&query=7.01250696182251%2C-73.0598373413086" },   // la ubicación que mandó ella
+  protocolo: [["6:00 p.m.", "Llegada de invitados"], ["7:00 p.m.", "Entrada de la quinceañera"], ["8:00 p.m.", "Vals y apertura de pista"],
+              ["9:00 p.m.", "Cena"], ["10:00 p.m.", "Feliz cumpleaños · Pastel"], ["11:00 p.m.", "Hora loca"]],
+  vestimenta: { estilo: "Ellas divinas\nEllos guapos", nota: "Se reserva el color celeste en todas sus tonalidades" },
+  regalos: "Tu presencia es mi mejor regalo. Si deseas tener un detalle conmigo, tendremos lluvia de sobres el día de la fiesta.",
+  confirmacion: { whatsapp: "",                  // REGLA: el número va SOLO cuando pague (está en su ficha)
+                  mensaje: "¡Hola! Confirmo mi asistencia a los XV años de María Jose 💙" },
+  musica: "recursos/musica.mp3",                 // "Alicia en el País de las Maravillas (Título principal)"
+  video: "recursos/sobre-video.mp4?v=1",         // el sobre del bosque de los naipes animado
+  muestra: { activa: true, texto: "MUESTRA · INVITACIONES DE AMOR", aviso: "Se activa en la versión final ✨" },
+  credito: { texto: "Invitación hecha con amor por", marca: "Invitaciones de Amor", enlace: "https://eleganciadeamor.com/#nuestros-trabajos", boton: "Ver nuestros trabajos" }
+};
+</script>
+<style>
+@font-face { font-family: "Great Vibes"; src: url(recursos/fuente-great-vibes.woff2) format("woff2"); font-display: block; }
+@font-face { font-family: "Cinzel"; src: url(recursos/fuente-cinzel-600.woff2) format("woff2"); font-weight: 600; font-display: block; }
+@font-face { font-family: "Cormorant"; src: url(recursos/fuente-cormorant-500.woff2) format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Cormorant"; src: url(recursos/fuente-cormorant-600.woff2) format("woff2"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "Cormorant"; src: url(recursos/fuente-cormorant-500-italica.woff2) format("woff2"); font-weight: 500; font-style: italic; font-display: swap; }
+:root { --w: min(55.81svh, 106vw); --azul: #20406f; --crema: #fbf6ea; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { background: #0d2240; overflow-x: clip; }
+body { font-family: "Cormorant", Georgia, serif; color: var(--azul); -webkit-font-smoothing: antialiased; }
+body.cerrado { overflow: hidden; height: 100svh; }
+
+/* ---------- La escena: un solo dibujo largo; todo se posiciona en cqw (1 cqw = 1 % del ancho del dibujo) ---------- */
+#escena { position: relative; width: var(--w); margin-left: 50%; translate: -50% 0; container-type: inline-size; overflow: clip; }
+#escena .rebanadas img { display: block; width: 100%; height: auto; }
+.capa { position: absolute; left: 50%; translate: -50% 0; text-align: center; z-index: 4; }
+
+/* letras */
+.oro { color: #d9a12c; background: linear-gradient(180deg, #fff6c4 0%, #f9d66e 28%, #e6a925 52%, #b8780e 78%, #f6d272 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.script { font-family: "Great Vibes", cursive; font-weight: 400; line-height: 1.2; padding: .3em .25em .1em; }
+.caps { font-family: "Cinzel", serif; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; }
+.sombra-oro { filter: drop-shadow(0 .14cqw .14cqw rgba(95, 55, 0, .85)) drop-shadow(0 0 1.6cqw rgba(255, 255, 255, .95)); }
+.sombra-oro-noche { filter: drop-shadow(0 .14cqw .14cqw rgba(70, 40, 0, .9)) drop-shadow(0 0 .5cqw rgba(255, 214, 140, .6)) drop-shadow(0 .3cqw .8cqw rgba(0, 0, 10, .85)); }
+.claro { color: var(--azul); text-shadow: 0 0 1.6cqw rgba(255, 255, 255, .95), 0 0 .6cqw rgba(255, 255, 255, .95); }
+.oscuro { color: var(--crema); text-shadow: 0 .2cqw .9cqw rgba(0, 10, 25, .95), 0 0 2.4cqw rgba(0, 10, 25, .8); }
+.dato { font-size: 5.2cqw; line-height: 1.3; font-weight: 600; }
+.titulo { font-size: 14cqw; }
+
+/* recuadro blanco traslúcido con borde dorado fino (textos largos) */
+.recuadro { background: rgba(255, 255, 255, .74); border: 1.5px solid rgba(214, 160, 52, .9); border-radius: 3.5cqw; padding: 4cqw 5cqw; box-shadow: 0 1.5cqw 4cqw rgba(30, 60, 100, .18), inset 0 0 0 .8cqw rgba(255, 255, 255, .35); -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); }
+/* portada */
+#nombre { width: 84cqw; }
+#nombre img { display: block; width: 100%; height: auto; filter: drop-shadow(0 .3cqw .6cqw rgba(20, 40, 80, .45)); }
+#misxv { font-size: 4.8cqw; white-space: nowrap; color: var(--azul); text-shadow: 0 0 1.2cqw rgba(255, 255, 255, .95); }
+#fecha-portada { font-size: 3.8cqw; white-space: nowrap; letter-spacing: .3em; color: var(--azul); text-shadow: 0 0 1.2cqw rgba(255, 255, 255, .95); }
+
+/* espejo con la frase (flota sobre el espejo pintado) */
+.flota { position: absolute; left: 50%; translate: -50% 0; z-index: 4; animation: flotar 7s ease-in-out infinite; }
+.flota > img { display: block; width: 100%; height: auto; filter: drop-shadow(0 2cqw 2.6cqw rgba(0, 20, 50, .45)); }
+@keyframes flotar { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-1.2cqw); } }
+#espejo .interior { position: absolute; left: 19%; top: 18.7%; width: 62%; height: 61.5%; border-radius: 50%; background: radial-gradient(ellipse, #fdfcf7 0%, #f3f6fb 70%, #e4ecf7 100%);
+  display: flex; align-items: center; justify-content: center; }
+#espejo p { width: 72%; text-align: center; font-size: 4.15cqw; line-height: 1.32; font-style: italic; font-weight: 500; color: var(--azul); }
+#espejo .firma { display: block; margin-top: 1cqw; font-family: "Great Vibes", cursive; font-style: normal; font-size: 7.4cqw; line-height: 1.2; white-space: nowrap; padding-top: .2em; }
+
+/* marco del papá */
+#papa { width: 44cqw; }
+#papa .dato { font-size: 3.8cqw; }
+#papa .nombre { font-size: 9.6cqw; white-space: nowrap; margin-top: -.6cqw; }
+/* te invito + 15 años */
+#invita { width: 74cqw; }
+#invita .dato { font-size: 4.4cqw; letter-spacing: .1em; }
+#invita img { display: block; width: 58cqw; height: auto; margin: 2cqw auto 0; filter: drop-shadow(0 .5cqw 1cqw rgba(20, 40, 80, .35)); }
+/* fecha */
+#fecha { width: 76cqw; }
+#fecha .titulo { font-size: 14.5cqw; white-space: nowrap; }
+#fecha .grande { font-family: "Cinzel", serif; font-weight: 600; font-size: 6.6cqw; letter-spacing: .05em; line-height: 1.3; }
+#fecha .hora { font-size: 6cqw; margin-top: 1.4cqw; }
+/* cuenta regresiva en los paneles de las puertitas */
+#falta { font-size: 16cqw; white-space: nowrap; }
+.celda { position: absolute; translate: -50% -50%; text-align: center; z-index: 4; }
+.celda b { display: block; font-family: "Cinzel", serif; font-weight: 600; font-size: 5.4cqw; color: var(--azul); font-variant-numeric: lining-nums tabular-nums; }
+.etiqueta { position: absolute; translate: -50% 0; z-index: 4; font-family: "Cinzel", serif; font-weight: 600; font-size: 3.1cqw; letter-spacing: .12em; text-transform: uppercase; color: #fff; text-shadow: 0 .2cqw .6cqw rgba(0, 20, 50, .95); }
+/* fiesta */
+#fiesta .titulo { font-size: 17cqw; }
+#fiesta .dato { font-size: 5.6cqw; }
+#fiesta .lugar { font-size: 7cqw; line-height: 1.15; }
+.hora-linea { display: flex; align-items: center; justify-content: center; gap: 2.4cqw; margin: 1.8cqw 0; font-family: "Cinzel", serif; font-weight: 600; font-size: 5.8cqw; }
+.hora-linea::before, .hora-linea::after { content: ""; width: 6cqw; height: 1px; background: currentColor; opacity: .7; }
+.boton { display: inline-block; margin-top: 2.4cqw; padding: 3cqw 8cqw; border-radius: 99px; border: 0; cursor: pointer; text-decoration: none; white-space: nowrap;
+  font-family: "Cinzel", serif; font-weight: 600; font-size: 4.4cqw; letter-spacing: .12em; text-transform: uppercase; color: var(--azul);
+  background: linear-gradient(180deg, #fff1b3, #f2c24b 50%, #c9891a); box-shadow: 0 .6cqw 1.8cqw rgba(0, 0, 0, .35), inset 0 1px 0 rgba(255, 255, 255, .6); }
+/* protocolo: recuadro largo con línea de tiempo que va apareciendo al bajar */
+#protocolo { width: 86cqw; display: flex; flex-direction: column; align-items: center; padding: 6cqw 5cqw 8cqw; }
+#protocolo .titulo { font-size: 15cqw; line-height: 1.1; }
+#protocolo ol { list-style: none; position: relative; flex: 1; width: 100%; display: flex; flex-direction: column; justify-content: space-around; margin-top: 4cqw; }
+#protocolo ol::before { content: ""; position: absolute; left: 50%; top: 2%; bottom: 2%; width: .5cqw; translate: -50% 0; border-radius: 1cqw;
+  background: linear-gradient(180deg, rgba(230, 169, 37, 0), #e6a925 6%, #f6d272 50%, #e6a925 94%, rgba(230, 169, 37, 0)); }
+#protocolo li { position: relative; text-align: center; padding: 3cqw 0; background: radial-gradient(ellipse 60% 70% at 50% 50%, rgba(255, 255, 255, .95), rgba(255, 255, 255, 0));
+  opacity: 0; transform: translateY(5cqw); transition: opacity 1s ease, transform 1s ease; }
+#protocolo li.visto { opacity: 1; transform: none; }
+#protocolo li::before { content: ""; display: block; width: 4.6cqw; aspect-ratio: 1; margin: 0 auto 1.6cqw; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff6c4, #e6a925 60%, #a8700c); box-shadow: 0 0 0 1cqw rgba(255, 255, 255, .9), 0 0 2.4cqw rgba(230, 169, 37, .7); }
+#protocolo li b { display: block; font-family: "Cinzel", serif; font-weight: 600; font-size: 7cqw; letter-spacing: .04em; }
+#protocolo li span { display: block; font-size: 6.4cqw; font-weight: 600; line-height: 1.2; margin-top: .6cqw; }
+/* vestimenta: título sobre la glorieta del vestido + recuadro con los datos */
+#vestimenta-titulo { width: 96cqw; }
+#vestimenta-titulo .titulo { font-size: 14.5cqw; line-height: 1.05; }
+#vestimenta { width: 82cqw; }
+#vestimenta .estilo { font-family: "Cinzel", serif; font-weight: 600; font-size: 6.6cqw; letter-spacing: .08em; white-space: pre-line; line-height: 1.35; }
+#vestimenta .dato { font-size: 5.6cqw; margin-top: 2cqw; }
+/* lluvia de sobres */
+#regalos { width: 84cqw; }
+#regalos .titulo { font-size: 15cqw; line-height: 1.1; }
+#regalos .dato { font-size: 6cqw; line-height: 1.32; margin-top: 2cqw; }
+/* confirmación (dentro de la cerradura) */
+#confirma { width: 46cqw; }
+#confirma .titulo { font-size: 10.4cqw; line-height: 1.05; }
+/* dentro de la cerradura la luz es dorada: el título va en azul profundo con brillo blanco para que se lea */
+#confirma .titulo { background: none; -webkit-text-fill-color: #1d4785; color: #1d4785; filter: drop-shadow(0 0 1.2cqw rgba(255, 255, 255, .95)) drop-shadow(0 0 .3cqw rgba(255, 255, 255, .9)); }
+#confirma .dato { font-size: 5.2cqw; }
+/* cierre */
+#cierre { width: 80cqw; }
+#cierre .titulo { font-size: 20cqw; }
+#cierre .nombre { width: 70cqw; margin: -2cqw auto 0; }
+#cierre .nombre img { display: block; width: 100%; height: auto; }
+#cierre .caps { font-size: 3.8cqw; letter-spacing: .3em; color: #fff3d6; margin-top: 1cqw; }
+
+/* aparecen al bajar */
+.revela { opacity: 0; transition: opacity 1.2s ease, transform 1.2s ease; transform: translate(-50%, 4cqw); translate: none; }
+.revela.visto { opacity: 1; transform: translate(-50%, 0); }
+.flota.revela { transform: none; }
+/* mariposas y destellos encima del dibujo */
+.chispa { position: absolute; z-index: 5; width: .8cqw; aspect-ratio: 1; border-radius: 50%; pointer-events: none; background: #fff3c4;
+  box-shadow: 0 0 1.2cqw .4cqw rgba(255, 220, 140, .7); animation: vuela var(--t) ease-in-out infinite, brilla calc(var(--t) / 3) ease-in-out infinite; animation-delay: var(--d); }
+@keyframes vuela { 0%, 100% { translate: 0 0; } 33% { translate: 3cqw -4cqw; } 66% { translate: -2.5cqw -1.5cqw; } }
+@keyframes brilla { 0%, 100% { opacity: .15; } 50% { opacity: 1; } }
+
+/* ---------- Sobre (video al tocar) ---------- */
+#sobre { position: fixed; inset: 0; z-index: 100; overflow: hidden; background: #a9c9e8; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: opacity .9s ease; }
+#sobre .caja, #sobre video { position: absolute; left: 50%; top: 50%; width: max(100vw, 100svh * .5625); height: max(100svh, 100vw / .5625); translate: -50% -50%; object-fit: cover; }
+#sobre .caja { background: url(recursos/apertura-marco.webp) center / cover no-repeat; }
+#sobre video { opacity: 0; }
+#sobre.reproduciendo video { opacity: 1; }
+#sobre .toca { position: absolute; left: 50%; bottom: max(6%, env(safe-area-inset-bottom) + 18px); translate: -50% 0; white-space: nowrap; padding: .65em 1.6em; border-radius: 99px; z-index: 2;
+  font-family: "Cinzel", serif; font-weight: 600; font-size: clamp(12px, 3.6vw, 16px); letter-spacing: .16em; text-transform: uppercase; color: var(--azul); background: rgba(250, 252, 255, .93); box-shadow: 0 4px 18px rgba(0, 0, 0, .3); }
+#sobre.reproduciendo .toca { opacity: 0; transition: opacity .3s; }
+#sobre.fuera { opacity: 0; pointer-events: none; }
+
+/* música, aviso, pie, marca de agua */
+#musica-boton { position: fixed; right: 14px; bottom: max(14px, env(safe-area-inset-bottom)); z-index: 90; width: 48px; height: 48px; border-radius: 50%; border: 0; cursor: pointer;
+  background: linear-gradient(180deg, #fbe7a6, #c99a3e); box-shadow: 0 3px 12px rgba(0, 0, 0, .4); color: var(--azul); font-size: 20px; display: none; }
+#musica-boton.ver { display: block; }
+#musica-boton.pausado { opacity: .7; }
+#aviso { position: fixed; left: 50%; bottom: 80px; translate: -50% 0; z-index: 120; padding: .8em 1.4em; border-radius: 99px; background: rgba(250, 252, 255, .97); color: var(--azul);
+  font-family: "Cormorant", serif; font-weight: 600; font-size: 17px; box-shadow: 0 6px 20px rgba(0, 0, 0, .35); opacity: 0; pointer-events: none; transition: opacity .3s; white-space: nowrap; }
+#aviso.ver { opacity: 1; }
+footer { padding: 26px 16px 34px; text-align: center; font-size: 15px; color: rgba(240, 246, 255, .8); }
+footer a { color: #e9c36a; text-decoration: none; }
+#marca-agua { position: fixed; inset: 0; z-index: 110; pointer-events: none; background: var(--marca) 0 0 / 260px 200px repeat; }
+body.muestra { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+body.muestra img, body.muestra video { pointer-events: none; -webkit-user-drag: none; }
+@media print { body.muestra > * { display: none !important; } }
+#nombre { top: 10.19cqw; }
+#misxv { top: 46.76cqw; }
+#fecha-portada { top: 52.96cqw; }
+#espejo { top: 181.94cqw; width: 80cqw; }
+#papa { top: 394.63cqw; }
+#invita { top: 507.41cqw; }
+#fecha { top: 649.26cqw; }
+#falta { top: 836.57cqw; }
+#fiesta { top: 978.24cqw; width: 62cqw; }
+#vestimenta-titulo { top: 1365.46cqw; }
+#vestimenta { top: 1479.35cqw; }
+#regalos { top: 1586.11cqw; }
+#confirma { top: 1709.44cqw; width: 50cqw; }
+#cierre { top: 1820.65cqw; }
+#protocolo { top: 1078.15cqw; height: 274.35cqw; }
+.flota.revela { translate: -50% 0; }
+
+</style>
+</head>
+<body class="cerrado">
+
+<div id="sobre" role="button" aria-label="Toca el sobre para abrir la invitación">
+  <div class="caja"></div>
+  <video playsinline webkit-playsinline muted preload="auto"></video>
+  <div class="toca">Toca el sobre para abrir</div>
+</div>
+
+<main id="escena">
+  <div class="rebanadas"><img src="recursos/escena-01.webp" alt="" width="1080" height="1935" fetchpriority="high"><img src="recursos/escena-02.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-03.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-04.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-05.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-06.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-07.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-08.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-09.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-10.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-11.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-12.webp" alt="" width="1080" height="215" loading="lazy"></div>
+
+  <!-- 1. PORTADA: el árbol de la puertita -->
+  <div class="capa" id="nombre"><img src="recursos/nombre-oro.webp" alt="María Jose"></div>
+  <div class="capa caps" id="misxv">Mis XV años</div>
+  <div class="capa caps" id="fecha-portada" data-campo="fechaCorta"></div>
+
+  <!-- 2. LA CAÍDA I: el espejo con la frase -->
+  <div class="flota revela" id="espejo"><img src="recursos/marco-ovalado-oro.webp" alt=""><div class="interior"><p><span data-campo="frase"></span><span class="firma oro" data-campo="festejada"></span></p></div></div>
+
+  <!-- 3. LA CAÍDA II: el marco con el papá -->
+  <div class="capa revela" id="papa">
+    <p class="dato claro" data-campo="bendicion"></p>
+    <div class="nombre script oro sombra-oro" data-campo="padre"></div>
+  </div>
+
+  <!-- 4. EL SALÓN DE AJEDREZ: te invito + 15 años -->
+  <div class="capa revela" id="invita">
+    <p class="dato caps claro" id="invitacion"></p>
+    <img src="recursos/quince.webp" alt="15 años">
+  </div>
+
+  <!-- 5. LA MESITA DE CRISTAL: reserva la fecha -->
+  <div class="capa revela" id="fecha">
+    <div class="titulo script oro sombra-oro">Reserva la fecha</div>
+    <p class="grande claro" data-campo="fechaLarga"></p>
+    <p class="hora dato claro">A partir de las <b data-campo="hora"></b></p>
+  </div>
+
+  <!-- 6. LA PARED DE LAS PUERTITAS: falta poco -->
+  <div class="capa script oro sombra-oro revela" id="falta">Falta poco</div>
+  <div class="celda" style="left:12.04cqw;top:892.59cqw"><b id="c0">00</b></div><div class="etiqueta" style="left:12.04cqw;top:900.74cqw">Días</div><div class="celda" style="left:37.31cqw;top:892.59cqw"><b id="c1">00</b></div><div class="etiqueta" style="left:37.31cqw;top:900.74cqw">Horas</div><div class="celda" style="left:63.06cqw;top:892.59cqw"><b id="c2">00</b></div><div class="etiqueta" style="left:63.06cqw;top:900.74cqw">Min</div><div class="celda" style="left:88.24cqw;top:892.59cqw"><b id="c3">00</b></div><div class="etiqueta" style="left:88.24cqw;top:900.74cqw">Seg</div>
+
+  <!-- 7. LA ENTRADA AL JARDÍN: fiesta -->
+  <div class="capa revela" id="fiesta">
+    <div class="titulo script oro sombra-oro-noche">Fiesta</div>
+    <p class="dato lugar oscuro" id="fiesta-lugar"></p>
+    <p class="dato oscuro" id="fiesta-direccion"></p>
+    <div class="hora-linea oscuro" style="color:#fff3d6" data-campo="hora"></div>
+    <a class="boton" id="fiesta-mapa" target="_blank" rel="noopener">Ver ubicación</a>
+  </div>
+
+  <!-- 8. EL CAMINO DE AJEDREZ: orden de protocolo -->
+  <div class="capa recuadro" id="protocolo">
+    <div class="titulo script oro sombra-oro">Orden de Protocolo</div>
+    <ol class="claro" id="protocolo-lista"></ol>
+  </div>
+
+  <!-- 9. LA GLORIETA: vestimenta -->
+  <div class="capa revela" id="vestimenta-titulo"><div class="titulo script oro sombra-oro">Código de Vestimenta</div></div>
+  <div class="capa recuadro revela" id="vestimenta">
+    <p class="estilo claro" id="vestimenta-estilo"></p>
+    <p class="dato claro" id="vestimenta-nota"></p>
+  </div>
+
+  <!-- 10. LA MERIENDA: lluvia de sobres -->
+  <div class="capa recuadro revela" id="regalos">
+    <div class="titulo script oro sombra-oro">Lluvia de Sobres</div>
+    <p class="dato claro" data-campo="regalos"></p>
+  </div>
+
+  <!-- 11. LA CERRADURA DORADA: confirmación -->
+  <div class="capa revela" id="confirma">
+    <div class="titulo script oro sombra-oro">Confirma tu Asistencia</div>
+    <p class="dato claro">Me encantaría compartir este sueño contigo</p>
+    <a class="boton" id="confirmacion-boton" target="_blank" rel="noopener">Confirmar</a>
+  </div>
+
+  <!-- 12. TE ESPERO -->
+  <div class="capa revela" id="cierre">
+    <div class="titulo script oro sombra-oro-noche">Te espero</div>
+    <div class="nombre"><img src="recursos/nombre-oro.webp" alt="María Jose"></div>
+    <p class="caps" data-campo="fechaCorta"></p>
+  </div>
+</main>
+
+<footer id="credito"></footer>
+<button id="musica-boton" aria-label="Pausar o poner la música">♪</button>
+<audio id="musica" loop preload="auto"></audio>
+<div id="aviso"></div>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const C = CONFIG;
+  document.querySelectorAll('[data-campo]').forEach(e => e.textContent = C[e.dataset.campo] || '');
+  $('invitacion').innerHTML = C.invitacion;
+  $('fiesta-lugar').textContent = C.fiesta.lugar; $('fiesta-direccion').textContent = C.fiesta.direccion; $('fiesta-mapa').href = C.fiesta.mapa;   // el mapa SÍ funciona en la muestra
+  C.protocolo.forEach(([h, t]) => { const li = document.createElement('li'); li.innerHTML = '<b></b><span></span>'; li.children[0].textContent = h; li.children[1].textContent = t; $('protocolo-lista').appendChild(li); });
+  $('vestimenta-estilo').textContent = C.vestimenta.estilo; $('vestimenta-nota').textContent = C.vestimenta.nota;
+  const cr = C.credito;
+  $('credito').innerHTML = cr.texto + '<br><a href="' + cr.enlace + '" target="_blank" rel="noopener">' + cr.marca + ' · ' + cr.boton + ' ›</a>';
+
+  /* WhatsApp: solo se activa en la versión final pagada */
+  const aviso = $('aviso'); aviso.textContent = C.muestra.aviso; let tA;
+  const mostrarAviso = e => { e.preventDefault(); aviso.classList.add('ver'); clearTimeout(tA); tA = setTimeout(() => aviso.classList.remove('ver'), 2200); };
+  const boton = $('confirmacion-boton');
+  if (C.confirmacion.whatsapp && !C.muestra.activa) boton.href = 'https://wa.me/' + C.confirmacion.whatsapp.replace(/\D/g, '') + '?text=' + encodeURIComponent(C.confirmacion.mensaje);
+  else { boton.removeAttribute('href'); boton.addEventListener('click', mostrarAviso); }
+
+  /* marca de agua (antes del pago); ?sinmarca solo la quita para revisar */
+  if (C.muestra.activa && !location.search.includes('sinmarca')) {
+    document.body.classList.add('muestra');
+    const t = C.muestra.texto;
+    const fila = (x, y) => "<text x='" + x + "' y='" + y + "' text-anchor='middle' font-family='Georgia,serif' font-size='14' font-weight='700' letter-spacing='2.5' fill='rgba(30,50,90,.38)' stroke='rgba(255,255,255,.35)' stroke-width='.5'>" + t + "</text>";
+    const svg = "<svg xmlns='http://www.w3.org/2000/svg' width='260' height='200'><g transform='rotate(-28 130 100)'>" + fila(130, 70) + fila(0, 160) + fila(260, 160) + "</g></svg>";
+    const capa = document.createElement('div'); capa.id = 'marca-agua'; capa.setAttribute('aria-hidden', 'true');
+    capa.style.setProperty('--marca', 'url("data:image/svg+xml,' + encodeURIComponent(svg) + '")');
+    document.body.appendChild(capa);
+    ['contextmenu', 'dragstart', 'selectstart', 'copy', 'cut'].forEach(ev => document.addEventListener(ev, e => e.preventDefault()));
+    document.addEventListener('keydown', e => { const k = (e.key || '').toLowerCase(), m = e.ctrlKey || e.metaKey;
+      if (e.key === 'F12' || (m && ['s', 'u', 'p', 'c', 'a'].includes(k)) || (m && e.shiftKey && ['i', 'j', 'c'].includes(k))) e.preventDefault(); });
+  }
+
+  /* cuenta regresiva */
+  const meta = new Date(C.cuentaHasta).getTime(), dos = n => String(n).padStart(2, '0');
+  const cuenta = () => { const r = Math.max(0, meta - Date.now());
+    $('c0').textContent = Math.floor(r / 864e5); $('c1').textContent = dos(Math.floor(r % 864e5 / 36e5));
+    $('c2').textContent = dos(Math.floor(r % 36e5 / 6e4)); $('c3').textContent = dos(Math.floor(r % 6e4 / 1e3)); };
+  cuenta(); setInterval(cuenta, 1000);
+
+  /* destellos por todo el dibujo */
+  const esc = $('escena');
+  for (let i = 0; i < 50; i++) {
+    const l = document.createElement('span'); l.className = 'chispa';
+    l.style.left = (4 + Math.random() * 92) + '%'; l.style.top = (Math.random() * 100) + '%';
+    l.style.setProperty('--t', (6 + Math.random() * 7).toFixed(1) + 's'); l.style.setProperty('--d', (-Math.random() * 8).toFixed(1) + 's');
+    esc.appendChild(l);
+  }
+
+  /* aparecen al bajar */
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visto'); io.unobserve(e.target); } }), { threshold: .15 });
+  document.querySelectorAll('.revela, #protocolo li').forEach(e => io.observe(e));
+
+  /* música */
+  const musica = $('musica'), mb = $('musica-boton'); musica.src = C.musica;
+  const tocar = () => { const p = musica.play(); if (p && p.then) p.then(() => mb.classList.remove('pausado')).catch(() => mb.classList.add('pausado')); };
+  mb.addEventListener('click', () => { if (musica.paused) tocar(); else { musica.pause(); mb.classList.add('pausado'); } });
+
+  /* sobre: tocar → video (los naipes salen volando) → la escena */
+  const sobre = $('sobre'), vid = sobre.querySelector('video');
+  vid.muted = true; vid.defaultMuted = true; vid.src = C.video;   // el video va sin sonido para no cortar la canción (iPhone)
+  let abierto = false, listo = false;
+  const terminar = () => {
+    if (listo) return; listo = true;
+    sobre.classList.add('fuera'); document.body.classList.remove('cerrado'); window.scrollTo(0, 0);
+    setTimeout(() => sobre.remove(), 1000);
+  };
+  const abrir = () => {
+    if (abierto) return; abierto = true; tocar(); mb.classList.add('ver');
+    sobre.classList.add('reproduciendo');
+    vid.play().catch(terminar);
+    vid.ontimeupdate = () => { if (vid.duration && vid.currentTime > vid.duration - .45) terminar(); };
+    vid.onended = terminar; setTimeout(terminar, 9000);
+  };
+  sobre.addEventListener('click', abrir);
+  if (location.search.includes('directo')) { sobre.remove(); document.body.classList.remove('cerrado'); mb.classList.add('ver'); }
+})();
+</script>
+</body>
+</html>
