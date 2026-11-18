@@ -1162,7 +1162,8 @@ body.esperando #petalos { display: none; }
       if (e.key === 'F12' || (mod && ['s', 'u', 'p', 'c', 'a'].includes(k)) || (mod && e.shiftKey && ['i', 'j', 'c'].includes(k))) e.preventDefault();
     });
     // mapas y WhatsApp: avisan que se activan en la versión final
-    ['ceremonia-mapa', 'recepcion-mapa', 'confirmacion-boton'].forEach(id => { const b = $(id); if (b) b.addEventListener('click', mostrarAviso); });
+    // REGLA DE JAY (18-nov): en la muestra SOLO el WhatsApp avisa que se activa en la versión final; los mapas funcionan para que vean a dónde llegar
+    ['confirmacion-boton'].forEach(id => { const b = $(id); if (b) b.addEventListener('click', mostrarAviso); });
   }
 
   /* ---------- Música ---------- */
