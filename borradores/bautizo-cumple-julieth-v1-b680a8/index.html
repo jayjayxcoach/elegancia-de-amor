@@ -12,7 +12,7 @@
 <meta property="og:title" content="Mi Bautizo y mis 3 añitos · Julieth">
 <meta property="og:description" content="Estás invitado a mi bautizo y a mi cumple de 3 añitos 💖 Toca el sobre para abrir tu invitación ✨">
 <meta property="og:url" content="https://eleganciadeamor.com/borradores/bautizo-cumple-julieth-v1-b680a8/">
-<meta property="og:image" content="https://eleganciadeamor.com/borradores/bautizo-cumple-julieth-v1-b680a8/recursos/vista-previa.jpg?v=1">
+<meta property="og:image" content="https://eleganciadeamor.com/borradores/bautizo-cumple-julieth-v1-b680a8/recursos/vista-previa.jpg?v=2">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1000">
 <meta property="og:image:height" content="1000">
@@ -97,7 +97,8 @@ const CONFIG = {
 
   credito: { texto: "Página hecha con amor por", marca: "Invitaciones de Amor", boton: "Ver nuestros trabajos", enlace: "https://eleganciadeamor.com/#nuestros-trabajos" },
 
-  muestra: { activa: true, texto: "MUESTRA · INVITACIONES DE AMOR", aviso: "Se activa en la versión final ✨" },
+  muestra: { activa: true,   // true = vista previa: marca de agua + botones bloqueados. Solo poner false cuando PAGUE.
+              texto: "MUESTRA · INVITACIONES DE AMOR", aviso: "Se activa en la versión final ✨" },
 
   imagenes: {
     portada: "recursos/portada.webp?v=1",       // Julieth idol con las Guerreras K-pop (Gemini, desde su foto)
@@ -282,10 +283,10 @@ body.abierto #musica-boton { display: grid; }
 @keyframes baila { 0%,100% { transform: rotate(-10deg) translateY(0); } 50% { transform: rotate(10deg) translateY(-3px); } }
 
 /* ---------- vista previa (muestra) ---------- */
-#marca-agua { position: fixed; inset: 0; z-index: 101; pointer-events: none; background: var(--marca) 0 0 / 260px 200px repeat; }
+#marca-agua { position: fixed; inset: 0; z-index: 250; pointer-events: none; background: var(--marca) 0 0 / 260px 200px repeat; }
 body.muestra { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
 body.muestra img, body.muestra video { pointer-events: none; -webkit-user-drag: none; }
-#aviso { position: fixed; left: 50%; bottom: 88px; z-index: 203; translate: -50% 0; padding: 10px 18px; border-radius: 99px; background: rgba(120,70,170,.94); color: #fff; font: 700 15px/1.2 var(--cuerpo); white-space: nowrap; opacity: 0; transform: translateY(10px); transition: opacity .3s, transform .3s; pointer-events: none; }
+#aviso { position: fixed; left: 50%; bottom: 88px; z-index: 260; translate: -50% 0; padding: 10px 18px; border-radius: 99px; background: rgba(120,70,170,.94); color: #fff; font: 700 15px/1.2 var(--cuerpo); white-space: nowrap; opacity: 0; transform: translateY(10px); transition: opacity .3s, transform .3s; pointer-events: none; }
 #aviso.ver { opacity: 1; transform: none; }
 @media print { body.muestra > * { display: none !important; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01s !important; animation-iteration-count: 1 !important; transition-duration: .01s !important; } }
@@ -399,6 +400,7 @@ body.muestra img, body.muestra video { pointer-events: none; -webkit-user-drag: 
 <script>
 (function () {
   const C = CONFIG, I = C.imagenes, $ = id => document.getElementById(id);
+  const BLOQUEADA = !!C.muestra.activa;   // REGLA: hasta que pague, ningún botón (mapas, WhatsApp) funciona
   const url = s => 'url("' + s + '")';
   const txt = (id, s) => { const e = $(id); if (e) e.textContent = s; };
   const img = (id, s) => { const e = $(id); if (!e) return; if (s) e.src = s; else e.remove(); };
@@ -450,7 +452,7 @@ body.muestra img, body.muestra video { pointer-events: none; -webkit-user-drag: 
       $(pre + '-datos').appendChild(d);
     });
     const b = $(pre + '-mapa'); b.textContent = '📍 ' + E.boton;
-    if (E.enlace) b.href = E.enlace; else b.addEventListener('click', aviso);
+    if (E.enlace && !BLOQUEADA) b.href = E.enlace; else { b.removeAttribute('href'); b.addEventListener('click', aviso); }
   }
   evento(C.bautizo, 'ba', I.iconoIglesia, I.bautizo);
   evento(C.fiesta, 'fi', I.iconoTorta);
@@ -460,7 +462,7 @@ body.muestra img, body.muestra video { pointer-events: none; -webkit-user-drag: 
   const co = C.confirmacion;
   img('co-icono', I.iconoSobre); txt('co-titulo', co.titulo); txt('co-texto', co.texto);
   const cb = $('co-boton'); cb.textContent = '💌 ' + co.boton;
-  if (co.whatsapp) cb.href = `https://wa.me/${co.whatsapp}?text=${encodeURIComponent(co.mensaje)}`; else cb.addEventListener('click', aviso);
+  if (co.whatsapp && !BLOQUEADA) cb.href = `https://wa.me/${co.whatsapp}?text=${encodeURIComponent(co.mensaje)}`; else { cb.removeAttribute('href'); cb.addEventListener('click', aviso); }
 
   $('de-escena').style.backgroundImage = url(I.cierre);
   txt('de-titulo', C.despedida.titulo); txt('de-frase', C.despedida.frase);
