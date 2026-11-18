@@ -634,10 +634,13 @@ body { background: #f6dde7; }
 #despedida .te-espero { position: relative; z-index: 5; width: 56cqw; }
 
 /* ---------- Portada (imagen 9:16 + letras en código como Niralys) ---------- */
-#portada { aspect-ratio: 9 / 16; height: auto; min-height: 0; max-height: none; background: #f6dde7; }
+#portada { aspect-ratio: 9 / 16; height: auto; min-height: 0; max-height: none; background: transparent; }
 #portada::after { display: none !important; }
 #portada .portada-img { position: absolute; inset: 0; top: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%;
-  -webkit-mask-image: linear-gradient(#000 92%, transparent 100%); mask-image: linear-gradient(#000 92%, transparent 100%); transform: none; animation: none !important; }
+  -webkit-mask-image: linear-gradient(#000 80%, rgba(0,0,0,.6) 90%, transparent 100%); mask-image: linear-gradient(#000 80%, rgba(0,0,0,.6) 90%, transparent 100%); transform: none; animation: none !important; }
+/* unión natural portada → flores de abajo: la guirnalda sube y se mezcla con las rosas de la portada */
+#mensaje { position: relative; z-index: 2; margin-top: -18cqw; }
+#mensaje .guirnalda { top: -4cqw; -webkit-mask-image: linear-gradient(transparent 0, rgba(0,0,0,.55) 18%, #000 38%); mask-image: linear-gradient(transparent 0, rgba(0,0,0,.55) 18%, #000 38%); }
 #portada .velo, #portada .encabezado, #portada .corona { display: none !important; }
 #portada .destellos, #portada .mariposa { z-index: 6; }
 #portada .baja { z-index: 7; bottom: 2.5cqw; color: #fff6ec; text-shadow: 0 1px 5px rgba(80, 20, 45, .85); }
