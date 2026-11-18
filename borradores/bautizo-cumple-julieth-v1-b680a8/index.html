@@ -47,7 +47,7 @@ const CONFIG = {
   apertura: {
     textoAbrir: "Toca el sobre para abrir",
     imagen: "recursos/sobre.webp?v=1",
-    video: "",                                  // video del sobre abriéndose ("" = animación hecha con código)
+    video: "recursos/sobre-video.mp4?v=1",       // el sobre se abre (video de Gemini, acelerado) ("" = animación hecha con código)
     selloX: 50, selloY: 64                      // dónde está la gema del sobre (%)
   },
 
@@ -177,7 +177,7 @@ section { position: relative; padding: 14cqw 0; }
 #apertura .flash { position: absolute; inset: 0; background: radial-gradient(circle at var(--x) var(--y), #fff 0, rgba(255,230,245,.95) 25%, rgba(255,200,235,0) 70%); opacity: 0; pointer-events: none; }
 #apertura.abriendo .fondo-sobre { transform: scale(1.35); filter: brightness(1.4) saturate(1.2); }
 #apertura.abriendo .flash { animation: flash 1.4s ease-in forwards; }
-#apertura.abriendo .toca, #apertura.abriendo .anillo { opacity: 0; transition: opacity .3s; }
+#apertura.abriendo .toca, #apertura.abriendo .anillo, #apertura.reproduciendo .toca, #apertura.reproduciendo .anillo { opacity: 0; transition: opacity .3s; }
 @keyframes flash { 0% { opacity: 0; } 60% { opacity: 1; } 100% { opacity: 1; } }
 #apertura.fuera { opacity: 0; transition: opacity .9s ease; pointer-events: none; }
 .chispa { position: absolute; font-size: var(--t); color: var(--c); pointer-events: none; text-shadow: 0 0 10px #fff; animation: estalla 1.3s cubic-bezier(.2,.7,.3,1) forwards; }
@@ -509,7 +509,7 @@ body.muestra img, body.muestra video { pointer-events: none; -webkit-user-drag: 
   ap.querySelector('.flash').style.setProperty('--x', A.selloX + '%'); ap.querySelector('.flash').style.setProperty('--y', A.selloY + '%');
   const vid = ap.querySelector('video'); if (A.video) vid.src = A.video; else vid.remove();
   let abierto = false;
-  function terminar() { ap.classList.add('fuera'); document.body.classList.remove('cerrado'); document.body.classList.add('abierto'); window.scrollTo(0, 0); setTimeout(() => ap.remove(), 1000); }
+  function terminar() { if (ap.classList.contains('fuera')) return; ap.classList.add('fuera'); document.body.classList.remove('cerrado'); document.body.classList.add('abierto'); window.scrollTo(0, 0); setTimeout(() => ap.remove(), 1000); }
   function chispas() {
     const sim = ['♥', '✦', '★', '♥', '✧'], col = ['#ff8cc6', '#b48ef0', '#fff', '#ffc1e3'];
     for (let i = 0; i < 26; i++) {
@@ -522,7 +522,7 @@ body.muestra img, body.muestra video { pointer-events: none; -webkit-user-drag: 
   function abrir() {
     if (abierto) return; abierto = true; sonar();
     if (A.video) {
-      vid.style.opacity = 1; vid.play().catch(() => {}); vid.onended = terminar; setTimeout(terminar, 6000);
+      ap.classList.add('reproduciendo'); vid.style.opacity = 1; vid.play().catch(() => { vid.style.opacity = 0; ap.classList.add('abriendo'); chispas(); setTimeout(terminar, 1500); }); vid.onended = terminar; setTimeout(terminar, 8000);
     } else { ap.classList.add('abriendo'); chispas(); setTimeout(terminar, 1500); }
   }
   ap.addEventListener('click', abrir);
