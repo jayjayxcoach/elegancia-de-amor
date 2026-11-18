@@ -85,14 +85,14 @@ const CONFIG = {
 
   // ---------- Padres y padrinos ----------
   padres: {
-    titulo: "Con la bendición de Dios y el amor de mis padres",
-    nombres: ["[Nombre del papá]", "[Nombre de la mamá]"]   // PENDIENTE: pedírselos a la clienta
+    titulo: "Con la bendición de Dios, de mi familia y mi padre",
+    nombres: ["Ángel Torres"]
   },
   padrinos: {
     titulo: "y de mis padrinos",
-    nombres: []       // [] = no aparece · PENDIENTE: ¿tiene padrinos?
+    nombres: []       // [] = no aparece (ella dijo: "no le pone los padrinos")
   },
-  invitacion: "Tengo el honor\nde invitarte\na celebrar mis",   // la barra-n es un salto de línea
+  invitacion: "Quiero invitarlos\na celebrar este día\ntan especial",   // la barra-n es un salto de línea
   invitacionCierre: "recursos/quince.webp",   // "15 AÑOS" con cristales de aguamarina (Gemini) ("" = no aparece)
 
   // ---------- Cuenta regresiva ----------
@@ -111,7 +111,7 @@ const CONFIG = {
   // ---------- Ceremonia (lugar vacío "" = no aparece) ----------
   ceremonia: {
     titulo: "Misa",
-    lugar: "",   // PENDIENTE: no sabemos si hay misa ("" = no aparece)
+    lugar: "",   // no lleva eucaristía (lo dijo ella) → en su lugar va el orden de protocolo
     direccion: "",
     hora: "",
     boton: "Ver ubicación",
@@ -122,17 +122,30 @@ const CONFIG = {
   recepcion: {
     titulo: "Fiesta",
     lugar: "Finca Villa Melita",
-    direccion: "[Dirección y ciudad: pendiente]",
+    direccion: "",   // PENDIENTE: dirección y ciudad (no las dio)
     hora: "6:00 p.m.",
     boton: "Ver ubicación",
     enlace: "https://www.google.com/maps/search/?api=1&query=Finca%20Villa%20Melita"   // PENDIENTE: confirmar ciudad
   },
 
+  // ---------- Orden de protocolo (lista vacía [] = no aparece) ----------
+  protocolo: {
+    titulo: "Orden de protocolo",
+    pasos: [
+      ["6:00 p.m.", "Llegada de invitados"],
+      ["7:00 p.m.", "Entrada de la quinceañera"],
+      ["8:00 p.m.", "Vals y apertura de pista"],
+      ["9:00 p.m.", "Cena"],
+      ["10:00 p.m.", "Feliz cumpleaños · Pastel"],
+      ["11:00 p.m.", "Hora loca"]
+    ]
+  },
+
   // ---------- Código de vestimenta ----------
   vestimenta: {
     titulo: "Código de vestimenta",
-    estilo: "[Pendiente]",
-    nota: "[Por confirmar con la quinceañera]"
+    estilo: "Ellas divinas\nEllos guapos",
+    nota: "Se reserva el color celeste en todas sus tonalidades"
   },
 
   // ---------- Mis recuerdos (fotos) ----------
@@ -589,6 +602,13 @@ body.esperando #fondo-fijo, body.esperando .invitacion { display: none; }   /* p
 
 /* Vestimenta */
 #vestimenta .estilo { margin-top: 2cqw; font: 600 7cqw/1.2 var(--caps); letter-spacing: .14em; padding-left: .14em; text-transform: uppercase; color: var(--rosa-titulo); }
+#vestimenta .estilo { white-space: pre-line; font-size: 5.6cqw; line-height: 1.45; }
+/* Orden de protocolo: hora a la izquierda, momento a la derecha */
+.protocolo-lista { list-style: none; margin: 3cqw auto 0; width: 88%; }
+.protocolo-lista li { display: grid; grid-template-columns: 36% 1fr; align-items: baseline; gap: 3.4cqw; padding: 2.1cqw 0; border-bottom: 1px solid rgba(207, 156, 69, .35); text-align: left; }
+.protocolo-lista li:last-child { border-bottom: 0; }
+.protocolo-lista b { font: 600 3.5cqw/1.2 var(--caps); letter-spacing: .04em; color: var(--oro-osc); text-align: right; white-space: nowrap; }
+.protocolo-lista span { font: 600 4.6cqw/1.25 var(--serif); color: var(--texto); }
 #vestimenta .nota { margin-top: 3cqw; }
 
 /* Cuenta regresiva: cuatro "puertitas" con moldura dorada */
@@ -812,6 +832,12 @@ body.esperando #petalos { display: none; }
       <p class="hora" id="recepcion-hora"></p>
       <a class="boton-linea" id="recepcion-mapa" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg><span></span></a>
       </div>
+      <div class="conector revela" id="conector-3"><img src="recursos/aguamarina.webp" alt="" loading="lazy" decoding="async"></div>
+      <div class="evento revela" id="protocolo">
+      <div class="icono" data-icono="iconoCalendario"></div>
+      <h2 class="titulo-script" id="protocolo-titulo" style="--tam:9.6cqw"></h2>
+      <ol class="protocolo-lista" id="protocolo-lista"></ol>
+      </div>
       <div class="conector revela" id="conector-2"><img src="recursos/aguamarina.webp" alt="" loading="lazy" decoding="async"></div>
       <div class="evento revela" id="vestimenta">
       <div class="icono" data-icono="iconoVestimenta">
@@ -966,6 +992,11 @@ body.esperando #petalos { display: none; }
   });
 
   const ve = CONFIG.vestimenta;
+  const pr = CONFIG.protocolo || {};
+  if (pr.pasos && pr.pasos.length) {
+    texto('protocolo-titulo', pr.titulo);
+    pr.pasos.forEach(([h, t]) => { const li = document.createElement('li'); li.innerHTML = '<b></b><span></span>'; li.children[0].textContent = h; li.children[1].textContent = t; $('protocolo-lista').appendChild(li); });
+  } else { quitar('protocolo'); quitar('conector-3'); }
   texto('vestimenta-titulo', ve.titulo);
   texto('vestimenta-estilo', ve.estilo);
   if (ve.nota) texto('vestimenta-nota', ve.nota); else quitar('vestimenta-nota');
