@@ -37,11 +37,12 @@
 const CONFIG = {
 
   nombre: "Julieth",
+  apellidos: "Ascencio Guadalupe",
   titulo1: "Mi Bautizo",
   titulo2: "y mis 3 añitos",
 
-  // Fecha y hora de inicio (hora de Perú). La HORA es de muestra: falta que la mamá la confirme.
-  fecha: { anio: 2026, mes: 11, dia: 28, hora: 15, minuto: 0 },
+  // Fecha y hora de inicio (hora de Perú): la del bautizo.
+  fecha: { anio: 2026, mes: 11, dia: 28, hora: 16, minuto: 0 },
   zona: "-05:00",
 
   apertura: {
@@ -66,18 +67,18 @@ const CONFIG = {
   bautizo: {
     titulo: "Mi Bautizo",
     texto: "Recibiré el sacramento del bautismo",
-    lugar: "",                 // nombre de la iglesia o parroquia
-    direccion: "",
-    hora: "",                  // ej. "3:00 p. m."
+    lugar: "Parroquia San Jerónimo",
+    direccion: "",             // falta la dirección
+    hora: "4:00 p. m.",
     boton: "Cómo llegar",
     enlace: ""                 // enlace de Google Maps
   },
   fiesta: {
     titulo: "Mi Fiesta",
     texto: "Después, ¡a celebrar mis 3 añitos!",
-    lugar: "",
-    direccion: "",
-    hora: "",
+    lugar: "Local Ilitos",
+    direccion: "",             // falta la dirección
+    hora: "6:00 p. m.",
     boton: "Cómo llegar",
     enlace: ""
   },
@@ -88,7 +89,7 @@ const CONFIG = {
     titulo: "Confirma tu asistencia",
     texto: "Me haría muy feliz que me acompañes. Por favor, confírmame si vienes 💖",
     boton: "Confirmar asistencia",
-    whatsapp: "",              // número con código de país, sin + ni espacios (ej. 51917791398)
+    whatsapp: "51917791398",   // el de la mamá (ella lo pidió: "al mismo número")
     mensaje: "¡Hola! Confirmo mi asistencia al bautizo y al cumple de 3 añitos de Julieth 💖"
   },
 
@@ -208,6 +209,7 @@ body.abierto #portada .fecha { animation: aparece .8s ease 1.7s forwards; }
 /* ---------- mensaje ---------- */
 #mensaje .hola { font: 700 5cqw/1 var(--titulo); color: var(--lila-medio); letter-spacing: .06em; }
 #mensaje .nombre-chico { width: 64%; margin: 1cqw auto 3cqw; }
+#mensaje .apellidos { margin: -2cqw 0 4cqw; font: 700 4.4cqw/1.2 var(--titulo); color: var(--rosa-fuerte); letter-spacing: .08em; }
 #mensaje p { font: 600 4.5cqw/1.6 var(--cuerpo); color: var(--texto); }
 
 /* ---------- papás y padrinos ---------- */
@@ -316,7 +318,7 @@ body.muestra img, body.muestra video { pointer-events: none; -webkit-user-drag: 
   <section id="mensaje">
     <div class="tarjeta rev">
       <div class="hola" id="ms-hola"></div>
-      <img class="nombre-chico" id="ms-nombre" alt="">
+      <img class="nombre-chico" id="ms-nombre" alt=""><div class="apellidos" id="ms-apellidos"></div>
       <p id="ms-texto"></p>
     </div>
   </section>
@@ -416,7 +418,7 @@ body.muestra img, body.muestra video { pointer-events: none; -webkit-user-drag: 
   txt('pt-t1', C.titulo1); txt('pt-t2', C.titulo2);
   txt('pt-fecha', `${cap(diaSemana)} ${F.dia} · ${cap(MESES[F.mes - 1])} · ${F.anio}`);
 
-  txt('ms-hola', C.mensaje.arriba); img('ms-nombre', I.nombre); $('ms-nombre').alt = C.nombre; txt('ms-texto', C.mensaje.texto);
+  txt('ms-hola', C.mensaje.arriba); img('ms-nombre', I.nombre); $('ms-nombre').alt = C.nombre; txt('ms-apellidos', C.apellidos || ''); txt('ms-texto', C.mensaje.texto);
 
   txt('pa-bendicion', C.bendicion);
   [[C.padres, 'pa-t1', 'pa-n1'], [C.padrinos, 'pa-t2', 'pa-n2']].forEach(([g, t, n]) => {
