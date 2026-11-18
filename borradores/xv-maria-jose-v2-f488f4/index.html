@@ -1225,7 +1225,7 @@ body.esperando #petalos { display: none; }
     if (pidio) setTimeout(abrir, 350);
   }
   const vid = ap.querySelector('video.video');
-  if (AP.video) { vid.src = AP.video; ap.classList.add('con-video'); } else vid.remove();
+  if (AP.video) { vid.muted = true; vid.defaultMuted = true; vid.setAttribute('muted', ''); vid.src = AP.video; ap.classList.add('con-video'); } else vid.remove();   // el video va SIN sonido para no quitarle el audio a la canción (iPhone)
   function finVideo() {
     if (ap.classList.contains('abriendo')) return;
     ap.classList.add('abriendo');
