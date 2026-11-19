@@ -44,6 +44,7 @@ const CONFIG = {
   vestimenta: "Formal<br>El verde es solo para la quinceañera",   // MUESTRA: por confirmar
   confirmacion: { whatsapp: "", mensaje: "¡Hola! Confirmo mi asistencia a los XV años de Breanny ✨" },
   musica: "recursos/musica.mp3",
+  sobreVideo: "recursos/sobre-video.mp4",          // animación del sobre (video de Gemini); "" = se abre con luz dorada
   muestra: { activa: true, texto: "MUESTRA · INVITACIONES DE AMOR", aviso: "Se activa en la versión final ✨" },
   credito: { texto: "Invitación hecha con amor por", marca: "Invitaciones de Amor", enlace: "https://eleganciadeamor.com/#nuestros-trabajos", boton: "Ver nuestros trabajos" }
 };
@@ -149,7 +150,12 @@ body.cerrado { overflow: hidden; height: 100svh; }
 #sobre .destello { position: absolute; inset: 0; background: radial-gradient(circle at 51.7% 50.7%, #fff6d8 0, #f3d58c 35%, rgba(240, 200, 110, 0) 75%); opacity: 0; transition: opacity 1.4s ease .5s; }
 #sobre .toca { position: absolute; left: 50%; bottom: max(7%, env(safe-area-inset-bottom) + 20px); translate: -50% 0; white-space: nowrap; padding: .65em 1.6em; border-radius: 99px;
   font-family: "Cinzel", serif; font-weight: 600; font-size: clamp(12px, 3.6vw, 16px); letter-spacing: .16em; text-transform: uppercase; color: #2f4529; background: rgba(250, 244, 226, .93); box-shadow: 0 4px 18px rgba(0, 0, 0, .35); }
-#sobre.abierto .caja { transform: scale(1.35); }
+#sobre video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: none; }
+#sobre.con-video video { display: block; }
+#sobre.con-video .caja { visibility: hidden; }
+#sobre.con-video.abierto .destello { opacity: 0; }
+#sobre.con-video.final .destello { opacity: 1; transition: opacity .5s ease; }
+#sobre.abierto:not(.con-video) .caja { transform: scale(1.35); }
 #sobre.abierto .destello { opacity: 1; }
 #sobre.abierto .toca, #sobre.abierto .sello { opacity: 0; transition: opacity .3s; }
 #sobre.fuera { opacity: 0; pointer-events: none; }
@@ -194,7 +200,7 @@ body.muestra img { pointer-events: none; -webkit-user-drag: none; }
 <body class="cerrado">
 
 <div id="sobre" role="button" aria-label="Abrir la invitación">
-  <div class="caja"></div><div class="sello"></div><div class="destello"></div>
+  <div class="caja"></div><video id="sobre-video" playsinline webkit-playsinline muted preload="auto" poster="recursos/sobre.webp"></video><div class="sello"></div><div class="destello"></div>
   <div class="toca">Toca el sello para abrir</div>
 </div>
 
@@ -340,12 +346,27 @@ body.muestra img { pointer-events: none; -webkit-user-drag: none; }
   mb.addEventListener('click', () => { if (musica.paused) tocar(); else { musica.pause(); mb.classList.add('pausado'); } });
 
   /* sobre: tocar → zoom al sello y luz dorada → la escena */
-  const sobre = $('sobre');
+  const sobre = $('sobre'), video = $('sobre-video');
+  let cerrando = false;
+  const quitarSobre = () => {
+    if (cerrando) return; cerrando = true;
+    sobre.classList.add('final');
+    setTimeout(() => { sobre.classList.add('fuera'); document.body.classList.remove('cerrado'); window.scrollTo(0, 0); }, 450);
+    setTimeout(() => sobre.remove(), 1500);
+  };
+  if (C.sobreVideo) { sobre.classList.add('con-video'); video.src = C.sobreVideo;
+    video.addEventListener('error', () => sobre.classList.remove('con-video'));
+    video.addEventListener('timeupdate', () => { if (video.duration && video.currentTime >= video.duration - .35) quitarSobre(); });
+    video.addEventListener('ended', quitarSobre); }
   const abrir = () => {
     if (sobre.classList.contains('abierto')) return;
     sobre.classList.add('abierto'); tocar(); mb.classList.add('ver');
-    setTimeout(() => { sobre.classList.add('fuera'); document.body.classList.remove('cerrado'); window.scrollTo(0, 0); }, 1900);
-    setTimeout(() => sobre.remove(), 2900);
+    if (sobre.classList.contains('con-video')) {
+      video.muted = true; video.playbackRate = 1.25; const pr = video.play();
+      if (pr && pr.catch) pr.catch(() => { sobre.classList.remove('con-video'); setTimeout(quitarSobre, 1900); });
+      setTimeout(() => { if (video.currentTime < .1) { sobre.classList.remove('con-video'); setTimeout(quitarSobre, 1900); } }, 5000);
+      setTimeout(quitarSobre, 15000);
+    } else setTimeout(quitarSobre, 1900);
   };
   sobre.addEventListener('click', abrir);
   if (location.search.includes('directo')) { sobre.remove(); document.body.classList.remove('cerrado'); mb.classList.add('ver'); }
