@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mis XV años · Breanny</title>
+<meta name="description" content="Estás invitado a los XV años de Breanny. Toca el sello para abrir tu invitación ✨">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Invitaciones de Amor">
+<meta property="og:title" content="Mis XV años · Breanny">
+<meta property="og:description" content="Estás invitado a los XV años de Breanny. Toca el sello para abrir tu invitación ✨">
+<meta property="og:image" content="https://eleganciadeamor.com/borradores/xv-breanny-v5-470aa9/recursos/vista-previa.jpg">
+<meta property="og:image:width" content="600">
+<meta property="og:image:height" content="600">
+<meta property="og:image:alt" content="Sobre verde con sello dorado de 15 años a la orilla de un lago encantado">
+<meta property="og:url" content="https://eleganciadeamor.com/borradores/xv-breanny-v5-470aa9/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://eleganciadeamor.com/borradores/xv-breanny-v5-470aa9/recursos/vista-previa.jpg">
+<link rel="icon" href="recursos/vista-previa.jpg">
+<link rel="preload" as="image" href="recursos/sobre.webp" fetchpriority="high">
+<script>
+/* ===================== DATOS DE LA INVITACIÓN (cambiar aquí) ===================== */
+const CONFIG = {
+  festejada: "Breanny",
+  fecha: "Sábado 16 de enero de 2027",
+  fechaCorta: "16 · enero · 2027",
+  cuentaHasta: "2027-01-16T17:00:00-05:00",      // hora de la misa, hora de Ecuador
+  frase: "Dicen que los deseos que se le piden a una estrella se cumplen. El mío está por llegar, y quiero vivirlo contigo.",
+  padres: ["Luis Barreiro Mendoza", "Alejandra Lucas"],     // MUESTRA: el papá es inventado; cambiar por los reales
+  padrinos: ["Jorge Zambrano Vélez", "Carmen Vélez de Zambrano"],   // MUESTRA: inventados
+  misa: { hora: "5:00 pm", lugar: "Iglesia La Dolorosa", direccion: "Manta",
+          mapa: "https://www.google.com/maps/search/?api=1&query=Iglesia+La+Dolorosa+Manta+Ecuador" },
+  recepcion: { hora: "7:00 pm", lugar: "Comité de Inepaca", direccion: "Calle 14 y avenida 16, Manta",
+               mapa: "https://www.google.com/maps/search/?api=1&query=Calle+14+y+Avenida+16+Manta+Ecuador" },
+  // ITINERARIO: misa y recepción son reales; vals, cena, pastel y baile son horas de MUESTRA (la clienta las manda)
+  itinerario: [
+    { hora: "5:00 pm", momento: "Misa", icono: "iglesia" },
+    { hora: "7:00 pm", momento: "Recepción", icono: "copas" },
+    { hora: "8:00 pm", momento: "Vals", icono: "vals" },
+    { hora: "8:30 pm", momento: "Cena", icono: "cena" },
+    { hora: "9:30 pm", momento: "Pastel", icono: "pastel" },
+    { hora: "10:00 pm", momento: "¡A bailar!", icono: "baile" }
+  ],
+  vestimenta: "Formal<br>El verde es solo para la quinceañera",   // MUESTRA: por confirmar
+  confirmacion: { whatsapp: "", mensaje: "¡Hola! Confirmo mi asistencia a los XV años de Breanny ✨" },
+  musica: "recursos/musica.mp3",
+  muestra: { activa: true, texto: "MUESTRA · INVITACIONES DE AMOR", aviso: "Se activa en la versión final ✨" },
+  credito: { texto: "Invitación hecha con amor por", marca: "Invitaciones de Amor", enlace: "https://eleganciadeamor.com/#nuestros-trabajos", boton: "Ver nuestros trabajos" }
+};
+</script>
+<style>
+@font-face { font-family: "Great Vibes"; src: url(recursos/fuente-great-vibes.woff2) format("woff2"); font-display: block; }
+@font-face { font-family: "Cinzel"; src: url(recursos/fuente-cinzel-600.woff2) format("woff2"); font-weight: 600; font-display: block; }
+@font-face { font-family: "Cormorant"; src: url(recursos/fuente-cormorant-500.woff2) format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Cormorant"; src: url(recursos/fuente-cormorant-600.woff2) format("woff2"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "Cormorant"; src: url(recursos/fuente-cormorant-500-italica.woff2) format("woff2"); font-weight: 500; font-style: italic; font-display: swap; }
+:root { --w: min(55.81svh, 106vw); --noche: #0b1733; --crema: #f7f0de; --salvia: #3f5a3a; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { background: var(--noche); overflow-x: clip; }
+body { font-family: "Cormorant", Georgia, serif; color: var(--crema); -webkit-font-smoothing: antialiased; }
+body.cerrado { overflow: hidden; height: 100svh; }
+
+/* ---------- La escena: una sola imagen larga, centrada; en el teléfono la portada llena la pantalla ---------- */
+#escena { position: relative; width: var(--w); margin-left: 50%; translate: -50% 0; container-type: inline-size; overflow: clip; }
+#escena .rebanadas img { display: block; width: 100%; height: auto; }
+.capa { position: absolute; left: 0; width: 100%; text-align: center; }
+.angosto { left: 50%; translate: -50% 0; width: 74cqw; }
+
+/* dorado de los títulos: degradado cálido con brillo, sin contorno oscuro */
+.oro { color: #d4a849; background: linear-gradient(180deg, #fbe7a6 0%, #e2b85c 38%, #b07f2c 72%, #e9c36a 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.script { font-family: "Great Vibes", cursive; font-weight: 400; line-height: 1.15; padding: .12em .25em; }
+.caps { font-family: "Cinzel", serif; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; }
+.luz { filter: drop-shadow(0 0 .35cqw rgba(255, 214, 140, .5)) drop-shadow(0 .3cqw .5cqw rgba(30, 18, 4, .6)); }
+#nombre.luz { filter: drop-shadow(0 0 .3cqw rgba(255, 220, 150, .5)) drop-shadow(0 .35cqw .6cqw rgba(45, 25, 5, .85)) drop-shadow(0 0 2.2cqw rgba(45, 30, 10, .45)); }
+.dato { font-size: 5.2cqw; line-height: 1.35; color: var(--crema); text-shadow: 0 .2cqw .9cqw rgba(0, 8, 25, .95), 0 0 2.4cqw rgba(0, 8, 25, .8); }
+.dato b { font-weight: 600; }
+.pendiente { font-style: italic; opacity: .78; }
+.filete { display: block; width: 34cqw; height: 1.5px; margin: 2.2cqw auto; background: linear-gradient(90deg, transparent, #e2b85c 30%, #fbe7a6 50%, #e2b85c 70%, transparent); }
+
+/* portada */
+#persona, #franja { position: absolute; display: block; height: auto; pointer-events: none; }
+#franja { z-index: 3; }
+#corona { z-index: 4; }
+#corona img { width: 32cqw; display: block; margin: 0 auto; filter: drop-shadow(0 .4cqw .6cqw rgba(30, 18, 4, .5)); }
+#nombre { z-index: 4; font-size: 23cqw; }
+#misxv { z-index: 4; font-size: 4.6cqw; color: #fff8e6; text-shadow: 0 .2cqw .8cqw rgba(40, 25, 5, .85); }
+#fecha-portada { z-index: 4; font-size: 4cqw; color: #fff1c9; letter-spacing: .3em; text-shadow: 0 .2cqw .8cqw rgba(40, 25, 5, .85); }
+.estrella { position: absolute; z-index: 2; width: 9cqw; aspect-ratio: 1; translate: -50% -50%; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, .95) 0, rgba(200, 225, 255, .55) 22%, rgba(160, 200, 255, 0) 65%); animation: titila 3.2s ease-in-out infinite; mix-blend-mode: screen; }
+@keyframes titila { 0%, 100% { opacity: .55; scale: .85; } 50% { opacity: 1; scale: 1.15; } }
+
+/* secciones */
+/* piezas que flotan sobre la escena, de frente, con un vaivén suave */
+.flota { position: absolute; left: 50%; translate: -50% 0; z-index: 4; animation: flotar 7s ease-in-out infinite; filter: drop-shadow(0 2.5cqw 3cqw rgba(0, 6, 20, .6)); }
+.flota > img { display: block; width: 100%; height: auto; }
+.flota .interior { position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+@keyframes flotar { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-1.3cqw); } }
+#espejo p { width: 78%; font-size: 5.2cqw; font-style: italic; line-height: 1.35; color: var(--crema); text-shadow: 0 0 1.5cqw rgba(0, 10, 30, .9); }
+.titulo { font-size: 11cqw; }
+.sub { font-size: 4.4cqw; }
+#invita .quince { font-family: "Cinzel", serif; font-weight: 600; font-size: 21cqw; line-height: 1; letter-spacing: .03em; }
+#invita .anos { font-size: 7cqw; letter-spacing: .35em; padding-left: .35em; margin-top: 1cqw; }
+#cuenta { height: 0; }
+#cuenta .celda { position: absolute; top: 0; translate: 0 -50%; text-align: center; }
+#cuenta .celda b { display: block; font-family: "Cinzel", serif; font-weight: 600; font-size: 7.4cqw; color: #fff4d0; text-shadow: 0 .2cqw .7cqw rgba(0, 25, 10, .9); font-variant-numeric: lining-nums tabular-nums; }
+#cuenta .celda span { display: block; font-family: "Cinzel", serif; font-size: 2.7cqw; letter-spacing: .15em; color: #f7f0de; text-shadow: 0 .2cqw .6cqw rgba(0, 25, 10, .95); text-transform: uppercase; }
+#falta { font-size: 14cqw; }
+#eventos { justify-content: space-evenly; padding: 7cqw 0 13cqw; }
+#eventos .dato { font-size: 4.2cqw; line-height: 1.25; }
+#eventos .boton { font-size: 2.7cqw; white-space: nowrap; margin-top: 1.2cqw; padding: 1.5cqw 4.5cqw; }
+.evento .titulo { font-size: 9cqw; line-height: 1.05; }
+.icono { display: block; width: 10.5cqw; height: auto; margin: 0 auto .6cqw; filter: drop-shadow(0 .3cqw .5cqw rgba(0, 0, 0, .5)); }
+#vestimenta-marco .titulo { font-size: 8.5cqw; line-height: 1.05; }
+.iconos-vest { display: flex; gap: 6cqw; justify-content: center; margin: .8cqw 0 1cqw; }
+.iconos-vest img { width: 8.5cqw; height: auto; filter: drop-shadow(0 .3cqw .5cqw rgba(0, 0, 0, .5)); }
+#vestimenta-marco .dato { font-size: 3.9cqw; line-height: 1.2; }
+#sesion { font-size: 12cqw; }
+#itinerario { justify-content: flex-start; padding-top: 12cqw; }
+#itinerario .titulo { font-size: 10.5cqw; line-height: 1.1; margin-bottom: 1.5cqw; }
+#itinerario-lista { list-style: none; width: 88%; display: flex; flex-direction: column; gap: 1.7cqw; }
+#itinerario-lista li { display: grid; grid-template-columns: 9.5cqw 1fr; align-items: center; column-gap: 3.2cqw; text-align: left; }
+#itinerario-lista img { width: 9.5cqw; height: 9.5cqw; object-fit: contain; filter: drop-shadow(0 .3cqw .5cqw rgba(0, 0, 0, .5)); }
+#itinerario-lista .hora { display: block; font-family: "Cinzel", serif; font-weight: 600; font-size: 3.3cqw; letter-spacing: .12em; color: #e9c36a; }
+#itinerario-lista .momento { display: block; font-size: 5cqw; line-height: 1.1; color: var(--crema); }
+#itinerario-lista li + li { border-top: 1px solid rgba(233, 195, 106, .25); padding-top: 1.7cqw; }
+.boton { display: inline-block; margin-top: 2cqw; padding: 1.8cqw 5.5cqw; border-radius: 99px; font-family: "Cinzel", serif; font-weight: 600; font-size: 3.3cqw; letter-spacing: .14em; text-transform: uppercase; text-decoration: none;
+  color: #2f4529; background: linear-gradient(180deg, #fbe7a6, #dcae55 55%, #c08f37); box-shadow: 0 .6cqw 1.8cqw rgba(0, 0, 0, .45), inset 0 1px 0 rgba(255, 255, 255, .6); cursor: pointer; border: 0; }
+#fotos { height: 0; }
+.foto-marco { top: 0; }
+.foto-marco .foto { position: absolute; object-fit: cover; }
+.foto-marco .foto + img { position: relative; }
+#cierre .titulo { font-size: 20cqw; }
+#cierre .nombre { font-size: 15cqw; }
+
+/* animaciones al bajar */
+.revela { opacity: 0; transform: translateY(4cqw); transition: opacity 1.2s ease, transform 1.2s ease; }
+.revela.visto { opacity: 1; transform: none; }
+.luciernaga { position: absolute; z-index: 5; width: .9cqw; aspect-ratio: 1; border-radius: 50%; pointer-events: none; background: #ffe9a8;
+  box-shadow: 0 0 1.4cqw .5cqw rgba(255, 210, 110, .75); animation: vuela var(--t) ease-in-out infinite, brilla calc(var(--t) / 3) ease-in-out infinite; animation-delay: var(--d); }
+@keyframes vuela { 0%, 100% { translate: 0 0; } 33% { translate: 3cqw -4cqw; } 66% { translate: -2.5cqw -1.5cqw; } }
+@keyframes brilla { 0%, 100% { opacity: .15; } 50% { opacity: 1; } }
+
+/* ---------- Sobre ---------- */
+#sobre { position: fixed; inset: 0; z-index: 100; overflow: hidden; background: #1d2a1d; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: opacity .9s ease; }
+#sobre .caja { position: absolute; inset: 0; background: url(recursos/sobre.webp) center / cover no-repeat; transform-origin: 51.7% 50.7%; transition: transform 1.8s cubic-bezier(.5, 0, .3, 1); }
+#sobre .sello { position: absolute; left: 51.7%; top: 50.7%; width: 26vmin; aspect-ratio: 1; translate: -50% -50%; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 226, 150, .55), rgba(255, 210, 120, 0) 68%); animation: latido 2.4s ease-in-out infinite; }
+@keyframes latido { 0%, 100% { opacity: .2; scale: .9; } 50% { opacity: .9; scale: 1.12; } }
+#sobre .destello { position: absolute; inset: 0; background: radial-gradient(circle at 51.7% 50.7%, #fff6d8 0, #f3d58c 35%, rgba(240, 200, 110, 0) 75%); opacity: 0; transition: opacity 1.4s ease .5s; }
+#sobre .toca { position: absolute; left: 50%; bottom: max(7%, env(safe-area-inset-bottom) + 20px); translate: -50% 0; white-space: nowrap; padding: .65em 1.6em; border-radius: 99px;
+  font-family: "Cinzel", serif; font-weight: 600; font-size: clamp(12px, 3.6vw, 16px); letter-spacing: .16em; text-transform: uppercase; color: #2f4529; background: rgba(250, 244, 226, .93); box-shadow: 0 4px 18px rgba(0, 0, 0, .35); }
+#sobre.abierto .caja { transform: scale(1.35); }
+#sobre.abierto .destello { opacity: 1; }
+#sobre.abierto .toca, #sobre.abierto .sello { opacity: 0; transition: opacity .3s; }
+#sobre.fuera { opacity: 0; pointer-events: none; }
+
+/* música, aviso, pie, marca de agua */
+#musica-boton { position: fixed; right: 14px; bottom: max(14px, env(safe-area-inset-bottom)); z-index: 90; width: 46px; height: 46px; border-radius: 50%; border: 0; cursor: pointer;
+  background: linear-gradient(180deg, #fbe7a6, #c99a3e); box-shadow: 0 3px 12px rgba(0, 0, 0, .45); color: #2f4529; font-size: 20px; display: none; }
+#musica-boton.ver { display: block; }
+#musica-boton.pausado { opacity: .7; }
+#aviso { position: fixed; left: 50%; bottom: 80px; translate: -50% 0; z-index: 120; padding: .8em 1.4em; border-radius: 99px; background: rgba(250, 244, 226, .97); color: #2f4529;
+  font-family: "Cormorant", serif; font-weight: 600; font-size: 17px; box-shadow: 0 6px 20px rgba(0, 0, 0, .4); opacity: 0; pointer-events: none; transition: opacity .3s; white-space: nowrap; }
+#aviso.ver { opacity: 1; }
+footer { padding: 26px 16px 34px; text-align: center; font-size: 15px; color: rgba(247, 240, 222, .75); }
+footer a { color: #e9c36a; text-decoration: none; }
+#marca-agua { position: fixed; inset: 0; z-index: 110; pointer-events: none; background: var(--marca) 0 0 / 260px 200px repeat; }
+body.muestra { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+body.muestra img { pointer-events: none; -webkit-user-drag: none; }
+@media print { body.muestra > * { display: none !important; } }
+
+#persona { top: 16.20cqw; left: -6.48cqw; width: 112.96cqw; }
+#franja { top: 144.44cqw; left: -5.56cqw; width: 111.11cqw; }
+#corona { top: 90.28cqw; }
+#nombre { top: 101.39cqw; }
+#misxv { top: 133.80cqw; }
+#fecha-portada { top: 139.81cqw; }
+#espejo { top: 186.20cqw; width: 80cqw; }
+#padres { top: 321.39cqw; }
+#invita { top: 398.70cqw; }
+#cuenta { top: 531.20cqw; }
+#falta { top: 502.87cqw; }
+#eventos-marco { top: 597.31cqw; width: 82cqw; }
+#itinerario-marco { top: 759.81cqw; width: 84cqw; }
+#vestimenta-marco { top: 939.91cqw; width: 90cqw; }
+#sesion { top: 1000.65cqw; }
+#fotos { top: 1022.87cqw; }
+#confirma { top: 1222.41cqw; }
+#cierre { top: 1274.72cqw; }
+#estrella2 { top: 1336.48cqw; }
+
+</style>
+</head>
+<body class="cerrado">
+
+<div id="sobre" role="button" aria-label="Abrir la invitación">
+  <div class="caja"></div><div class="sello"></div><div class="destello"></div>
+  <div class="toca">Toca el sello para abrir</div>
+</div>
+
+<main id="escena">
+  <div class="rebanadas"><img src="recursos/escena-01.webp" alt="" width="1080" height="1935" fetchpriority="high"><img src="recursos/escena-02.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-03.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-04.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-05.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-06.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-07.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-08.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-09.webp" alt="" width="1080" height="132" loading="lazy"></div>
+
+  <!-- PORTADA -->
+  <span class="estrella" style="left:50%;top:15.2cqw"></span>
+  <img id="persona" src="recursos/persona.webp" alt="Breanny">
+  <img id="franja" src="recursos/franja.webp" alt="">
+  <div class="capa script oro luz" id="nombre" data-campo="festejada"></div>
+  <div class="capa caps" id="misxv">Mis XV años</div>
+  <div class="capa caps" id="fecha-portada" data-campo="fechaCorta"></div>
+
+  <!-- MENSAJE EN EL ESPEJO -->
+  <div class="flota revela" id="espejo"><img src="recursos/espejo.webp" alt=""><div class="interior" style="left:19.19%;top:19.66%;width:61.41%;height:54.00%"><p data-campo="frase"></p></div></div>
+
+  <!-- PAPÁS Y PADRINOS -->
+  <div class="capa angosto revela" id="padres">
+    <p class="dato">Con la bendición de Dios<br>y el amor de</p>
+    <div class="titulo script oro luz">Mis papás</div>
+    <p class="dato" id="lista-padres"></p>
+    <span class="filete"></span>
+    <div class="titulo script oro luz">Mis padrinos</div>
+    <p class="dato" id="lista-padrinos"></p>
+  </div>
+
+  <!-- TE INVITO + FECHA + FALTA POCO -->
+  <div class="capa angosto revela" id="invita">
+    <p class="dato">Tengo el honor de invitarte<br>a celebrar mis</p>
+    <div class="quince oro luz">15</div>
+    <div class="anos caps oro">años</div>
+    <span class="filete"></span>
+    <p class="dato"><b data-campo="fecha"></b></p>
+  </div>
+  <div class="capa script oro luz revela" id="falta">Falta poco</div>
+  <div class="capa" id="cuenta"><div class="celda" style="left:4.31cqw;width:20.46cqw"><b id="c0">00</b><span>Días</span></div><div class="celda" style="left:27.73cqw;width:20.46cqw"><b id="c1">00</b><span>Horas</span></div><div class="celda" style="left:51.25cqw;width:20.46cqw"><b id="c2">00</b><span>Min</span></div><div class="celda" style="left:74.77cqw;width:20.46cqw"><b id="c3">00</b><span>Seg</span></div></div>
+
+  <!-- MISA · RECEPCIÓN · VESTIMENTA -->
+  <div class="flota revela" id="eventos-marco"><img src="recursos/marco-eventos.webp" alt=""><div class="interior" id="eventos" style="left:21.61%;top:12.78%;width:56.79%;height:74.20%">
+    <div class="evento"><img class="icono" src="recursos/icono-iglesia.webp" alt=""><div class="titulo script oro luz">Misa</div><p class="dato" id="misa-dato"></p><a class="boton" id="misa-mapa" target="_blank" rel="noopener">Cómo llegar</a></div>
+    <div class="evento"><img class="icono" src="recursos/icono-copas.webp" alt=""><div class="titulo script oro luz">Recepción</div><p class="dato" id="recepcion-dato"></p><a class="boton" id="recepcion-mapa" target="_blank" rel="noopener">Cómo llegar</a></div>
+  </div></div>
+
+  <!-- ITINERARIO -->
+  <div class="flota revela" id="itinerario-marco"><img src="recursos/marco-itinerario.webp" alt=""><div class="interior" id="itinerario" style="left:19.45%;top:16.10%;width:59.87%;height:74.03%">
+    <div class="titulo script oro luz">Itinerario</div>
+    <ol id="itinerario-lista"></ol>
+  </div></div>
+
+  <!-- VESTIMENTA -->
+  <div class="flota revela" id="vestimenta-marco"><img src="recursos/marco-vestimenta.webp" alt=""><div class="interior" style="left:18.77%;top:23.93%;width:62.56%;height:52.28%">
+    <div class="titulo script oro luz">Vestimenta</div>
+    <div class="iconos-vest"><img src="recursos/icono-vestido.webp" alt=""><img src="recursos/icono-traje.webp" alt=""></div>
+    <p class="dato" id="vestimenta-dato"></p>
+  </div></div>
+
+  <!-- MI SESIÓN DE XV -->
+  <div class="capa script oro luz revela" id="sesion">Mi sesión de XV</div>
+  <div class="capa" id="fotos"><div class="flota foto-marco revela" style="left:50cqw;top:0.00cqw;width:66cqw;animation-delay:-0.0s"><img class="foto" src="recursos/foto-2.webp" alt="" style="left:13.30%;top:13.70%;width:69.75%;height:76.17%"><img src="recursos/marco-foto2.webp" alt=""></div></div>
+
+  <!-- CONFIRMACIÓN -->
+  <div class="capa angosto revela" id="confirma">
+    <div class="titulo script oro luz">Confirma tu asistencia</div>
+    <p class="dato">Tu presencia hará esta noche<br>aún más mágica</p>
+    <a class="boton" id="confirmacion-boton" target="_blank" rel="noopener">Confirmar asistencia</a>
+  </div>
+
+  <span class="estrella capa" id="estrella2" style="left:50%;width:12cqw"></span>
+  <!-- TE ESPERO -->
+  <div class="capa angosto revela" id="cierre">
+    <div class="titulo script oro luz">Te espero</div>
+    <div class="nombre script oro luz" data-campo="festejada"></div>
+    <p class="dato caps" style="font-size:3.6cqw" data-campo="fechaCorta"></p>
+  </div>
+</main>
+
+<footer id="credito"></footer>
+<button id="musica-boton" aria-label="Pausar o poner la música">♪</button>
+<audio id="musica" loop preload="none"></audio>
+<div id="aviso"></div>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const C = CONFIG;
+  document.querySelectorAll('[data-campo]').forEach(e => e.textContent = C[e.dataset.campo] || '');
+  const lista = (arr, falta) => arr.length ? arr.join('<br>') : '<span class="pendiente">' + falta + '</span>';
+  $('lista-padres').innerHTML = lista(C.padres, 'Nombres por confirmar');
+  $('lista-padrinos').innerHTML = lista(C.padrinos, 'Nombres por confirmar');
+  $('misa-dato').innerHTML = '<b>' + C.misa.hora + '</b><br>' + C.misa.lugar + '<br>' + C.misa.direccion;
+  $('recepcion-dato').innerHTML = '<b>' + C.recepcion.hora + '</b><br>' + C.recepcion.lugar + '<br>' + C.recepcion.direccion;
+  $('vestimenta-dato').innerHTML = C.vestimenta || '<span class="pendiente">Por confirmar</span>';
+  $('itinerario-lista').innerHTML = (C.itinerario || []).map(i => '<li><img src="recursos/icono-' + i.icono + '.webp" alt=""><div><span class="hora">' + i.hora + '</span><span class="momento">' + i.momento + '</span></div></li>').join('');
+  $('misa-mapa').href = C.misa.mapa; $('recepcion-mapa').href = C.recepcion.mapa;
+  const cr = C.credito;
+  $('credito').innerHTML = cr.texto + '<br><a href="' + cr.enlace + '" target="_blank" rel="noopener">' + cr.marca + ' · ' + cr.boton + ' ›</a>';
+
+  /* aviso (modo muestra / WhatsApp sin número) */
+  const aviso = $('aviso'); aviso.textContent = C.muestra.aviso; let tA;
+  const mostrarAviso = e => { e.preventDefault(); aviso.classList.add('ver'); clearTimeout(tA); tA = setTimeout(() => aviso.classList.remove('ver'), 2200); };
+  const boton = $('confirmacion-boton');
+  if (C.confirmacion.whatsapp && !C.muestra.activa) boton.href = 'https://wa.me/' + C.confirmacion.whatsapp.replace(/\D/g, '') + '?text=' + encodeURIComponent(C.confirmacion.mensaje);
+  else { boton.removeAttribute('href'); boton.addEventListener('click', mostrarAviso); }
+
+  /* marca de agua (antes del pago); ?sinmarca solo la quita para revisar */
+  if (C.muestra.activa && !location.search.includes('sinmarca')) {
+    document.body.classList.add('muestra');
+    const t = C.muestra.texto;
+    const fila = (x, y) => "<text x='" + x + "' y='" + y + "' text-anchor='middle' font-family='Georgia,serif' font-size='14' font-weight='700' letter-spacing='2.5' fill='rgba(255,255,255,.42)' stroke='rgba(0,0,0,.25)' stroke-width='.5'>" + t + "</text>";
+    const svg = "<svg xmlns='http://www.w3.org/2000/svg' width='260' height='200'><g transform='rotate(-28 130 100)'>" + fila(130, 70) + fila(0, 160) + fila(260, 160) + "</g></svg>";
+    const capa = document.createElement('div'); capa.id = 'marca-agua'; capa.setAttribute('aria-hidden', 'true');
+    capa.style.setProperty('--marca', 'url("data:image/svg+xml,' + encodeURIComponent(svg) + '")');
+    document.body.appendChild(capa);
+    ['contextmenu', 'dragstart', 'selectstart', 'copy', 'cut'].forEach(ev => document.addEventListener(ev, e => e.preventDefault()));
+    document.addEventListener('keydown', e => { const k = (e.key || '').toLowerCase(), m = e.ctrlKey || e.metaKey;
+      if (e.key === 'F12' || (m && ['s', 'u', 'p', 'c', 'a'].includes(k)) || (m && e.shiftKey && ['i', 'j', 'c'].includes(k))) e.preventDefault(); });
+  }
+
+  /* cuenta regresiva */
+  const meta = new Date(C.cuentaHasta).getTime(), dos = n => String(n).padStart(2, '0');
+  const cuenta = () => { const r = Math.max(0, meta - Date.now());
+    $('c0').textContent = Math.floor(r / 864e5); $('c1').textContent = dos(Math.floor(r % 864e5 / 36e5));
+    $('c2').textContent = dos(Math.floor(r % 36e5 / 6e4)); $('c3').textContent = dos(Math.floor(r % 6e4 / 1e3)); };
+  cuenta(); setInterval(cuenta, 1000);
+
+  /* luciérnagas por toda la escena */
+  const esc = $('escena');
+  for (let i = 0; i < 46; i++) {
+    const l = document.createElement('span'); l.className = 'luciernaga';
+    l.style.left = (4 + Math.random() * 92) + '%'; l.style.top = (Math.random() * 100) + '%';
+    l.style.setProperty('--t', (6 + Math.random() * 7).toFixed(1) + 's'); l.style.setProperty('--d', (-Math.random() * 8).toFixed(1) + 's');
+    esc.appendChild(l);
+  }
+
+  /* aparecen al bajar */
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visto'); io.unobserve(e.target); } }), { threshold: .2 });
+  document.querySelectorAll('.revela').forEach(e => io.observe(e));
+
+  /* música */
+  const musica = $('musica'), mb = $('musica-boton'); musica.src = C.musica;
+  const tocar = () => { const p = musica.play(); if (p && p.then) p.then(() => mb.classList.remove('pausado')).catch(() => mb.classList.add('pausado')); };
+  mb.addEventListener('click', () => { if (musica.paused) tocar(); else { musica.pause(); mb.classList.add('pausado'); } });
+
+  /* sobre: tocar → zoom al sello y luz dorada → la escena */
+  const sobre = $('sobre');
+  const abrir = () => {
+    if (sobre.classList.contains('abierto')) return;
+    sobre.classList.add('abierto'); tocar(); mb.classList.add('ver');
+    setTimeout(() => { sobre.classList.add('fuera'); document.body.classList.remove('cerrado'); window.scrollTo(0, 0); }, 1900);
+    setTimeout(() => sobre.remove(), 2900);
+  };
+  sobre.addEventListener('click', abrir);
+  if (location.search.includes('directo')) { sobre.remove(); document.body.classList.remove('cerrado'); mb.classList.add('ver'); }
+})();
+</script>
+</body>
+</html>

@@ -32,6 +32,15 @@ const CONFIG = {
           mapa: "https://www.google.com/maps/search/?api=1&query=Iglesia+La+Dolorosa+Manta+Ecuador" },
   recepcion: { hora: "7:00 pm", lugar: "Comité de Inepaca", direccion: "Calle 14 y avenida 16, Manta",
                mapa: "https://www.google.com/maps/search/?api=1&query=Calle+14+y+Avenida+16+Manta+Ecuador" },
+  // ITINERARIO: misa y recepción son reales; vals, cena, pastel y baile son horas de MUESTRA (la clienta las manda)
+  itinerario: [
+    { hora: "5:00 pm", momento: "Misa", icono: "iglesia" },
+    { hora: "7:00 pm", momento: "Recepción", icono: "copas" },
+    { hora: "8:00 pm", momento: "Vals", icono: "vals" },
+    { hora: "8:30 pm", momento: "Cena", icono: "cena" },
+    { hora: "9:30 pm", momento: "Pastel", icono: "pastel" },
+    { hora: "10:00 pm", momento: "¡A bailar!", icono: "baile" }
+  ],
   vestimenta: "Formal<br>El verde es solo para la quinceañera",   // MUESTRA: por confirmar
   confirmacion: { whatsapp: "", mensaje: "¡Hola! Confirmo mi asistencia a los XV años de Breanny ✨" },
   musica: "recursos/musica.mp3",
@@ -106,6 +115,14 @@ body.cerrado { overflow: hidden; height: 100svh; }
 .iconos-vest img { width: 8.5cqw; height: auto; filter: drop-shadow(0 .3cqw .5cqw rgba(0, 0, 0, .5)); }
 #vestimenta-marco .dato { font-size: 3.9cqw; line-height: 1.2; }
 #sesion { font-size: 12cqw; }
+#itinerario { justify-content: flex-start; padding-top: 12cqw; }
+#itinerario .titulo { font-size: 10.5cqw; line-height: 1.1; margin-bottom: 1.5cqw; }
+#itinerario-lista { list-style: none; width: 88%; display: flex; flex-direction: column; gap: 1.7cqw; }
+#itinerario-lista li { display: grid; grid-template-columns: 9.5cqw 1fr; align-items: center; column-gap: 3.2cqw; text-align: left; }
+#itinerario-lista img { width: 9.5cqw; height: 9.5cqw; object-fit: contain; filter: drop-shadow(0 .3cqw .5cqw rgba(0, 0, 0, .5)); }
+#itinerario-lista .hora { display: block; font-family: "Cinzel", serif; font-weight: 600; font-size: 3.3cqw; letter-spacing: .12em; color: #e9c36a; }
+#itinerario-lista .momento { display: block; font-size: 5cqw; line-height: 1.1; color: var(--crema); }
+#itinerario-lista li + li { border-top: 1px solid rgba(233, 195, 106, .25); padding-top: 1.7cqw; }
 .boton { display: inline-block; margin-top: 2cqw; padding: 1.8cqw 5.5cqw; border-radius: 99px; font-family: "Cinzel", serif; font-weight: 600; font-size: 3.3cqw; letter-spacing: .14em; text-transform: uppercase; text-decoration: none;
   color: #2f4529; background: linear-gradient(180deg, #fbe7a6, #dcae55 55%, #c08f37); box-shadow: 0 .6cqw 1.8cqw rgba(0, 0, 0, .45), inset 0 1px 0 rgba(255, 255, 255, .6); cursor: pointer; border: 0; }
 #fotos { height: 0; }
@@ -164,12 +181,13 @@ body.muestra img { pointer-events: none; -webkit-user-drag: none; }
 #cuenta { top: 531.20cqw; }
 #falta { top: 502.87cqw; }
 #eventos-marco { top: 597.31cqw; width: 82cqw; }
-#vestimenta-marco { top: 771.85cqw; width: 90cqw; }
-#sesion { top: 850.19cqw; }
-#fotos { top: 872.41cqw; }
-#confirma { top: 1071.94cqw; }
-#cierre { top: 1124.26cqw; }
-#estrella2 { top: 1186.02cqw; }
+#itinerario-marco { top: 759.81cqw; width: 84cqw; }
+#vestimenta-marco { top: 939.91cqw; width: 90cqw; }
+#sesion { top: 1000.65cqw; }
+#fotos { top: 1022.87cqw; }
+#confirma { top: 1222.41cqw; }
+#cierre { top: 1274.72cqw; }
+#estrella2 { top: 1336.48cqw; }
 
 </style>
 </head>
@@ -181,7 +199,7 @@ body.muestra img { pointer-events: none; -webkit-user-drag: none; }
 </div>
 
 <main id="escena">
-  <div class="rebanadas"><img src="recursos/escena-01.webp" alt="" width="1080" height="1935" fetchpriority="high"><img src="recursos/escena-02.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-03.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-04.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-05.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-06.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-07.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-08.webp" alt="" width="1080" height="442" loading="lazy"></div>
+  <div class="rebanadas"><img src="recursos/escena-01.webp" alt="" width="1080" height="1935" fetchpriority="high"><img src="recursos/escena-02.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-03.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-04.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-05.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-06.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-07.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-08.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-09.webp" alt="" width="1080" height="132" loading="lazy"></div>
 
   <!-- PORTADA -->
   <span class="estrella" style="left:50%;top:15.2cqw"></span>
@@ -219,6 +237,12 @@ body.muestra img { pointer-events: none; -webkit-user-drag: none; }
   <div class="flota revela" id="eventos-marco"><img src="recursos/marco-eventos.webp" alt=""><div class="interior" id="eventos" style="left:21.61%;top:12.78%;width:56.79%;height:74.20%">
     <div class="evento"><img class="icono" src="recursos/icono-iglesia.webp" alt=""><div class="titulo script oro luz">Misa</div><p class="dato" id="misa-dato"></p><a class="boton" id="misa-mapa" target="_blank" rel="noopener">Cómo llegar</a></div>
     <div class="evento"><img class="icono" src="recursos/icono-copas.webp" alt=""><div class="titulo script oro luz">Recepción</div><p class="dato" id="recepcion-dato"></p><a class="boton" id="recepcion-mapa" target="_blank" rel="noopener">Cómo llegar</a></div>
+  </div></div>
+
+  <!-- ITINERARIO -->
+  <div class="flota revela" id="itinerario-marco"><img src="recursos/marco-itinerario.webp" alt=""><div class="interior" id="itinerario" style="left:19.45%;top:16.10%;width:59.87%;height:74.03%">
+    <div class="titulo script oro luz">Itinerario</div>
+    <ol id="itinerario-lista"></ol>
   </div></div>
 
   <!-- VESTIMENTA -->
@@ -264,6 +288,7 @@ body.muestra img { pointer-events: none; -webkit-user-drag: none; }
   $('misa-dato').innerHTML = '<b>' + C.misa.hora + '</b><br>' + C.misa.lugar + '<br>' + C.misa.direccion;
   $('recepcion-dato').innerHTML = '<b>' + C.recepcion.hora + '</b><br>' + C.recepcion.lugar + '<br>' + C.recepcion.direccion;
   $('vestimenta-dato').innerHTML = C.vestimenta || '<span class="pendiente">Por confirmar</span>';
+  $('itinerario-lista').innerHTML = (C.itinerario || []).map(i => '<li><img src="recursos/icono-' + i.icono + '.webp" alt=""><div><span class="hora">' + i.hora + '</span><span class="momento">' + i.momento + '</span></div></li>').join('');
   $('misa-mapa').href = C.misa.mapa; $('recepcion-mapa').href = C.recepcion.mapa;
   const cr = C.credito;
   $('credito').innerHTML = cr.texto + '<br><a href="' + cr.enlace + '" target="_blank" rel="noopener">' + cr.marca + ' · ' + cr.boton + ' ›</a>';
