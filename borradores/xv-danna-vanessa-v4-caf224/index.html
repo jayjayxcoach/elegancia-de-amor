@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<meta name="format-detection" content="telephone=no">
+<title>Mis XV Años · Danna Vanessa</title>
+<meta name="theme-color" content="#c9b3e6">
+
+<!-- VISTA PREVIA AL COMPARTIR (WhatsApp no lee el CONFIG: si cambias el nombre, cámbialo también aquí; si cambias la imagen, sube ?v=1) -->
+<meta name="description" content="Estás invitado a mis XV años. Toca el lazo para abrir mi invitación.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Invitaciones de Amor">
+<meta property="og:title" content="Mis XV Años · Danna Vanessa">
+<meta property="og:description" content="Estás invitado a mis XV años. Toca el lazo para abrir mi invitación ✨">
+<meta property="og:url" content="https://eleganciadeamor.com/borradores/xv-danna-vanessa-v3-0876b7/">
+<meta property="og:image" content="https://eleganciadeamor.com/borradores/xv-danna-vanessa-v3-0876b7/recursos/vista-previa.jpg?v=1">
+<meta property="og:image:secure_url" content="https://eleganciadeamor.com/borradores/xv-danna-vanessa-v3-0876b7/recursos/vista-previa.jpg?v=1">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="600">
+<meta property="og:image:height" content="600">
+<meta property="og:image:alt" content="Puertas marfil con un lazo lila y rosas: invitación de XV años de Danna Vanessa">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://eleganciadeamor.com/borradores/xv-danna-vanessa-v3-0876b7/recursos/vista-previa.jpg?v=1">
+<link rel="icon" href="recursos/vista-previa.jpg">
+<link rel="preload" href="recursos/sobre-izq.webp" as="image" fetchpriority="high">
+<link rel="preload" href="recursos/sobre-der.webp" as="image" fetchpriority="high">
+<link rel="preload" href="recursos/escena-1.webp" as="image">
+
+<!--
+  INVITACIÓN DE XV AÑOS · Danna Vanessa · "Escalinata al castillo en las nubes"
+  UN SOLO DIBUJO de arriba abajo (8 pedazos escena-1..8.webp pegados), con los textos puestos
+  en los lugares del dibujo: espejo, pergaminos, torre del reloj, puente, glorieta y el castillo de noche.
+  CÓMO EDITAR: cambia solo lo que está entre comillas en el bloque CONFIG. ?directo = sin las puertas · ?sinmarca = sin marca de agua.
+-->
+
+<script>
+const CONFIG = {
+  nombre: "Danna Vanessa",
+  fecha: { anio: 2027, mes: 2, dia: 8, hora: 0, minuto: 0, zona: -5 },   // zona: Colombia (UTC-5) · hora 0 = la cuenta llega al inicio del día (hora por confirmar)
+  fechaTexto: "Lunes 8 de febrero de 2027",
+
+  espejo: {
+    titulo: "Mis XV años,\nun sueño hecho\nrealidad",
+    texto: "Hay momentos que se sueñan toda la vida. Hoy subo la escalinata hacia mis quince años y quiero que estés conmigo."
+  },
+  padres: { titulo: "Mis padres", nombres: ["Carlos Eduardo Ramírez", "Luz Marina Gómez"] },   // NOMBRES DE EJEMPLO (modelo para Jay) · [] = "Por confirmar"
+  padrinos: { titulo: "Mis padrinos", nombres: ["Andrés Felipe Torres", "Paola Andrea Ruiz"] },  // NOMBRES DE EJEMPLO
+  reloj: "Falta poco",
+  fiesta: { titulo: "Mi fiesta", hora: "7:00 p. m.", lugar: "Salón Jardín de Cristal", direccion: "Calle 18 # 7-45, Chía", enlace: "https://www.google.com/maps/search/?api=1&query=Calle+18+7-45+Chia+Cundinamarca" },   // DATOS DE EJEMPLO · vacío = "por confirmar"
+  vestimenta: { titulo: "Código de vestimenta", estilo: "Formal", ellas: "Vestido largo", ellos: "Traje y corbata", nota: "El lila es solo para la quinceañera" },   // DE EJEMPLO
+  confirmacion: {
+    titulo: "Confirma tu asistencia",
+    texto: "Tu compañía hará mi noche aún más mágica.",
+    boton: "Confirmar por WhatsApp",
+    whatsapp: "",            // REGLA DE JAY: el número va SOLO cuando la clienta pague
+    mensaje: "¡Hola! Confirmo mi asistencia a los XV años de Danna Vanessa 💜"
+  },
+  cierre: { titulo: "Te espero", frase: "Gracias por ser parte de mi cuento" },
+  credito: { texto: "Página hecha con amor por", marca: "Invitaciones de Amor", boton: "Ver nuestros trabajos", enlace: "https://eleganciadeamor.com/#nuestros-trabajos" },
+  muestra: { activa: true, texto: "MUESTRA · INVITACIONES DE AMOR", aviso: "Se activa en la versión final ✨" },
+  musica: "recursos/musica.mp3?v=2"     // la que eligió Jay (20-nov): primer vals del video "you're waltzing in a vintage disney cartoon" (YouTube), 3:25
+};
+</script>
+
+<style>
+@font-face { font-family: "Great Vibes"; src: url(recursos/fuente-great-vibes.woff2) format("woff2"); font-display: block; }
+@font-face { font-family: "Cinzel"; src: url(recursos/fuente-cinzel-600.woff2) format("woff2"); font-weight: 600 700; font-display: block; }
+@font-face { font-family: "Cormorant"; src: url(recursos/fuente-cormorant-500.woff2) format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Cormorant"; src: url(recursos/fuente-cormorant-600.woff2) format("woff2"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "Cormorant"; src: url(recursos/fuente-cormorant-500-italica.woff2) format("woff2"); font-weight: 500; font-style: italic; font-display: swap; }
+
+:root { --lila: #5d2f8e; --lila2: #7a4cae; --oro: #c99a3e; --champana: #f6e3a8; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { background: #e9def5; }
+body { font-family: "Cormorant", Georgia, serif; color: var(--lila); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+body.cerrada { overflow: hidden; height: 100svh; }
+
+/* ---------- El dibujo largo ---------- */
+#escena { position: relative; width: 100%; max-width: 480px; margin: 0 auto; container-type: inline-size; overflow: hidden; background: #ddd0ee; }
+#escena .pedazos img { display: block; width: 100%; height: auto; }
+.capa { position: absolute; left: 0; top: 0; width: 100%; height: 100%; pointer-events: none; }
+.zona { position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; pointer-events: auto; }
+.brillo-claro { text-shadow: 0 0 .6cqw #fff, 0 0 1.6cqw rgba(255,255,255,.95), 0 0 3cqw rgba(255,255,255,.8); }
+.cinzel { font-family: "Cinzel", serif; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
+.script { font-family: "Great Vibes", cursive; font-weight: 400; line-height: 1; }
+.script-lila { color: #5a2b8c; text-shadow: 0 0 .5cqw #fff, 0 0 1.4cqw rgba(255,255,255,.95), 0 0 2.8cqw rgba(255,255,255,.75); }
+.script-oro { background: linear-gradient(180deg, #fffdf0, #f8e8b4 30%, #d8b064 55%, #fff3cc 80%, #c99d4c); -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 0 1.4cqw rgba(255,231,166,.65)) drop-shadow(0 .4cqw .6cqw rgba(30,18,56,.7)); }
+.divisor { width: 34cqw; height: 2cqw; margin: 1.2cqw auto; background:
+  radial-gradient(circle, var(--oro) 45%, transparent 50%) 50% 50% / 2cqw 2cqw no-repeat,
+  linear-gradient(90deg, transparent, #e2bd6a 42%, transparent 42% 58%, #e2bd6a 58%, transparent) 50% 50% / 100% .3cqw no-repeat; }
+
+/* Portada (mismas medidas que la portada aprobada, en el sistema 1080x1935 de esa imagen) */
+#portada-texto { position: absolute; left: -5.013%; width: 110.026%; top: 0; height: 18.53%; }
+
+/* Espejo */
+#z-espejo { left: 28.5%; width: 43%; top: 21.75%; height: 5.1%; gap: 2.4cqw; }
+#z-espejo h2 { font-size: 7.6cqw; line-height: 1.05; }
+#z-espejo p { font-size: 4.5cqw; line-height: 1.3; font-style: italic; font-weight: 500; color: #4f2479; }
+/* Pergaminos flotantes (pieza de Gemini) con los nombres grandes */
+.pergamino { left: 7%; width: 86%; display: block; }
+#z-padres { top: 33.2%; } #z-padrinos { top: 37.9%; }
+.perg { position: relative; animation: flotar 5s ease-in-out infinite alternate; }
+#z-padrinos .perg { animation-delay: -2.5s; }
+@keyframes flotar { from { transform: translateY(-1cqw) rotate(-.6deg); } to { transform: translateY(1cqw) rotate(.6deg); } }
+.perg img { display: block; width: 100%; height: auto; }
+.perg-txt { position: absolute; left: 13%; right: 13%; top: 16%; bottom: 18%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: .6cqw; }
+.perg-txt h3 { font-size: 4.2cqw; color: var(--lila); }
+.perg-txt .divisor { width: 22cqw; margin: .2cqw auto; }
+.perg-txt .nombres { display: flex; flex-direction: column; align-items: center; font-family: "Great Vibes", cursive; font-size: 6.8cqw; line-height: 1.08; color: #5a2b8c; white-space: nowrap; }
+.perg-txt .nombres .y { font-family: "Cormorant", serif; font-style: italic; font-size: 4cqw; line-height: 1.2; color: var(--oro); }
+.perg-txt .pend { font-family: "Cormorant", serif; font-style: italic; font-weight: 500; font-size: 4.4cqw; opacity: .85; }
+@media (prefers-reduced-motion: reduce) { .perg { animation: none; } }
+/* Reserva la fecha */
+#z-reserva { left: 8%; width: 84%; top: 43.55%; height: 1.9%; gap: .8cqw; }
+#z-reserva h2 { font-size: 11cqw; }
+#z-reserva p { font-size: 4.6cqw; font-weight: 600; }
+/* Reloj */
+#z-reloj { left: 40.6%; width: 18.2%; top: 49.96%; height: 1.71%; }
+#z-reloj span { font-size: 7.2cqw; }
+/* Cuenta regresiva */
+#z-cuenta { left: 6%; width: 88%; top: 57.35%; height: 1.5%; flex-direction: row; gap: 3cqw; }
+.caja { min-width: 15cqw; padding: 1.4cqw 1cqw 1cqw; border-radius: 2.4cqw; background: rgba(255,250,255,.62); border: .3cqw solid rgba(226,189,106,.85); box-shadow: 0 .6cqw 2cqw rgba(93,47,142,.18); }
+.caja b { display: block; font-family: "Cinzel", serif; font-size: 6.2cqw; font-weight: 600; color: var(--lila); line-height: 1.05; }
+.caja small { display: block; font-family: "Cinzel", serif; font-size: 2.3cqw; letter-spacing: .12em; text-transform: uppercase; color: var(--lila2); }
+/* Fiesta (cielo del atardecer, antes del puente) */
+#z-fiesta { left: 8%; width: 84%; top: 60.3%; height: 2.3%; gap: .3cqw; }
+#z-fiesta h2 { font-size: 11cqw; }
+#z-fiesta p { font-size: 4.6cqw; font-weight: 600; line-height: 1.25; color: #4f2479; }
+#z-fiesta #fiesta-lugar { font-size: 5.4cqw; }
+#z-fiesta .pend { font-style: italic; font-weight: 500; }
+.boton { display: inline-block; margin-top: 1.4cqw; padding: 1.8cqw 5cqw; border-radius: 10cqw; font-family: "Cinzel", serif; font-weight: 600; font-size: 2.9cqw; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; cursor: pointer;
+  color: #4a2272; background: linear-gradient(180deg, #fff6d6, #f1cf78 45%, #d4a64a); border: .3cqw solid #fff3c4; box-shadow: 0 .8cqw 2.4cqw rgba(93,47,142,.3), inset 0 0 0 .3cqw rgba(255,255,255,.4); }
+/* Vestimenta: al centro, sobre un rectángulo blanco medio transparente, con iconos */
+#z-vestimenta { left: 9%; width: 82%; top: 68.0%; height: 2.6%; }
+.panel-vest { width: 100%; display: flex; flex-direction: column; align-items: center; gap: .8cqw; padding: 3.2cqw 4cqw 3.6cqw; border-radius: 3cqw;
+  background: rgba(255,252,255,.62); border: .3cqw solid rgba(226,189,106,.8); box-shadow: 0 1cqw 4cqw rgba(93,47,142,.22); -webkit-backdrop-filter: blur(.6cqw); backdrop-filter: blur(.6cqw); }
+.panel-vest h2 { font-size: 10cqw; }
+.panel-vest .estilo { font-size: 5cqw; color: var(--lila); letter-spacing: .22em; }
+.iconos-vest { display: flex; justify-content: center; gap: 9cqw; margin-top: 1cqw; }
+.iconos-vest div { display: flex; flex-direction: column; align-items: center; gap: .4cqw; }
+.iconos-vest img { height: 15cqw; width: auto; filter: drop-shadow(0 .4cqw .8cqw rgba(93,47,142,.25)); }
+.iconos-vest b { font-family: "Great Vibes", cursive; font-weight: 400; font-size: 7.4cqw; line-height: 1; color: #5a2b8c; }
+.iconos-vest span { font-size: 4.2cqw; font-weight: 600; color: #4f2479; }
+.panel-vest p { font-size: 3.9cqw; font-style: italic; font-weight: 600; color: #4f2479; }
+/* Confirmación */
+#z-confirma { left: 8%; width: 84%; top: 72.55%; height: 1.75%; gap: .8cqw; }
+#z-confirma h2 { font-size: 8.4cqw; }
+#z-confirma p { font-size: 3.9cqw; font-style: italic; font-weight: 600; color: #fff; text-shadow: 0 0 1cqw rgba(60,25,100,.85), 0 0 2.4cqw rgba(60,25,100,.6); }
+#z-boton { left: 10%; width: 80%; top: 81.1%; height: 1.2%; }
+#z-boton .boton { font-size: 3.4cqw; padding: 2.4cqw 6cqw; }
+/* Cierre */
+#z-cierre { left: 5%; width: 90%; top: 86.15%; height: 1.75%; gap: .6cqw; }
+#z-cierre .script { font-size: 17cqw; }
+#z-cierre p { font-size: 4cqw; font-style: italic; font-weight: 600; color: #fff6dc; text-shadow: 0 .3cqw 1cqw rgba(20,10,50,.85); }
+
+/* Aparece suave al bajar */
+.aparece { opacity: 0; transform: translateY(3cqw); transition: opacity 1.2s ease, transform 1.2s ease; }
+.aparece.visto { opacity: 1; transform: none; }
+
+/* ---------- Mariposas animadas ---------- */
+.mariposa { position: absolute; width: 8cqw; aspect-ratio: 360/255; pointer-events: none; will-change: transform; perspective: 30cqw; }
+.mariposa i { position: absolute; inset: 0; background: center / contain no-repeat; }
+.mariposa .ai { clip-path: inset(0 50% 0 0); transform-origin: 50% 50%; animation: alaI var(--vel, .32s) ease-in-out infinite alternate; }
+.mariposa .ad { clip-path: inset(0 0 0 50%); transform-origin: 50% 50%; animation: alaD var(--vel, .32s) ease-in-out infinite alternate; }
+@keyframes alaI { from { transform: rotateY(0deg); } to { transform: rotateY(68deg); } }
+@keyframes alaD { from { transform: rotateY(0deg); } to { transform: rotateY(-68deg); } }
+.destello { position: absolute; width: 1.4cqw; height: 1.4cqw; pointer-events: none; background: radial-gradient(circle, #fff 0 18%, rgba(255,246,214,.8) 30%, transparent 70%); animation: titila 3s ease-in-out infinite; }
+@keyframes titila { 0%, 100% { opacity: 0; transform: scale(.4); } 50% { opacity: 1; transform: scale(1); } }
+
+/* ---------- Puertas (sobre) ---------- */
+#puertas { position: fixed; inset: 0; z-index: 50; perspective: 1400px; cursor: pointer; background: #efe6f6; }
+#puertas .hoja { position: absolute; top: 0; width: 50%; height: 100%; background-size: cover; transition: transform 2.2s cubic-bezier(.55,.05,.3,1), opacity 1.2s ease 1.4s; }
+#puertas .izq { left: 0; background-image: url(recursos/sobre-izq.webp); background-position: right center; transform-origin: left center; }
+#puertas .der { right: 0; background-image: url(recursos/sobre-der.webp); background-position: left center; transform-origin: right center; }
+#puertas.abierta { pointer-events: none; background: transparent; transition: background .8s ease; }
+#puertas.abierta .izq { transform: rotateY(-105deg); opacity: 0; }
+#puertas.abierta .der { transform: rotateY(105deg); opacity: 0; }
+#puertas .toca { position: absolute; left: 50%; bottom: 6.5%; width: 64%; height: 9%; transform: translateX(-50%); border-radius: 50px; animation: latido 2s ease-in-out infinite; }
+@keyframes latido { 0%, 100% { box-shadow: 0 0 0 0 rgba(201,164,236,.0); } 50% { box-shadow: 0 0 0 10px rgba(201,164,236,.35); } }
+@media (min-aspect-ratio: 3/4) { #puertas .hoja { width: 240px; } #puertas .izq { left: calc(50% - 240px); } #puertas .der { right: calc(50% - 240px); } #puertas .toca { width: 300px; } }
+
+/* ---------- Pie ---------- */
+#pie { max-width: 480px; margin: 0 auto; padding: 26px 16px 34px; text-align: center; background: #2c2350; color: #e9dcf7; font-family: "Cormorant", serif; }
+#pie p { font-size: 15px; font-style: italic; } #pie b { display: block; font-family: "Cinzel", serif; font-weight: 600; letter-spacing: .12em; margin: 4px 0 12px; color: var(--champana); }
+#pie a { display: inline-block; padding: 9px 20px; border-radius: 30px; border: 1px solid #e2bd6a; color: var(--champana); text-decoration: none; font-family: "Cinzel", serif; font-size: 12px; letter-spacing: .12em; }
+
+/* ---------- Música ---------- */
+#musica-boton { position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); width: 50px; height: 50px; border-radius: 50%; z-index: 60; display: none; justify-content: center; align-items: center; cursor: pointer;
+  background: linear-gradient(145deg, #f3e6ff, #b994e0); box-shadow: 0 4px 14px rgba(93,47,142,.35); border: 2px solid #f1cf78; }
+#musica-boton.visible { display: flex; }
+#musica-boton svg { width: 22px; height: 22px; fill: #4a2272; }
+#musica-boton .play { display: none; } #musica-boton.pausado .play { display: block; } #musica-boton.pausado .pausa { display: none; }
+
+/* ---------- Muestra ---------- */
+#marca-agua { position: fixed; inset: 0; z-index: 101; pointer-events: none; background: var(--marca) 0 0 / 260px 200px repeat; }
+body.muestra { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+body.muestra img { pointer-events: none; -webkit-user-drag: none; }
+#aviso { position: fixed; left: 50%; bottom: 90px; transform: translate(-50%, 20px); opacity: 0; z-index: 102; padding: 12px 20px; border-radius: 30px; background: rgba(44,35,80,.92); color: #fff6dc; font-family: "Cormorant", serif; font-size: 17px; font-weight: 600; transition: all .4s ease; pointer-events: none; white-space: nowrap; }
+#aviso.ver { opacity: 1; transform: translate(-50%, 0); }
+@media print { body.muestra > * { display: none !important; } }
+</style>
+</head>
+<body class="cerrada">
+
+<div id="puertas" role="button" aria-label="Toca el lazo para abrir">
+  <div class="hoja izq"></div><div class="hoja der"></div><div class="toca"></div>
+</div>
+
+<main id="escena">
+  <div class="pedazos">
+    <img src="recursos/escena-1.webp" alt="Danna Vanessa de espaldas subiendo la escalinata hacia un castillo lila en las nubes" fetchpriority="high">
+    <img src="recursos/escena-2.webp" alt="Jardín de glicinas entre las nubes con un espejo dorado">
+    <img src="recursos/escena-3.webp" alt="Balcón de mármol entre dos arcos de rosas" loading="lazy">
+    <img src="recursos/escena-4.webp" alt="Nubes de atardecer" loading="lazy">
+    <img src="recursos/escena-5.webp" alt="Torre lila con un reloj dorado entre glicinas" loading="lazy">
+    <img src="recursos/escena-6.webp" alt="Puente de mármol con faroles entre las nubes" loading="lazy">
+    <img src="recursos/escena-7.webp" alt="Glorieta de rosas con un buzón dorado y faroles flotantes" loading="lazy">
+    <img src="recursos/escena-8.webp" alt="De noche, Danna Vanessa saluda frente al castillo iluminado" loading="lazy">
+  </div>
+
+  <div class="capa" id="capa-vida"></div>
+  <div class="capa" id="capa-textos">
+    <!-- Portada: igual a la portada aprobada -->
+    <svg id="portada-texto" viewBox="0 0 1080 1935" aria-label="Mis XV años · Danna Vanessa · 8 de febrero de 2027">
+      <defs>
+        <linearGradient id="gNombre" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b48ade"/><stop offset=".25" stop-color="#8656b8"/><stop offset=".5" stop-color="#5d2f8e"/><stop offset=".75" stop-color="#9a6cc9"/><stop offset="1" stop-color="#4f2479"/></linearGradient>
+        <linearGradient id="gOro" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff3c4"/><stop offset=".25" stop-color="#f1cf78"/><stop offset=".5" stop-color="#b98a2e"/><stop offset=".75" stop-color="#f8e5a2"/><stop offset="1" stop-color="#a6771f"/></linearGradient>
+        <linearGradient id="gGema" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd3e6"/><stop offset=".5" stop-color="#ef8fb8"/><stop offset="1" stop-color="#b8487c"/></linearGradient>
+        <linearGradient id="gLineaI" x1="0" x2="1"><stop offset="0" stop-color="#e2bd6a" stop-opacity="0"/><stop offset="1" stop-color="#e2bd6a"/></linearGradient>
+        <linearGradient id="gLineaD" x1="0" x2="1"><stop offset="0" stop-color="#e2bd6a"/><stop offset="1" stop-color="#e2bd6a" stop-opacity="0"/></linearGradient>
+        <radialGradient id="gVelo"><stop offset="0" stop-color="#fffafd" stop-opacity=".55"/><stop offset=".75" stop-color="#fffafd" stop-opacity="0"/><stop offset="1" stop-color="#fffafd" stop-opacity="0"/></radialGradient>
+        <filter id="fNombre" x="-20%" y="-40%" width="140%" height="180%"><feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#fff" flood-opacity=".35"/></filter>
+        <filter id="fChica" x="-20%" y="-40%" width="140%" height="180%"><feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#fff" flood-opacity=".35"/></filter>
+      </defs>
+      <ellipse cx="540" cy="340" rx="620" ry="420" fill="url(#gVelo)"/>
+      <svg x="465" y="60" width="150" height="75" viewBox="0 0 200 100" overflow="visible">
+        <g filter="url(#fChica)">
+          <path d="M20,88 Q100,70 180,88 L176,96 Q100,79 24,96 Z" fill="url(#gOro)"/>
+          <path d="M26,86 L36,52 L54,78 L72,34 L88,74 L100,14 L112,74 L128,34 L146,78 L164,52 L174,86 Q100,70 26,86 Z" fill="none" stroke="url(#gOro)" stroke-width="4.5" stroke-linejoin="round"/>
+          <path d="M60,80 Q72,58 84,78 M116,78 Q128,58 140,80" fill="none" stroke="url(#gOro)" stroke-width="3"/>
+          <circle cx="36" cy="49" r="5" fill="#fffaf2" stroke="#d8b46a" stroke-width="1.5"/><circle cx="72" cy="31" r="5.5" fill="#fffaf2" stroke="#d8b46a" stroke-width="1.5"/>
+          <circle cx="128" cy="31" r="5.5" fill="#fffaf2" stroke="#d8b46a" stroke-width="1.5"/><circle cx="164" cy="49" r="5" fill="#fffaf2" stroke="#d8b46a" stroke-width="1.5"/>
+          <circle cx="100" cy="9" r="6" fill="#fffaf2" stroke="#d8b46a" stroke-width="1.5"/>
+          <path d="M100,40 L111,56 L100,72 L89,56 Z" fill="url(#gGema)" stroke="url(#gOro)" stroke-width="2.5"/><path d="M100,44 L105,56 L100,52 Z" fill="#fff" opacity=".7"/>
+        </g>
+      </svg>
+      <text x="540" y="182" text-anchor="middle" font-family="Cinzel" font-weight="700" font-size="34" letter-spacing="12" fill="#6a3a99" filter="url(#fChica)">MIS XV AÑOS</text>
+      <text id="p-nombre1" x="540" y="348" text-anchor="middle" font-family="Great Vibes" font-size="196" fill="url(#gNombre)" stroke="#d9b25e" stroke-width="2.6" paint-order="stroke" filter="url(#fNombre)">Danna</text>
+      <text id="p-nombre2" x="540" y="510" text-anchor="middle" font-family="Great Vibes" font-size="196" fill="url(#gNombre)" stroke="#d9b25e" stroke-width="2.6" paint-order="stroke" filter="url(#fNombre)">Vanessa</text>
+      <g filter="url(#fChica)">
+        <path d="M340,562 H518" stroke="url(#gLineaI)" stroke-width="2.4"/><path d="M562,562 H740" stroke="url(#gLineaD)" stroke-width="2.4"/>
+        <path d="M540,551 L551,562 L540,573 L529,562 Z" fill="#c99a3e"/><circle cx="510" cy="562" r="3.6" fill="#c99a3e"/><circle cx="570" cy="562" r="3.6" fill="#c99a3e"/>
+      </g>
+      <text x="540" y="618" text-anchor="middle" font-family="Cinzel" font-weight="700" font-size="32" letter-spacing="5" fill="#6a3a99" filter="url(#fChica)">8 · FEBRERO · 2027</text>
+    </svg>
+
+    <div class="zona aparece" id="z-espejo"><h2 class="script script-lila" id="espejo-titulo"></h2><p id="espejo-texto"></p></div>
+
+    <div class="zona pergamino aparece" id="z-padres"><div class="perg"><img src="recursos/pergamino.webp" alt=""><div class="perg-txt"><h3 class="cinzel" id="padres-titulo"></h3><div class="divisor"></div><p class="nombres" id="padres-nombres"></p></div></div></div>
+    <div class="zona pergamino aparece" id="z-padrinos"><div class="perg"><img src="recursos/pergamino.webp" alt=""><div class="perg-txt"><h3 class="cinzel" id="padrinos-titulo"></h3><div class="divisor"></div><p class="nombres" id="padrinos-nombres"></p></div></div></div>
+
+    <div class="zona aparece brillo-claro" id="z-reserva"><h2 class="script script-lila">Reserva la fecha</h2><p id="fecha-texto"></p></div>
+    <div class="zona aparece" id="z-reloj"><span class="script script-lila" id="reloj-texto"></span></div>
+    <div class="zona aparece" id="z-cuenta">
+      <div class="caja"><b id="c-dias">0</b><small>Días</small></div>
+      <div class="caja"><b id="c-horas">0</b><small>Horas</small></div>
+      <div class="caja"><b id="c-min">0</b><small>Min</small></div>
+      <div class="caja"><b id="c-seg">0</b><small>Seg</small></div>
+    </div>
+
+    <div class="zona aparece brillo-claro" id="z-fiesta"><h2 class="script script-lila" id="fiesta-titulo"></h2><p id="fiesta-lugar"></p><p id="fiesta-dir"></p><p id="fiesta-hora"></p><a class="boton" id="fiesta-boton" target="_blank" rel="noopener">Cómo llegar</a></div>
+    <div class="zona aparece" id="z-vestimenta"><div class="panel-vest">
+      <h2 class="script script-lila" id="vest-titulo"></h2>
+      <span class="cinzel estilo" id="vest-estilo"></span>
+      <div class="iconos-vest">
+        <div><img src="recursos/icono-vestido.webp" alt="Vestido"><b>Ellas</b><span id="vest-ellas"></span></div>
+        <div><img src="recursos/icono-traje.webp" alt="Traje"><b>Ellos</b><span id="vest-ellos"></span></div>
+      </div>
+      <p id="vest-nota"></p>
+    </div></div>
+
+    <div class="zona aparece brillo-claro" id="z-confirma"><h2 class="script script-lila" id="conf-titulo"></h2><p id="conf-texto"></p></div>
+    <div class="zona aparece" id="z-boton"><a class="boton" id="conf-boton" target="_blank" rel="noopener"></a></div>
+
+    <div class="zona aparece" id="z-cierre"><span class="script script-oro" id="cierre-titulo"></span><p id="cierre-frase"></p></div>
+  </div>
+</main>
+
+<footer id="pie"><p id="cr-texto"></p><b id="cr-marca"></b><a id="cr-boton" target="_blank" rel="noopener"></a></footer>
+
+<audio id="musica" loop preload="none"></audio>
+<div id="musica-boton" class="pausado" role="button" aria-label="Música">
+  <svg class="pausa" viewBox="0 0 24 24"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg>
+  <svg class="play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+</div>
+<div id="aviso"></div>
+
+<script>
+(() => {
+  const C = CONFIG, $ = id => document.getElementById(id);
+  const txt = (id, t) => { const e = $(id); if (e) e.textContent = t; };
+  const qs = new URLSearchParams(location.search);
+
+  /* ---------- Textos ---------- */
+  txt('espejo-titulo', C.espejo.titulo); $('espejo-titulo').innerHTML = $('espejo-titulo').textContent.replace(/\n/g, '<br>');
+  txt('espejo-texto', C.espejo.texto);
+  const nombres = (id, lista) => { const e = $(id); if (!lista.length) { e.textContent = 'Por confirmar'; e.className = 'pend'; } else e.innerHTML = lista.map(n => '<span>' + n.replace(/</g, '&lt;') + '</span>').join('<i class="y">y</i>'); };
+  txt('padres-titulo', C.padres.titulo); nombres('padres-nombres', C.padres.nombres);
+  txt('padrinos-titulo', C.padrinos.titulo); nombres('padrinos-nombres', C.padrinos.nombres);
+  txt('fecha-texto', C.fechaTexto); txt('reloj-texto', C.reloj);
+  const fi = C.fiesta; txt('fiesta-titulo', fi.titulo);
+  txt('fiesta-lugar', fi.lugar || 'Lugar por confirmar'); if (fi.direccion) txt('fiesta-dir', fi.direccion); else $('fiesta-dir').remove();
+  txt('fiesta-hora', fi.hora ? fi.hora : 'Hora por confirmar');
+  if (!fi.lugar) { $('fiesta-lugar').classList.add('pend'); $('fiesta-hora').classList.add('pend'); }
+  if (fi.enlace) $('fiesta-boton').href = fi.enlace; else $('fiesta-boton').remove();
+  const ve = C.vestimenta; txt('vest-titulo', ve.titulo); txt('vest-estilo', ve.estilo); txt('vest-ellas', ve.ellas); txt('vest-ellos', ve.ellos); if (ve.nota) txt('vest-nota', ve.nota); else $('vest-nota').remove();
+  const co = C.confirmacion; txt('conf-titulo', co.titulo); txt('conf-texto', co.texto); txt('conf-boton', co.boton);
+  if (co.whatsapp) $('conf-boton').href = 'https://wa.me/' + co.whatsapp + '?text=' + encodeURIComponent(co.mensaje);
+  txt('cierre-titulo', C.cierre.titulo); txt('cierre-frase', C.cierre.frase);
+  txt('cr-texto', C.credito.texto); txt('cr-marca', C.credito.marca); txt('cr-boton', C.credito.boton + ' ›'); $('cr-boton').href = C.credito.enlace;
+
+  /* ---------- Cuenta regresiva (hora de Colombia) ---------- */
+  const f = C.fecha, meta = Date.UTC(f.anio, f.mes - 1, f.dia, f.hora - f.zona, f.minuto);
+  const dos = n => String(n).padStart(2, '0');
+  function contar() {
+    let s = Math.max(0, Math.floor((meta - Date.now()) / 1000));
+    txt('c-dias', Math.floor(s / 86400)); s %= 86400; txt('c-horas', dos(Math.floor(s / 3600))); s %= 3600; txt('c-min', dos(Math.floor(s / 60))); txt('c-seg', dos(s % 60));
+  }
+  contar(); setInterval(contar, 1000);
+
+  /* ---------- Aparecer al bajar ---------- */
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visto'); io.unobserve(e.target); } }), { threshold: .25 });
+  document.querySelectorAll('.aparece').forEach(e => io.observe(e));
+
+  /* ---------- Mariposas que vuelan y aletean ---------- */
+  const vida = $('capa-vida');
+  const rnd = (a, b) => a + Math.random() * (b - a);
+  // [y en % del dibujo, cuántas] · repartidas por todo el cuento
+  const grupos = [[4, 2], [9, 3], [14, 2], [21, 2], [27, 2], [33, 2], [39, 2], [45, 2], [51, 3], [56, 1], [62, 2], [68, 2], [75, 3], [80, 2], [88, 2], [94, 3]];
+  const anim = [];
+  grupos.forEach(([y, n]) => { for (let k = 0; k < n; k++) {
+    const m = document.createElement('div'); m.className = 'mariposa';
+    const src = 'recursos/mariposa-' + (1 + Math.floor(Math.random() * 6)) + '.webp';
+    m.innerHTML = '<i class="ai"></i><i class="ad"></i>';
+    m.querySelectorAll('i').forEach(i => i.style.backgroundImage = 'url(' + src + ')');
+    m.style.width = rnd(6, 10) + 'cqw'; m.style.left = rnd(4, 84) + '%'; m.style.top = (y + rnd(-1.5, 1.5)) + '%';
+    m.style.setProperty('--vel', rnd(.22, .4).toFixed(2) + 's');
+    vida.appendChild(m);
+    // vuelo: puntos al azar alrededor de su lugar, de ida y vuelta, girando hacia donde va
+    const pasos = [], P = 6; let x = 0, yy = 0;
+    for (let p = 0; p <= P; p++) { const nx = p === 0 ? 0 : rnd(-22, 22), ny = p === 0 ? 0 : rnd(-14, 14); const ang = Math.atan2(ny - yy, nx - x) * 180 / Math.PI + 90; pasos.push({ transform: `translate(${nx}cqw, ${ny}cqw) rotate(${(p === 0 ? rnd(-20, 20) : Math.max(-50, Math.min(50, ang > 180 ? ang - 360 : ang))).toFixed(0)}deg)` }); x = nx; yy = ny; }
+    if (m.animate) anim.push(m.animate(pasos, { duration: rnd(16000, 26000), iterations: Infinity, direction: 'alternate', easing: 'ease-in-out', delay: -rnd(0, 16000) }));
+  } });
+  for (let k = 0; k < 70; k++) { const d = document.createElement('div'); d.className = 'destello'; d.style.left = rnd(2, 96) + '%'; d.style.top = rnd(1, 99) + '%'; d.style.animationDelay = -rnd(0, 3) + 's'; d.style.animationDuration = rnd(2.2, 4.2) + 's'; vida.appendChild(d); }
+
+  /* ---------- Muestra: marca de agua y protección ---------- */
+  const aviso = $('aviso'); let tA;
+  const mostrarAviso = e => { e.preventDefault(); aviso.textContent = C.muestra.aviso; aviso.classList.add('ver'); clearTimeout(tA); tA = setTimeout(() => aviso.classList.remove('ver'), 2200); };
+  if (!co.whatsapp) $('conf-boton').addEventListener('click', mostrarAviso);
+  if (C.muestra.activa && !qs.has('sinmarca')) {
+    document.body.classList.add('muestra');
+    const t = C.muestra.texto.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+    const fila = (x, y) => "<text x='" + x + "' y='" + y + "' text-anchor='middle' font-family='Georgia,serif' font-size='14' font-weight='700' letter-spacing='2.5' fill='rgba(15,8,8,.45)' stroke='rgba(255,255,255,.3)' stroke-width='.5'>" + t + "</text>";
+    const svg = "<svg xmlns='http://www.w3.org/2000/svg' width='260' height='200'><g transform='rotate(-28 130 100)'>" + fila(130, 70) + fila(0, 160) + fila(260, 160) + "</g></svg>";
+    const capa = document.createElement('div'); capa.id = 'marca-agua'; capa.style.setProperty('--marca', 'url("data:image/svg+xml,' + encodeURIComponent(svg) + '")'); document.body.appendChild(capa);
+    ['contextmenu', 'dragstart', 'selectstart', 'copy', 'cut'].forEach(ev => document.addEventListener(ev, e => e.preventDefault()));
+    document.addEventListener('keydown', e => { const k = (e.key || '').toLowerCase(), mod = e.ctrlKey || e.metaKey; if (e.key === 'F12' || (mod && ['s', 'u', 'p', 'c', 'a'].includes(k)) || (mod && e.shiftKey && ['i', 'j', 'c'].includes(k))) e.preventDefault(); });
+  }
+
+  /* ---------- Música ---------- */
+  const musica = $('musica'), mb = $('musica-boton');
+  const tocar = () => { if (!C.musica) return; if (!musica.src) musica.src = C.musica; const p = musica.play(); if (p && p.then) p.then(() => mb.classList.remove('pausado')).catch(() => mb.classList.add('pausado')); };
+  mb.addEventListener('click', e => { e.stopPropagation(); if (musica.paused) { delete musica.dataset.usuario; tocar(); } else { musica.pause(); musica.dataset.usuario = '1'; mb.classList.add('pausado'); } });
+
+  /* ---------- Puertas ---------- */
+  const pu = $('puertas');
+  const abrir = () => {
+    if (pu.classList.contains('abierta')) return;
+    pu.classList.add('abierta'); tocar(); mb.classList.add('visible');
+    setTimeout(() => { document.body.classList.remove('cerrada'); }, 900);
+    setTimeout(() => pu.remove(), 2800);
+  };
+  if (qs.has('directo')) { pu.remove(); document.body.classList.remove('cerrada'); mb.classList.add('visible'); }
+  else pu.addEventListener('click', abrir);
+})();
+</script>
+</body>
+</html>
