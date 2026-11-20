@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mis XV Años · Fanny</title>
+<meta name="description" content="Estás invitado a mis XV años. Toca la puerta para abrir mi invitación ✨">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Invitaciones de Amor">
+<meta property="og:title" content="Mis XV Años · Fanny">
+<meta property="og:description" content="Estás invitado a mis XV años. Toca la puerta para abrir mi invitación ✨">
+<meta property="og:image" content="https://eleganciadeamor.com/borradores/xv-fanny-v3-cuento-78cae2/recursos/vista-previa.jpg?v=1">
+<meta property="og:image:width" content="600">
+<meta property="og:image:height" content="600">
+<meta property="og:image:alt" content="Puerta dorada de palacio con el 15, rosas azules y una zapatilla de cristal">
+<meta property="og:url" content="https://eleganciadeamor.com/borradores/xv-fanny-v3-cuento-78cae2/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://eleganciadeamor.com/borradores/xv-fanny-v3-cuento-78cae2/recursos/vista-previa.jpg?v=1">
+<link rel="icon" href="recursos/vista-previa.jpg">
+<link rel="preload" href="recursos/apertura-marco.webp" as="image" fetchpriority="high">
+<link rel="preload" href="recursos/apertura-puerta-izq.webp" as="image" fetchpriority="high">
+<link rel="preload" href="recursos/apertura-puerta-der.webp" as="image" fetchpriority="high">
+<script>
+/* ===================== DATOS DE LA INVITACIÓN (cambiar aquí) ===================== */
+const CONFIG = {
+  festejada: "Fanny",
+  apellidos: "Miranda Gaxiola",
+  fechaLarga: "Sábado 19 de diciembre de 2026",
+  fechaCorta: "19 · 12 · 2026",
+  hora: "7:00 p.m.",
+  cuentaHasta: "2026-12-19T19:00:00-07:00",        // hora de Los Mochis, Sinaloa
+  frase: "Desde niña soñé con este día… Hoy las puertas de mi castillo se abren para celebrar mis quince años, el comienzo de un nuevo capítulo lleno de sueños, ilusiones y bendiciones.",
+  puente: "Y así comienza mi cuento…",
+  padres: { titulo: "Con la bendición de Dios y el amor de mis padres", nombres: ["Marko Miranda Valderas", "Isabel Gaxiola Chavez"] },
+  padrinos: { titulo: "y de mis padrinos", nombres: ["Sr. Carlos Astorga Espinoza", "Sra. Daysi Gómez Pérez"] },
+  invitacion: "Tengo el honor<br>de invitarte<br>a celebrar mis",
+  misa: { lugar: "Iglesia Divina Providencia", direccion: "Veracruz #120 (entre Durango y Chihuahua), Col. San Francisco, Los Mochis, Sinaloa", hora: "7:00 p.m.",
+          mapa: "https://www.google.com/maps/search/?api=1&query=Parroquia%20La%20Divina%20Providencia%2C%20Veracruz%20Norte%20120%2C%20San%20Francisco%2C%20Los%20Mochis%2C%20Sinaloa" },
+  fiesta: { lugar: "Salón Abu Dhabi", direccion: "Blvd. Zacatecas #1256, Fracc. San Rafael, Los Mochis, Sinaloa", hora: "9:00 p.m.",
+            mapa: "https://www.google.com/maps/search/?api=1&query=Sal%C3%B3n%20de%20eventos%20Abu%20Dhabi%2C%20Blvd.%20Zacatecas%2C%20Los%20Mochis%2C%20Sinaloa" },
+  vestimenta: { estilo: "Formal", nota: "Azul reservado para la quinceañera" },
+  confirmacion: { texto: "Me encantaría compartir este sueño contigo. Ayúdame confirmando tu asistencia.",
+                  whatsapp: "",                  // REGLA: el número va SOLO cuando pague
+                  mensaje: "¡Hola! Confirmo mi asistencia a los XV años de Fanny 💙" },
+  musica: "recursos/musica.mp3",                 // "Claro de luna" (Debussy), dominio público
+  muestra: { activa: true, texto: "MUESTRA · INVITACIONES DE AMOR", aviso: "Se activa en la versión final ✨" },
+  credito: { texto: "Invitación hecha con amor por", marca: "Invitaciones de Amor", enlace: "https://eleganciadeamor.com/#nuestros-trabajos", boton: "Ver nuestros trabajos" }
+};
+</script>
+<style>
+@font-face { font-family: "Great Vibes"; src: url(recursos/fuente-great-vibes.woff2) format("woff2"); font-display: block; }
+@font-face { font-family: "Cinzel"; src: url(recursos/fuente-cinzel-600.woff2) format("woff2"); font-weight: 600; font-display: block; }
+@font-face { font-family: "Cormorant"; src: url(recursos/fuente-cormorant-500.woff2) format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Cormorant"; src: url(recursos/fuente-cormorant-600.woff2) format("woff2"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "Cormorant"; src: url(recursos/fuente-cormorant-500-italica.woff2) format("woff2"); font-weight: 500; font-style: italic; font-display: swap; }
+:root { --w: min(55.81svh, 106vw); --azul: #26457a; --crema: #fbf6ea; --serif: "Cormorant", Georgia, serif; --rosa-titulo: #26457a; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { background: #142a52; overflow-x: clip; }
+body { font-family: "Cormorant", Georgia, serif; color: var(--azul); -webkit-font-smoothing: antialiased; }
+body.cerrado { overflow: hidden; height: 100svh; }
+
+/* ---------- La escena: un solo dibujo largo; todo en cqw (1 cqw = 1 % del ancho del dibujo) ---------- */
+#escena { position: relative; width: var(--w); margin-left: 50%; translate: -50% 0; container-type: inline-size; overflow: clip; }
+#escena .rebanadas img { display: block; width: 100%; height: auto; }
+#escena > .capa { position: absolute; left: 50%; translate: -50% 0; text-align: center; z-index: 4; display: flex; flex-direction: column; align-items: center; }
+
+/* letras */
+.oro { color: #d9a12c; background: linear-gradient(180deg, #fff6c4 0%, #f9d66e 28%, #e6a925 52%, #b8780e 78%, #f6d272 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.script { font-family: "Great Vibes", cursive; font-weight: 400; line-height: 1.2; padding: .3em .25em .1em; }
+.caps { font-family: "Cinzel", serif; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; }
+.sombra-oro { filter: drop-shadow(0 .14cqw .14cqw rgba(95, 55, 0, .85)) drop-shadow(0 0 1.6cqw rgba(255, 255, 255, .95)); }
+.sombra-oro-noche { filter: drop-shadow(0 .14cqw .14cqw rgba(70, 40, 0, .9)) drop-shadow(0 0 .5cqw rgba(255, 214, 140, .6)) drop-shadow(0 .3cqw .8cqw rgba(0, 0, 10, .85)); }
+.claro { color: var(--azul); text-shadow: 0 0 1.6cqw rgba(255, 255, 255, .95), 0 0 .6cqw rgba(255, 255, 255, .95); }
+.oscuro { color: var(--crema); text-shadow: 0 .2cqw .9cqw rgba(0, 10, 25, .95), 0 0 2.4cqw rgba(0, 10, 25, .8); }
+.dato { font-size: 5.2cqw; line-height: 1.3; font-weight: 600; }
+.titulo { font-size: 14cqw; }
+/* velo suave detrás del texto (sin cuadros): blanco en las escenas claras, azul noche en las oscuras */
+.velo-claro { background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(255, 255, 255, .78), rgba(255, 255, 255, .55) 55%, rgba(255, 255, 255, 0) 100%); padding: 6cqw 8cqw; }
+.velo-noche { background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(10, 25, 55, .62), rgba(10, 25, 55, .4) 55%, rgba(10, 25, 55, 0) 100%); padding: 6cqw 8cqw; }
+
+/* portada */
+#nombre { width: 80cqw; }
+#nombre img { display: block; width: 100%; height: auto; filter: drop-shadow(0 .3cqw .6cqw rgba(20, 40, 80, .45)); }
+#misxv { font-size: 5cqw; white-space: nowrap; letter-spacing: .24em; color: var(--azul); text-shadow: 0 0 10px rgba(246, 249, 255, .95), 0 0 2px rgba(246, 249, 255, .9); }
+
+/* espejo con la frase */
+.flota { position: absolute; left: 50%; translate: -50% 0; z-index: 4; animation: flotar 7s ease-in-out infinite; }
+.flota > img { display: block; width: 100%; height: auto; filter: drop-shadow(0 2cqw 2.6cqw rgba(0, 20, 50, .45)); }
+@keyframes flotar { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-1.2cqw); } }
+#espejo .interior { position: absolute; left: 19%; top: 18.6%; width: 61.9%; height: 61.6%; border-radius: 50%; background: radial-gradient(ellipse, #fdfcf7 0%, #f3f6fb 70%, #e4ecf7 100%);
+  display: flex; align-items: center; justify-content: center; }
+#espejo p { width: 66%; margin-top: 4cqw; text-align: center; font-size: 3.7cqw; line-height: 1.32; font-style: italic; font-weight: 500; color: var(--azul); }
+#espejo .firma { display: block; margin-top: 1.2cqw; font-family: "Great Vibes", cursive; font-style: normal; font-size: 8cqw; line-height: 1.1; white-space: nowrap; padding-top: .2em; }
+#espejo .apellidos { display: block; font-style: normal; font-family: "Cinzel", serif; font-weight: 600; font-size: 2.8cqw; letter-spacing: .2em; text-transform: uppercase; }
+#puente { width: 84cqw; }
+#puente img { display: block; width: 12cqw; margin: 0 auto 1cqw; filter: drop-shadow(0 .4cqw .8cqw rgba(20, 40, 80, .35)); }
+#puente .script { font-size: 9cqw; white-space: nowrap; }
+
+/* padres y padrinos */
+#padres { width: 94cqw; }
+#padres .dato { font-size: 5cqw; font-style: italic; font-weight: 600; }
+#padres .nombre { font-size: 7.6cqw; white-space: nowrap; line-height: 1.15; padding: .15em .2em 0; }
+#padres .separa { height: 4cqw; }
+/* te invito + 15 años */
+#invita { width: 78cqw; }
+#invita .dato { font-size: 5cqw; letter-spacing: .1em; }
+#invita img { display: block; width: 56cqw; height: auto; margin: 2cqw auto 0; filter: drop-shadow(0 .5cqw 1.4cqw rgba(10, 20, 50, .55)); }
+/* fecha */
+#fecha { width: 94cqw; }
+#fecha .titulo { font-size: 13cqw; white-space: nowrap; }
+#fecha .grande { font-family: "Cinzel", serif; font-weight: 600; font-size: 6.4cqw; letter-spacing: .05em; line-height: 1.3; }
+#fecha .hora { font-size: 6cqw; margin-top: 1.4cqw; }
+/* cuenta regresiva sobre los nenúfares */
+#falta { font-size: 16cqw; white-space: nowrap; }
+.celda { position: absolute; translate: -50% -50%; text-align: center; z-index: 4; }
+.celda b { display: block; font-family: "Cinzel", serif; font-weight: 600; font-size: 6cqw; color: var(--azul); font-variant-numeric: lining-nums tabular-nums; text-shadow: 0 0 1cqw #fff, 0 0 .4cqw #fff; }
+.etiqueta { position: absolute; translate: -50% 0; z-index: 4; font-family: "Cinzel", serif; font-weight: 600; font-size: 3.2cqw; letter-spacing: .12em; text-transform: uppercase; color: #fff; text-shadow: 0 .2cqw .6cqw rgba(0, 20, 50, .95), 0 0 1.4cqw rgba(0, 20, 50, .8); }
+/* misa y fiesta */
+.evento { width: 84cqw; }
+.evento .titulo { font-size: 17cqw; }
+.evento .dato { font-size: 5.4cqw; }
+.evento .lugar { font-size: 7.2cqw; line-height: 1.15; margin-bottom: 1cqw; }
+.hora-linea { display: flex; align-items: center; justify-content: center; gap: 2.4cqw; margin: 1.8cqw 0; font-family: "Cinzel", serif; font-weight: 600; font-size: 6cqw; }
+.hora-linea::before, .hora-linea::after { content: ""; width: 7cqw; height: 1px; background: currentColor; opacity: .7; }
+.boton { display: inline-block; margin-top: 2.4cqw; padding: 3cqw 8cqw; border-radius: 99px; border: 0; cursor: pointer; text-decoration: none; white-space: nowrap;
+  font-family: "Cinzel", serif; font-weight: 600; font-size: 4.4cqw; letter-spacing: .12em; text-transform: uppercase; color: var(--azul);
+  background: linear-gradient(180deg, #fff1b3, #f2c24b 50%, #c9891a); box-shadow: 0 .6cqw 1.8cqw rgba(0, 0, 0, .35), inset 0 1px 0 rgba(255, 255, 255, .6); }
+/* vestimenta */
+#vestimenta-titulo { width: 96cqw; }
+#vestimenta-titulo .titulo { font-size: 14.5cqw; line-height: 1.05; }
+#vestimenta { width: 84cqw; }
+#vestimenta .estilo { font-family: "Cinzel", serif; font-weight: 600; font-size: 8cqw; letter-spacing: .12em; line-height: 1.3; }
+#vestimenta .dato { font-size: 5.8cqw; margin-top: 1.4cqw; }
+/* confirmación */
+#confirma { width: 76cqw; }
+#confirma .titulo { font-size: 12.5cqw; line-height: 1.05; }
+#confirma .dato { font-size: 5.4cqw; margin-top: 1.6cqw; }
+/* cierre */
+#cierre { width: 96cqw; }
+#cierre .titulo { font-size: 19cqw; white-space: nowrap; }
+#cierre .nombre { width: 70cqw; margin: -2cqw auto 0; }
+#cierre .nombre img { display: block; width: 100%; height: auto; }
+#cierre .caps { font-size: 3.8cqw; letter-spacing: .3em; color: #fff3d6; margin-top: 1cqw; text-shadow: 0 .2cqw .8cqw rgba(0, 10, 30, .9); }
+#cierre .gracias { font-size: 5.4cqw; font-style: italic; margin-top: 2cqw; }
+
+/* aparecen al bajar */
+.revela { opacity: 0; transition: opacity 1.2s ease, transform 1.2s ease; transform: translate(-50%, 4cqw); translate: none; }
+.revela.visto { opacity: 1; transform: translate(-50%, 0); }
+#escena > .revela { translate: none; }
+#escena > .flota.revela { transform: none; translate: -50% 0; }
+/* destellos y mariposas encima del dibujo */
+.chispa { position: absolute; z-index: 5; width: .8cqw; aspect-ratio: 1; border-radius: 50%; pointer-events: none; background: #fff3c4;
+  box-shadow: 0 0 1.2cqw .4cqw rgba(255, 220, 140, .7); animation: vuela var(--t) ease-in-out infinite, brilla calc(var(--t) / 3) ease-in-out infinite; animation-delay: var(--d); }
+@keyframes vuela { 0%, 100% { translate: 0 0; } 33% { translate: 3cqw -4cqw; } 66% { translate: -2.5cqw -1.5cqw; } }
+@keyframes brilla { 0%, 100% { opacity: .15; } 50% { opacity: 1; } }
+.mariposa { position: absolute; z-index: 5; width: 7cqw; pointer-events: none; animation: revolotea var(--t) ease-in-out infinite; animation-delay: var(--d); }
+.mariposa img { display: block; width: 100%; animation: aletea .5s ease-in-out infinite alternate; transform-origin: 50% 50%; filter: drop-shadow(0 0 1cqw rgba(255, 255, 255, .8)); }
+@keyframes aletea { from { transform: scaleX(1); } to { transform: scaleX(.35); } }
+@keyframes revolotea { 0%, 100% { translate: 0 0; rotate: -6deg; } 25% { translate: 6cqw -5cqw; rotate: 8deg; } 50% { translate: 1cqw -10cqw; rotate: -4deg; } 75% { translate: -5cqw -4cqw; rotate: 6deg; } }
+
+/* ---------- Puertas del palacio (pantalla inicial) ---------- */
+#apertura { position: fixed; inset: 0; z-index: 100; overflow: hidden; cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; background: #8ea8d6; }
+#apertura .relleno { position: absolute; inset: -40px; filter: blur(18px) saturate(1.05); transform: scale(1.06); transition: opacity .6s ease; background: url(recursos/apertura-marco.webp) center / cover no-repeat; }
+#apertura .escena { position: absolute; left: 50%; top: 50%; width: max(100vw, 100svh * .55814); aspect-ratio: 1536 / 2752; translate: -50% -50%; perspective: 1700px; perspective-origin: 53% 52%; transform-origin: 53% 50%; opacity: 0; transition: opacity .5s ease; }
+@media (min-aspect-ratio: 3/4) { #apertura .escena { width: calc(100svh * .55814); } }
+#apertura .escena.lista { opacity: 1; }
+#apertura .capa { position: absolute; }
+#apertura .marco { inset: 0; width: 100%; height: 100%; z-index: 5; pointer-events: none; }
+#apertura .puerta, #apertura .luz { top: 26.087%; height: 50.0776%; }
+#apertura .luz { left: 33.5188%; width: 39.0821%; z-index: 1; opacity: 0; border-radius: 50% 50% 0 0 / 26% 26% 0 0;
+  background: radial-gradient(ellipse 60% 45% at 50% 48%, rgba(255, 255, 250, 1) 0%, rgba(255, 240, 214, .95) 35%, rgba(255, 214, 190, 0) 100%); }
+#apertura .puerta { width: 19.4715%; z-index: 3; backface-visibility: hidden; -webkit-backface-visibility: hidden; will-change: transform; }
+#apertura .puerta img { width: 100%; height: 100%; }
+#apertura .puerta.izq { left: 33.5188%; transform-origin: 0% 50%; }
+#apertura .puerta.der { left: 52.9903%; width: 19.6106%; transform-origin: 100% 50%; }
+#apertura .puerta::after { content: ""; position: absolute; inset: 0; opacity: 0; transition: opacity 1.9s cubic-bezier(.55, .05, .3, 1) .5s; -webkit-mask: var(--mascara) center / 100% 100% no-repeat; mask: var(--mascara) center / 100% 100% no-repeat; }
+#apertura .puerta.izq::after { background: linear-gradient(90deg, rgba(90, 40, 30, .05), rgba(90, 40, 30, .55)); }
+#apertura .puerta.der::after { background: linear-gradient(270deg, rgba(90, 40, 30, .05), rgba(90, 40, 30, .55)); }
+#apertura .rendija { left: 52.9903%; top: 27%; height: 49%; width: 1.4%; translate: -50% 0; z-index: 4; mix-blend-mode: screen; filter: blur(6px);
+  background: linear-gradient(180deg, rgba(255, 250, 235, 0), rgba(255, 250, 235, .95) 12%, rgba(255, 246, 225, .95) 88%, rgba(255, 250, 235, 0));
+  animation: respira 2.8s ease-in-out infinite; }
+@keyframes respira { 0%, 100% { opacity: .55; } 50% { opacity: 1; } }
+#apertura .toca { position: absolute; left: 50%; bottom: max(6%, env(safe-area-inset-bottom) + 18px); translate: -50% 0; z-index: 8; padding: .6em 1.5em; border-radius: 99px; white-space: nowrap; background: rgba(248, 251, 255, .93); box-shadow: 0 4px 16px rgba(40, 70, 130, .3);
+  font: 600 clamp(12px, 3.5vw, 15px) "Cinzel", serif; letter-spacing: .16em; text-transform: uppercase; color: var(--azul); animation: toca-pulso 2.2s 1s ease-in-out infinite; transition: opacity .4s ease; }
+@keyframes toca-pulso { 0%, 100% { scale: 1; box-shadow: 0 4px 16px rgba(40, 70, 130, .3); } 50% { scale: 1.05; box-shadow: 0 4px 22px rgba(255, 236, 190, .9); } }
+#apertura .destello { position: absolute; z-index: 6; width: 8px; height: 8px; border-radius: 50%; pointer-events: none; opacity: 0;
+  background: radial-gradient(circle, #fff 0%, rgba(255, 236, 180, .9) 35%, rgba(255, 236, 180, 0) 70%); animation: sube-destello 3.6s ease-in-out infinite; }
+@keyframes sube-destello { 0% { opacity: 0; transform: translateY(0) scale(.6); } 40% { opacity: 1; } 100% { opacity: 0; transform: translateY(-40px) scale(1.2); } }
+#apertura.tocado .toca { animation: none; opacity: 0; }
+#apertura.abriendo .relleno { opacity: 0; }
+#apertura.abriendo .rendija { mix-blend-mode: normal; animation: rendija-abre 1.7s ease .2s forwards; }
+@keyframes rendija-abre { 0% { opacity: .8; width: 1.4%; } 35% { opacity: 1; width: 10%; } 100% { opacity: 0; width: 34%; } }
+#apertura.abriendo .puerta.izq { transition: transform 2s cubic-bezier(.55, .05, .3, 1) .5s; transform: rotateY(84deg); }
+#apertura.abriendo .puerta.der { transition: transform 2s cubic-bezier(.55, .05, .3, 1) .5s; transform: rotateY(-84deg); }
+#apertura.abriendo .puerta::after { opacity: 1; }
+#apertura.abriendo .luz { animation: rafaga 2.4s ease .45s forwards; }
+@keyframes rafaga { 0% { opacity: 0; } 30% { opacity: 1; } 100% { opacity: 0; } }
+#apertura.abriendo .escena { transition: opacity .5s ease, scale 1.5s cubic-bezier(.5, 0, .3, 1) 1.5s; scale: 1.35; }
+#apertura.abriendo { background: transparent; transition: opacity 1.1s ease 1.8s, background .3s ease .4s; opacity: 0; }
+
+/* música, aviso, pie, marca de agua */
+#musica-boton { position: fixed; right: 14px; bottom: max(14px, env(safe-area-inset-bottom)); z-index: 90; width: 48px; height: 48px; border-radius: 50%; border: 0; cursor: pointer;
+  background: linear-gradient(180deg, #fbe7a6, #c99a3e); box-shadow: 0 3px 12px rgba(0, 0, 0, .4); color: var(--azul); font-size: 20px; display: none; }
+#musica-boton.ver { display: block; }
+#musica-boton.pausado { opacity: .7; }
+#aviso { position: fixed; left: 50%; bottom: 80px; translate: -50% 0; z-index: 120; padding: .8em 1.4em; border-radius: 99px; background: rgba(250, 252, 255, .97); color: var(--azul);
+  font-family: "Cormorant", serif; font-weight: 600; font-size: 17px; box-shadow: 0 6px 20px rgba(0, 0, 0, .35); opacity: 0; pointer-events: none; transition: opacity .3s; white-space: nowrap; }
+#aviso.ver { opacity: 1; }
+footer { padding: 26px 16px 34px; text-align: center; font-size: 15px; color: rgba(240, 246, 255, .8); }
+footer a { color: #e9c36a; text-decoration: none; }
+#marca-agua { position: fixed; inset: 0; z-index: 110; pointer-events: none; background: var(--marca) 0 0 / 260px 200px repeat; }
+body.muestra { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+body.muestra img { pointer-events: none; -webkit-user-drag: none; }
+@media print { body.muestra > * { display: none !important; } }
+#nombre { top: 5.56cqw; }
+#misxv { top: 47.69cqw; }
+#espejo { top: 167.04cqw; width: 72cqw; }
+#puente { top: 272.59cqw; }
+#padres { top: 329.35cqw; }
+#invita { top: 462.04cqw; }
+#fecha { top: 693.80cqw; }
+#falta { top: 814.44cqw; }
+#misa { top: 1007.31cqw; }
+#fiesta { top: 1119.35cqw; }
+#vestimenta-titulo { top: 1233.52cqw; }
+#vestimenta { top: 1321.48cqw; }
+#confirma { top: 1416.20cqw; }
+#cierre { top: 1538.70cqw; }
+
+</style>
+</head>
+<body class="cerrado">
+
+<div id="apertura" role="button" aria-label="Toca la puerta para abrir la invitación">
+  <div class="relleno"></div>
+  <div class="escena">
+    <div class="capa luz"></div>
+    <div class="capa puerta izq" style="--mascara:url(recursos/apertura-puerta-izq.webp)"><img src="recursos/apertura-puerta-izq.webp" alt="" decoding="async"></div>
+    <div class="capa puerta der" style="--mascara:url(recursos/apertura-puerta-der.webp)"><img src="recursos/apertura-puerta-der.webp" alt="" decoding="async"></div>
+    <div class="capa rendija"></div>
+    <img class="capa marco" src="recursos/apertura-marco.webp" alt="" decoding="async">
+  </div>
+  <div class="toca">Toca la puerta para abrir</div>
+</div>
+
+<main id="escena">
+  <div class="rebanadas"><img src="recursos/escena-01.webp" alt="" width="1080" height="1935" fetchpriority="high"><img src="recursos/escena-02.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-03.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-04.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-05.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-06.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-07.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-08.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-09.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-10.webp" alt="" width="1080" height="1018" loading="lazy"></div>
+
+  <!-- 1. PORTADA: Fanny frente al castillo -->
+  <div class="capa" id="nombre"><img src="recursos/nombre-oro.webp" alt="Fanny"></div>
+  <div class="capa caps" id="misxv">Mis XV Años</div>
+
+  <!-- 2. EL JARDÍN DE GLICINAS: el espejo con la frase -->
+  <div class="flota revela" id="espejo"><img src="recursos/marco-ovalado-oro.webp" alt=""><div class="interior"><p><span data-campo="frase"></span><span class="firma oro" data-campo="festejada"></span><span class="apellidos" data-campo="apellidos"></span></p></div></div>
+  <div class="capa revela" id="puente"><img src="recursos/aguamarina.webp" alt=""><div class="script oro sombra-oro" data-campo="puente"></div></div>
+
+  <!-- 3. EL BALCÓN DE LAS CORTINAS: padres y padrinos -->
+  <div class="capa revela velo-claro" id="padres">
+    <p class="dato claro" id="padres-titulo"></p>
+    <div id="padres-nombres"></div>
+    <div class="separa"></div>
+    <p class="dato claro" id="padrinos-titulo"></p>
+    <div id="padrinos-nombres"></div>
+  </div>
+
+  <!-- 4. LA ESCALINATA: te invito + 15 años -->
+  <div class="capa revela" id="invita">
+    <p class="dato caps claro" id="invitacion"></p>
+    <img src="recursos/quince.webp" alt="15 años">
+  </div>
+
+  <!-- 5. LA TERRAZA DEL RELOJ: reserva la fecha -->
+  <div class="capa revela" id="fecha">
+    <div class="titulo script oro sombra-oro">Reserva la Fecha</div>
+    <p class="grande claro" data-campo="fechaLarga"></p>
+    <p class="hora dato claro">A partir de las <b data-campo="hora"></b></p>
+  </div>
+
+  <!-- 6. LA FUENTE DE LOS NENÚFARES: falta poco -->
+  <div class="capa script oro sombra-oro revela" id="falta">Falta poco</div>
+  <div class="celda" style="left:18.33cqw;top:845.93cqw"><b id="c0">00</b></div><div class="etiqueta" style="left:18.33cqw;top:852.41cqw">Días</div><div class="celda" style="left:39.54cqw;top:845.93cqw"><b id="c1">00</b></div><div class="etiqueta" style="left:39.54cqw;top:852.41cqw">Horas</div><div class="celda" style="left:60.37cqw;top:845.93cqw"><b id="c2">00</b></div><div class="etiqueta" style="left:60.37cqw;top:852.41cqw">Min</div><div class="celda" style="left:81.30cqw;top:845.93cqw"><b id="c3">00</b></div><div class="etiqueta" style="left:81.30cqw;top:852.41cqw">Seg</div>
+
+  <!-- 7. LA CAPILLA: misa -->
+  <div class="capa revela evento velo-claro" id="misa">
+    <div class="titulo script oro sombra-oro">Misa</div>
+    <p class="dato lugar claro" id="misa-lugar"></p>
+    <p class="dato claro" id="misa-direccion"></p>
+    <div class="hora-linea claro" id="misa-hora"></div>
+    <a class="boton" id="misa-mapa" target="_blank" rel="noopener">Ver ubicación</a>
+  </div>
+
+  <!-- 8. EL GRAN SALÓN: fiesta -->
+  <div class="capa revela evento velo-claro" id="fiesta">
+    <div class="titulo script oro sombra-oro">Fiesta</div>
+    <p class="dato lugar claro" id="fiesta-lugar"></p>
+    <p class="dato claro" id="fiesta-direccion"></p>
+    <div class="hora-linea claro" id="fiesta-hora"></div>
+    <a class="boton" id="fiesta-mapa" target="_blank" rel="noopener">Ver ubicación</a>
+  </div>
+
+  <!-- 9. EL VESTIDOR: vestimenta -->
+  <div class="capa revela" id="vestimenta-titulo"><div class="titulo script oro sombra-oro">Código de Vestimenta</div></div>
+  <div class="capa revela velo-claro" id="vestimenta">
+    <p class="estilo claro" id="vestimenta-estilo"></p>
+    <p class="dato claro" id="vestimenta-nota"></p>
+  </div>
+
+  <!-- 10. EL ESCRITORIO DEL SOBRE: confirmación -->
+  <div class="capa revela velo-claro" id="confirma">
+    <div class="titulo script oro sombra-oro">Confirma tu Asistencia</div>
+    <p class="dato claro" data-campo-c="texto"></p>
+    <a class="boton" id="confirmacion-boton" target="_blank" rel="noopener">Confirmar</a>
+  </div>
+
+  <!-- 11. MEDIANOCHE: te espero -->
+  <div class="capa revela velo-noche" id="cierre">
+    <div class="titulo script oro sombra-oro-noche">Te espero</div>
+    <div class="nombre"><img src="recursos/nombre-oro.webp" alt="Fanny"></div>
+    <p class="caps" data-campo="fechaCorta"></p>
+    <p class="gracias oscuro">Gracias por ser parte de mi cuento</p>
+  </div>
+</main>
+
+<footer id="credito"></footer>
+<button id="musica-boton" aria-label="Pausar o poner la música">♪</button>
+<audio id="musica" loop preload="auto"></audio>
+<div id="aviso"></div>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const C = CONFIG;
+  document.querySelectorAll('[data-campo]').forEach(e => e.textContent = C[e.dataset.campo] || '');
+  document.querySelectorAll('[data-campo-c]').forEach(e => e.textContent = C.confirmacion[e.dataset.campoC] || '');
+  $('invitacion').innerHTML = C.invitacion;
+  const nombres = (id, lista) => lista.forEach(n => { const d = document.createElement('div'); d.className = 'nombre script oro sombra-oro'; d.textContent = n; $(id).appendChild(d); });
+  $('padres-titulo').textContent = C.padres.titulo; nombres('padres-nombres', C.padres.nombres);
+  if (C.padrinos.nombres.length) { $('padrinos-titulo').textContent = C.padrinos.titulo; nombres('padrinos-nombres', C.padrinos.nombres); }
+  ['misa', 'fiesta'].forEach(k => { $(k + '-lugar').textContent = C[k].lugar; $(k + '-direccion').textContent = C[k].direccion; $(k + '-hora').textContent = C[k].hora; $(k + '-mapa').href = C[k].mapa; });
+  $('vestimenta-estilo').textContent = C.vestimenta.estilo; $('vestimenta-nota').textContent = C.vestimenta.nota;
+  const cr = C.credito;
+  $('credito').innerHTML = cr.texto + '<br><a href="' + cr.enlace + '" target="_blank" rel="noopener">' + cr.marca + ' · ' + cr.boton + ' ›</a>';
+
+  /* WhatsApp: solo se activa en la versión final pagada */
+  const aviso = $('aviso'); aviso.textContent = C.muestra.aviso; let tA;
+  const mostrarAviso = e => { e.preventDefault(); aviso.classList.add('ver'); clearTimeout(tA); tA = setTimeout(() => aviso.classList.remove('ver'), 2200); };
+  const boton = $('confirmacion-boton');
+  if (C.confirmacion.whatsapp && !C.muestra.activa) boton.href = 'https://wa.me/' + C.confirmacion.whatsapp.replace(/\D/g, '') + '?text=' + encodeURIComponent(C.confirmacion.mensaje);
+  else { boton.removeAttribute('href'); boton.addEventListener('click', mostrarAviso); }
+
+  /* marca de agua (antes del pago); ?sinmarca solo la quita para revisar */
+  if (C.muestra.activa && !location.search.includes('sinmarca')) {
+    document.body.classList.add('muestra');
+    const t = C.muestra.texto;
+    const fila = (x, y) => "<text x='" + x + "' y='" + y + "' text-anchor='middle' font-family='Georgia,serif' font-size='14' font-weight='700' letter-spacing='2.5' fill='rgba(30,50,90,.38)' stroke='rgba(255,255,255,.35)' stroke-width='.5'>" + t + "</text>";
+    const svg = "<svg xmlns='http://www.w3.org/2000/svg' width='260' height='200'><g transform='rotate(-28 130 100)'>" + fila(130, 70) + fila(0, 160) + fila(260, 160) + "</g></svg>";
+    const capa = document.createElement('div'); capa.id = 'marca-agua'; capa.setAttribute('aria-hidden', 'true');
+    capa.style.setProperty('--marca', 'url("data:image/svg+xml,' + encodeURIComponent(svg) + '")');
+    document.body.appendChild(capa);
+    ['contextmenu', 'dragstart', 'selectstart', 'copy', 'cut'].forEach(ev => document.addEventListener(ev, e => e.preventDefault()));
+    document.addEventListener('keydown', e => { const k = (e.key || '').toLowerCase(), m = e.ctrlKey || e.metaKey;
+      if (e.key === 'F12' || (m && ['s', 'u', 'p', 'c', 'a'].includes(k)) || (m && e.shiftKey && ['i', 'j', 'c'].includes(k))) e.preventDefault(); });
+  }
+
+  /* cuenta regresiva */
+  const meta = new Date(C.cuentaHasta).getTime(), dos = n => String(n).padStart(2, '0');
+  const cuenta = () => { const r = Math.max(0, meta - Date.now());
+    $('c0').textContent = Math.floor(r / 864e5); $('c1').textContent = dos(Math.floor(r % 864e5 / 36e5));
+    $('c2').textContent = dos(Math.floor(r % 36e5 / 6e4)); $('c3').textContent = dos(Math.floor(r % 6e4 / 1e3)); };
+  cuenta(); setInterval(cuenta, 1000);
+
+  /* destellos y mariposas de cristal por todo el dibujo */
+  const esc = $('escena');
+  for (let i = 0; i < 50; i++) {
+    const l = document.createElement('span'); l.className = 'chispa';
+    l.style.left = (4 + Math.random() * 92) + '%'; l.style.top = (Math.random() * 100) + '%';
+    l.style.setProperty('--t', (6 + Math.random() * 7).toFixed(1) + 's'); l.style.setProperty('--d', (-Math.random() * 8).toFixed(1) + 's');
+    esc.appendChild(l);
+  }
+  for (let i = 0; i < 14; i++) {
+    const m = document.createElement('span'); m.className = 'mariposa'; m.innerHTML = '<img src="recursos/mariposa.webp" alt="" loading="lazy">';
+    m.style.left = (i % 2 ? 78 + Math.random() * 12 : 4 + Math.random() * 12) + '%'; m.style.top = (4 + i * 6.8 + Math.random() * 3) + '%';
+    m.style.setProperty('--t', (9 + Math.random() * 6).toFixed(1) + 's'); m.style.setProperty('--d', (-Math.random() * 9).toFixed(1) + 's');
+    esc.appendChild(m);
+  }
+
+  /* aparecen al bajar */
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visto'); io.unobserve(e.target); } }), { threshold: .15 });
+  document.querySelectorAll('.revela').forEach(e => io.observe(e));
+
+  /* música */
+  const musica = $('musica'), mb = $('musica-boton'); musica.src = C.musica;
+  const tocar = () => { const p = musica.play(); if (p && p.then) p.then(() => mb.classList.remove('pausado')).catch(() => mb.classList.add('pausado')); };
+  mb.addEventListener('click', () => { if (musica.paused) tocar(); else { musica.pause(); mb.classList.add('pausado'); } });
+
+  /* puertas: tocar → se abren → la escena */
+  const ap = $('apertura'), apEsc = ap.querySelector('.escena');
+  [[18, 62], [80, 58], [30, 40], [70, 36], [50, 30], [24, 78], [76, 80], [60, 70], [40, 66]].forEach((p, i) => {
+    const s = document.createElement('span'); s.className = 'destello'; s.style.left = p[0] + '%'; s.style.top = p[1] + '%'; s.style.animationDelay = (i * .45) + 's'; apEsc.appendChild(s); });
+  let cargadas = 0, abierto = false, listo = false;
+  const imgs = ap.querySelectorAll('img');
+  const una = () => { if (++cargadas >= imgs.length) apEsc.classList.add('lista'); };
+  imgs.forEach(i => { if (i.complete) una(); else i.onload = i.onerror = una; });
+  setTimeout(() => apEsc.classList.add('lista'), 3000);
+  const terminar = () => { if (listo) return; listo = true; ap.remove(); document.body.classList.remove('cerrado'); window.scrollTo(0, 0); };
+  ap.addEventListener('click', () => {
+    if (abierto) return; abierto = true; ap.classList.add('tocado'); tocar(); mb.classList.add('ver');
+    apEsc.classList.add('lista'); ap.classList.add('abriendo'); setTimeout(terminar, 2950);
+  });
+  if (location.search.includes('directo')) { ap.remove(); document.body.classList.remove('cerrado'); mb.classList.add('ver'); }
+})();
+</script>
+</body>
+</html>
