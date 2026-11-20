@@ -273,7 +273,7 @@ body.muestra img { pointer-events: none; -webkit-user-drag: none; }
   <div class="capa revela" id="fecha">
     <div class="titulo script oro sombra-oro">Reserva la Fecha</div>
     <p class="grande claro" data-campo="fechaLarga"></p>
-    <p class="hora dato claro">A partir de las <b data-campo="hora"></b></p>
+    <p class="hora dato claro" id="fecha-hora">A partir de las <b data-campo="hora"></b></p>
   </div>
 
   <!-- 6. LA FUENTE DE LOS NENÚFARES: falta poco -->
@@ -333,10 +333,12 @@ body.muestra img { pointer-events: none; -webkit-user-drag: none; }
   document.querySelectorAll('[data-campo]').forEach(e => e.textContent = C[e.dataset.campo] || '');
   document.querySelectorAll('[data-campo-c]').forEach(e => e.textContent = C.confirmacion[e.dataset.campoC] || '');
   $('invitacion').innerHTML = C.invitacion;
+  if (!C.hora) $('fecha-hora').remove();
+  if (!C.apellidos) document.querySelector('#espejo .apellidos').remove();
   const nombres = (id, lista) => lista.forEach(n => { const d = document.createElement('div'); d.className = 'nombre script oro sombra-oro'; d.textContent = n; $(id).appendChild(d); });
   $('padres-titulo').textContent = C.padres.titulo; nombres('padres-nombres', C.padres.nombres);
   if (C.padrinos.nombres.length) { $('padrinos-titulo').textContent = C.padrinos.titulo; nombres('padrinos-nombres', C.padrinos.nombres); }
-  ['misa', 'fiesta'].forEach(k => { $(k + '-lugar').textContent = C[k].lugar; $(k + '-direccion').textContent = C[k].direccion; $(k + '-hora').textContent = C[k].hora; $(k + '-mapa').href = C[k].mapa; });
+  ['misa', 'fiesta'].forEach(k => { $(k + '-lugar').textContent = C[k].lugar; $(k + '-direccion').textContent = C[k].direccion; $(k + '-hora').textContent = C[k].hora; $(k + '-mapa').href = C[k].mapa; if (!C[k].direccion) $(k + '-direccion').remove(); if (!C[k].hora) $(k + '-hora').remove(); });
   $('vestimenta-estilo').textContent = C.vestimenta.estilo; $('vestimenta-nota').textContent = C.vestimenta.nota;
   const cr = C.credito;
   $('credito').innerHTML = cr.texto + '<br><a href="' + cr.enlace + '" target="_blank" rel="noopener">' + cr.marca + ' · ' + cr.boton + ' ›</a>';
@@ -364,7 +366,7 @@ body.muestra img { pointer-events: none; -webkit-user-drag: none; }
 
   /* cuenta regresiva */
   const meta = new Date(C.cuentaHasta).getTime(), dos = n => String(n).padStart(2, '0');
-  const cuenta = () => { const r = Math.max(0, meta - Date.now());
+  const cuenta = () => { if (!C.cuentaHasta) { ['c0', 'c1', 'c2', 'c3'].forEach(i => $(i).textContent = '--'); return; } const r = Math.max(0, meta - Date.now());
     $('c0').textContent = Math.floor(r / 864e5); $('c1').textContent = dos(Math.floor(r % 864e5 / 36e5));
     $('c2').textContent = dos(Math.floor(r % 36e5 / 6e4)); $('c3').textContent = dos(Math.floor(r % 6e4 / 1e3)); };
   cuenta(); setInterval(cuenta, 1000);
