@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mis XV Años · Angela</title>
+<meta name="description" content="Estás invitado a mis XV años. Toca el sello para abrir mi invitación ✨">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Invitaciones de Amor">
+<meta property="og:title" content="Mis XV Años · Angela">
+<meta property="og:description" content="Estás invitado a mis XV años. Toca el sello para abrir mi invitación ✨">
+<meta property="og:image" content="https://eleganciadeamor.com/borradores/xv-angela-v1a-7c3e91/recursos/vista-previa.jpg?v=1">
+<meta property="og:image:width" content="600">
+<meta property="og:image:height" content="600">
+<meta property="og:image:alt" content="Sobre de castillo encantado con sello de corona, en lila y morado">
+<meta property="og:url" content="https://eleganciadeamor.com/borradores/xv-angela-v1a-7c3e91/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://eleganciadeamor.com/borradores/xv-angela-v1a-7c3e91/recursos/vista-previa.jpg?v=1">
+<link rel="icon" href="recursos/vista-previa.jpg">
+<link rel="preload" href="recursos/sobre.webp" as="image" fetchpriority="high">
+<script>
+/* ===================== DATOS DE LA INVITACIÓN (cambiar aquí) ===================== */
+const CONFIG = {
+  festejada: "Angela",
+  apellidos: "",
+  fechaLarga: "Sábado 5 de diciembre de 2026",
+  fechaCorta: "05 · 12 · 2026",
+  hora: "7:00 p.m.",
+  cuentaHasta: "2026-12-05T19:00:00-05:00",        // hora de Perú
+  frase: "Desde niña soñé con este día… Hoy las puertas de mi castillo se abren para celebrar mis quince años, el comienzo de un nuevo capítulo lleno de sueños, ilusiones y bendiciones.",
+  puente: "Y así comienza mi cuento…",
+  padres: { titulo: "Con la bendición de Dios y el amor de mis padres", nombres: ["Gilmar y Liz"] },
+  padrinos: { titulo: "y de mis padrinos", nombres: ["Juan Carlos y Nieves"] },
+  invitacion: "Tengo el honor<br>de invitarte<br>a celebrar mis",
+  misa: { lugar: "Salón de Eventos Nieves", direccion: "Av. La Joya con Av. Tambopata", hora: "7:00 p.m.", mapa: "https://www.google.com/maps/search/?api=1&query=Sal%C3%B3n%20de%20Eventos%20Nieves%20Av.%20La%20Joya%20con%20Av.%20Tambopata" },
+  fiesta: { lugar: "Salón de Eventos Nieves", direccion: "Av. La Joya con Av. Tambopata", hora: "7:00 p.m.", mapa: "https://www.google.com/maps/search/?api=1&query=Sal%C3%B3n%20de%20Eventos%20Nieves%20Av.%20La%20Joya%20con%20Av.%20Tambopata" },
+  vestimenta: { estilo: "Formal", nota: "Lila reservado para la quinceañera" },
+  confirmacion: { texto: "Me encantaría compartir este sueño contigo. Ayúdame confirmando tu asistencia.",
+                  whatsapp: "",                  // REGLA: el número va SOLO cuando pague
+                  mensaje: "¡Hola! Confirmo mi asistencia a los XV años de Angela 💜" },
+  musica: "recursos/musica.mp3",                 // "Claro de luna" (Debussy), dominio público
+  muestra: { activa: true, texto: "MUESTRA · INVITACIONES DE AMOR", aviso: "Se activa en la versión final ✨" },
+  credito: { texto: "Invitación hecha con amor por", marca: "Invitaciones de Amor", enlace: "https://eleganciadeamor.com/#nuestros-trabajos", boton: "Ver nuestros trabajos" }
+};
+</script>
+<style>
+@font-face { font-family: "Great Vibes"; src: url(recursos/fuente-great-vibes.woff2) format("woff2"); font-display: block; }
+@font-face { font-family: "Cinzel"; src: url(recursos/fuente-cinzel-600.woff2) format("woff2"); font-weight: 600; font-display: block; }
+@font-face { font-family: "Cormorant"; src: url(recursos/fuente-cormorant-500.woff2) format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Cormorant"; src: url(recursos/fuente-cormorant-600.woff2) format("woff2"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "Cormorant"; src: url(recursos/fuente-cormorant-500-italica.woff2) format("woff2"); font-weight: 500; font-style: italic; font-display: swap; }
+:root { --w: min(55.81svh, 106vw); --azul: #4a2a73; --crema: #fbf6ea; --serif: "Cormorant", Georgia, serif; --rosa-titulo: #4a2a73; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { background: #2a1747; overflow-x: clip; }
+body { font-family: "Cormorant", Georgia, serif; color: var(--azul); -webkit-font-smoothing: antialiased; }
+body.cerrado { overflow: hidden; height: 100svh; }
+
+/* ---------- La escena: un solo dibujo largo; todo en cqw (1 cqw = 1 % del ancho del dibujo) ---------- */
+#escena { position: relative; width: var(--w); margin-left: 50%; translate: -50% 0; container-type: inline-size; overflow: clip; }
+#escena .rebanadas img { display: block; width: 100%; height: auto; }
+#escena > .capa { position: absolute; left: 50%; translate: -50% 0; text-align: center; z-index: 4; display: flex; flex-direction: column; align-items: center; }
+
+/* letras */
+.oro { color: #d9a12c; background: linear-gradient(180deg, #fff6c4 0%, #f9d66e 28%, #e6a925 52%, #b8780e 78%, #f6d272 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.script { font-family: "Great Vibes", cursive; font-weight: 400; line-height: 1.2; padding: .3em .25em .1em; }
+.caps { font-family: "Cinzel", serif; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; }
+.sombra-oro { filter: drop-shadow(0 .14cqw .14cqw rgba(95, 55, 0, .85)) drop-shadow(0 0 1.6cqw rgba(255, 255, 255, .95)); }
+.sombra-oro-noche { filter: drop-shadow(0 .14cqw .14cqw rgba(70, 40, 0, .9)) drop-shadow(0 0 .5cqw rgba(255, 214, 140, .6)) drop-shadow(0 .3cqw .8cqw rgba(0, 0, 10, .85)); }
+.claro { color: var(--azul); text-shadow: 0 0 1.6cqw rgba(255, 255, 255, .95), 0 0 .6cqw rgba(255, 255, 255, .95); }
+.oscuro { color: var(--crema); text-shadow: 0 .2cqw .9cqw rgba(20, 5, 40, .95), 0 0 2.4cqw rgba(20, 5, 40, .8); }
+.dato { font-size: 5.2cqw; line-height: 1.3; font-weight: 600; }
+.titulo { font-size: 14cqw; }
+/* velo suave detrás del texto (sin cuadros): blanco en las escenas claras, azul noche en las oscuras */
+.velo-claro { background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(255, 255, 255, .78), rgba(255, 255, 255, .55) 55%, rgba(255, 255, 255, 0) 100%); padding: 6cqw 8cqw; }
+.velo-noche { background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(35, 14, 60, .62), rgba(35, 14, 60, .4) 55%, rgba(35, 14, 60, 0) 100%); padding: 6cqw 8cqw; }
+
+/* portada */
+#nombre { width: 96cqw; font-size: 30cqw; line-height: 1; white-space: nowrap; padding-top: .1em; }
+#misxv { font-size: 5cqw; white-space: nowrap; letter-spacing: .24em; color: var(--azul); text-shadow: 0 0 10px rgba(250, 245, 255, .95), 0 0 2px rgba(250, 245, 255, .9); }
+
+/* espejo con la frase */
+.flota { position: absolute; left: 50%; translate: -50% 0; z-index: 4; animation: flotar 7s ease-in-out infinite; }
+.flota > img { display: block; width: 100%; height: auto; filter: drop-shadow(0 2cqw 2.6cqw rgba(30, 8, 55, .45)); }
+@keyframes flotar { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-1.2cqw); } }
+#espejo .interior { position: absolute; left: 19%; top: 18.6%; width: 61.9%; height: 61.6%; border-radius: 50%; background: radial-gradient(ellipse, #fdfaf7 0%, #f6f0fb 70%, #eadff5 100%);
+  display: flex; align-items: center; justify-content: center; }
+#espejo p { width: 66%; margin-top: 4cqw; text-align: center; font-size: 3.7cqw; line-height: 1.32; font-style: italic; font-weight: 500; color: var(--azul); }
+#espejo .firma { display: block; margin-top: 1.2cqw; font-family: "Great Vibes", cursive; font-style: normal; font-size: 8cqw; line-height: 1.1; white-space: nowrap; padding-top: .2em; }
+#espejo .apellidos { display: block; font-style: normal; font-family: "Cinzel", serif; font-weight: 600; font-size: 2.8cqw; letter-spacing: .2em; text-transform: uppercase; }
+#puente { width: 84cqw; }
+#puente img { display: block; width: 12cqw; margin: 0 auto 1cqw; filter: drop-shadow(0 .4cqw .8cqw rgba(50, 20, 80, .35)); }
+#puente .script { font-size: 9cqw; white-space: nowrap; }
+
+/* padres y padrinos */
+#padres { width: 94cqw; }
+#padres .dato { font-size: 5cqw; font-style: italic; font-weight: 600; }
+#padres .nombre { font-size: 7.6cqw; white-space: nowrap; line-height: 1.15; padding: .15em .2em 0; }
+#padres .separa { height: 4cqw; }
+/* te invito + 15 años */
+#invita { width: 78cqw; }
+#invita .dato { font-size: 5cqw; letter-spacing: .1em; }
+#invita img { display: block; width: 56cqw; height: auto; margin: 2cqw auto 0; filter: drop-shadow(0 .5cqw 1.4cqw rgba(35, 14, 60, .55)); }
+/* fecha */
+#fecha { width: 94cqw; }
+#fecha .titulo { font-size: 13cqw; white-space: nowrap; }
+#fecha .grande { font-family: "Cinzel", serif; font-weight: 600; font-size: 6.4cqw; letter-spacing: .05em; line-height: 1.3; }
+#fecha .hora { font-size: 6cqw; margin-top: 1.4cqw; }
+/* cuenta regresiva sobre los nenúfares */
+#falta { font-size: 16cqw; white-space: nowrap; }
+.celda { position: absolute; translate: -50% -50%; text-align: center; z-index: 4; }
+.celda b { display: block; font-family: "Cinzel", serif; font-weight: 600; font-size: 6cqw; color: var(--azul); font-variant-numeric: lining-nums tabular-nums; text-shadow: 0 0 1cqw #fff, 0 0 .4cqw #fff; }
+.etiqueta { position: absolute; translate: -50% 0; z-index: 4; font-family: "Cinzel", serif; font-weight: 600; font-size: 3.2cqw; letter-spacing: .12em; text-transform: uppercase; color: #fff; text-shadow: 0 .2cqw .6cqw rgba(30, 8, 55, .95), 0 0 1.4cqw rgba(30, 8, 55, .8); }
+/* misa y fiesta */
+.evento { width: 84cqw; }
+.evento .titulo { font-size: 17cqw; }
+.evento .dato { font-size: 5.4cqw; }
+.evento .lugar { font-size: 7.2cqw; line-height: 1.15; margin-bottom: 1cqw; }
+.hora-linea { display: flex; align-items: center; justify-content: center; gap: 2.4cqw; margin: 1.8cqw 0; font-family: "Cinzel", serif; font-weight: 600; font-size: 6cqw; }
+.hora-linea::before, .hora-linea::after { content: ""; width: 7cqw; height: 1px; background: currentColor; opacity: .7; }
+.boton { display: inline-block; margin-top: 2.4cqw; padding: 3cqw 8cqw; border-radius: 99px; border: 0; cursor: pointer; text-decoration: none; white-space: nowrap;
+  font-family: "Cinzel", serif; font-weight: 600; font-size: 4.4cqw; letter-spacing: .12em; text-transform: uppercase; color: var(--azul);
+  background: linear-gradient(180deg, #fff1b3, #f2c24b 50%, #c9891a); box-shadow: 0 .6cqw 1.8cqw rgba(0, 0, 0, .35), inset 0 1px 0 rgba(255, 255, 255, .6); }
+/* vestimenta */
+#vestimenta-titulo { width: 96cqw; }
+#vestimenta-titulo .titulo { font-size: 14.5cqw; line-height: 1.05; }
+#vestimenta { width: 84cqw; }
+#vestimenta .estilo { font-family: "Cinzel", serif; font-weight: 600; font-size: 8cqw; letter-spacing: .12em; line-height: 1.3; }
+#vestimenta .dato { font-size: 5.8cqw; margin-top: 1.4cqw; }
+/* confirmación */
+#confirma { width: 76cqw; }
+#confirma .titulo { font-size: 12.5cqw; line-height: 1.05; }
+#confirma .dato { font-size: 5.4cqw; margin-top: 1.6cqw; }
+/* cierre */
+#cierre { width: 96cqw; }
+#cierre .titulo { font-size: 19cqw; white-space: nowrap; }
+#cierre .nombre { margin: -2cqw auto 0; font-size: 26cqw; line-height: 1.1; white-space: nowrap; }
+#cierre .caps { font-size: 3.8cqw; letter-spacing: .3em; color: #fff3d6; margin-top: 1cqw; text-shadow: 0 .2cqw .8cqw rgba(20, 5, 40, .9); }
+#cierre .gracias { font-size: 5.4cqw; font-style: italic; margin-top: 2cqw; }
+
+/* aparecen al bajar */
+.revela { opacity: 0; transition: opacity 1.2s ease, transform 1.2s ease; transform: translate(-50%, 4cqw); translate: none; }
+.revela.visto { opacity: 1; transform: translate(-50%, 0); }
+#escena > .revela { translate: none; }
+#escena > .flota.revela { transform: none; translate: -50% 0; }
+/* destellos y mariposas encima del dibujo */
+.chispa { position: absolute; z-index: 5; width: .8cqw; aspect-ratio: 1; border-radius: 50%; pointer-events: none; background: #fff3c4;
+  box-shadow: 0 0 1.2cqw .4cqw rgba(255, 220, 140, .7); animation: vuela var(--t) ease-in-out infinite, brilla calc(var(--t) / 3) ease-in-out infinite; animation-delay: var(--d); }
+@keyframes vuela { 0%, 100% { translate: 0 0; } 33% { translate: 3cqw -4cqw; } 66% { translate: -2.5cqw -1.5cqw; } }
+@keyframes brilla { 0%, 100% { opacity: .15; } 50% { opacity: 1; } }
+.mariposa { position: absolute; z-index: 5; width: 7cqw; pointer-events: none; animation: revolotea var(--t) ease-in-out infinite; animation-delay: var(--d); }
+.mariposa img { display: block; width: 100%; animation: aletea .5s ease-in-out infinite alternate; transform-origin: 50% 50%; filter: drop-shadow(0 0 1cqw rgba(255, 255, 255, .8)); }
+@keyframes aletea { from { transform: scaleX(1); } to { transform: scaleX(.35); } }
+@keyframes revolotea { 0%, 100% { translate: 0 0; rotate: -6deg; } 25% { translate: 6cqw -5cqw; rotate: 8deg; } 50% { translate: 1cqw -10cqw; rotate: -4deg; } 75% { translate: -5cqw -4cqw; rotate: 6deg; } }
+
+/* ---------- El sobre (pantalla inicial) ---------- */
+#apertura { position: fixed; inset: 0; z-index: 100; overflow: hidden; cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; background: #4b2a78; }
+#apertura .relleno { position: absolute; inset: -40px; filter: blur(18px) saturate(1.05); transform: scale(1.06); transition: opacity .6s ease; background: url(recursos/sobre.webp) center / cover no-repeat; }
+#apertura .escena { position: absolute; left: 50%; top: 50%; width: max(100vw, 100svh * .55814); aspect-ratio: 1536 / 2752; translate: -50% -50%; transform-origin: 49.4% 63.7%; opacity: 0; transition: opacity .5s ease; }
+@media (min-aspect-ratio: 3/4) { #apertura .escena { width: calc(100svh * .55814); } }
+#apertura .escena.lista { opacity: 1; }
+#apertura .sobre { position: absolute; inset: 0; width: 100%; height: 100%; }
+#apertura .aro { position: absolute; left: 49.4%; top: 63.7%; width: 22%; aspect-ratio: 1; translate: -50% -50%; border-radius: 50%; border: 2px solid rgba(255, 236, 170, .9); box-shadow: 0 0 22px 6px rgba(255, 226, 140, .7), inset 0 0 18px rgba(255, 236, 170, .6); animation: aro 2.2s ease-in-out infinite; pointer-events: none; }
+@keyframes aro { 0%, 100% { scale: .82; opacity: .35; } 50% { scale: 1.08; opacity: 1; } }
+#apertura .luz { position: absolute; left: 49.4%; top: 63.7%; width: 20%; aspect-ratio: 1; translate: -50% -50%; border-radius: 50%; opacity: 0; pointer-events: none;
+  background: radial-gradient(circle, #fff 0%, rgba(255, 240, 200, .95) 35%, rgba(255, 220, 150, 0) 70%); }
+#apertura .toca { position: absolute; left: 50%; bottom: max(6%, env(safe-area-inset-bottom) + 18px); translate: -50% 0; z-index: 8; padding: .6em 1.5em; border-radius: 99px; white-space: nowrap; background: rgba(250, 244, 255, .95); box-shadow: 0 4px 16px rgba(80, 40, 130, .35);
+  font: 600 clamp(12px, 3.5vw, 15px) "Cinzel", serif; letter-spacing: .16em; text-transform: uppercase; color: var(--azul); animation: toca-pulso 2.2s 1s ease-in-out infinite; transition: opacity .4s ease; }
+@keyframes toca-pulso { 0%, 100% { scale: 1; } 50% { scale: 1.05; box-shadow: 0 4px 22px rgba(255, 226, 150, .9); } }
+#apertura .destello { position: absolute; z-index: 6; width: 8px; height: 8px; border-radius: 50%; pointer-events: none; opacity: 0;
+  background: radial-gradient(circle, #fff 0%, rgba(255, 236, 180, .9) 35%, rgba(255, 236, 180, 0) 70%); animation: sube-destello 3.6s ease-in-out infinite; }
+@keyframes sube-destello { 0% { opacity: 0; transform: translateY(0) scale(.6); } 40% { opacity: 1; } 100% { opacity: 0; transform: translateY(-40px) scale(1.2); } }
+#apertura.tocado .toca, #apertura.tocado .aro { animation: none; opacity: 0; }
+#apertura.abriendo .relleno { opacity: 0; }
+#apertura.abriendo .luz { animation: rafaga 1.8s ease .1s forwards; }
+@keyframes rafaga { 0% { opacity: 0; scale: .6; } 35% { opacity: 1; scale: 1.6; } 100% { opacity: 0; scale: 5; } }
+#apertura.abriendo .escena { transition: opacity .6s ease, scale 2.2s cubic-bezier(.6, 0, .35, 1) .3s; scale: 3.4; }
+#apertura.abriendo { background: transparent; transition: opacity 1s ease 1.6s, background .3s ease .4s; opacity: 0; }
+
+/* música, aviso, pie, marca de agua */
+#musica-boton { position: fixed; right: 14px; bottom: max(14px, env(safe-area-inset-bottom)); z-index: 90; width: 48px; height: 48px; border-radius: 50%; border: 0; cursor: pointer;
+  background: linear-gradient(180deg, #fbe7a6, #c99a3e); box-shadow: 0 3px 12px rgba(0, 0, 0, .4); color: var(--azul); font-size: 20px; display: none; }
+#musica-boton.ver { display: block; }
+#musica-boton.pausado { opacity: .7; }
+#aviso { position: fixed; left: 50%; bottom: 80px; translate: -50% 0; z-index: 120; padding: .8em 1.4em; border-radius: 99px; background: rgba(252, 248, 255, .97); color: var(--azul);
+  font-family: "Cormorant", serif; font-weight: 600; font-size: 17px; box-shadow: 0 6px 20px rgba(0, 0, 0, .35); opacity: 0; pointer-events: none; transition: opacity .3s; white-space: nowrap; }
+#aviso.ver { opacity: 1; }
+footer { padding: 26px 16px 34px; text-align: center; font-size: 15px; color: rgba(246, 238, 255, .85); }
+footer a { color: #e9c36a; text-decoration: none; }
+#marca-agua { position: fixed; inset: 0; z-index: 110; pointer-events: none; background: var(--marca) 0 0 / 260px 200px repeat; }
+body.muestra { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+body.muestra img { pointer-events: none; -webkit-user-drag: none; }
+@media print { body.muestra > * { display: none !important; } }
+#nombre { top: 37.04cqw; }
+#misxv { top: 68.52cqw; }
+#espejo { top: 179.26cqw; width: 72cqw; }
+#puente { top: 287.31cqw; }
+#padres { top: 374.63cqw; }
+#invita { top: 500.83cqw; }
+#fecha { top: 719.63cqw; }
+#falta { top: 840.28cqw; }
+#fiesta { top: 1016.48cqw; }
+#vestimenta-titulo { top: 1131.57cqw; }
+#vestimenta { top: 1226.94cqw; }
+#confirma { top: 1352.22cqw; }
+#cierre { top: 1422.87cqw; }
+
+#invita img { filter: drop-shadow(0 0 .9cqw rgba(60, 20, 90, .95)) drop-shadow(0 .4cqw 1.2cqw rgba(40, 10, 70, .8)) !important; }
+#fecha .grande { font-size: 5.2cqw; letter-spacing: .02em; white-space: nowrap; }
+#vestimenta-titulo .titulo { font-size: 11cqw; white-space: nowrap; }
+</style>
+</head>
+<body class="cerrado">
+
+<div id="apertura" role="button" aria-label="Toca el sello para abrir la invitación">
+  <div class="relleno"></div>
+  <div class="escena">
+    <img class="sobre" src="recursos/sobre.webp" alt="" decoding="async">
+    <div class="aro"></div>
+    <div class="luz"></div>
+  </div>
+  <div class="toca">Toca el sello para abrir</div>
+</div>
+
+<main id="escena">
+  <div class="rebanadas"><img src="recursos/escena-01.webp" alt="" width="1080" height="1935" fetchpriority="high"><img src="recursos/escena-02.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-03.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-04.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-05.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-06.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-07.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-08.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-09.webp" alt="" width="1080" height="1782" loading="lazy"></div>
+
+  <!-- 1. PORTADA: Fanny frente al castillo -->
+  <div class="capa script oro sombra-oro" id="nombre">Angela</div>
+  <div class="capa caps" id="misxv">Mis XV Años</div>
+
+  <!-- 2. EL JARDÍN DE GLICINAS: el espejo con la frase -->
+  <div class="flota revela" id="espejo"><img src="recursos/marco-ovalado-oro.webp" alt=""><div class="interior"><p><span data-campo="frase"></span><span class="firma oro" data-campo="festejada"></span><span class="apellidos" data-campo="apellidos"></span></p></div></div>
+  <div class="capa revela" id="puente"><img src="recursos/aguamarina.webp" alt=""><div class="script oro sombra-oro" data-campo="puente"></div></div>
+
+  <!-- 3. EL BALCÓN DE LAS CORTINAS: padres y padrinos -->
+  <div class="capa revela velo-claro" id="padres">
+    <p class="dato claro" id="padres-titulo"></p>
+    <div id="padres-nombres"></div>
+    <div class="separa"></div>
+    <p class="dato claro" id="padrinos-titulo"></p>
+    <div id="padrinos-nombres"></div>
+  </div>
+
+  <!-- 4. LA ESCALINATA: te invito + 15 años -->
+  <div class="capa revela" id="invita">
+    <p class="dato caps claro" id="invitacion"></p>
+    <img src="recursos/quince.webp" alt="15 años">
+  </div>
+
+  <!-- 5. LA TERRAZA DEL RELOJ: reserva la fecha -->
+  <div class="capa revela" id="fecha">
+    <div class="titulo script oro sombra-oro">Reserva la Fecha</div>
+    <p class="grande claro" data-campo="fechaLarga"></p>
+    <p class="hora dato claro" id="fecha-hora">A partir de las <b data-campo="hora"></b></p>
+  </div>
+
+  <!-- 6. LA FUENTE DE LOS NENÚFARES: falta poco -->
+  <div class="capa script oro sombra-oro revela" id="falta">Falta poco</div>
+  <div class="celda" style="left:21.94cqw;top:879.63cqw"><b id="c0">00</b></div><div class="etiqueta" style="left:21.94cqw;top:886.11cqw">Días</div><div class="celda" style="left:39.54cqw;top:879.63cqw"><b id="c1">00</b></div><div class="etiqueta" style="left:39.54cqw;top:886.11cqw">Horas</div><div class="celda" style="left:58.06cqw;top:879.63cqw"><b id="c2">00</b></div><div class="etiqueta" style="left:58.06cqw;top:886.11cqw">Min</div><div class="celda" style="left:76.57cqw;top:879.63cqw"><b id="c3">00</b></div><div class="etiqueta" style="left:76.57cqw;top:886.11cqw">Seg</div>
+
+  <!-- 8. EL GRAN SALÓN: fiesta -->
+  <div class="capa revela evento velo-claro" id="fiesta">
+    <div class="titulo script oro sombra-oro">Fiesta</div>
+    <p class="dato lugar claro" id="fiesta-lugar"></p>
+    <p class="dato claro" id="fiesta-direccion"></p>
+    <div class="hora-linea claro" id="fiesta-hora"></div>
+    <a class="boton" id="fiesta-mapa" target="_blank" rel="noopener">Ver ubicación</a>
+  </div>
+
+  <!-- 9. EL VESTIDOR: vestimenta -->
+  <div class="capa revela" id="vestimenta-titulo"><div class="titulo script oro sombra-oro">Código de Vestimenta</div></div>
+  <div class="capa revela velo-claro" id="vestimenta">
+    <p class="estilo claro" id="vestimenta-estilo"></p>
+    <p class="dato claro" id="vestimenta-nota"></p>
+  </div>
+
+  <!-- 10. EL ESCRITORIO DEL SOBRE: confirmación -->
+  <div class="capa revela velo-claro" id="confirma">
+    <div class="titulo script oro sombra-oro">Confirma tu Asistencia</div>
+    <p class="dato claro" data-campo-c="texto"></p>
+    <a class="boton" id="confirmacion-boton" target="_blank" rel="noopener">Confirmar</a>
+  </div>
+
+  <!-- 11. MEDIANOCHE: te espero -->
+  <div class="capa revela velo-noche" id="cierre">
+    <div class="titulo script oro sombra-oro-noche">Te espero</div>
+    <div class="nombre script oro sombra-oro-noche">Angela</div>
+    <p class="caps" data-campo="fechaCorta"></p>
+    <p class="gracias claro">Gracias por ser parte de mi cuento</p>
+  </div>
+</main>
+
+<footer id="credito"></footer>
+<button id="musica-boton" aria-label="Pausar o poner la música">♪</button>
+<audio id="musica" loop preload="auto"></audio>
+<div id="aviso"></div>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const C = CONFIG;
+  document.querySelectorAll('[data-campo]').forEach(e => e.textContent = C[e.dataset.campo] || '');
+  document.querySelectorAll('[data-campo-c]').forEach(e => e.textContent = C.confirmacion[e.dataset.campoC] || '');
+  $('invitacion').innerHTML = C.invitacion;
+  if (!C.hora) $('fecha-hora').remove();
+  if (!C.apellidos) document.querySelector('#espejo .apellidos').remove();
+  const nombres = (id, lista) => lista.forEach(n => { const d = document.createElement('div'); d.className = 'nombre script oro sombra-oro'; d.textContent = n; $(id).appendChild(d); });
+  $('padres-titulo').textContent = C.padres.titulo; nombres('padres-nombres', C.padres.nombres);
+  if (C.padrinos.nombres.length) { $('padrinos-titulo').textContent = C.padrinos.titulo; nombres('padrinos-nombres', C.padrinos.nombres); }
+  ['fiesta'].forEach(k => { $(k + '-lugar').textContent = C[k].lugar; $(k + '-direccion').textContent = C[k].direccion; $(k + '-hora').textContent = C[k].hora; $(k + '-mapa').href = C[k].mapa; if (!C[k].direccion) $(k + '-direccion').remove(); if (!C[k].hora) $(k + '-hora').remove(); });
+  $('vestimenta-estilo').textContent = C.vestimenta.estilo; $('vestimenta-nota').textContent = C.vestimenta.nota;
+  const cr = C.credito;
+  $('credito').innerHTML = cr.texto + '<br><a href="' + cr.enlace + '" target="_blank" rel="noopener">' + cr.marca + ' · ' + cr.boton + ' ›</a>';
+
+  /* WhatsApp: solo se activa en la versión final pagada */
+  const aviso = $('aviso'); aviso.textContent = C.muestra.aviso; let tA;
+  const mostrarAviso = e => { e.preventDefault(); aviso.classList.add('ver'); clearTimeout(tA); tA = setTimeout(() => aviso.classList.remove('ver'), 2200); };
+  const boton = $('confirmacion-boton');
+  if (C.confirmacion.whatsapp && !C.muestra.activa) boton.href = 'https://wa.me/' + C.confirmacion.whatsapp.replace(/\D/g, '') + '?text=' + encodeURIComponent(C.confirmacion.mensaje);
+  else { boton.removeAttribute('href'); boton.addEventListener('click', mostrarAviso); }
+
+  /* marca de agua (antes del pago); ?sinmarca solo la quita para revisar */
+  if (C.muestra.activa && !location.search.includes('sinmarca')) {
+    document.body.classList.add('muestra');
+    const t = C.muestra.texto;
+    const fila = (x, y) => "<text x='" + x + "' y='" + y + "' text-anchor='middle' font-family='Georgia,serif' font-size='14' font-weight='700' letter-spacing='2.5' fill='rgba(30,50,90,.38)' stroke='rgba(255,255,255,.35)' stroke-width='.5'>" + t + "</text>";
+    const svg = "<svg xmlns='http://www.w3.org/2000/svg' width='260' height='200'><g transform='rotate(-28 130 100)'>" + fila(130, 70) + fila(0, 160) + fila(260, 160) + "</g></svg>";
+    const capa = document.createElement('div'); capa.id = 'marca-agua'; capa.setAttribute('aria-hidden', 'true');
+    capa.style.setProperty('--marca', 'url("data:image/svg+xml,' + encodeURIComponent(svg) + '")');
+    document.body.appendChild(capa);
+    ['contextmenu', 'dragstart', 'selectstart', 'copy', 'cut'].forEach(ev => document.addEventListener(ev, e => e.preventDefault()));
+    document.addEventListener('keydown', e => { const k = (e.key || '').toLowerCase(), m = e.ctrlKey || e.metaKey;
+      if (e.key === 'F12' || (m && ['s', 'u', 'p', 'c', 'a'].includes(k)) || (m && e.shiftKey && ['i', 'j', 'c'].includes(k))) e.preventDefault(); });
+  }
+
+  /* cuenta regresiva */
+  const meta = new Date(C.cuentaHasta).getTime(), dos = n => String(n).padStart(2, '0');
+  const cuenta = () => { if (!C.cuentaHasta) { ['c0', 'c1', 'c2', 'c3'].forEach(i => $(i).textContent = '--'); return; } const r = Math.max(0, meta - Date.now());
+    $('c0').textContent = Math.floor(r / 864e5); $('c1').textContent = dos(Math.floor(r % 864e5 / 36e5));
+    $('c2').textContent = dos(Math.floor(r % 36e5 / 6e4)); $('c3').textContent = dos(Math.floor(r % 6e4 / 1e3)); };
+  cuenta(); setInterval(cuenta, 1000);
+
+  /* destellos y mariposas de cristal por todo el dibujo */
+  const esc = $('escena');
+  for (let i = 0; i < 50; i++) {
+    const l = document.createElement('span'); l.className = 'chispa';
+    l.style.left = (4 + Math.random() * 92) + '%'; l.style.top = (Math.random() * 100) + '%';
+    l.style.setProperty('--t', (6 + Math.random() * 7).toFixed(1) + 's'); l.style.setProperty('--d', (-Math.random() * 8).toFixed(1) + 's');
+    esc.appendChild(l);
+  }
+  for (let i = 0; i < 14; i++) {
+    const m = document.createElement('span'); m.className = 'mariposa'; m.innerHTML = '<img src="recursos/mariposa.webp" alt="" loading="lazy">';
+    m.style.left = (i % 2 ? 78 + Math.random() * 12 : 4 + Math.random() * 12) + '%'; m.style.top = (4 + i * 6.8 + Math.random() * 3) + '%';
+    m.style.setProperty('--t', (9 + Math.random() * 6).toFixed(1) + 's'); m.style.setProperty('--d', (-Math.random() * 9).toFixed(1) + 's');
+    esc.appendChild(m);
+  }
+
+  /* aparecen al bajar */
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visto'); io.unobserve(e.target); } }), { threshold: .15 });
+  document.querySelectorAll('.revela').forEach(e => io.observe(e));
+
+  /* música */
+  const musica = $('musica'), mb = $('musica-boton'); musica.src = C.musica;
+  const tocar = () => { const p = musica.play(); if (p && p.then) p.then(() => mb.classList.remove('pausado')).catch(() => mb.classList.add('pausado')); };
+  mb.addEventListener('click', () => { if (musica.paused) tocar(); else { musica.pause(); mb.classList.add('pausado'); } });
+
+  /* puertas: tocar → se abren → la escena */
+  const ap = $('apertura'), apEsc = ap.querySelector('.escena');
+  [[18, 62], [80, 58], [30, 40], [70, 36], [50, 30], [24, 78], [76, 80], [60, 70], [40, 66]].forEach((p, i) => {
+    const s = document.createElement('span'); s.className = 'destello'; s.style.left = p[0] + '%'; s.style.top = p[1] + '%'; s.style.animationDelay = (i * .45) + 's'; apEsc.appendChild(s); });
+  let cargadas = 0, abierto = false, listo = false;
+  const imgs = ap.querySelectorAll('img');
+  const una = () => { if (++cargadas >= imgs.length) apEsc.classList.add('lista'); };
+  imgs.forEach(i => { if (i.complete) una(); else i.onload = i.onerror = una; });
+  setTimeout(() => apEsc.classList.add('lista'), 3000);
+  const terminar = () => { if (listo) return; listo = true; ap.remove(); document.body.classList.remove('cerrado'); window.scrollTo(0, 0); };
+  ap.addEventListener('click', () => {
+    if (abierto) return; abierto = true; ap.classList.add('tocado'); tocar(); mb.classList.add('ver');
+    apEsc.classList.add('lista'); ap.classList.add('abriendo'); setTimeout(terminar, 2900);
+  });
+  if (location.search.includes('directo')) { ap.remove(); document.body.classList.remove('cerrado'); mb.classList.add('ver'); }
+})();
+</script>
+</body>
+</html>
