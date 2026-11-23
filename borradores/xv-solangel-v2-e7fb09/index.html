@@ -25,9 +25,9 @@
 <!--
   INVITACIÓN DE XV · Solangel · "La torre de rosas" (rosa viejo, rosa suave y dorado; cuento sin personajes)
   Escenas de cine a pantalla completa (Gemini Pro), cada una sigue a la anterior (modelo Kimberly v2):
-  sobre (corona y perlas, animado) → portada (su foto en el marco ovalado) → ventana de la torre (bienvenida) →
+  sobre (corona y perlas, animado) → portada (ella de espaldas a pantalla completa, mirando la torre) → ventana de la torre (bienvenida) →
   pie de la torre (mamá y hermana) → pradera del sol (15 años) → sendero de pinos (fecha) → capilla (misa) →
-  fiesta (recepción) → noche de las linternas (itinerario) → tocador (vestimenta) → su foto → balcón (agradecimiento) →
+  fiesta (recepción) → noche de las linternas (itinerario, con hora loca) → tocador (vestimenta) → su foto → balcón (agradecimiento + lluvia de sobres) →
   escritorio (confirmar) → la torre iluminada (te espero). TODOS LOS DATOS ESTÁN EN CONFIG.
 -->
 <script>
@@ -43,14 +43,15 @@ const CONFIG = {
   invitacion: "Tengo el honor\nde invitarte a celebrar mis",
   reserva: "Reserva la fecha",
   faltaPoco: "Falta poco",
-  misa: { titulo: "Misa", lugar: "Iglesia la Guadalupe", direccion: "", hora: "6:00 p.m.",
-          mapa: "https://www.google.com/maps/search/?api=1&query=Iglesia%20la%20Guadalupe%20Panam%C3%A1", boton: "Cómo llegar" },
-  recepcion: { titulo: "Recepción", lugar: "Barriada la Guadalupe Final", direccion: "En mi casa", hora: "8:00 p.m. a 1:00 a.m.",
-               mapa: "https://www.google.com/maps/search/?api=1&query=Barriada%20la%20Guadalupe%20Panam%C3%A1", boton: "Cómo llegar" },
-  itinerario: { titulo: "La Gran Noche", pasos: [["6:00 p.m.", "Misa"], ["8:00 p.m.", "Recepción"], ["11:00 p.m.", "Pirotecnia"], ["1:00 a.m.", "Fin de la fiesta"]] },
+  misa: { titulo: "Misa", lugar: "Capilla de Guadalupe", direccion: "Aguadulce", hora: "6:00 p.m.",
+          mapa: "https://www.google.com/maps/search/?api=1&query=Capilla%20de%20Guadalupe%20Aguadulce%20Cocl%C3%A9%20Panam%C3%A1", boton: "Cómo llegar" },
+  recepcion: { titulo: "Recepción", lugar: "Barriada La Guadalupe Final", direccion: "En mi casa · Aguadulce", hora: "8:00 p.m. a 1:00 a.m.",
+               mapa: "https://www.google.com/maps/search/?api=1&query=Barriada%20La%20Guadalupe%20Aguadulce%20Cocl%C3%A9%20Panam%C3%A1", boton: "Cómo llegar" },
+  itinerario: { titulo: "La Gran Noche", pasos: [["6:00 p.m.", "Misa"], ["8:00 p.m.", "Recepción"], ["11:00 p.m.", "Pirotecnia"], ["11:30 p.m.", "Hora loca"], ["1:00 a.m.", "Fin de la fiesta"]] },
   vestimenta: { titulo: "Código de Vestimenta", estilo: "Cóctel", nota: "En colores pasteles", colores: ["#f6d3dc", "#f8e6c8", "#d8ecdf", "#d6e4f3", "#e6dcf2"] },
   sesion: { titulo: "Mi sesión de XV" },
-  agradecimiento: { titulo: "Agradecimiento Especial", texto: "Un agradecimiento especial a quienes estuvieron junto a mi madre y mis hermanos para hacer realidad este día tan especial." },
+  agradecimiento: { titulo: "Agradecimiento Especial", texto: "Un agradecimiento especial a quienes estuvieron junto a mi madre y mis hermanos para hacer realidad este día tan especial.",
+                    sobres: "Lluvia de sobres", sobresTexto: "Agradecemos tu muestra de cariño en lluvia de sobres." },   // pedido 20 y 22-nov: en la misma tarjeta
   confirmacion: { titulo: "Confirma tu Asistencia", texto: "Me encantaría compartir esta noche contigo. Ayúdame confirmando tu asistencia.",
                   boton: "Confirmar", whatsapp: "",   // número con código de país, sin + ni espacios (SOLO cuando pague)
                   mensaje: "¡Hola! Confirmo mi asistencia a los XV años de Solangel 🌹" },
@@ -119,8 +120,10 @@ a { color: inherit; text-decoration: none; }
 @keyframes s-destello { 0% { opacity: 0; scale: 1; } 30% { opacity: 1; } 100% { opacity: 0; scale: 60; } }
 @keyframes s-titila { 0%, 100% { opacity: 0; transform: scale(.4); } 50% { opacity: 1; transform: scale(1.2); } }
 
-/* ---------- Portada: su foto en el marco ovalado, letras encima ---------- */
-#portada { position: relative; width: 100cqw; aspect-ratio: 1000 / 1792; background: url('recursos/portada.webp?v=2') center / cover no-repeat; }
+/* ---------- Portada: ella de espaldas a pantalla completa (sin marco), fondo de Rapunzel desenfocado, letras encima ---------- */
+#portada { position: relative; width: 100cqw; aspect-ratio: 1000 / 1792; background: url('recursos/portada.webp?v=7') center / 108% 108% no-repeat; }
+#portada.visible { animation: p-acerca 9s ease-out forwards; }
+@keyframes p-acerca { to { background-size: 100% 100%; } }
 #portada .arriba { position: absolute; left: 0; right: 0; top: 11.5%; text-align: center; }
 #portada .abajo { position: absolute; left: 0; right: 0; top: 80.5%; text-align: center; }
 #portada .abajo::before { content: ""; position: absolute; left: 6cqw; right: 6cqw; top: -4cqw; bottom: -5cqw; z-index: -1; border-radius: 50%;
@@ -217,7 +220,7 @@ body.muestra img { pointer-events: none; -webkit-user-drag: none; }
 <div id="apertura" role="button" aria-label="Toca el sello para abrir la invitación"></div>
 
 <div class="inv">
-  <!-- portada: su foto en el marco ovalado -->
+  <!-- portada: ella de espaldas a pantalla completa, mirando la torre -->
   <section id="portada">
     <div class="arriba"><p class="pt-xv pt-anim">Mis XV Años</p></div>
     <div class="abajo"><h1 class="script pt-anim" id="pt-nombre" style="--tam: 19cqw"></h1><p class="pt-fecha pt-anim" id="pt-fecha"></p></div>
@@ -286,7 +289,7 @@ body.muestra img { pointer-events: none; -webkit-user-drag: none; }
   <!-- 10 · el balcón: agradecimiento -->
   <section class="escena" style="--img: url('recursos/e10-balcon.webp?v=2'); --ty: 18%; --vy: 33%; --vh: 38%">
     <div class="velo"></div>
-    <div class="texto"><h2 class="script revela" id="agr-titulo" style="--tam: 11cqw"></h2><div class="sep revela" style="margin: 3cqw auto 4cqw"><i></i></div><p class="parrafo revela" id="agr-texto"></p></div>
+    <div class="texto"><h2 class="script revela" id="agr-titulo" style="--tam: 11cqw"></h2><div class="sep revela" style="margin: 3cqw auto 4cqw"><i></i></div><p class="parrafo revela" id="agr-texto"></p><div class="sep revela" style="margin: 4cqw auto 3cqw"><i></i></div><h3 class="script revela" id="agr-sobres" style="--tam: 9cqw"></h3><p class="parrafo revela" id="agr-sobres-texto" style="margin-top: 1.5cqw"></p></div>
   </section>
 
   <!-- 11 · el escritorio: confirmar -->
@@ -342,7 +345,7 @@ C.itinerario.pasos.forEach(([h, q]) => { const li = el('li'); li.appendChild(el(
 pon('vest-titulo', C.vestimenta.titulo); pon('vest-estilo', C.vestimenta.estilo); pon('vest-nota', C.vestimenta.nota);
 (C.vestimenta.colores || []).forEach(c => $('vest-colores').appendChild(el('i', null, null, 'background:' + c)));
 pon('sesion', C.sesion.titulo);
-pon('agr-titulo', C.agradecimiento.titulo); pon('agr-texto', C.agradecimiento.texto);
+pon('agr-titulo', C.agradecimiento.titulo); pon('agr-texto', C.agradecimiento.texto); pon('agr-sobres', C.agradecimiento.sobres || ''); pon('agr-sobres-texto', C.agradecimiento.sobresTexto || '');
 pon('conf-titulo', C.confirmacion.titulo); pon('conf-texto', C.confirmacion.texto); $('confirmar').querySelector('span').textContent = C.confirmacion.boton;
 pon('frase', C.despedida.frase); pon('lema', C.despedida.lema); pon('cierre-nombre', C.nombre);
 pon('fecha-corta', String(fe.dia).padStart(2, '0') + ' · ' + String(fe.mes).padStart(2, '0') + ' · ' + fe.anio);
