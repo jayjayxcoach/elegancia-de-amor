@@ -575,21 +575,22 @@ body.esperando #fondo-fijo, body.esperando .invitacion { display: none; }   /* p
 
 /* Galería deslizable */
 /* ---- Protocolo: medallones celestes con dijes dorados, en el panel de arco ---- */
-#protocolo.bloque { padding-top: 20cqw; }
-#protocolo .panel { padding: 16cqw 6cqw 12cqw; background: linear-gradient(180deg, #f7fbff 0%, #e4eef8 55%, #d5e5f3 100%); }
+#protocolo.bloque { padding-top: 16cqw; }
+#protocolo .marco-largo { padding-bottom: 34cqw; }
+#protocolo .marco-largo::before { background: linear-gradient(180deg, #f7fbff 0%, #e6f0f9 45%, #d3e4f3 100%); }
 #protocolo .titulo-script { --tam: 13cqw; }
 #protocolo .sub { margin-top: 2cqw; }
-.momentos { list-style: none; margin-top: 7cqw; }
-.momentos li { display: grid; grid-template-columns: 21cqw 1fr; align-items: center; column-gap: 4cqw; text-align: left; padding: 3cqw 0; }
+.momentos { list-style: none; margin: 6cqw -2cqw 0; }
+.momentos li { display: grid; grid-template-columns: 18cqw 1fr; align-items: center; column-gap: 3.4cqw; text-align: left; padding: 3cqw 0; }
 .momentos li + li { border-top: 1px solid transparent; border-image: linear-gradient(90deg, transparent, rgba(207, 156, 76, .7) 25%, rgba(207, 156, 76, .7) 75%, transparent) 1; }
-.momentos li:nth-child(even) { grid-template-columns: 1fr 21cqw; text-align: right; }
+.momentos li:nth-child(even) { grid-template-columns: 1fr 18cqw; text-align: right; }
 .momentos li:nth-child(even) .medallon { order: 2; }
-.medallon { width: 21cqw; aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center;
+.medallon { width: 18cqw; aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center;
   background: radial-gradient(circle at 38% 32%, #ffffff 0%, #dcebf8 45%, #a9c8e2 100%);
   box-shadow: 0 0 0 1.4px var(--oro), 0 0 0 3.6px rgba(255, 255, 255, .9), 0 0 0 4.8px var(--oro), 0 6px 14px rgba(66, 103, 133, .25); }
 .medallon img { width: 72%; height: 72%; object-fit: contain; filter: drop-shadow(0 .5cqw .7cqw rgba(60, 90, 120, .35)); }
-.momentos .hora-p { display: block; font: 600 4cqw/1.2 var(--caps); letter-spacing: .12em; color: var(--oro-osc); }
-.momentos .momento { display: block; font: 400 8cqw/1.1 var(--script); color: var(--rosa-titulo); margin-top: .6cqw; }
+.momentos .hora-p { display: block; font: 600 3.7cqw/1.2 var(--caps); letter-spacing: .1em; color: var(--oro-osc); }
+.momentos .momento { display: block; font: 400 7.4cqw/1.1 var(--script); color: var(--rosa-titulo); margin-top: .6cqw; }
 #galeria { padding-top: 20cqw; }
 #galeria .titulo-script { --tam: 13cqw; }
 .carrusel { display: flex; gap: 5cqw; overflow-x: auto; scroll-snap-type: x mandatory; padding: 5cqw 17cqw 6cqw; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
@@ -816,11 +817,14 @@ body.esperando #petalos { display: none; }
        9b. PROTOCOLO (sale del CONFIG; vacío = no aparece)
        ============================================================ -->
   <section class="bloque" id="protocolo">
-    <div class="panel revela">
+    <div class="marco-largo">
       <div class="corona" data-corona></div>
+      <img class="gema-arco" src="recursos/sello-rosa.webp?v=1" alt="" loading="lazy" decoding="async">
+      <div class="revela">
       <h2 class="titulo-script" id="protocolo-titulo"></h2>
       <p class="caps sub" id="protocolo-sub"></p>
-      <ol class="momentos" id="protocolo-lista"></ol>
+      </div>
+      <ol class="momentos revela" id="protocolo-lista"></ol>
     </div>
   </section>
 
