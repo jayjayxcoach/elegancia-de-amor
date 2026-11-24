@@ -128,7 +128,7 @@ const CONFIG = {
   /* ---------- MENSAJE DE BIENVENIDA ---------- */
   mensaje: {
     frase: ["Somos dos almas estelares", "que comparten un solo destino", "Una vida escrita por Dios"],
-    saludo: "«El amor es paciente, es bondadoso… y cuando Dios es el centro, se convierte en un cordón de tres hilos que no se rompe fácilmente».<small>(1 Corintios 13:4 • Eclesiastés 4:12)</small>",
+    saludo: "«El amor es paciente, es bondadoso... y cuando Dios es el centro, se convierte en un cordón de tres hilos que no se rompe fácilmente».<small>(1 Corintios 13:4 • Eclesiastés 4:12)</small>",
     texto:  "¡Nos vamos a casar! Con la bendición de Dios y de nuestros padres, celebraremos nuestra boda religiosa y estamos muy felices de invitarlos. Los queremos y son muy especiales para nosotros; por eso, nada nos haría más felices que compartir este momento con ustedes.<span class=\"rol\">Los novios</span>Orlando y Fyorily<span class=\"rol\">Padres del novio</span>Andrés Chuquillanqui García<br>María Ramos de la Cruz<span class=\"rol\">Padres de la novia</span>Ronal Zamudio Espinal<br>Isabel Mayta Bendezú<span class=\"rol\">Padrinos</span>Miguel Ángel Chuquillanqui Ramos<br>Noemy Rosario Quispe Arizapana"
   },
 
@@ -157,11 +157,14 @@ const CONFIG = {
   ubicacion: {
     titulo:      "Ubicación",
     lugar:       "Iglesia San José de Picchus",
-    direccion:   "Misa a las 11:00 a. m.<br>Jr. Francisco Solano 391, Huancayo<span class=\"lugar2\">Salón Dorado</span>Recepción a las 2:00 p. m.<br>Av. José Olaya 907, Huancayo, altura del puente José Olaya",
+    direccion:   "Misa a las 11:00 a. m.<br>Jr. Francisco Solano 391, Huancayo",
+    lugar2:      "Salón Dorado",
+    direccion2:  "Recepción a las 2:00 p. m.<br>Av. José Olaya 907, Huancayo, altura del puente José Olaya",
     ilustracion: "",   // dibujo del lugar (deja "" para ocultarlo)
     // Mapa: en Google Maps → Compartir → "Insertar un mapa" → copia SOLO el enlace que va dentro de src="...".
     // Deja "" para ocultar el mapa.
-    mapaEmbed: "https://www.google.com/maps?q=-12.055233,-75.196724&z=17&output=embed"
+    mapaEmbed: "https://www.google.com/maps?q=Iglesia+San+Jos%C3%A9+de+Picchus,+Jr.+Francisco+Solano+391,+Huancayo,+Peru&z=17&output=embed",   // misa: la iglesia
+    mapaEmbed2: "https://www.google.com/maps?q=-12.055233,-75.196724&z=17&output=embed"   // recepción: Salón Dorado
   },
 
   /* ---------- CÓDIGO DE VESTIMENTA ---------- */
@@ -531,11 +534,11 @@ section { position: relative; background: var(--crema); }
 }
 
 /* Mapa con marco dorado */
-#mapa { padding: 10px 0 60px; text-align: center; }
-#mapa .ornamento { width: 190px; margin: 0 auto; }
-#mapa .marco { position: relative; width: 341px; max-width: 92%; aspect-ratio: 1; margin: -14px auto; }
-#mapa .marco img { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; }
-#mapa .marco iframe { position: absolute; inset: 3px; width: calc(100% - 6px); height: calc(100% - 6px); border: 0; border-radius: 15px; z-index: 1; }
+#mapa, #mapa2 { padding: 10px 0 60px; text-align: center; }
+#mapa .ornamento, #mapa2 .ornamento { width: 190px; margin: 0 auto; }
+#mapa .marco, #mapa2 .marco { position: relative; width: 341px; max-width: 92%; aspect-ratio: 1; margin: -14px auto; }
+#mapa .marco img, #mapa2 .marco img { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; }
+#mapa .marco iframe, #mapa2 .marco iframe { position: absolute; inset: 3px; width: calc(100% - 6px); height: calc(100% - 6px); border: 0; border-radius: 15px; z-index: 1; }
 
 /* =========================================================================
    7. VESTIMENTA Y REGALOS (papel rasgado con flores en las esquinas)
@@ -658,6 +661,10 @@ body.muestra img, body.muestra video { pointer-events: none; -webkit-user-drag: 
 #ubicacion .portada-iglesia .titulo { position: absolute; left: 0; right: 0; bottom: 8px; margin: 0; text-shadow: 0 0 14px rgba(251,247,234,.95), 0 0 6px rgba(251,247,234,.95); }
 #saludo { display: block; margin-bottom: 14px; font-style: italic; line-height: 1.25; }
 #saludo small { display: block; margin-top: 8px; font-style: normal; font-size: .8em; letter-spacing: .03em; color: var(--dorado); }
+#ubicacion2 { padding: 10px 30px 20px; text-align: center; }
+#ubicacion2 .lugar { font-size: 24px; line-height: 1.3; }
+#ubicacion2 .direccion { font-size: 18px; line-height: 1.25; margin-top: 8px; }
+#mapa { padding-bottom: 20px; }
 </style>
 </head>
 
@@ -752,6 +759,19 @@ body.muestra img, body.muestra video { pointer-events: none; -webkit-user-drag: 
       <iframe id="iframeMapa" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" title="Mapa del lugar"></iframe>
     </div>
     <img class="ornamento aparece-suave retraso-2" id="ornamentoMapaAbajo" alt="">
+  </section>
+
+  <section id="ubicacion2">
+    <p class="texto lugar aparece" id="lugar2"></p>
+    <p class="texto direccion aparece retraso-1" id="direccion2"></p>
+  </section>
+  <section id="mapa2">
+    <img class="ornamento aparece-suave" id="ornamentoMapaArriba2" alt="">
+    <div class="marco aparece-suave retraso-1">
+      <img id="marcoMapa2" alt="">
+      <iframe id="iframeMapa2" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" title="Mapa del Salón Dorado"></iframe>
+    </div>
+    <img class="ornamento aparece-suave retraso-2" id="ornamentoMapaAbajo2" alt="">
   </section>
 
   <!-- ======================= 7. VESTIMENTA Y REGALOS ======================= -->
@@ -1006,6 +1026,12 @@ body.muestra img, body.muestra video { pointer-events: none; -webkit-user-drag: 
   } else {
     $('mapa').hidden = true;
   }
+  texto('lugar2', C.ubicacion.lugar2);
+  $('direccion2').innerHTML = C.ubicacion.direccion2;
+  $('iframeMapa2').src = C.ubicacion.mapaEmbed2;
+  imagen('marcoMapa2', C.adornos.marcoMapa);
+  imagen('ornamentoMapaArriba2', C.adornos.ornamentoMapaArriba);
+  imagen('ornamentoMapaAbajo2', C.adornos.ornamentoMapaAbajo);
 
   /* ---------- 7. Vestimenta y regalos ---------- */
   fondo('papelVestimenta', C.adornos.papelVestimenta);
