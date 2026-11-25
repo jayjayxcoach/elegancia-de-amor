@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mi primer añito · Gael</title>
+<meta name="description" content="Estás invitado al primer añito de Gael. Toca el sello para abrir tu invitación 🦁">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Invitaciones de Amor">
+<meta property="og:title" content="Mi primer añito · Gael 🦁">
+<meta property="og:description" content="Estás invitado al safari del primer añito de Gael. Toca el sello para abrir tu invitación ✨">
+<meta property="og:image" content="https://eleganciadeamor.com/borradores/cumple-gael-v1-bf2d6b/recursos/vista-previa.jpg">
+<meta property="og:image:width" content="600">
+<meta property="og:image:height" content="600">
+<meta property="og:image:alt" content="Sobre crema con sello de leoncito durazno entre hojas de palma y globos verde y durazno">
+<meta property="og:url" content="https://eleganciadeamor.com/borradores/cumple-gael-v1-bf2d6b/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://eleganciadeamor.com/borradores/cumple-gael-v1-bf2d6b/recursos/vista-previa.jpg">
+<link rel="icon" href="recursos/vista-previa.jpg">
+<link rel="preload" as="image" href="recursos/sobre.webp" fetchpriority="high">
+<script>
+/* ===================== DATOS DE LA INVITACIÓN (cambiar aquí) ===================== */
+const CONFIG = {
+  festejado: "Gael",
+  fecha: "Sábado 19 de diciembre de 2026",
+  fechaCorta: "19 · diciembre · 2026",
+  hora: "11:00 a. m.",
+  cuentaHasta: "2026-12-19T11:00:00-05:00",      // hora de Ecuador
+  frase: "Hace un año llegó a nuestra vida la aventura más bonita. ¡Ven a celebrarla conmigo en mi safari!",
+  // LUGAR: Diego dijo "Por confirmar" (25-nov). Cuando lo mande: nombre, dirección y enlace de Google Maps.
+  lugar: { nombre: "", direccion: "", mapa: "" },
+  confirmacion: { whatsapp: "", mensaje: "¡Hola! Confirmo mi asistencia al primer añito de Gael 🦁" },
+  musica: "recursos/musica.mp3",
+  muestra: { activa: true, texto: "MUESTRA · INVITACIONES DE AMOR", aviso: "Se activa en la versión final ✨" },
+  credito: { texto: "Invitación hecha con amor por", marca: "Invitaciones de Amor", enlace: "https://eleganciadeamor.com/#nuestros-trabajos", boton: "Ver nuestros trabajos" }
+};
+</script>
+<style>
+@font-face { font-family: "Great Vibes"; src: url(recursos/fuente-great-vibes.woff2) format("woff2"); font-display: block; }
+@font-face { font-family: "Cinzel"; src: url(recursos/fuente-cinzel-600.woff2) format("woff2"); font-weight: 600; font-display: block; }
+@font-face { font-family: "Cormorant"; src: url(recursos/fuente-cormorant-500.woff2) format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Cormorant"; src: url(recursos/fuente-cormorant-600.woff2) format("woff2"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "Cormorant"; src: url(recursos/fuente-cormorant-500-italica.woff2) format("woff2"); font-weight: 500; font-style: italic; font-display: swap; }
+:root { --w: min(55.81svh, 106vw); --fondo: #efe3d2; --salvia: #3e5a3c; --salvia-o: #2e4630; --durazno: #e8a273; --crema: #fbf5ea; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { background: var(--fondo); overflow-x: clip; }
+body { font-family: "Cormorant", Georgia, serif; color: var(--salvia-o); -webkit-font-smoothing: antialiased; }
+body.cerrado { overflow: hidden; height: 100svh; }
+
+/* ---------- La escena: una sola imagen larga, centrada; en el teléfono la portada llena la pantalla ---------- */
+#escena { position: relative; width: var(--w); margin-left: 50%; translate: -50% 0; container-type: inline-size; overflow: clip; }
+#escena .rebanadas img { display: block; width: 100%; height: auto; }
+.capa { position: absolute; left: 3cqw; width: 94cqw; text-align: center; }
+.angosto { left: 50%; translate: -50% 0; width: 80cqw; }
+
+/* títulos: durazno a dorado cálido, con halo crema para que se lean sobre la arena */
+.oro { color: #c8763f; background: linear-gradient(180deg, #f2b27c 0%, #d9844a 45%, #b0642f 80%, #d98d54 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.verde { color: #4d6e46; background: linear-gradient(180deg, #7f9f72 0%, #557a4d 50%, #3c5a37 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.script { font-family: "Great Vibes", cursive; font-weight: 400; line-height: 1.15; padding: .12em .25em; }
+.caps { font-family: "Cinzel", serif; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; }
+.luz { filter: drop-shadow(0 0 .5cqw rgba(255, 250, 238, .95)) drop-shadow(0 0 1.6cqw rgba(255, 248, 232, .9)) drop-shadow(0 .25cqw .4cqw rgba(90, 55, 25, .35)); }
+.dato { font-size: 5.4cqw; line-height: 1.35; font-weight: 600; color: var(--salvia-o); text-shadow: 0 0 .6cqw rgba(255, 251, 242, 1), 0 0 1.8cqw rgba(255, 249, 238, .95), 0 0 3.5cqw rgba(255, 247, 232, .8); }
+.pendiente { font-style: italic; opacity: .85; }
+.filete { display: block; width: 34cqw; height: 2px; margin: 2.4cqw auto; background: linear-gradient(90deg, transparent, #d9844a 30%, #8aa77c 50%, #d9844a 70%, transparent); }
+
+/* portada */
+#persona { position: absolute; display: block; height: auto; pointer-events: none; z-index: 3; filter: drop-shadow(0 1.2cqw 1.6cqw rgba(110, 80, 50, .28)); }
+#sombra { position: absolute; z-index: 2; height: 5cqw; border-radius: 50%; background: radial-gradient(closest-side, rgba(120, 90, 60, .38), rgba(120, 90, 60, 0)); }
+#nombre { z-index: 4; font-size: 30cqw; }
+#primer { z-index: 4; font-size: 5.2cqw; color: var(--salvia-o); text-shadow: 0 0 1.5cqw rgba(255, 250, 238, 1), 0 0 3cqw rgba(255, 248, 232, .9); }
+#fecha-portada { z-index: 4; font-size: 4.2cqw; letter-spacing: .28em; color: #b0642f; text-shadow: 0 0 1.5cqw rgba(255, 250, 238, 1), 0 0 3cqw rgba(255, 248, 232, .9); }
+
+/* piezas que flotan sobre la escena, de frente, con un vaivén suave */
+.flota { position: absolute; left: 50%; translate: -50% 0; z-index: 4; animation: flotar 7s ease-in-out infinite; filter: drop-shadow(0 2.2cqw 2.6cqw rgba(90, 65, 35, .35)); }
+.flota > img { display: block; width: 100%; height: auto; }
+.flota .interior { position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+@keyframes flotar { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-1.3cqw); } }
+.interior .dato { text-shadow: none; }
+#letrero-frase .interior { padding: 9% 3% 12%; }
+#letrero-frase .titulo { font-size: 9.5cqw; line-height: 1.05; margin-bottom: 2cqw; }
+#letrero-frase p { font-size: 5cqw; font-style: italic; font-weight: 500; line-height: 1.35; }
+.titulo { font-size: 12cqw; }
+#edad .te-invito { font-size: 5.4cqw; }
+#edad .uno { font-family: "Cinzel", serif; font-weight: 600; font-size: 42cqw; line-height: .95; }
+#edad .anito { font-size: 13cqw; margin-top: -3cqw; }
+#cuenta { height: 0; }
+#cuenta .celda { position: absolute; top: 0; translate: 0 -50%; text-align: center; }
+#cuenta .celda b { display: block; font-family: "Cinzel", serif; font-weight: 600; font-size: 7.6cqw; line-height: 1.05; color: #6a3d1c; text-shadow: 0 0 .8cqw rgba(255, 240, 215, .9); font-variant-numeric: lining-nums tabular-nums; }
+#cuenta .celda span { display: block; font-family: "Cinzel", serif; font-weight: 600; font-size: 2.8cqw; letter-spacing: .12em; color: #7d4a24; text-shadow: 0 0 .6cqw rgba(255, 240, 215, .9); text-transform: uppercase; }
+#falta { font-size: 16cqw; }
+#detalles { padding: 7% 2% 13%; }
+#detalles .titulo { font-size: 10cqw; line-height: 1.05; margin-bottom: 1cqw; }
+#detalles .fila { display: grid; grid-template-columns: 11cqw 1fr; align-items: center; column-gap: 3cqw; width: 92%; text-align: left; padding: 1.6cqw 0; }
+#detalles .fila + .fila { border-top: 1.5px solid rgba(201, 125, 70, .3); }
+#detalles .fila img { width: 11cqw; height: 11cqw; object-fit: contain; filter: drop-shadow(0 .3cqw .4cqw rgba(80, 50, 20, .35)); }
+#detalles .fila .et { display: block; font-family: "Cinzel", serif; font-weight: 600; font-size: 3cqw; letter-spacing: .14em; color: #c0703a; text-transform: uppercase; }
+#detalles .fila .va { display: block; font-size: 4.7cqw; line-height: 1.2; font-weight: 600; color: var(--salvia-o); }
+.boton { display: inline-block; margin-top: 2.4cqw; padding: 2.2cqw 6cqw; border-radius: 99px; font-family: "Cinzel", serif; font-weight: 600; font-size: 3.5cqw; letter-spacing: .12em; text-transform: uppercase; text-decoration: none;
+  color: #fffaf1; background: linear-gradient(180deg, #f0b487, #d98a55 55%, #c2703c); box-shadow: 0 .6cqw 1.8cqw rgba(110, 60, 25, .35), inset 0 1px 0 rgba(255, 255, 255, .55); cursor: pointer; border: 0; }
+#detalles .boton { font-size: 3cqw; margin-top: 1.6cqw; padding: 1.8cqw 5cqw; }
+#aventuras { font-size: 14cqw; }
+#fotos { height: 0; }
+.foto-marco { top: 0; }
+.foto-marco .foto { position: absolute; object-fit: cover; }
+.foto-marco .foto + img { position: relative; }
+#confirma .titulo { font-size: 12cqw; line-height: 1.05; }
+#cierre .titulo { font-size: 17cqw; }
+#cierre .nombre { font-size: 15cqw; line-height: 1; }
+
+/* animaciones al bajar */
+.revela { opacity: 0; transform: translateY(4cqw); transition: opacity 1.2s ease, transform 1.2s ease; }
+.revela.visto { opacity: 1; transform: none; }
+.flota.revela.visto { transform: none; }
+.mariposa { position: absolute; z-index: 5; width: 4.2cqw; pointer-events: none; animation: vuelo var(--t) ease-in-out infinite; animation-delay: var(--d); }
+.mariposa i { display: block; width: 100%; aspect-ratio: 1.3; background: radial-gradient(ellipse at 28% 50%, #f3b48a 0 34%, transparent 36%), radial-gradient(ellipse at 72% 50%, #f3b48a 0 34%, transparent 36%); animation: aletea .35s ease-in-out infinite alternate; opacity: .85; }
+@keyframes aletea { from { transform: scaleX(1); } to { transform: scaleX(.35); } }
+@keyframes vuelo { 0%, 100% { translate: 0 0; } 25% { translate: 6cqw -5cqw; } 50% { translate: 11cqw 1cqw; } 75% { translate: 4cqw 4cqw; } }
+.brillo { position: absolute; z-index: 5; width: 1.1cqw; aspect-ratio: 1; border-radius: 50%; pointer-events: none; background: #fff6df;
+  box-shadow: 0 0 1.4cqw .5cqw rgba(255, 226, 170, .8); animation: vuela var(--t) ease-in-out infinite, brilla calc(var(--t) / 3) ease-in-out infinite; animation-delay: var(--d); }
+@keyframes vuela { 0%, 100% { translate: 0 0; } 33% { translate: 3cqw -4cqw; } 66% { translate: -2.5cqw -1.5cqw; } }
+@keyframes brilla { 0%, 100% { opacity: .1; } 50% { opacity: .9; } }
+
+/* ---------- Sobre ---------- */
+#sobre { position: fixed; inset: 0; z-index: 100; overflow: hidden; background: #a9b99c; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: opacity .9s ease; }
+#sobre .caja { position: absolute; inset: 0; background: url(recursos/sobre.webp) center / cover no-repeat; transform-origin: 50% 43.7%; transition: transform 1.8s cubic-bezier(.5, 0, .3, 1); }
+#sobre .sello { position: absolute; left: 50%; top: 43.7%; width: 30vmin; aspect-ratio: 1; translate: -50% -50%; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 220, 180, .6), rgba(255, 200, 150, 0) 68%); animation: latido 2.4s ease-in-out infinite; }
+@keyframes latido { 0%, 100% { opacity: .2; scale: .9; } 50% { opacity: .9; scale: 1.12; } }
+#sobre .destello { position: absolute; inset: 0; background: radial-gradient(circle at 50% 43.7%, #fffaf0 0, #fbe2c8 40%, rgba(250, 220, 190, 0) 80%); opacity: 0; transition: opacity 1.4s ease .5s; }
+#sobre .toca { position: absolute; left: 50%; bottom: max(7%, env(safe-area-inset-bottom) + 20px); translate: -50% 0; white-space: nowrap; padding: .7em 1.6em; border-radius: 99px;
+  font-family: "Cinzel", serif; font-weight: 600; font-size: clamp(12px, 3.6vw, 16px); letter-spacing: .14em; text-transform: uppercase; color: #fffaf1; background: rgba(205, 128, 75, .95); box-shadow: 0 4px 18px rgba(60, 40, 20, .35); }
+#sobre.abierto .caja { transform: scale(1.45); }
+#sobre.abierto .destello { opacity: 1; }
+#sobre.abierto .toca, #sobre.abierto .sello { opacity: 0; transition: opacity .3s; }
+#sobre.fuera { opacity: 0; pointer-events: none; }
+
+/* música, aviso, pie, marca de agua */
+#musica-boton { position: fixed; right: 14px; bottom: max(14px, env(safe-area-inset-bottom)); z-index: 90; width: 46px; height: 46px; border-radius: 50%; border: 0; cursor: pointer;
+  background: linear-gradient(180deg, #f0b487, #c9773f); box-shadow: 0 3px 12px rgba(60, 40, 20, .4); color: #fffaf1; font-size: 20px; display: none; }
+#musica-boton.ver { display: block; }
+#musica-boton.pausado { opacity: .7; }
+#aviso { position: fixed; left: 50%; bottom: 80px; translate: -50% 0; z-index: 120; padding: .8em 1.4em; border-radius: 99px; background: rgba(251, 245, 234, .98); color: var(--salvia-o);
+  font-family: "Cormorant", serif; font-weight: 600; font-size: 17px; box-shadow: 0 6px 20px rgba(60, 40, 20, .35); opacity: 0; pointer-events: none; transition: opacity .3s; white-space: nowrap; }
+#aviso.ver { opacity: 1; }
+footer { padding: 26px 16px 34px; text-align: center; font-size: 15px; color: #5b6f52; background: var(--fondo); }
+footer a { color: #b0642f; text-decoration: none; font-weight: 600; }
+#marca-agua { position: fixed; inset: 0; z-index: 110; pointer-events: none; background: var(--marca) 0 0 / 260px 200px repeat; }
+body.muestra { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+body.muestra img { pointer-events: none; -webkit-user-drag: none; }
+@media print { body.muestra > * { display: none !important; } }
+#nombre { top: 10.19cqw; }
+#primer { top: 55.56cqw; }
+#fecha-portada { top: 163.43cqw; }
+#letrero-frase { top: 276.11cqw; width: 70cqw; }
+#edad { top: 177.50cqw; }
+#falta { top: 520.46cqw; }
+#cuenta { top: 550.65cqw; }
+#letrero-detalles { top: 900.19cqw; width: 86cqw; }
+#aventuras { top: 591.48cqw; }
+#fotos { top: 615.56cqw; }
+#confirma { top: 1119.35cqw; }
+#cierre { top: 1182.04cqw; }
+#persona { top: 83.33cqw; left: 16.20cqw; width: 67.59cqw; }
+#sombra { top: 155.56cqw; left: 23.15cqw; width: 53.70cqw; }
+</style>
+</head>
+<body class="cerrado">
+
+<div id="sobre" role="button" aria-label="Abrir la invitación">
+  <div class="caja"></div><div class="sello"></div><div class="destello"></div>
+  <div class="toca">Toca el sello para abrir</div>
+</div>
+
+<main id="escena">
+  <div class="rebanadas"><img src="recursos/escena-01.webp" alt="" width="1080" height="1935" fetchpriority="high"><img src="recursos/escena-02.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-03.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-04.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-05.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-06.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-07.webp" alt="" width="1080" height="1935" loading="lazy"><img src="recursos/escena-08.webp" alt="" width="1080" height="1086" loading="lazy"></div>
+
+  <!-- PORTADA -->
+  <div class="capa script oro luz" id="nombre" data-campo="festejado"></div>
+  <div class="capa caps" id="primer">Mi primer añito</div>
+  <span id="sombra"></span>
+  <img id="persona" src="recursos/persona.webp" alt="Gael">
+  <div class="capa caps" id="fecha-portada" data-campo="fechaCorta"></div>
+
+  <!-- FRASE EN EL LETRERO -->
+  <div class="flota revela" id="letrero-frase"><img src="recursos/letrero.webp" alt=""><div class="interior" style="left:19.69%;top:15.01%;width:62.49%;height:69.38%">
+    <div class="titulo script oro">¡Bienvenidos a mi safari!</div>
+    <p class="dato" data-campo="frase"></p>
+  </div></div>
+
+  <!-- MI PRIMER AÑITO -->
+  <div class="capa angosto revela" id="edad">
+    <p class="dato te-invito">Te invito a celebrar mi</p>
+    <div class="uno oro luz">1</div>
+    <div class="anito script verde luz">añito</div>
+  </div>
+
+  <!-- FALTA POCO -->
+  <div class="capa script oro luz revela" id="falta">Falta poco</div>
+  <div class="capa" id="cuenta"><div class="celda" style="left:1.17cqw;width:20.37cqw"><b id="c0">00</b><span>Días</span></div><div class="celda" style="left:25.06cqw;width:20.37cqw"><b id="c1">00</b><span>Horas</span></div><div class="celda" style="left:49.31cqw;width:20.37cqw"><b id="c2">00</b><span>Min</span></div><div class="celda" style="left:73.48cqw;width:20.37cqw"><b id="c3">00</b><span>Seg</span></div></div>
+
+  <!-- DETALLES: FECHA, HORA, LUGAR -->
+  <div class="flota revela" id="letrero-detalles"><img src="recursos/letrero.webp" alt=""><div class="interior" id="detalles" style="left:19.69%;top:15.01%;width:62.49%;height:69.38%">
+    <div class="titulo script oro">¿Cuándo y dónde?</div>
+    <div class="fila"><img src="recursos/icono-calendario.webp" alt=""><div><span class="et">Fecha</span><span class="va" data-campo="fecha"></span></div></div>
+    <div class="fila"><img src="recursos/icono-reloj.webp" alt=""><div><span class="et">Hora</span><span class="va" data-campo="hora"></span></div></div>
+    <div class="fila"><img src="recursos/icono-ubicacion.webp" alt=""><div><span class="et">Lugar</span><span class="va" id="lugar-dato"></span></div></div>
+    <a class="boton" id="lugar-mapa" target="_blank" rel="noopener">Cómo llegar</a>
+  </div></div>
+
+  <!-- MIS AVENTURAS (fotos) -->
+  <div class="capa script oro luz revela" id="aventuras">Mis aventuras</div>
+  <div class="capa" id="fotos"><div class="flota foto-marco revela" style="left:47cqw;top:0.00cqw;width:62cqw;animation-delay:-0.0s"><img class="foto" src="recursos/foto-1.webp" alt="Gael" style="left:23.64%;top:17.57%;width:53.57%;height:64.87%"><img src="recursos/marco-foto.webp" alt=""></div><div class="flota foto-marco revela" style="left:47cqw;top:196.30cqw;width:62cqw;animation-delay:-2.5s"><img class="foto" src="recursos/foto-2.webp" alt="Gael" style="left:23.64%;top:17.57%;width:53.57%;height:64.87%"><img src="recursos/marco-foto.webp" alt=""></div></div>
+
+  <!-- CONFIRMACIÓN -->
+  <div class="capa angosto revela" id="confirma">
+    <div class="titulo script oro luz">Confirma tu asistencia</div>
+    <p class="dato">Tu presencia hará mi primer añito<br>aún más especial</p>
+    <a class="boton" id="confirmacion-boton" target="_blank" rel="noopener">Confirmar asistencia</a>
+  </div>
+
+  <!-- TE ESPERO -->
+  <div class="capa angosto revela" id="cierre">
+    <div class="titulo script oro luz">¡Te espero!</div>
+    <div class="nombre script verde luz" data-campo="festejado"></div>
+    <p class="dato caps" style="font-size:3.8cqw" data-campo="fechaCorta"></p>
+  </div>
+</main>
+
+<footer id="credito"></footer>
+<button id="musica-boton" aria-label="Pausar o poner la música">♪</button>
+<audio id="musica" loop preload="auto"></audio>
+<div id="aviso"></div>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const C = CONFIG;
+  document.querySelectorAll('[data-campo]').forEach(e => e.textContent = C[e.dataset.campo] || '');
+  const L = C.lugar, mapa = $('lugar-mapa');
+  $('lugar-dato').innerHTML = L.nombre ? L.nombre + (L.direccion ? '<br><span style="font-weight:500">' + L.direccion + '</span>' : '') : '<span class="pendiente">Por confirmar</span>';
+  if (L.mapa) mapa.href = L.mapa; else mapa.remove();
+  const cr = C.credito;
+  $('credito').innerHTML = cr.texto + '<br><a href="' + cr.enlace + '" target="_blank" rel="noopener">' + cr.marca + ' · ' + cr.boton + ' ›</a>';
+
+  /* aviso (modo muestra / WhatsApp sin número) */
+  const aviso = $('aviso'); aviso.textContent = C.muestra.aviso; let tA;
+  const mostrarAviso = e => { e.preventDefault(); aviso.classList.add('ver'); clearTimeout(tA); tA = setTimeout(() => aviso.classList.remove('ver'), 2200); };
+  const boton = $('confirmacion-boton');
+  if (C.confirmacion.whatsapp && !C.muestra.activa) boton.href = 'https://wa.me/' + C.confirmacion.whatsapp.replace(/\D/g, '') + '?text=' + encodeURIComponent(C.confirmacion.mensaje);
+  else { boton.removeAttribute('href'); boton.addEventListener('click', mostrarAviso); }
+
+  /* marca de agua (antes del pago); ?sinmarca solo la quita para revisar */
+  if (C.muestra.activa && !location.search.includes('sinmarca')) {
+    document.body.classList.add('muestra');
+    const t = C.muestra.texto;
+    const fila = (x, y) => "<text x='" + x + "' y='" + y + "' text-anchor='middle' font-family='Georgia,serif' font-size='14' font-weight='700' letter-spacing='2.5' fill='rgba(255,255,255,.5)' stroke='rgba(60,40,20,.35)' stroke-width='.6'>" + t + "</text>";
+    const svg = "<svg xmlns='http://www.w3.org/2000/svg' width='260' height='200'><g transform='rotate(-28 130 100)'>" + fila(130, 70) + fila(0, 160) + fila(260, 160) + "</g></svg>";
+    const capa = document.createElement('div'); capa.id = 'marca-agua'; capa.setAttribute('aria-hidden', 'true');
+    capa.style.setProperty('--marca', 'url("data:image/svg+xml,' + encodeURIComponent(svg) + '")');
+    document.body.appendChild(capa);
+    ['contextmenu', 'dragstart', 'selectstart', 'copy', 'cut'].forEach(ev => document.addEventListener(ev, e => e.preventDefault()));
+    document.addEventListener('keydown', e => { const k = (e.key || '').toLowerCase(), m = e.ctrlKey || e.metaKey;
+      if (e.key === 'F12' || (m && ['s', 'u', 'p', 'c', 'a'].includes(k)) || (m && e.shiftKey && ['i', 'j', 'c'].includes(k))) e.preventDefault(); });
+  }
+
+  /* cuenta regresiva */
+  const meta = new Date(C.cuentaHasta).getTime(), dos = n => String(n).padStart(2, '0');
+  const cuenta = () => { const r = Math.max(0, meta - Date.now());
+    $('c0').textContent = Math.floor(r / 864e5); $('c1').textContent = dos(Math.floor(r % 864e5 / 36e5));
+    $('c2').textContent = dos(Math.floor(r % 36e5 / 6e4)); $('c3').textContent = dos(Math.floor(r % 6e4 / 1e3)); };
+  cuenta(); setInterval(cuenta, 1000);
+
+  /* brillos suaves por toda la escena */
+  const esc = $('escena');
+  for (let i = 0; i < 30; i++) {
+    const l = document.createElement('span'); l.className = 'brillo';
+    l.style.left = (4 + Math.random() * 92) + '%'; l.style.top = (Math.random() * 100) + '%';
+    l.style.setProperty('--t', (6 + Math.random() * 7).toFixed(1) + 's'); l.style.setProperty('--d', (-Math.random() * 8).toFixed(1) + 's');
+    esc.appendChild(l);
+  }
+
+  /* aparecen al bajar */
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visto'); io.unobserve(e.target); } }), { threshold: .2 });
+  document.querySelectorAll('.revela').forEach(e => io.observe(e));
+
+  /* música: arranca al tocar el sello, desde el inicio */
+  const musica = $('musica'), mb = $('musica-boton'); musica.src = C.musica;
+  const tocar = () => { const p = musica.play(); if (p && p.then) p.then(() => mb.classList.remove('pausado')).catch(() => mb.classList.add('pausado')); };
+  mb.addEventListener('click', () => { if (musica.paused) tocar(); else { musica.pause(); mb.classList.add('pausado'); } });
+
+  /* sobre: tocar → acercamiento al sello y luz cálida → la escena */
+  const sobre = $('sobre');
+  const quitarSobre = () => { sobre.classList.add('fuera'); document.body.classList.remove('cerrado'); window.scrollTo(0, 0); setTimeout(() => sobre.remove(), 1000); };
+  const abrir = () => {
+    if (sobre.classList.contains('abierto')) return;
+    sobre.classList.add('abierto'); musica.currentTime = 0; tocar(); mb.classList.add('ver');
+    setTimeout(quitarSobre, 1900);
+  };
+  sobre.addEventListener('click', abrir);
+  if (location.search.includes('directo')) { sobre.remove(); document.body.classList.remove('cerrado'); mb.classList.add('ver'); }
+})();
+</script>
+</body>
+</html>
