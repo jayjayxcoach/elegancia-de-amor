@@ -1181,6 +1181,24 @@ section#ubicacion .lugar, section#ubicacion2 .lugar { font-size: 30px; }
     $('formulario').addEventListener('submit', mostrarAviso, true);
   }
 
+  /* ?directo = revisar sin el sobre. Sin el parámetro no cambia nada. */
+  if (new URLSearchParams(location.search).has('directo')) {
+    abierto = true;
+    sobre.style.display = 'none';
+    videoWrap.style.display = 'none';
+    terminarApertura();
+    if (hayMusica) {
+      // si el navegador no deja sonar sin un toque, el botón queda en «play»
+      const pintar = () => {
+        $('iconoPlay').style.display  = musica.paused ? 'block' : 'none';
+        $('iconoPausa').style.display = musica.paused ? 'none' : 'block';
+      };
+      musica.addEventListener('play', pintar);
+      musica.addEventListener('pause', pintar);
+      musica.play().catch(pintar);
+    }
+  }
+
   /* Título de la pestaña del navegador */
   document.title = `${C.novios.nombre1} & ${C.novios.nombre2} · Invitación`;
 })();
