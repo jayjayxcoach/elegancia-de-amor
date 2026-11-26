@@ -1314,6 +1314,8 @@ body.con-ventana { overflow: hidden; }
   }
 
   /* ---------- Música ---------- */
+  // ?sinmusica = Jay revisa sin música (la clienta recibe el enlace normal, con música)
+  if (location.search.includes('sinmusica')) CONFIG.musica = '';
   const musica = $('musica'), musicaBoton = $('musica-boton');
   if (CONFIG.musica) musica.src = CONFIG.musica;
   function reproducirMusica() {
