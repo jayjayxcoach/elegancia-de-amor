@@ -13,11 +13,11 @@
      WhatsApp no lee el CONFIG: si cambias el nombre, cámbialo también aquí.
      Si cambias la imagen de vista previa, sube el número ?v=1 → ?v=2
      ============================================================ -->
-<meta name="description" content="Familia López, están invitados a mis XV años. Toca el sello para abrir su invitación.">
+<meta name="description" content="Familia López, están cordialmente invitados a mis XV años · Invitación válida para 2 personas ✨">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Invitaciones de Amor">
 <meta property="og:title" content="Mis XV Años · María Fernanda">
-<meta property="og:description" content="Familia López, están invitados a mis XV años · Invitación válida para 2 personas ✨">
+<meta property="og:description" content="Familia López, están cordialmente invitados a mis XV años · Invitación válida para 2 personas ✨">
 <meta property="og:url" content="https://eleganciadeamor.com/borradores/xv-maria-fernanda-familia-c38eba/">
 <meta property="og:image" content="https://eleganciadeamor.com/borradores/xv-maria-fernanda-familia-c38eba/recursos/vista-previa.jpg?v=2">
 <meta property="og:image:secure_url" content="https://eleganciadeamor.com/borradores/xv-maria-fernanda-familia-c38eba/recursos/vista-previa.jpg?v=2">
@@ -97,15 +97,12 @@ const CONFIG = {
     nombres: []       // [] = no aparece
   },
   invitacion: "te invitan a celebrar los XV años de María Fernanda",
-  invitacionFamilia: "invitan a la {familia} a celebrar los XV años de María Fernanda",
+  invitacionFamilia: "invitan {a} a celebrar los XV años de María Fernanda",
+  // ---------- Invitación por familia (por_familia.py) ----------
+  // Cada familia recibe SU enlace: …/?f=<código>. Sin ?f= sale "invitado".
+  invitado: {"nombre": "Familia López", "cupos": 2},
+  familias: {},
 
-  // ---------- Invitación personalizada por familia (27-nov, pedido de Ángela) ----------
-  // Cada familia recibe SU enlace: eleganciadeamor.com/<invitación>/?f=<código>.
-  // Sin ?f= sale la familia de ejemplo de "invitado".
-  invitado: { nombre: "Familia López", cupos: 2 },     // MUESTRA para Ángela
-  familias: {
-    // "lopez": { nombre: "Familia López", cupos: 2 },
-  },
 
   // ---------- Cuenta regresiva ----------
   cuentaRegresiva: {
@@ -167,7 +164,7 @@ const CONFIG = {
     titulo: "Confirma tu asistencia",
     texto: "Me encantaría compartir este sueño contigo. Ayúdame confirmando tu asistencia.",
     textoFamilia: "{familia}, me encantaría compartir este sueño con ustedes.\nSu invitación es válida para {cupos}.",
-    limite: "Por favor confirma tu asistencia antes del 30 de enero",   // Ángela, 27-nov
+    limite: "Por favor confirma tu asistencia antes del 30 de enero",                             // "" = no aparece (falta que Keylin nos diga la fecha)
     boton: "Confirmar asistencia",
     hoja: "",                               // URL /exec del puente a la hoja de Google (se pone en la final, al pagar)
     formulario: {                           // lo que vio y eligió Ángela (23-nov): sin restricción alimentaria
@@ -407,14 +404,14 @@ body.esperando #fondo-fijo, body.esperando .invitacion { display: none; }   /* p
 @keyframes sube-destello { 0% { opacity: 0; transform: translateY(0) scale(.6); } 40% { opacity: 1; } 100% { opacity: 0; transform: translateY(-40px) scale(1.2); } }
 /* Al tocar: el sello se va, la rendija se abre, las puertas giran hacia adentro, entra la luz y la escena avanza */
 #apertura.tocado .toca { animation: none; opacity: 0; }
-/* Familia en el sobre (muestra por familia) */
-#apertura .destinatario { left: 14%; right: 14%; top: 56.6%; z-index: 7; text-align: center; pointer-events: none; transition: opacity .5s ease; }
-#apertura .destinatario small { display: none; }
+/* Invitación por familia: nombre en el sobre */
+#apertura .destinatario { left: 12%; right: 12%; top: 56.1%; z-index: 7; text-align: center; pointer-events: none; transition: opacity .5s ease; }
 #apertura .destinatario b { display: block; font: 400 calc(var(--ew) * .082)/1.1 "Great Vibes", cursive; white-space: nowrap; background: linear-gradient(180deg, #fff3cc 0%, #f0d27e 35%, #c99a42 62%, #f6dd98 85%, #c08d38 100%); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 1px 1px rgba(40, 0, 8, .85)) drop-shadow(0 0 6px rgba(60, 0, 12, .5)); }
+#apertura .destinatario em { display: block; margin-top: .2em; font: italic 500 calc(var(--ew) * .036)/1.25 "Cormorant Garamond", "Cormorant", Georgia, serif; color: #f8e6b4; text-shadow: 0 1px 2px rgba(40, 0, 8, .9), 0 0 8px rgba(60, 0, 12, .6); }
 #apertura .destinatario span { display: inline-block; margin-top: .45em; padding: .5em 1.1em; padding-left: 1.26em; border-top: 1px solid rgba(240, 210, 126, .75); border-bottom: 1px solid rgba(240, 210, 126, .75); background: rgba(70, 8, 22, .35); font: 600 calc(var(--ew) * .026)/1 "Cinzel", serif; letter-spacing: .16em; color: #f6e2a8; text-transform: uppercase; text-shadow: 0 1px 2px rgba(40, 0, 8, .8); }
 #apertura.tocado .destinatario, #apertura.abriendo .destinatario { opacity: 0; }
-#ventana-confirma .pase-familia { text-align: center; margin: .2em 0 .9em; color: #e8c784; letter-spacing: .14em; }
 #padres .cupo-familia { margin: 3cqw auto 0; font-size: 3.3cqw; letter-spacing: .14em; color: #e8c784; }
+#ventana-confirma .pase-familia { text-align: center; margin: .2em 0 .9em; color: #e8c784; letter-spacing: .14em; }
 #apertura.abriendo .relleno { opacity: 0; }
 #apertura.abriendo .sello { animation: none; transition: transform .7s ease, opacity .6s ease; transform: scale(1.25); opacity: 0; }
 #apertura.abriendo .sello::before, #apertura.abriendo .sello::after { display: none; }
@@ -1148,7 +1145,7 @@ body.con-ventana { overflow: hidden; }
   if (pd.nombres && pd.nombres.length) { texto('padrinos-titulo', pd.titulo); ponerNombres('padrinos-nombres', pd.nombres); } else quitar('padrinos-caja');
   const INV = (() => { const f = new URLSearchParams(location.search).get('f'); const L = CONFIG.familias || {}; return (f && L[f]) || CONFIG.invitado || null; })();
   const CUPOS = INV ? INV.cupos + (INV.cupos === 1 ? '\u00a0persona' : '\u00a0personas') : '';
-  if (INV && CONFIG.invitacionFamilia) texto('invitacion', CONFIG.invitacionFamilia.replace('{familia}', INV.nombre));
+  if (INV && CONFIG.invitacionFamilia) texto('invitacion', CONFIG.invitacionFamilia.replace('{a}', INV.a || ('a la ' + INV.nombre)));
   else if (CONFIG.invitacion) texto('invitacion', CONFIG.invitacion); else quitar('invitacion');
   if (INV) { const c = document.createElement('p'); c.className = 'caps cupo-familia revela'; c.textContent = 'Invitación válida para ' + CUPOS; $('invitacion').after(c); }
   { const el = $('invitacion'), n = CONFIG.nombre || 'María Fernanda'; if (el && el.textContent.includes(n)) { const [a, b] = el.textContent.split(n); el.textContent = a; const sp = document.createElement('span'); sp.className = 'sin-corte'; sp.textContent = n; el.append(sp, b || ''); } }   // v5: el nombre no se parte en dos renglones
@@ -1414,13 +1411,13 @@ body.con-ventana { overflow: hidden; }
       '<img class="capa marco" alt="" decoding="async">' +
       (AP.video ? '<video class="capa video" muted playsinline preload="auto"></video>' : '') +
       '<div class="capa sello"><img alt="" decoding="async"><b></b></div>' +
-      (INV ? '<div class="capa destinatario"><small>PARA</small><b></b><span></span></div>' : '') +
+      (INV ? '<div class="capa destinatario"><b></b><em></em><span></span></div>' : '') +
     '</div>' +
     '<div class="toca"></div>';
   const escena = ap.querySelector('.escena'), selloCaja = ap.querySelector('.sello');
   if (!IM.portada) ap.classList.add('sin-zoom');
   ap.querySelector('.toca').textContent = AP.textoAbrir;
-  if (INV) { const d = ap.querySelector('.destinatario'); d.querySelector('b').textContent = INV.nombre; d.querySelector('span').textContent = 'Válida para ' + CUPOS;
+  if (INV) { const d = ap.querySelector('.destinatario'); d.querySelector('b').textContent = INV.nombre; d.querySelector('em').textContent = INV.saludo || CONFIG.saludoSobre || 'están cordialmente invitados a mis XV años'; d.querySelector('span').textContent = 'Válida para ' + CUPOS;
     const medir = () => escena.style.setProperty('--ew', escena.getBoundingClientRect().width + 'px'); medir(); addEventListener('resize', medir); }
   ap.querySelector('.puerta.izq').style.setProperty('--mascara', url(AP.puertaIzquierda));
   ap.querySelector('.puerta.der').style.setProperty('--mascara', url(AP.puertaDerecha));

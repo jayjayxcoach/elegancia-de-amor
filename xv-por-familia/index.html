@@ -13,11 +13,11 @@
      WhatsApp no lee el CONFIG: si cambias el nombre, cámbialo también aquí.
      Si cambias la imagen de vista previa, sube el número ?v=1 → ?v=2
      ============================================================ -->
-<meta name="description" content="Estás invitado a mis XV años. Toca el sello para abrir tu invitación.">
+<meta name="description" content="Familia Rodríguez, están cordialmente invitados a mis XV años · Invitación válida para 4 personas ✨">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Invitaciones de Amor">
 <meta property="og:title" content="Mis XV Años · Niralys">
-<meta property="og:description" content="Estás invitado a mis XV años. Toca el sello para abrir tu invitación ✨">
+<meta property="og:description" content="Familia Rodríguez, están cordialmente invitados a mis XV años · Invitación válida para 4 personas ✨">
 <meta property="og:url" content="https://eleganciadeamor.com/xv-por-familia/">
 <meta property="og:image" content="https://eleganciadeamor.com/xv-por-familia/recursos/vista-previa.jpg?v=5">
 <meta property="og:image:secure_url" content="https://eleganciadeamor.com/xv-por-familia/recursos/vista-previa.jpg?v=5">
@@ -397,8 +397,9 @@ body.esperando #fondo-fijo, body.esperando .invitacion { display: none; }   /* p
 /* Al tocar: el sello se va, la rendija se abre, las puertas giran hacia adentro, entra la luz y la escena avanza */
 #apertura.tocado .toca { animation: none; opacity: 0; }
 /* Invitación por familia: nombre en el sobre */
-#apertura .destinatario { left: 12%; right: 12%; top: 56.6%; z-index: 7; text-align: center; pointer-events: none; transition: opacity .5s ease; }
+#apertura .destinatario { left: 12%; right: 12%; top: 56.1%; z-index: 7; text-align: center; pointer-events: none; transition: opacity .5s ease; }
 #apertura .destinatario b { display: block; font: 400 calc(var(--ew) * .082)/1.1 "Great Vibes", cursive; white-space: nowrap; background: linear-gradient(180deg, #fff3cc 0%, #f0d27e 35%, #c99a42 62%, #f6dd98 85%, #c08d38 100%); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 1px 1px rgba(40, 0, 8, .85)) drop-shadow(0 0 6px rgba(60, 0, 12, .5)); }
+#apertura .destinatario em { display: block; margin-top: .2em; font: italic 500 calc(var(--ew) * .036)/1.25 "Cormorant Garamond", "Cormorant", Georgia, serif; color: #f8e6b4; text-shadow: 0 1px 2px rgba(40, 0, 8, .9), 0 0 8px rgba(60, 0, 12, .6); }
 #apertura .destinatario span { display: inline-block; margin-top: .45em; padding: .5em 1.1em; padding-left: 1.26em; border-top: 1px solid rgba(240, 210, 126, .75); border-bottom: 1px solid rgba(240, 210, 126, .75); background: rgba(70, 8, 22, .35); font: 600 calc(var(--ew) * .026)/1 "Cinzel", serif; letter-spacing: .16em; color: #f6e2a8; text-transform: uppercase; text-shadow: 0 1px 2px rgba(40, 0, 8, .8); }
 #apertura.tocado .destinatario, #apertura.abriendo .destinatario { opacity: 0; }
 #padres .cupo-familia { margin: 3cqw auto 0; font-size: 3.3cqw; letter-spacing: .14em; color: #e8c784; }
@@ -1250,13 +1251,13 @@ body { background: #3a0913; }
       '<img class="capa marco" alt="" decoding="async">' +
       (AP.video ? '<video class="capa video" muted playsinline preload="auto"></video>' : '') +
       '<div class="capa sello"><img alt="" decoding="async"><b></b></div>' +
-      (INV ? '<div class="capa destinatario"><b></b><span></span></div>' : '') +
+      (INV ? '<div class="capa destinatario"><b></b><em></em><span></span></div>' : '') +
     '</div>' +
     '<div class="toca"></div>';
   const escena = ap.querySelector('.escena'), selloCaja = ap.querySelector('.sello');
   if (!IM.portada) ap.classList.add('sin-zoom');
   ap.querySelector('.toca').textContent = AP.textoAbrir;
-  if (INV) { const d = ap.querySelector('.destinatario'); d.querySelector('b').textContent = INV.nombre; d.querySelector('span').textContent = 'Válida para ' + CUPOS;
+  if (INV) { const d = ap.querySelector('.destinatario'); d.querySelector('b').textContent = INV.nombre; d.querySelector('em').textContent = INV.saludo || CONFIG.saludoSobre || 'están cordialmente invitados a mis XV años'; d.querySelector('span').textContent = 'Válida para ' + CUPOS;
     const medir = () => escena.style.setProperty('--ew', escena.getBoundingClientRect().width + 'px'); medir(); addEventListener('resize', medir); }
   ap.querySelector('.puerta.izq').style.setProperty('--mascara', url(AP.puertaIzquierda));
   ap.querySelector('.puerta.der').style.setProperty('--mascara', url(AP.puertaDerecha));
