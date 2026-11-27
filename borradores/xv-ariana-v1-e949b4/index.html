@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="format-detection" content="telephone=no">
+<title>Mis XV Años · Ariana Trujillo</title>
+<meta name="theme-color" content="#d4e8f6">
+<meta name="description" content="Estás invitado a mis XV años. Toca el sobre para abrir tu invitación.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Invitaciones de Amor">
+<meta property="og:title" content="Mis XV Años · Ariana Trujillo">
+<meta property="og:description" content="Estás invitado a mis XV años. Toca el sobre para abrir tu invitación ✨">
+<meta property="og:url" content="https://eleganciadeamor.com/borradores/xv-ariana-v1-e949b4/">
+<meta property="og:image" content="https://eleganciadeamor.com/borradores/xv-ariana-v1-e949b4/recursos/vista-previa.jpg?v=1">
+<meta property="og:image:secure_url" content="https://eleganciadeamor.com/borradores/xv-ariana-v1-e949b4/recursos/vista-previa.jpg?v=1">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1000">
+<meta property="og:image:height" content="1000">
+<meta property="og:image:alt" content="Sobre celeste con sello de lacre dorado con las iniciales AT">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://eleganciadeamor.com/borradores/xv-ariana-v1-e949b4/recursos/vista-previa.jpg?v=1">
+<link rel="icon" href="recursos/vista-previa.jpg">
+<link rel="preload" href="recursos/sobre.webp" as="image" fetchpriority="high">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Great+Vibes&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Quattrocento:wght@400;700&family=Marcellus&display=swap" rel="stylesheet">
+
+<!--
+  XV de Ariana Trujillo · copia fiel del modelo que armó su hija en Canva (27-nov-2026).
+  Todos los datos están en CONFIG. Para revisar sin el sobre: ?directo · sin marca de agua: ?sinmarca
+-->
+<script>
+const CONFIG = {
+  nombre: "Ariana", apellido: "Trujillo", iniciales: ["A", "T"],
+  fecha: { iso: "2026-12-10T19:00:00-05:00", mes: "DICIEMBRE", dia: "10", semana: "JUE", hora: "7:00 P.M", anio: "2026" },  // hora de Perú (UTC−5)
+  sobre: { arriba: "Mis XV años", abrir: "Toca para abrir" },
+  mensaje: "Los recuerdos más bellos nacen de los momentos compartidos con las personas que amamos. Por eso, quiero invitarte a acompañarme en esta fecha tan importante y ser parte de una celebración que guardaré por siempre en mi corazón.",
+  bendicion: "Con la bendición de Dios y el amor de mi familia, te invito a celebrar mis XV años.",
+  padres: ["CAROL ROSSMERY\nPÉREZ GAMARRA", "CARLOS ALBERTO\nTRUJILLO ROSSI"],
+  lugar: { nombre: "Las Estrellas", mapa: "https://www.google.com/maps/search/?api=1&query=-11.0792284,-77.5799469" },
+  vestimenta: { estilo: "ELEGANTE", reservados: "CELESTE Y PLATA, EXCLUSIVA DE LA QUINCEAÑERA." },
+  ninos: "Amamos a los niños, pero pensamos que puedes disfrutar de una noche libre.",
+  cierre: "“Cuento con su presencia”",
+  musica: "recursos/musica.mp3",
+  confirmacion: {
+    whatsapp: "",   // MUESTRA: apagado. En la final: 51903083121 (el del modelo de su hija)
+    mensaje: "Buenas, me gustaría confirmar mi asistencia a los 15 años de Ariana."
+  },
+  muestra: { activa: true, texto: "PRUEBA · INVITACIONES DE AMOR", aviso: "Se activa en la versión final ✨" }
+};
+</script>
+
+<style>
+:root {
+  --cielo: #d4e8f6; --azul: #5b8db8; --azul-osc: #4a7aa5; --oro: #c39a55; --blanco: #ffffff;
+  --script: 'Great Vibes', cursive; --nombre: 'Parisienne', cursive; --lora: 'Lora', Georgia, serif;
+  --quatt: 'Quattrocento', Georgia, serif; --marc: 'Marcellus', Georgia, serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: #eaf3fa; color: var(--azul); -webkit-tap-highlight-color: transparent; }
+body { overflow-x: hidden; font-family: var(--lora); }
+body.cerrado { overflow: hidden; height: 100svh; }
+img { display: block; max-width: 100%; user-select: none; -webkit-user-drag: none; }
+.multiplica { mix-blend-mode: multiply; }
+
+/* ---------- Sobre ---------- */
+#sobre { position: fixed; inset: 0; z-index: 50; background: radial-gradient(120% 80% at 50% 45%, #ffffff 0%, #eef5fb 60%, #dcebf7 100%); display: grid; place-items: center; cursor: pointer; transition: opacity 1s ease .6s, visibility 0s 1.6s; }
+#sobre .caja { position: relative; width: min(94vw, 62svh); container-type: inline-size; transition: transform 1.4s cubic-bezier(.6,-0.1,.4,1); }
+#sobre img { width: 100%; }
+#sobre .arriba { position: absolute; left: 0; right: 0; top: var(--arribaY, 30%); text-align: center; font-family: var(--nombre); color: #fff; font-size: 9.6cqw; line-height: 1; text-shadow: 0 1px 6px rgba(70,120,170,.35); padding-top: .15em; }
+#sobre .abrir { position: absolute; left: 0; right: 0; top: var(--abrirY, 70%); text-align: center; font-family: var(--marc); color: #fff; font-size: 6.2cqw; text-shadow: 0 1px 6px rgba(70,120,170,.45); animation: respira 2.4s ease-in-out infinite; }
+#sobre .brillo { position: absolute; left: var(--selloX, 50%); top: var(--selloY, 58%); width: 26cqw; height: 26cqw; translate: -50% -50%; border-radius: 50%; box-shadow: 0 0 0 0 rgba(212,170,90,0); animation: anillo 2.4s ease-out infinite; pointer-events: none; }
+@keyframes respira { 50% { opacity: .55; } }
+@keyframes anillo { 0% { box-shadow: 0 0 0 0 rgba(235,200,120,.5); } 100% { box-shadow: 0 0 0 7cqw rgba(235,200,120,0); } }
+#sobre.abierto { opacity: 0; visibility: hidden; }
+#sobre.abierto .caja { transform: translateY(-8svh) scale(1.08); }
+#sobre.abierto .abrir, #sobre.abierto .brillo { opacity: 0; }
+
+/* ---------- Página ---------- */
+main { width: 100%; max-width: 440px; margin: 0 auto; background: var(--cielo); position: relative; overflow: hidden; container-type: inline-size; }
+section { position: relative; padding: 0 7cqw; text-align: center; }
+.aparece { opacity: 0; transform: translateY(24px); transition: opacity 1s ease, transform 1s ease; }
+.aparece.ver { opacity: 1; transform: none; }
+
+/* Portada */
+#portada { min-height: 100svh; padding-top: 4cqw; padding-bottom: 8cqw; }
+#portada .flores { position: absolute; left: 0; top: 0; width: 52cqw; }
+#portada .esq-oro { position: absolute; right: 2.5cqw; top: 2.5cqw; width: 28cqw; }
+.monograma { position: relative; width: 30cqw; height: 34cqw; margin: 26cqw auto 0; font-family: var(--nombre); color: var(--azul); }
+.monograma span { position: absolute; font-size: 22cqw; line-height: 1; }
+.monograma span:first-child { left: 0; top: 0; }
+.monograma span:last-child { left: 9cqw; top: 9cqw; }
+.nombre { font-family: var(--nombre); color: var(--azul); font-weight: 400; line-height: 1; margin-top: 10cqw; padding-top: .1em; }
+.nombre .n1 { display: block; font-size: 21cqw; text-align: left; padding-left: 9cqw; }
+.nombre .n2 { display: block; font-size: 21cqw; text-align: right; padding-right: 3cqw; margin-top: -1cqw; }
+.xv { font-family: var(--marc); color: var(--oro); font-size: 10cqw; line-height: 1.1; margin-top: 7cqw; letter-spacing: .04em; }
+.musica-txt { font-family: var(--quatt); color: #2a3440; font-size: 3.6cqw; letter-spacing: .04em; margin-top: 12cqw; }
+#play { margin: 6cqw auto 0; width: 21cqw; height: 21cqw; border-radius: 50%; border: 0; background: #252a30; display: grid; place-items: center; cursor: pointer; box-shadow: 0 6px 18px rgba(30,50,80,.25); }
+#play svg { width: 9cqw; height: 9cqw; fill: #cfd8e3; }
+#play .pausa { display: none; }
+#play.sonando .tri { display: none; } #play.sonando .pausa { display: block; }
+.barra { width: 70cqw; height: 3px; margin: 6cqw auto 0; background: #c9d2dc; border-radius: 3px; overflow: hidden; }
+.barra i { display: block; height: 100%; width: 0; background: #252a30; }
+
+/* Fecha */
+#fecha { padding-top: 14cqw; padding-bottom: 6cqw; }
+.filigrana { width: 34cqw; margin: 0 auto; }
+.mes { font-family: var(--marc); font-size: 6cqw; letter-spacing: .04em; margin-top: 4cqw; }
+.fila-fecha { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 4cqw; margin-top: 3cqw; }
+.lado { font-family: var(--quatt); font-size: 4.6cqw; padding: 3.2cqw 0; border-top: 3px solid #c8a96a; border-bottom: 3px solid #c8a96a; }
+.dia { font-family: var(--lora); font-weight: 500; font-size: 30cqw; line-height: .95; color: var(--azul); }
+.anio { font-family: var(--marc); font-size: 6cqw; margin-top: 6cqw; letter-spacing: .03em; }
+#fecha .filigrana.abajo { margin-top: 4cqw; }
+
+/* Tarjetas blancas */
+.tarjeta { background: #fff; margin: 0 auto; position: relative; }
+#mensaje { padding-top: 14cqw; }
+#mensaje .tarjeta { padding: 8cqw 5cqw; }
+#mensaje p { font-family: var(--script); font-size: 6.4cqw; line-height: 1.3; color: var(--azul); }
+
+/* Cuenta regresiva */
+#faltan { padding-top: 22cqw; }
+.titulo { font-family: var(--script); color: var(--azul); font-size: 15cqw; line-height: 1.1; padding-top: .1em; }
+.reloj { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 5cqw; }
+.reloj b { display: block; font-family: var(--lora); font-weight: 400; color: #4f8a96; font-size: 11cqw; line-height: 1; }
+.reloj small { display: block; font-family: var(--quatt); font-weight: 700; color: #6f9aa3; font-size: 3cqw; letter-spacing: .06em; margin-top: 2cqw; }
+.reloj div { position: relative; }
+.reloj div + div::before { content: ":"; position: absolute; left: -1.2cqw; top: -1cqw; font-family: var(--lora); font-size: 10cqw; color: #4f8a96; }
+
+/* Padres */
+#padres { padding-top: 24cqw; }
+#padres .tarjeta { padding: 9cqw 6cqw 26cqw; }
+#padres .esq { position: absolute; width: 22cqw; }
+#padres .esq.ti { left: 3cqw; top: 3cqw; }
+#padres .esq.td { right: 3cqw; top: 3cqw; transform: scaleX(-1); }
+#padres .esq.bi { left: 3cqw; bottom: 3cqw; transform: scaleY(-1); }
+#padres .esq.bd { right: 3cqw; bottom: 3cqw; transform: scale(-1, -1); }
+.bendicion { font-family: var(--lora); font-style: italic; font-size: 4.6cqw; line-height: 1.45; padding: 0 16cqw; position: relative; }
+#padres .titulo { font-size: 14cqw; margin-top: 6cqw; }
+.padre { font-family: var(--lora); font-weight: 500; font-size: 6.4cqw; line-height: 1.25; letter-spacing: .03em; white-space: pre-line; margin-top: 8cqw; color: var(--azul); }
+.corazon { width: 9cqw; margin: 7cqw auto 0; fill: #c8d1db; }
+
+/* Lugar y confirmar */
+#interactua { padding-top: 22cqw; padding-bottom: 22cqw; }
+.clique { display: flex; align-items: center; justify-content: center; gap: 4cqw; font-family: var(--lora); font-weight: 600; font-size: 4.2cqw; letter-spacing: .03em; line-height: 1.35; }
+.clique img { width: 9cqw; }
+.accion { display: flex; align-items: center; gap: 5cqw; text-decoration: none; color: var(--azul); margin-top: 14cqw; }
+.accion.der { flex-direction: row-reverse; margin-top: 10cqw; margin-left: auto; text-align: right; }
+.accion .circ { width: 22cqw; height: 22cqw; border-radius: 50%; background: #c8d1db; display: grid; place-items: center; flex: none; }
+.accion .circ img { width: 12cqw; filter: brightness(0) invert(1); }
+.accion span { font-family: var(--quatt); font-size: 5cqw; text-decoration: underline; text-underline-offset: 3px; line-height: 1.35; }
+.accion .lugar-nombre { display: block; font-size: 3.8cqw; text-decoration: none; opacity: .85; margin-top: 1cqw; }
+
+/* Vestimenta */
+#vestimenta { padding: 0 5cqw; }
+#vestimenta .tarjeta { padding: 14cqw 6cqw 16cqw; }
+#vestimenta .titulo { font-size: 13cqw; }
+.estilo { font-family: var(--quatt); font-size: 4.4cqw; letter-spacing: .04em; margin-top: 1cqw; }
+.pareja { width: 34cqw; margin: 6cqw auto 0; }
+.sep-fino { width: 46cqw; margin: 8cqw auto 0; }
+#vestimenta .titulo.chico { font-size: 11cqw; margin-top: 8cqw; }
+.reservados { font-family: var(--quatt); font-size: 4.3cqw; letter-spacing: .03em; line-height: 1.4; margin-top: 7cqw; padding: 0 4cqw; }
+.muestras { display: flex; justify-content: center; gap: 10cqw; margin-top: 6cqw; }
+.muestras i { width: 11cqw; height: 16cqw; border-radius: 6cqw 6cqw 0 0; }
+
+/* Niños */
+#ninos { padding-top: 26cqw; padding-bottom: 6cqw; }
+#ninos .filigrana { width: 48cqw; }
+.ninos-t { font-family: var(--marc); font-weight: 400; font-size: 8.6cqw; margin-top: 3cqw; }
+.ninos-ic { width: 32cqw; margin: 6cqw auto 0; }
+#ninos .sep-fino { width: 62cqw; margin-top: 6cqw; }
+#ninos p { font-family: var(--script); font-size: 8.4cqw; line-height: 1.22; margin-top: 6cqw; padding-top: .1em; }
+
+/* Cierre */
+#cierre { padding-top: 16cqw; padding-bottom: 26cqw; }
+#cierre .titulo { font-size: 12cqw; }
+#cierre .flores { width: 44cqw; margin: 10cqw 0 0 auto; transform: scale(-1, -1); margin-right: -7cqw; }
+footer { text-align: center; font-family: var(--quatt); font-size: 12px; color: #6d93b4; padding: 18px 0 26px; background: var(--cielo); max-width: 440px; margin: 0 auto; }
+footer a { color: var(--azul-osc); }
+
+/* Botón de música flotante */
+#musica-btn { position: fixed; right: 14px; bottom: 16px; z-index: 40; width: 46px; height: 46px; border-radius: 50%; border: 0; background: rgba(255,255,255,.92); box-shadow: 0 4px 14px rgba(40,80,120,.25); display: none; place-items: center; cursor: pointer; }
+#musica-btn svg { width: 22px; fill: var(--azul); }
+#musica-btn.ver { display: grid; }
+#musica-btn.pausado { opacity: .6; }
+#musica-btn.pausado::after { content: ""; position: absolute; width: 26px; height: 2px; background: var(--azul); transform: rotate(-45deg); }
+
+/* Modo muestra */
+#marca-agua { position: fixed; inset: 0; z-index: 101; pointer-events: none; background: var(--marca) 0 0 / 400px 240px repeat; }
+#aviso { position: fixed; left: 50%; bottom: 80px; z-index: 103; translate: -50% 0; padding: 10px 18px; border-radius: 99px; background: rgba(74,122,165,.95); color: #fff; font: 600 15px/1.2 var(--quatt); white-space: nowrap; box-shadow: 0 6px 18px rgba(0,0,0,.25); opacity: 0; transform: translateY(10px); transition: opacity .3s, transform .3s; pointer-events: none; }
+#aviso.ver { opacity: 1; transform: none; }
+</style>
+</head>
+<body class="cerrado">
+
+<div id="sobre" role="button" aria-label="Abrir la invitación">
+  <div class="caja" style="--arribaY:23.2%;--abrirY:76.3%;--selloX:49%;--selloY:62.8%">
+    <img src="recursos/sobre.webp" alt="Sobre celeste con sello dorado AT" class="multiplica">
+    <div class="arriba" id="sobre-arriba"></div>
+    <div class="brillo"></div>
+    <div class="abrir" id="sobre-abrir"></div>
+  </div>
+</div>
+
+<main>
+  <section id="portada">
+    <img class="flores multiplica" src="recursos/flores.webp" alt="">
+    <img class="esq-oro " src="recursos/oro-esquina.webp" alt="">
+    <div class="monograma aparece" aria-hidden="true"><span id="ini1"></span><span id="ini2"></span></div>
+    <h1 class="nombre aparece"><span class="n1" id="n1"></span><span class="n2" id="n2"></span></h1>
+    <div class="xv aparece">XV<br>AÑOS</div>
+    <p class="musica-txt aparece">PRESIONA PLAY PARA REPRODUCIR LA MÚSICA</p>
+    <button id="play" class="aparece" aria-label="Reproducir la música">
+      <svg class="tri" viewBox="0 0 24 24"><path d="M7 4.5v15l12.5-7.5z"/></svg>
+      <svg class="pausa" viewBox="0 0 24 24"><path d="M6 4h4.5v16H6zM13.5 4H18v16h-4.5z"/></svg>
+    </button>
+    <div class="barra aparece"><i id="progreso"></i></div>
+  </section>
+
+  <section id="fecha">
+    <img class="filigrana  aparece" src="recursos/oro-separador.webp" alt="">
+    <div class="mes aparece" id="mes"></div>
+    <div class="fila-fecha aparece"><div class="lado" id="semana"></div><div class="dia" id="dia"></div><div class="lado" id="hora"></div></div>
+    <div class="anio aparece" id="anio"></div>
+    <img class="filigrana abajo  aparece" src="recursos/oro-separador.webp" alt="">
+  </section>
+
+  <section id="mensaje"><div class="tarjeta aparece"><p id="mensaje-txt"></p></div></section>
+
+  <section id="faltan">
+    <h2 class="titulo aparece">Faltan:</h2>
+    <div class="reloj aparece" id="reloj">
+      <div><b id="cd-d">0</b><small>DÍAS</small></div><div><b id="cd-h">00</b><small>HORAS</small></div>
+      <div><b id="cd-m">00</b><small>MINUTOS</small></div><div><b id="cd-s">00</b><small>SEGUNDOS</small></div>
+    </div>
+  </section>
+
+  <section id="padres">
+    <div class="tarjeta aparece">
+      <img class="esq ti " src="recursos/oro-esquina-tarjeta.webp" alt="">
+      <img class="esq td " src="recursos/oro-esquina-tarjeta.webp" alt="">
+      <img class="esq bi " src="recursos/oro-esquina-tarjeta.webp" alt="">
+      <img class="esq bd " src="recursos/oro-esquina-tarjeta.webp" alt="">
+      <p class="bendicion" id="bendicion"></p>
+      <h2 class="titulo">Mis Padres</h2>
+      <p class="padre" id="padre1"></p>
+      <svg class="corazon" viewBox="0 0 24 22"><path d="M12 21.5 10.3 20C4.2 14.6 0 10.9 0 6.4 0 2.8 2.8 0 6.4 0c2 0 4 .9 5.6 2.4C13.6.9 15.6 0 17.6 0 21.2 0 24 2.8 24 6.4c0 4.5-4.2 8.2-10.3 13.6z"/></svg>
+      <p class="padre" id="padre2"></p>
+    </div>
+  </section>
+
+  <section id="interactua">
+    <div class="clique aparece"><img class="multiplica" src="recursos/icono-toque.webp" alt=""><span>CLIQUE EN LOS ICONOS<br>PARA INTERACTUAR:</span></div>
+    <a class="accion aparece" id="mapa" target="_blank" rel="noopener">
+      <div class="circ"><img src="recursos/icono-pin.webp" alt=""></div>
+      <span>LOCAL DE<br>FIESTA<em class="lugar-nombre" id="lugar-nombre"></em></span>
+    </a>
+    <a class="accion der aparece" id="confirmar" target="_blank" rel="noopener">
+      <div class="circ"><img src="recursos/icono-confirmar.webp" alt=""></div>
+      <span>CONFIRMAR<br>ASISTENCIA</span>
+    </a>
+  </section>
+
+  <section id="vestimenta">
+    <div class="tarjeta aparece">
+      <h2 class="titulo">Dress Code:</h2>
+      <p class="estilo" id="estilo"></p>
+      <img class="pareja multiplica" src="recursos/pareja.webp" alt="Pareja vestida de gala">
+      <img class="sep-fino " src="recursos/oro-fino.webp" alt="">
+      <h2 class="titulo chico">Colores reservados</h2>
+      <p class="reservados" id="reservados"></p>
+      <div class="muestras"><i style="background:#d6e8f8"></i><i style="background:#cfd0d2"></i></div>
+    </div>
+  </section>
+
+  <section id="ninos">
+    <img class="filigrana  aparece" src="recursos/oro-separador.webp" alt="">
+    <h2 class="ninos-t aparece">Niños</h2>
+    <img class="ninos-ic multiplica aparece" src="recursos/icono-ninos.webp" alt="">
+    <img class="sep-fino  aparece" src="recursos/oro-fino.webp" alt="">
+    <p class="aparece" id="ninos-txt"></p>
+  </section>
+
+  <section id="cierre">
+    <h2 class="titulo aparece" id="cierre-txt"></h2>
+    <img class="flores multiplica aparece" src="recursos/flores.webp" alt="">
+  </section>
+</main>
+<footer>Página hecha con amor por <a href="https://eleganciadeamor.com/#nuestros-trabajos">Invitaciones de Amor</a></footer>
+
+<button id="musica-btn" aria-label="Pausar o reproducir la música"><svg viewBox="0 0 24 24"><path d="M9 3v11.6A3.5 3.5 0 1 0 11 18V8h7V3z"/></svg></button>
+<audio id="musica" preload="auto" loop></audio>
+
+<script>
+const $ = id => document.getElementById(id), C = CONFIG;
+$('sobre-arriba').textContent = C.sobre.arriba; $('sobre-abrir').textContent = C.sobre.abrir;
+$('ini1').textContent = C.iniciales[0]; $('ini2').textContent = C.iniciales[1];
+$('n1').textContent = C.nombre; $('n2').textContent = C.apellido;
+$('mes').textContent = C.fecha.mes; $('semana').textContent = C.fecha.semana; $('dia').textContent = C.fecha.dia;
+$('hora').textContent = C.fecha.hora; $('anio').textContent = C.fecha.anio;
+$('mensaje-txt').textContent = C.mensaje; $('bendicion').textContent = C.bendicion;
+$('padre1').textContent = C.padres[0]; $('padre2').textContent = C.padres[1];
+$('lugar-nombre').textContent = C.lugar.nombre; $('mapa').href = C.lugar.mapa;
+$('estilo').textContent = C.vestimenta.estilo; $('reservados').textContent = C.vestimenta.reservados;
+$('ninos-txt').textContent = C.ninos; $('cierre-txt').textContent = C.cierre;
+const co = C.confirmacion;
+$('confirmar').href = co.whatsapp ? 'https://wa.me/' + co.whatsapp + '?text=' + encodeURIComponent(co.mensaje) : '#';
+
+/* cuenta regresiva (hora de Perú) */
+const meta = new Date(C.fecha.iso).getTime(), dos = n => String(n).padStart(2, '0');
+function tic() {
+  let s = Math.max(0, Math.floor((meta - Date.now()) / 1000));
+  $('cd-d').textContent = Math.floor(s / 86400); $('cd-h').textContent = dos(Math.floor(s % 86400 / 3600));
+  $('cd-m').textContent = dos(Math.floor(s % 3600 / 60)); $('cd-s').textContent = dos(s % 60);
+}
+tic(); setInterval(tic, 1000);
+
+/* aparecer al bajar */
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('ver'); io.unobserve(e.target); } }), { threshold: .12 });
+document.querySelectorAll('.aparece').forEach(el => io.observe(el));
+
+/* música */
+const musica = $('musica'), btn = $('musica-btn'), play = $('play');
+musica.src = C.musica;
+const pintar = () => { const s = !musica.paused; play.classList.toggle('sonando', s); btn.classList.toggle('pausado', !s); };
+const sonar = () => { const p = musica.play(); if (p && p.then) p.then(pintar).catch(pintar); };
+musica.addEventListener('play', pintar); musica.addEventListener('pause', pintar);
+musica.addEventListener('timeupdate', () => { if (musica.duration) $('progreso').style.width = (musica.currentTime / musica.duration * 100) + '%'; });
+const alternar = e => { e.stopPropagation(); musica.paused ? sonar() : musica.pause(); };
+play.addEventListener('click', alternar); btn.addEventListener('click', alternar);
+
+/* sobre */
+function abrir() {
+  const s = $('sobre'); if (s.classList.contains('abierto')) return;
+  musica.currentTime = 0; sonar();
+  s.classList.add('abierto'); btn.classList.add('ver');
+  setTimeout(() => { document.body.classList.remove('cerrado'); scrollTo(0, 0); }, 900);
+}
+$('sobre').addEventListener('click', abrir);
+if (location.search.includes('directo')) { $('sobre').style.display = 'none'; document.body.classList.remove('cerrado'); btn.classList.add('ver'); }
+
+/* modo muestra */
+const MU = C.muestra;
+const aviso = document.createElement('div'); aviso.id = 'aviso'; aviso.textContent = MU.aviso; document.body.appendChild(aviso);
+let tA; const mostrarAviso = e => { e.preventDefault(); aviso.classList.add('ver'); clearTimeout(tA); tA = setTimeout(() => aviso.classList.remove('ver'), 2200); };
+if (!co.whatsapp) $('confirmar').addEventListener('click', mostrarAviso);
+if (MU.activa && !location.search.includes('sinmarca')) {
+  const t = MU.texto.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+  const fila = (x, y) => "<text x='" + x + "' y='" + y + "' text-anchor='middle' font-family='Georgia,serif' font-size='13' font-weight='700' letter-spacing='2' fill='rgba(30,50,75,.42)' stroke='rgba(255,255,255,.35)' stroke-width='.5'>" + t + "</text>";
+  const svg = "<svg xmlns='http://www.w3.org/2000/svg' width='400' height='240'><g transform='rotate(-24 200 120)'>" + fila(200, 80) + fila(0, 190) + fila(400, 190) + "</g></svg>";
+  const capa = document.createElement('div'); capa.id = 'marca-agua'; capa.setAttribute('aria-hidden', 'true');
+  capa.style.setProperty('--marca', 'url("data:image/svg+xml,' + encodeURIComponent(svg) + '")');
+  document.body.appendChild(capa);
+  ['contextmenu', 'dragstart', 'selectstart', 'copy', 'cut'].forEach(ev => document.addEventListener(ev, e => e.preventDefault()));
+}
+</script>
+</body>
+</html>
