@@ -148,7 +148,7 @@ body.cerrado { overflow: hidden; height: 100svh; }
 #aviso { position: fixed; left: 50%; bottom: 80px; translate: -50% 0; z-index: 120; padding: .8em 1.4em; border-radius: 99px; background: rgba(255, 252, 240, .97); color: #163322;
   font-family: "Cormorant", serif; font-weight: 600; font-size: 17px; box-shadow: 0 6px 20px rgba(0, 0, 0, .35); opacity: 0; pointer-events: none; transition: opacity .3s; white-space: nowrap; }
 #aviso.ver { opacity: 1; }
-footer { padding: 26px 16px 34px; text-align: center; font-size: 15px; color: rgba(235, 248, 240, .8); }
+footer { padding: 26px 16px calc(84px + env(safe-area-inset-bottom)); text-align: center; font-size: 15px; color: rgba(235, 248, 240, .8); }
 footer a { color: #e9c36a; text-decoration: none; }
 #marca-agua { position: fixed; inset: 0; z-index: 110; pointer-events: none; background: var(--marca) 0 0 / 260px 200px repeat; }
 body.muestra { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
