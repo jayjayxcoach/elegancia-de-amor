@@ -72,6 +72,10 @@ h2{font:700 26px/1.2 var(--serif);color:var(--tinta);margin:0 0 4px}
 .boton{flex:1;text-align:center;text-decoration:none;font-weight:600;font-size:15px;border-radius:10px;padding:10px 8px;min-height:44px;display:grid;place-items:center}
 .boton.ver{background:var(--tinta);color:#fff}
 .boton.elegir{border:1.5px solid var(--tinta);color:var(--tinta)}
+.modelo .foto{position:relative}
+.estilo{align-self:flex-start;font:600 12px/1 var(--sans);letter-spacing:.04em;color:var(--tinta);background:#eef4f7;border:1px solid #d5e3ea;border-radius:999px;padding:5px 9px}
+.modelo.favorita{border:2px solid var(--oro);box-shadow:0 6px 22px rgba(176,138,74,.28)}
+.cinta{position:absolute;top:10px;left:10px;z-index:1;background:linear-gradient(180deg,#d9b46a,#b08a4a);color:#fff;font:700 13px/1 var(--sans);padding:7px 11px;border-radius:999px;box-shadow:0 2px 8px rgba(0,0,0,.25);letter-spacing:.02em}
 .pin{font-size:14px;color:var(--teal);text-decoration:none;margin-top:4px;align-self:flex-start}
 .pin:hover{text-decoration:underline}
 
@@ -211,25 +215,52 @@ const MODELOS = [
   ["save", "Secreto Dorado", "Raspan el corazón dorado y aparece la fecha.", "golden-secret", "../secreto-dorado/", "save the date raspa y descubre"],
   ["save", "Promesa de Pétalos", "Quitan los pétalos y descubren la fecha.", "petal-promise", "../promesa-de-petalos/", "save the date pétalos rojos"],
   ["save", "Amor Capturado", "Una polaroid que revela la fecha al tocarla.", "captured-love", "../amor-capturado/", "save the date polaroid"],
-  ["xv", "Princesa Encantada", "Castillo rosa y sobre con lazo. De cuento.", "princesa-encantada", "../xv-princesa-encantada/", "invitación xv años princesa castillo rosa"],
-  ["xv", "Princesa Rosa", "Puertas que se abren entre rosas y dorado.", "princesa-rosa", "../xv-princesa-rosa/", "invitación xv años rosa y dorado"],
-  ["xv", "Noche de Gala", "Rojo vino y dorado, con las fotos de la quinceañera.", "muestra-xv", "../muestra-xv/", "invitación xv años rojo vino dorado"],
-  ["cumple", "Princesa Encantada", "Castillo, sobre con lazo y mucha magia.", "cumple-princesa", "../Cumpleanos 1 - Princesa Encantada/", "invitación cumpleaños princesa"],
+  // XV: la favorita de Jay va primero, con estrella (8.º dato: true)
+  ["xv", "Castillo de Cristal", "Azul cristal y plata, un castillo de cuento de noche.", "xv-cristal-azul", "../xv-cristal-azul/", "invitación xv años azul cristal plata castillo", "Escenas de cine", true],
+  ["xv", "Noche de Plata", "Lila y plata, escenas de película de principio a fin.", "xv-noche-de-plata", "../xv-noche-de-plata/", "invitación xv años lila plata", "Escenas de cine"],
+  ["xv", "La Torre de Rosas", "Rapunzel en rosa viejo y dorado, con faroles de luz.", "xv-rapunzel", "../xv-rapunzel/", "invitación xv años rapunzel rosa dorado", "Escenas de cine"],
+  ["xv", "Castillo de Hielo", "Azul acero y plata, una noche de invierno de cuento.", "xv-invierno-azul", "../xv-invierno-azul/", "invitación xv años invierno azul plata", "Escenas de cine"],
+  ["xv", "Gatsby", "Negro y dorado, elegante y de gala.", "xv-gatsby", "../xv-gatsby/", "invitación xv años gatsby negro dorado", "Escenas de cine"],
+  ["xv", "Noche de Gala", "Rojo vino y dorado, con las fotos de la quinceañera.", "muestra-xv", "../muestra-xv/", "invitación xv años rojo vino dorado", "Realista"],
+  ["xv", "Rosas y Rubí", "Rosas rojas, sello dorado y fotos de la quinceañera.", "diseno-realista", "../diseno-realista/", "invitación xv años rojo dorado rosas", "Realista"],
+  ["xv", "Rosas Vino y Muñeca", "Rosas vino, mariposas doradas y una muñeca de cuento.", "xv-muneca-vino", "../xv-muneca-vino/", "invitación xv años vino dorado muñeca", "Realista"],
+  ["xv", "Lirios de Agua", "Lirios, luciérnagas y un sapito con corona, en verde y oro.", "xv-lirios-verde", "../xv-lirios-verde/", "invitación xv años verde dorado lirios", "Realista"],
+  ["xv", "Jardín Esmeralda", "Verde esmeralda y dorado, un jardín de princesa.", "xv-esmeralda", "../xv-esmeralda/", "invitación xv años verde esmeralda dorado", "Realista"],
+  ["xv", "Bella Durmiente", "Rosa y dorado, como un cuento de hadas hecho realidad.", "xv-bella-durmiente", "../xv-bella-durmiente/", "invitación xv años bella durmiente rosa", "Realista"],
+  ["xv", "Bella Durmiente Celeste", "Celeste y dorado, dulce y soñada.", "xv-celeste-dorado", "../xv-celeste-dorado/", "invitación xv años celeste dorado", "Realista"],
+  ["xv", "Farol Rosa", "Rosa y dorado a la luz de un farol, de princesa.", "xv-farol-rosa", "../xv-farol-rosa/", "invitación xv años rosa dorado princesa", "Realista"],
+  ["xv", "Lago Encantado", "Lago de noche con nenúfares y un sapito con corona.", "xv-lago-encantado", "../xv-lago-encantado/", "invitación xv años princesa y el sapo verde", "Mixto"],
+  ["xv", "Cuento con Vestido Azul", "Castillo azul y hortensias, todo en un solo dibujo.", "xv-cuento-vestido-azul", "../xv-cuento-vestido-azul/", "invitación xv años cuento azul castillo", "Cuento"],
+  ["xv", "Cuento Rosa al Atardecer", "Del lago al castillo iluminado, en rosa y dorado.", "xv-cuento-rosa", "../xv-cuento-rosa/", "invitación xv años cuento rosa atardecer", "Cuento"],
+  ["xv", "Princesita Lila", "Castillo de princesa en lila y dorado, entre glicinas.", "xv-princesita-lila", "../xv-princesita-lila/", "invitación xv años lila morado princesa", "Cuento"],
+  ["xv", "Alicia en el País de las Maravillas", "Bosque de naipes y mariposas en celeste.", "xv-alicia-maravillas", "../xv-alicia-maravillas/", "invitación xv años alicia país de las maravillas", "Cuento"],
+  ["xv", "Castillo en las Nubes", "Lila y rosa entre nubes, con mariposas.", "xv-castillo-nubes", "../xv-castillo-nubes/", "invitación xv años castillo nubes lila", "Ilustración"],
+  ["xv", "Princesa y el Sapo", "Princesa del pantano mágico, en verde y oro.", "xv-princesa-sapo", "../xv-princesa-sapo/", "invitación xv años princesa y el sapo ilustrada", "Ilustración"],
+  ["xv", "Atardecer Rosa", "Lago al atardecer, espejo ovalado y tarjetas.", "xv-atardecer-rosa", "../xv-atardecer-rosa/", "invitación xv años rosa atardecer ilustrada", "Ilustración"],
+  ["xv", "Princesa Encantada", "Castillo rosa y sobre con lazo. De cuento.", "princesa-encantada", "../xv-princesa-encantada/", "invitación xv años princesa castillo rosa", "Ilustración"],
+  ["xv", "Princesa Rosa", "Puertas que se abren entre rosas y dorado.", "princesa-rosa", "../xv-princesa-rosa/", "invitación xv años rosa y dorado", "Ilustración"],
+  ["cumple", "Guerreras K-pop", "Bautizo y cumpleaños en rosa y lila, en un solo día.", "cumple-guerreras-kpop", "../cumple-guerreras-kpop/", "invitación cumpleaños kpop guerreras", "Ilustración"],
+  ["cumple", "K-pop Lila", "Guerreras K-pop en lila y morado, concierto frente al mar.", "cumple-kpop-lila", "../cumple-kpop-lila/", "invitación cumpleaños kpop lila morado", "Cuento"],
+  ["cumple", "Valiente", "Primer añito: libro de cuento en verdes del bosque.", "cumple-valiente", "../cumple-valiente/", "invitación primer añito valiente cuento", "Cuento"],
+  ["cumple", "Safari", "Primer añito: animalitos 3D en verde y durazno.", "cumple-safari", "../cumple-safari/", "invitación primer añito safari animalitos", "Mixto"],
+  ["cumple", "Princesa del Primer Añito", "Castillo celeste y una princesita de cuento.", "cumple-princesa-cuento", "../cumple-princesa-cuento/", "invitación primer año princesa", "Ilustración"],
+  ["cumple", "Príncipe Real", "Primer añito de príncipe, azul y dorado.", "cumple-principe-real", "../cumple-principe-real/", "invitación primer año príncipe", "Ilustración"],
+  ["cumple", "Princesa Encantada", "Castillo, sobre con lazo y mucha magia.", "cumple-princesa", "../Cumpleanos 1 - Princesa Encantada/", "invitación cumpleaños princesa", "Ilustración"],
 ];
 
 const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
 const tipo = { bodas: "boda", save: "Save the Date", xv: "XV años", cumple: "cumpleaños" };
-for (const [grupo, nombre, texto, foto, enlace, busqueda] of MODELOS) {
+for (const [grupo, nombre, texto, foto, enlace, busqueda, estilo, favorita] of MODELOS) {
   const caja = document.querySelector('[data-grupo="' + grupo + '"]');
   if (!caja) continue;
   const url = esc(encodeURI(enlace));
   const wa = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent("Hola Vale 💕 Me gustó el modelo " + nombre + " (" + tipo[grupo] + ")");
   const pin = "https://www.pinterest.com/search/pins/?q=" + encodeURIComponent(busqueda);
   const art = document.createElement("article");
-  art.className = "modelo";
+  art.className = "modelo" + (favorita ? " favorita" : "");
   art.innerHTML =
-    '<a class="foto" href="' + url + '" target="_blank" rel="noopener"><img src="recursos/modelos/' + foto + '.webp" alt="Portada del modelo ' + esc(nombre) + '" loading="lazy" width="420" height="560"></a>' +
-    '<div class="cuerpo"><h3>' + esc(nombre) + '</h3><p>' + esc(texto) + '</p>' +
+    '<a class="foto" href="' + url + '" target="_blank" rel="noopener">' + (favorita ? '<span class="cinta">⭐ La favorita</span>' : '') + '<img src="recursos/modelos/' + foto + '.webp" alt="Portada del modelo ' + esc(nombre) + '" loading="lazy" width="420" height="560"></a>' +
+    '<div class="cuerpo">' + (estilo ? '<span class="estilo">' + esc(estilo) + '</span>' : '') + '<h3>' + esc(nombre) + '</h3><p>' + esc(texto) + '</p>' +
     '<div class="acciones"><a class="boton ver" href="' + url + '" target="_blank" rel="noopener">Ver modelo</a>' +
     '<a class="boton elegir" href="' + wa + '" target="_blank" rel="noopener">Me gusta este</a></div>' +
     '<a class="pin" href="' + pin + '" target="_blank" rel="noopener">Ideas parecidas en Pinterest →</a></div>';
