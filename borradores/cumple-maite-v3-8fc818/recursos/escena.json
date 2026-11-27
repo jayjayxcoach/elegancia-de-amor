@@ -1,0 +1,39 @@
+{
+ "ancho": 1080,
+ "alto_tramo": 1935,
+ "total": 10015,
+ "tramos": {
+  "t1": 0,
+  "t2": 1703,
+  "t3": 2971,
+  "t4": 4674,
+  "t5": 6377,
+  "t6": 8080
+ },
+ "rebanadas": [
+  [
+   "escena-01.webp",
+   1935
+  ],
+  [
+   "escena-02.webp",
+   1935
+  ],
+  [
+   "escena-03.webp",
+   1935
+  ],
+  [
+   "escena-04.webp",
+   1935
+  ],
+  [
+   "escena-05.webp",
+   1935
+  ],
+  [
+   "escena-06.webp",
+   340
+  ]
+ ]
+}
