@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Mi Primer Añito · Maite</title>
-<meta name="description" content="Érase una vez una pequeña princesa… Toca el libro para abrir mi invitación ✨">
+<meta name="description" content="No te olvides, este sábado celebramos el primer añito de Génesis Maite 🏹 Toca el libro para abrir mi invitación ✨">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Invitaciones de Amor">
 <meta property="og:title" content="Mi Primer Añito · Maite">
-<meta property="og:description" content="Érase una vez una pequeña princesa… Toca el libro para abrir mi invitación ✨">
+<meta property="og:description" content="No te olvides, este sábado celebramos el primer añito de Génesis Maite 🏹 Toca el libro para abrir mi invitación ✨">
 <meta property="og:image" content="https://eleganciadeamor.com/borradores/cumple-maite-v4-e34926/recursos/vista-previa.jpg?v=4">
 <meta property="og:image:width" content="1000">
 <meta property="og:image:height" content="1000">
@@ -27,6 +27,8 @@ const CONFIG = {
   fechaCorta: "28 · 11 · 2026",
   hora: "1:30 p. m.",
   cuentaHasta: "2026-11-28T13:30:00-05:00",       // hora de Ecuador
+  recordatorio: "No te olvides, este sábado celebramos el primer añito de",   // pedido de Mercedes 27-nov: al inicio, como recordatorio
+  recordatorioNombre: "Génesis Maite 🏹",
   inicio: "Érase una vez…",
   frase: "en una tierra llena de magia y aventuras, nació una pequeña de corazón valiente. Su nombre es Génesis Maite y hoy celebra su primer añito. ¡Queremos celebrarlo contigo!",
   lugar: { nombre: "Conjunto Praderas del Valle", direccion: "",      // ubicación que mandó Mercedes (27-nov): Sangolquí
@@ -131,6 +133,12 @@ body.cerrado { overflow: hidden; height: 100svh; }
 #sobre .toca { position: absolute; left: 50%; bottom: max(6%, env(safe-area-inset-bottom) + 18px); translate: -50% 0; white-space: nowrap; padding: .65em 1.6em; border-radius: 99px; z-index: 2;
   font-family: "Cinzel", serif; font-weight: 600; font-size: clamp(12px, 3.6vw, 16px); letter-spacing: .16em; text-transform: uppercase; color: #163322; background: linear-gradient(180deg, #fff6d0, #f0cf74); box-shadow: 0 4px 18px rgba(0, 0, 0, .4); }
 #sobre.abriendo .toca { opacity: 0; transition: opacity .3s; }
+#sobre .recuerda { position: absolute; left: 50%; top: 57%; translate: -50% 0; width: min(80vw, 44svh); text-align: center; z-index: 2; pointer-events: none;
+  font-family: "Cormorant", Georgia, serif; font-style: italic; font-weight: 600; font-size: clamp(17px, 5.6vw, 25px); line-height: 1.3; color: #fbf6e6;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, .9), 0 0 14px rgba(0, 20, 10, .95); }
+#sobre .recuerda b { display: block; font-family: "Great Vibes", cursive; font-style: normal; font-weight: 400; font-size: 1.9em; line-height: 1.25; padding-top: .1em;
+  color: #f6d272; text-shadow: 0 1px 2px rgba(40, 20, 0, .95), 0 0 16px rgba(0, 20, 10, .9); }
+#sobre.abriendo .recuerda { opacity: 0; transition: opacity .4s; }
 
 /* música, aviso, pie, marca de agua */
 #musica-boton { position: fixed; right: 14px; bottom: max(14px, env(safe-area-inset-bottom)); z-index: 90; width: 48px; height: 48px; border-radius: 50%; border: 0; cursor: pointer;
@@ -164,6 +172,7 @@ body.muestra img { pointer-events: none; -webkit-user-drag: none; }
 <div id="sobre" role="button" aria-label="Toca el libro para abrir la invitación">
   <div class="tapa"></div>
   <div class="luz"></div>
+  <div class="recuerda"><span data-campo="recordatorio"></span><b data-campo="recordatorioNombre"></b></div>
   <div class="toca">Toca el libro para abrir</div>
 </div>
 
